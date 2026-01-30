@@ -1,12 +1,36 @@
 {
+  "version": "1.0",
+  "updated": "2026-01-30",
   "labs": [
     {
       "id": "aws-iam-basics",
-      "title": "AWS IAM Fundamentals",
-      "description": "Understand identities, roles, and trust relationships.",
+      "title": "AWS IAM Basics",
       "cloud": "AWS",
-      "path": "aws/identity/iam-basics/index.html",
-      "feeds_stc_ai": true
+      "domain": "Identity",
+      "level": "Foundation",
+      "status": "Gold",
+      "path": "/labs/aws/identity/iam-basics/",
+      "description": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning."
+    },
+    {
+      "id": "azure-entra-id-basics",
+      "title": "Azure Entra ID Basics",
+      "cloud": "Azure",
+      "domain": "Identity",
+      "level": "Foundation",
+      "status": "Starter",
+      "path": "/labs/azure/identity/entra-id-basics/",
+      "description": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts."
+    },
+    {
+      "id": "gcp-iam-basics",
+      "title": "GCP IAM Basics",
+      "cloud": "GCP",
+      "domain": "Identity",
+      "level": "Foundation",
+      "status": "Starter",
+      "path": "/labs/gcp/identity/iam-basics/",
+      "description": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization."
     }
   ]
 }
