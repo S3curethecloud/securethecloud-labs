@@ -47,3 +47,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.querySelectorAll('.explore-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const filter = link.dataset.filter;
+
+    // Activate corresponding filter button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.toggle(
+        'active',
+        btn.dataset.filter === filter
+      );
+    });
+
+    // Trigger filtering
+    filterLabs(filter);
+
+    // Scroll to Available Labs
+    document
+      .getElementById('available-labs')
+      .scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
