@@ -1,96 +1,204 @@
+/* =========================================================
+   SecureTheCloud Labs — Authoritative UI System
+   ========================================================= */
+
+/* ---------- Root Variables ---------- */
+:root {
+  --bg-primary: #0b0f14;
+  --bg-secondary: #111827;
+  --bg-card: #0f172a;
+
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --accent-primary: #38bdf8;
+  --accent-secondary: #22d3ee;
+  --accent-warning: #fbbf24;
+  --accent-danger: #ef4444;
+  --accent-success: #22c55e;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+}
+
+/* ---------- Global Reset ---------- */
 * {
   box-sizing: border-box;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
 }
 
-body {
+html, body {
   margin: 0;
-  background: #0b0f14;
-  color: #e6edf3;
+  padding: 0;
+  background: linear-gradient(180deg, var(--bg-primary), #05070a);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.65;
 }
 
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-  background: #0f172a;
-  border-bottom: 1px solid #1f2937;
-}
-
-.top-nav .brand {
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.top-nav nav a {
-  color: #9ca3af;
-  margin-left: 20px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.top-nav nav a.active,
-.top-nav nav a:hover {
-  color: #facc15;
-}
-
-.container {
-  max-width: 1100px;
+/* ---------- Page Container ---------- */
+main {
+  max-width: 960px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 4rem 1.5rem 6rem;
 }
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 12px;
+/* ---------- Headings ---------- */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.hero p {
-  color: #9ca3af;
-  font-size: 16px;
+h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
 }
 
-.labs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
+h2 {
+  font-size: 1.9rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.4rem;
 }
 
-.lab-card {
-  background: #020617;
-  border: 1px solid #1f2937;
-  border-radius: 12px;
-  padding: 24px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+h3 {
+  font-size: 1.35rem;
 }
 
-.lab-card:hover {
-  transform: translateY(-4px);
-  border-color: #facc15;
+h4 {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
 }
 
-.lab-card h3 {
-  margin-top: 0;
+/* ---------- Text ---------- */
+p {
+  margin: 0.75rem 0 1.25rem;
+  color: var(--text-primary);
 }
 
-.lab-card p {
-  font-size: 14px;
-  color: #9ca3af;
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
-.lab-card a {
-  display: inline-block;
-  margin-top: 12px;
-  color: #facc15;
+/* ---------- Lists ---------- */
+ul, ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+li {
+  margin: 0.4rem 0;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--accent-primary);
   text-decoration: none;
-  font-weight: 600;
 }
 
-footer {
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Cards / Sections ---------- */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+}
+
+/* ---------- Lab Metadata ---------- */
+.lab-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Callouts ---------- */
+.callout {
+  border-left: 4px solid var(--accent-primary);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 1rem 1.25rem;
+  margin: 1.75rem 0;
+  border-radius: 6px;
+}
+
+.callout.warning {
+  border-left-color: var(--accent-warning);
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.callout.danger {
+  border-left-color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.callout.success {
+  border-left-color: var(--accent-success);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+/* ---------- Code Blocks ---------- */
+pre {
+  background: #020617;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: var(--font-mono);
+  color: var(--accent-secondary);
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  background: var(--accent-primary);
+  color: #020617;
+  font-weight: 600;
+  border: none;
+}
+
+.button.secondary {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+}
+
+/* ---------- Footer Note ---------- */
+.footer-note {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  color: var(--text-muted);
   text-align: center;
-  padding: 32px;
-  color: #6b7280;
-  font-size: 13px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  main {
+    padding: 3rem 1.2rem 4rem;
+  }
 }
