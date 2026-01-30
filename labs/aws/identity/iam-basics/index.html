@@ -9,96 +9,121 @@
 
 <body>
 
-  <div class="container">
+<main>
 
-    <!-- Lab Header -->
-    <section>
-      <h1>AWS IAM Basics</h1>
-      <p>
-        This lab introduces AWS Identity and Access Management (IAM) using
-        production-grade patterns. The focus is not on clicking through the
-        console, but on understanding how identity decisions shape security,
-        blast radius, and operational control.
-      </p>
-    </section>
+  <!-- Header -->
+  <section>
+    <h1>AWS IAM Basics</h1>
 
-    <!-- Why This Lab Matters -->
-    <section class="card">
-      <h2>Why This Lab Matters</h2>
-      <p>
-        IAM is the security control plane for AWS. Every API call, workload,
-        and human action is evaluated through IAM.
-      </p>
-      <ul>
-        <li>Misconfigured IAM is the #1 cause of cloud breaches</li>
-        <li>Over-permissioned roles create silent blast radius</li>
-        <li>Identity mistakes compound across services</li>
-      </ul>
-    </section>
+    <div class="lab-meta">
+      <span><strong>Cloud:</strong> AWS</span>
+      <span><strong>Domain:</strong> Identity</span>
+      <span><strong>Level:</strong> Foundation</span>
+      <span><strong>Estimated Time:</strong> 45 minutes</span>
+    </div>
 
-    <!-- Core Concepts -->
-    <section class="card">
-      <h2>Core IAM Concepts</h2>
+    <p class="subtitle">
+      A foundational lab focused on how AWS Identity and Access Management (IAM)
+      governs every action in the cloud. This lab emphasizes reasoning, not
+      console memorization.
+    </p>
+  </section>
 
-      <h3>Principals</h3>
-      <p>
-        A principal is an entity that can make a request to AWS.
-        This includes users, roles, and services.
-      </p>
+  <!-- Why IAM Matters -->
+  <section class="section">
+    <h2>Why IAM Matters</h2>
+    <p>
+      IAM is the security control plane of AWS. Every API call, service interaction,
+      and workload execution is evaluated through IAM.
+    </p>
+    <ul>
+      <li>Most AWS breaches involve IAM misconfiguration</li>
+      <li>Over-permissioned roles silently expand blast radius</li>
+      <li>Identity mistakes compound across services</li>
+    </ul>
+  </section>
 
-      <h3>Policies</h3>
-      <p>
-        Policies define <strong>what is allowed</strong>.
-        They do not grant access by themselves — they must be attached
-        to a principal.
-      </p>
-
-      <h3>Evaluation Logic</h3>
-      <ul>
-        <li>Explicit <strong>Deny</strong> always wins</li>
-        <li>Default is implicit deny</li>
-        <li>Multiple policies are evaluated together</li>
-      </ul>
-    </section>
-
-    <!-- Architecture Callout -->
-    <section class="callout">
-      <strong>Architecture Insight:</strong>
-      IAM is evaluated on every request, not at login.
-      Temporary credentials (STS) are the foundation of modern AWS security.
-    </section>
-
-    <!-- Hands-On Objectives -->
-    <section class="card">
-      <h2>Lab Objectives</h2>
-      <ul>
-        <li>Understand IAM users vs roles</li>
-        <li>Read and reason about IAM policies</li>
-        <li>Identify over-permissioned access</li>
-        <li>Explain IAM decisions in an interview setting</li>
-      </ul>
-    </section>
-
-    <!-- What This Lab Is NOT -->
-    <section class="card">
-      <h2>What This Lab Is Not</h2>
-      <ul>
-        <li>A console click-through guide</li>
-        <li>A certification cram sheet</li>
-        <li>A least-privilege checkbox exercise</li>
-      </ul>
-      <p>
-        This lab is about <strong>thinking like a cloud security architect</strong>.
-      </p>
-    </section>
-
-    <!-- Footer Metadata -->
-    <section class="lab-meta">
-      Domain: AWS · Category: Identity · Level: Foundation  
-      Designed for SecureTheCloud Labs · MGF-ready
-    </section>
-
+  <div class="callout warning">
+    <strong>Security Reality:</strong>
+    IAM failures rarely cause immediate outages — they create long-lived
+    exposure that attackers exploit later.
   </div>
+
+  <!-- Core Concepts -->
+  <section class="section">
+    <h2>Core IAM Concepts</h2>
+
+    <h3>Principals</h3>
+    <p>
+      A principal is any entity that can make a request to AWS:
+      users, roles, or AWS services.
+    </p>
+
+    <h3>Policies</h3>
+    <p>
+      Policies define <strong>what actions are allowed</strong>.
+      They do not grant access by themselves — they must be attached to a principal.
+    </p>
+
+    <h3>Evaluation Logic</h3>
+    <ul>
+      <li>Explicit <strong>Deny</strong> always wins</li>
+      <li>Implicit deny is the default</li>
+      <li>All applicable policies are evaluated together</li>
+    </ul>
+  </section>
+
+  <div class="callout">
+    <strong>Architecture Insight:</strong>
+    IAM is evaluated on every request, not at login. Temporary credentials
+    (STS) are the foundation of modern AWS security.
+  </div>
+
+  <!-- Lab Objectives -->
+  <section class="section">
+    <h2>Lab Objectives</h2>
+    <ul>
+      <li>Differentiate IAM users vs roles</li>
+      <li>Understand trust vs permission policies</li>
+      <li>Reason about least-privilege design</li>
+      <li>Explain IAM decisions clearly in interviews</li>
+    </ul>
+  </section>
+
+  <!-- Interview Focus -->
+  <section class="section">
+    <h2>Interview Focus</h2>
+    <p>
+      When discussing IAM in interviews, emphasize <strong>why roles are preferred</strong>
+      over long-lived users, and how identity design limits blast radius.
+    </p>
+  </section>
+
+  <div class="callout success">
+    <strong>Interview Tip:</strong>
+    If you say “everything goes through IAM,” be prepared to explain
+    policy evaluation order and STS.
+  </div>
+
+  <!-- What This Lab Is Not -->
+  <section class="section">
+    <h2>What This Lab Is Not</h2>
+    <ul>
+      <li>A console click-through tutorial</li>
+      <li>A certification cram sheet</li>
+      <li>A least-privilege checkbox exercise</li>
+    </ul>
+    <p>
+      This lab is about thinking like a cloud security architect.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    SecureTheCloud Labs · AWS IAM Basics · Gold Reference Lab
+  </div>
+
+</main>
 
 </body>
 </html>
