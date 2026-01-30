@@ -1,43 +1,66 @@
 {
   "platform": "SecureTheCloud Labs",
   "version": "1.0",
+  "authority": "MGF-GOLD-STANDARD",
   "last_updated": "2026-01-30",
+  "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
+
   "labs": [
     {
       "id": "aws-iam-basics",
       "title": "AWS IAM Basics",
-      "cloud": "AWS",
-      "domain": "Identity",
-      "level": "Foundation",
-      "description": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning.",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "foundation",
+      "maturity": "gold",
+      "summary": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning.",
       "path": "/labs/aws/identity/iam-basics/",
-      "status": "gold",
-      "tags": ["iam", "identity", "zero-trust", "aws"],
-      "mgf": true
+      "tags": ["iam", "identity", "least-privilege", "aws"],
+      "breadcrumbs": ["Labs", "AWS", "Identity", "IAM Basics"],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "high",
+        "interview_ready": true
+      }
     },
+
     {
       "id": "azure-entra-id-basics",
       "title": "Azure Entra ID Basics",
-      "cloud": "Azure",
-      "domain": "Identity",
-      "level": "Foundation",
-      "description": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts.",
+      "cloud": "azure",
+      "domain": "identity",
+      "level": "foundation",
+      "maturity": "starter",
+      "summary": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts.",
       "path": "/labs/azure/identity/entra-id-basics/",
-      "status": "starter",
-      "tags": ["entra-id", "identity", "rbac", "azure"],
-      "mgf": true
+      "tags": ["entra-id", "rbac", "conditional-access", "azure"],
+      "breadcrumbs": ["Labs", "Azure", "Identity", "Entra ID Basics"],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true
+      }
     },
+
     {
       "id": "gcp-iam-basics",
       "title": "GCP IAM Basics",
-      "cloud": "GCP",
-      "domain": "Identity",
-      "level": "Foundation",
-      "description": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization.",
+      "cloud": "gcp",
+      "domain": "identity",
+      "level": "foundation",
+      "maturity": "starter",
+      "summary": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization.",
       "path": "/labs/gcp/identity/iam-basics/",
-      "status": "starter",
-      "tags": ["iam", "identity", "gcp"],
-      "mgf": true
+      "tags": ["iam", "principals", "policy-bindings", "gcp"],
+      "breadcrumbs": ["Labs", "GCP", "Identity", "IAM Basics"],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true
+      }
     }
   ]
 }
