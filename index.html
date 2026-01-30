@@ -4,84 +4,82 @@
   <meta charset="UTF-8" />
   <title>SecureTheCloud Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Base Styles -->
-  <link rel="stylesheet" href="/assets/css/labs.css" />
-
-  <!-- Meta -->
-  <meta name="description" content="Hands-on multi-cloud security labs across AWS, Azure, and GCP. Built for real-world architectures, interviews, and production readiness." />
+  <meta name="description" content="Hands-on, production-grade security labs across AWS, Azure, and GCP." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header class="labs-header">
-    <div class="container">
+  <div class="container">
+
+    <!-- Header -->
+    <section>
       <h1>SecureTheCloud Labs</h1>
-      <p class="subtitle">
-        Hands-on, production-grade security labs across AWS, Azure, and GCP.
-      </p>
-    </div>
-  </header>
-
-  <!-- Intro -->
-  <section class="labs-intro">
-    <div class="container">
       <p>
-        SecureTheCloud Labs are designed to simulate <strong>real enterprise security architectures</strong>.
-        Each lab is built from first principles, aligned with cloud provider best practices,
-        and structured for both <em>learning</em> and <em>interview readiness</em>.
+        Hands-on, production-grade security labs designed for real-world
+        cloud architectures, interviews, and operational readiness.
       </p>
+    </section>
 
-      <ul class="labs-principles">
-        <li>✔ Real cloud primitives (no toy examples)</li>
-        <li>✔ Identity-first, Zero Trust oriented</li>
-        <li>✔ Terraform, IAM, networking, and security controls</li>
-        <li>✔ Designed for STC AI ingestion & analysis</li>
+    <!-- Principles -->
+    <section class="card">
+      <h2>Design Principles</h2>
+      <ul>
+        <li>Real cloud primitives — no toy examples</li>
+        <li>Identity-first and Zero Trust aligned</li>
+        <li>Built for architecture reviews and interviews</li>
+        <li>Structured for STC AI and MGF ingestion</li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- Cloud Sections -->
-  <section class="labs-clouds">
-    <div class="container">
+    <!-- Cloud Providers -->
+    <section>
+      <h2>Lab Domains</h2>
 
-      <div class="cloud-card aws">
-        <h2>AWS Labs</h2>
+      <div class="card">
+        <h3>AWS Labs</h3>
         <p>
-          Identity, networking, compute, and security labs built on AWS-native services.
+          Identity, networking, compute, and security labs built on
+          AWS-native services and best practices.
         </p>
-        <a href="/labs/aws/" class="cloud-link">Explore AWS Labs →</a>
+        <a href="/labs/aws/">Explore AWS Labs →</a>
       </div>
 
-      <div class="cloud-card azure">
-        <h2>Azure Labs</h2>
+      <div class="card">
+        <h3>Azure Labs</h3>
         <p>
-          Microsoft Entra ID, Azure networking, and security architecture labs.
+          Microsoft Entra ID, Azure networking, and enterprise
+          security architecture labs.
         </p>
-        <a href="/labs/azure/" class="cloud-link">Explore Azure Labs →</a>
+        <a href="/labs/azure/">Explore Azure Labs →</a>
       </div>
 
-      <div class="cloud-card gcp">
-        <h2>GCP Labs</h2>
+      <div class="card">
+        <h3>GCP Labs</h3>
         <p>
-          Workload Identity, IAM, and secure GCP architecture labs.
+          Workload Identity, IAM, and secure Google Cloud
+          architecture labs.
         </p>
-        <a href="/labs/gcp/" class="cloud-link">Explore GCP Labs →</a>
+        <a href="/labs/gcp/">Explore GCP Labs →</a>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- Callout -->
+    <section class="callout">
+      <strong>Note:</strong>
+      These labs are continuously expanded and refined.
+      Each lab is designed to reflect real enterprise security decisions,
+      not simplified demos.
+    </section>
 
-  <!-- Footer -->
-  <footer class="labs-footer">
-    <div class="container">
-      <p>
-        SecureTheCloud Labs are part of the SecureTheCloud ecosystem —
-        powering education, architecture validation, and AI-driven security insights.
-      </p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <section class="lab-meta">
+      SecureTheCloud Labs are part of the SecureTheCloud ecosystem —
+      supporting education, architecture validation, and AI-driven
+      security insights.
+    </section>
+
+  </div>
 
 </body>
 </html>
