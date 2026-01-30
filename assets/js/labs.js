@@ -26,13 +26,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "lab-card";
 
+      const maturity = lab.maturity || "starter";
+
       card.innerHTML = `
+        <span class="badge badge-${maturity}">
+          ${maturity.toUpperCase()}
+        </span>
+
         <h3>${lab.title}</h3>
+
         <p class="lab-meta">
           ${lab.cloud.toUpperCase()} · ${lab.domain} · ${lab.level}
         </p>
+
         <p>${lab.summary}</p>
-        <a href="${lab.path}" class="lab-link">Open Lab →</a>
+
+        <a href="${lab.path}" class="lab-link">
+          Open Lab →
+        </a>
       `;
 
       container.appendChild(card);
@@ -48,26 +59,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.querySelectorAll('.explore-link').forEach(link => {
-  link.addEventListener('click', e => {
+document.querySelectorAll(".explore-link").forEach(link => {
+  link.addEventListener("click", e => {
     e.preventDefault();
     const filter = link.dataset.filter;
 
     // Activate corresponding filter button
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    document.querySelectorAll(".filter-btn").forEach(btn => {
       btn.classList.toggle(
-        'active',
-        btn.dataset.filter === filter
+        "active",
+        btn.dataset.cloud === filter
       );
     });
 
     // Trigger filtering
-    filterLabs(filter);
-
-    // Scroll to Available Labs
+    const event = new Event("click");
     document
-      .getElementById('available-labs')
-      .scrollIntoView({ behavior: 'smooth' });
+      .querySelector(`.filter-btn[data-cloud="${filter}"]`)
+      ?.dispatchEvent(event);
+
+    // Smooth scroll
+    document
+      .getElementById("available-labs")
+      .scrollIntoView({ behavior: "smooth" });
   });
 });
-
