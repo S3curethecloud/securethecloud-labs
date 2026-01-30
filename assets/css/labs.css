@@ -202,3 +202,38 @@ code {
     padding: 3rem 1.2rem 4rem;
   }
 }
+
+/* ---------- Breadcrumbs ---------- */
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbs a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.breadcrumbs span {
+  margin: 0 0.4rem;
+}
+
+/* ---------- Lab Navigation ---------- */
+.lab-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.lab-nav a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.lab-nav a:hover {
+  text-decoration: underline;
+}
