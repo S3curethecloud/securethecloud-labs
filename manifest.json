@@ -1,0 +1,12 @@
+{
+  "labs": [
+    {
+      "id": "aws-iam-basics",
+      "title": "AWS IAM Fundamentals",
+      "description": "Understand identities, roles, and trust relationships.",
+      "cloud": "AWS",
+      "path": "aws/identity/iam-basics/index.html",
+      "feeds_stc_ai": true
+    }
+  ]
+}
