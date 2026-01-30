@@ -1,6 +1,7 @@
 {
+  "platform": "SecureTheCloud Labs",
   "version": "1.0",
-  "updated": "2026-01-30",
+  "last_updated": "2026-01-30",
   "labs": [
     {
       "id": "aws-iam-basics",
@@ -8,9 +9,11 @@
       "cloud": "AWS",
       "domain": "Identity",
       "level": "Foundation",
-      "status": "Gold",
+      "description": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning.",
       "path": "/labs/aws/identity/iam-basics/",
-      "description": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning."
+      "status": "gold",
+      "tags": ["iam", "identity", "zero-trust", "aws"],
+      "mgf": true
     },
     {
       "id": "azure-entra-id-basics",
@@ -18,9 +21,11 @@
       "cloud": "Azure",
       "domain": "Identity",
       "level": "Foundation",
-      "status": "Starter",
+      "description": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts.",
       "path": "/labs/azure/identity/entra-id-basics/",
-      "description": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts."
+      "status": "starter",
+      "tags": ["entra-id", "identity", "rbac", "azure"],
+      "mgf": true
     },
     {
       "id": "gcp-iam-basics",
@@ -28,9 +33,11 @@
       "cloud": "GCP",
       "domain": "Identity",
       "level": "Foundation",
-      "status": "Starter",
+      "description": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization.",
       "path": "/labs/gcp/identity/iam-basics/",
-      "description": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization."
+      "status": "starter",
+      "tags": ["iam", "identity", "gcp"],
+      "mgf": true
     }
   ]
 }

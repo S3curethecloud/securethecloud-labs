@@ -1,27 +1,22 @@
-async function loadLabs() {
-  try {
-    const response = await fetch('/manifest.json');
-    const data = await response.json();
-
-    const container = document.getElementById('labs-list');
-    if (!container) return;
-
+fetch('/manifest.json')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('labs-container');
     data.labs.forEach(lab => {
       const card = document.createElement('div');
-      card.className = 'section';
+      card.className = 'lab-card';
 
       card.innerHTML = `
         <h3>${lab.title}</h3>
-        <p><strong>${lab.cloud}</strong> · ${lab.domain} · ${lab.level}</p>
+        <p class="lab-meta">${lab.cloud} · ${lab.domain} · ${lab.level}</p>
         <p>${lab.description}</p>
-        <a href="${lab.path}">Open Lab →</a>
+        <a href="${lab.path}" class="lab-link">Open Lab →</a>
       `;
 
       container.appendChild(card);
     });
-  } catch (err) {
-    console.error('Failed to load labs manifest:', err);
-  }
-}
+  })
+  .catch(err => {
+    console.error('Failed to load lab manifest', err);
+  });
 
-document.addEventListener('DOMContentLoaded', loadLabs);
