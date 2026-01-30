@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Azure Entra ID Basics | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+
+<main>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <a href="/index.html">Labs</a>
+    <span>›</span>
+    <a href="/labs/azure/">Azure</a>
+    <span>›</span>
+    <a href="/labs/azure/identity/">Identity</a>
+    <span>›</span>
+    <span>Entra ID Basics</span>
+  </nav>
+
+  <!-- Starter Notice -->
+  <div class="callout warning">
+    <strong>Starter Lab:</strong>
+    This lab establishes identity fundamentals in Azure Entra ID.
+    Hands-on scenarios will be expanded in future iterations.
+  </div>
+
+  <!-- Header -->
+  <section>
+    <h1>Azure Entra ID Basics</h1>
+
+    <div class="lab-meta">
+      <span><strong>Cloud:</strong> Azure</span>
+      <span><strong>Domain:</strong> Identity</span>
+      <span><strong>Level:</strong> Foundation</span>
+      <span><strong>Estimated Time:</strong> 45 minutes</span>
+    </div>
+
+    <p class="subtitle">
+      A foundational lab focused on how Azure Entra ID governs every identity
+      decision in the cloud. This lab emphasizes reasoning, not portal
+      memorization.
+    </p>
+  </section>
+
+  <!-- Why Entra ID Matters -->
+  <section class="section">
+    <h2>Why Entra ID Matters</h2>
+    <p>
+      Entra ID is the identity control plane of Azure. Every authentication,
+      token issuance, and access decision is evaluated through Entra ID.
+    </p>
+    <ul>
+      <li>Most Azure breaches involve identity misconfiguration</li>
+      <li>Over-permissioned identities silently expand blast radius</li>
+      <li>Identity mistakes compound across services</li>
+    </ul>
+  </section>
+
+  <div class="callout warning">
+    <strong>Security Reality:</strong>
+    Identity failures rarely cause immediate outages — they create long-lived
+    exposure that attackers exploit later.
+  </div>
+
+  <!-- Core Concepts -->
+  <section class="section">
+    <h2>Core Entra ID Concepts</h2>
+
+    <h3>Principals</h3>
+    <p>
+      A principal is any entity that can authenticate and request access:
+      users, service principals, managed identities, or applications.
+    </p>
+
+    <h3>Policies</h3>
+    <p>
+      Policies define <strong>what access is allowed</strong>.
+      They are evaluated during authentication and authorization flows.
+    </p>
+
+    <h3>Evaluation Logic</h3>
+    <ul>
+      <li>Explicit <strong>Deny</strong> always wins</li>
+      <li>Default is implicit deny</li>
+      <li>Multiple controls are evaluated together</li>
+    </ul>
+  </section>
+
+  <div class="callout">
+    <strong>Architecture Insight:</strong>
+    Entra ID evaluates identity continuously, not just at sign-in.
+    Token issuance and Entra trust relationships are the foundation
+    of modern Azure security.
+  </div>
+
+  <!-- Lab Objectives -->
+  <section class="section">
+    <h2>Lab Objectives</h2>
+    <ul>
+      <li>Understand Entra ID users, groups, and service principals</li>
+      <li>Reason about identity and access decisions</li>
+      <li>Identify over-permissioned access</li>
+      <li>Explain Entra ID behavior in an interview setting</li>
+    </ul>
+  </section>
+
+  <!-- Interview Focus -->
+  <section class="section">
+    <h2>Interview Focus</h2>
+    <p>
+      When discussing Entra ID in interviews, emphasize <strong>why identity-first
+      design matters</strong> and how token-based access limits blast radius.
+    </p>
+  </section>
+
+  <div class="callout success">
+    <strong>Interview Tip:</strong>
+    If you say “everything goes through Entra ID,” be prepared to explain
+    authentication vs authorization and token lifecycles.
+  </div>
+
+  <!-- What This Lab Is Not -->
+  <section class="section">
+    <h2>What This Lab Is Not</h2>
+    <ul>
+      <li>An Azure Portal click-through tutorial</li>
+      <li>A certification cram sheet</li>
+      <li>A checkbox compliance exercise</li>
+    </ul>
+    <p>
+      This lab is about thinking like a cloud security architect.
+    </p>
+  </section>
+
+  <!-- Bottom Lab Navigation -->
+  <div class="lab-nav">
+    <div>
+      ← <a href="/labs/azure/">Back to Azure Labs</a>
+    </div>
+    <div>
+      <a href="#">Next Lab →</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    SecureTheCloud Labs · Azure Entra ID Basics · Gold Reference Lab
+  </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GCP IAM Basics | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+
+<main>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <a href="/index.html">Labs</a>
+    <span>›</span>
+    <a href="/labs/gcp/">GCP</a>
+    <span>›</span>
+    <a href="/labs/gcp/identity/">Identity</a>
+    <span>›</span>
+    <span>IAM Basics</span>
+  </nav>
+
+  <!-- Starter Notice -->
+  <div class="callout warning">
+    <strong>Starter Lab:</strong>
+    This lab introduces Google Cloud IAM concepts.
+    Deeper hands-on scenarios will follow.
+  </div>
+
+  <!-- Header -->
+  <section>
+    <h1>GCP IAM Basics</h1>
+
+    <div class="lab-meta">
+      <span><strong>Cloud:</strong> GCP</span>
+      <span><strong>Domain:</strong> Identity</span>
+      <span><strong>Level:</strong> Foundation</span>
+      <span><strong>Estimated Time:</strong> 45 minutes</span>
+    </div>
+
+    <p class="subtitle">
+      A foundational lab focused on how Google Cloud Identity and Access Management (IAM)
+      governs every action in GCP. This lab emphasizes reasoning, not
+      console memorization.
+    </p>
+  </section>
+
+  <!-- Why IAM Matters -->
+  <section class="section">
+    <h2>Why IAM Matters</h2>
+    <p>
+      IAM is the security control plane of GCP. Every API call, service interaction,
+      and workload execution is evaluated through IAM.
+    </p>
+    <ul>
+      <li>Most GCP breaches involve IAM misconfiguration</li>
+      <li>Over-permissioned IAM roles and bindings silently expand blast radius</li>
+      <li>Identity mistakes compound across services</li>
+    </ul>
+  </section>
+
+  <div class="callout warning">
+    <strong>Security Reality:</strong>
+    IAM failures rarely cause immediate outages — they create long-lived
+    exposure that attackers exploit later.
+  </div>
+
+  <!-- Core Concepts -->
+  <section class="section">
+    <h2>Core IAM Concepts</h2>
+
+    <h3>Principals</h3>
+    <p>
+      A principal is any entity that can make a request to GCP:
+      users, groups, service accounts, or Google-managed services.
+    </p>
+
+    <h3>Policies</h3>
+    <p>
+      Policies define <strong>what actions are allowed</strong>.
+      In GCP, access is granted through IAM roles and bindings
+      between principals and resources.
+    </p>
+
+    <h3>Evaluation Logic</h3>
+    <ul>
+      <li>Explicit <strong>Deny</strong> always wins</li>
+      <li>Implicit deny is the default</li>
+      <li>All applicable IAM roles / bindings are evaluated together</li>
+    </ul>
+  </section>
+
+  <div class="callout">
+    <strong>Architecture Insight:</strong>
+    IAM is evaluated on every request, not at login.
+    Short-lived service account credentials are the foundation
+    of modern GCP security.
+  </div>
+
+  <!-- Lab Objectives -->
+  <section class="section">
+    <h2>Lab Objectives</h2>
+    <ul>
+      <li>Understand GCP IAM principals and service accounts</li>
+      <li>Reason about IAM roles and bindings</li>
+      <li>Identify over-permissioned access</li>
+      <li>Explain GCP IAM decisions clearly in interviews</li>
+    </ul>
+  </section>
+
+  <!-- Interview Focus -->
+  <section class="section">
+    <h2>Interview Focus</h2>
+    <p>
+      When discussing GCP IAM in interviews, emphasize <strong>why service accounts
+      and short-lived credentials are preferred</strong> and how IAM bindings
+      limit blast radius.
+    </p>
+  </section>
+
+  <div class="callout success">
+    <strong>Interview Tip:</strong>
+    If you say “everything goes through IAM,” be prepared to explain
+    role inheritance, resource hierarchy, and credential lifetimes.
+  </div>
+
+  <!-- What This Lab Is Not -->
+  <section class="section">
+    <h2>What This Lab Is Not</h2>
+    <ul>
+      <li>A console click-through tutorial</li>
+      <li>A certification cram sheet</li>
+      <li>A least-privilege checkbox exercise</li>
+    </ul>
+    <p>
+      This lab is about thinking like a cloud security architect.
+    </p>
+  </section>
+
+  <!-- Bottom Lab Navigation -->
+  <div class="lab-nav">
+    <div>
+      ← <a href="/labs/gcp/">Back to GCP Labs</a>
+    </div>
+    <div>
+      <a href="#">Next Lab →</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    SecureTheCloud Labs · GCP IAM Basics · Gold Reference Lab
+  </div>
+
+</main>
+
+</body>
+</html>
