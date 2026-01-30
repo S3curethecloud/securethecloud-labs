@@ -1,0 +1,28 @@
+{
+  "lab_id": "aws-iam-basics",
+  "title": "AWS IAM Basics",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "difficulty": "Foundational",
+  "estimated_time_minutes": 45,
+  "prerequisites": [
+    "AWS account",
+    "Basic AWS console familiarity"
+  ],
+  "objectives": [
+    "Understand IAM users, groups, and roles",
+    "Apply least-privilege policies",
+    "Explain IAM design in interviews"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": false,
+    "policy_examples": true
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "hands-on",
+    "interview_ready": true
+  }
+}
