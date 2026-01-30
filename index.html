@@ -10,7 +10,7 @@
 
 <body>
 
-  <div class="container">
+  <main class="page-container">
 
     <!-- Header -->
     <section>
@@ -42,7 +42,12 @@
           Identity, networking, compute, and security labs built on
           AWS-native services and best practices.
         </p>
-        <a href="/labs/aws/">Explore AWS Labs →</a>
+        <!-- AWS -->
+        <a href="#available-labs"
+           class="explore-link"
+           data-filter="aws">
+          Explore AWS Labs →
+        </a>
       </div>
 
       <div class="card">
@@ -51,7 +56,12 @@
           Microsoft Entra ID, Azure networking, and enterprise
           security architecture labs.
         </p>
-        <a href="/labs/azure/">Explore Azure Labs →</a>
+        <!-- Azure -->
+        <a href="#available-labs"
+           class="explore-link"
+           data-filter="azure">
+          Explore Azure Labs →
+        </a>
       </div>
 
       <div class="card">
@@ -60,11 +70,16 @@
           Workload Identity, IAM, and secure Google Cloud
           architecture labs.
         </p>
-        <a href="/labs/gcp/">Explore GCP Labs →</a>
+        <!-- GCP -->
+        <a href="#available-labs"
+           class="explore-link"
+           data-filter="gcp">
+          Explore GCP Labs →
+        </a>
       </div>
     </section>
 
-    <!-- 🧱 LAB FILTER CONTROLS (DECLARATIVE CONTRACT) -->
+    <!-- Lab Filters -->
     <section id="lab-filters">
       <button data-cloud="all" class="filter-btn active">All</button>
       <button data-cloud="aws" class="filter-btn">AWS</button>
@@ -72,12 +87,39 @@
       <button data-cloud="gcp" class="filter-btn">GCP</button>
     </section>
 
-    <!-- 🔧 WIRED LABS RENDER TARGET (CONTRACT-COMPLIANT) -->
+    <!-- Available Labs -->
     <section id="available-labs">
       <h2>Available Labs</h2>
 
       <div id="labs-container">
+
+        <!--
+          LAB CARD RENDERING CONTRACT (AUTHORITATIVE)
+
+          All explore links:
+          - Trigger the SAME JS handler
+          - Activate the matching filter button
+          - Filter lab cards by data-cloud
+          - Smooth-scroll to this section
+
+          labs.js MUST render each lab as:
+
+          <div class="lab-card" data-cloud="aws|azure|gcp">
+            <span class="badge badge-gold">GOLD</span>
+            OR
+            <span class="badge badge-starter">STARTER</span>
+
+            <h3>Lab Title</h3>
+            <p>Short lab description...</p>
+
+            <a href="/labs/..." class="start-lab-btn">
+              Start Lab →
+            </a>
+          </div>
+        -->
+
         <!-- Labs injected dynamically by labs.js -->
+
       </div>
     </section>
 
@@ -96,9 +138,9 @@
       security insights.
     </section>
 
-  </div>
+  </main>
 
-  <!-- 🔧 LABS DATA WIRING -->
+  <!-- Labs JS -->
   <script src="/assets/js/labs.js"></script>
 
 </body>
