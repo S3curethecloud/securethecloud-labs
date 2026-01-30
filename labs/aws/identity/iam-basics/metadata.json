@@ -5,6 +5,7 @@
   "domain": "Identity",
   "service": "IAM",
   "difficulty": "Foundational",
+  "maturity": "gold",
   "estimated_time_minutes": 45,
   "prerequisites": [
     "AWS account",
