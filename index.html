@@ -1,11 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Base Styles -->
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+
+  <!-- Meta -->
+  <meta name="description" content="Hands-on multi-cloud security labs across AWS, Azure, and GCP. Built for real-world architectures, interviews, and production readiness." />
 </head>
+
 <body>
-  <h1>SecureTheCloud Labs</h1>
-  <p>Labs platform initializing.</p>
+
+  <!-- Header -->
+  <header class="labs-header">
+    <div class="container">
+      <h1>SecureTheCloud Labs</h1>
+      <p class="subtitle">
+        Hands-on, production-grade security labs across AWS, Azure, and GCP.
+      </p>
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <section class="labs-intro">
+    <div class="container">
+      <p>
+        SecureTheCloud Labs are designed to simulate <strong>real enterprise security architectures</strong>.
+        Each lab is built from first principles, aligned with cloud provider best practices,
+        and structured for both <em>learning</em> and <em>interview readiness</em>.
+      </p>
+
+      <ul class="labs-principles">
+        <li>✔ Real cloud primitives (no toy examples)</li>
+        <li>✔ Identity-first, Zero Trust oriented</li>
+        <li>✔ Terraform, IAM, networking, and security controls</li>
+        <li>✔ Designed for STC AI ingestion & analysis</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cloud Sections -->
+  <section class="labs-clouds">
+    <div class="container">
+
+      <div class="cloud-card aws">
+        <h2>AWS Labs</h2>
+        <p>
+          Identity, networking, compute, and security labs built on AWS-native services.
+        </p>
+        <a href="/labs/aws/" class="cloud-link">Explore AWS Labs →</a>
+      </div>
+
+      <div class="cloud-card azure">
+        <h2>Azure Labs</h2>
+        <p>
+          Microsoft Entra ID, Azure networking, and security architecture labs.
+        </p>
+        <a href="/labs/azure/" class="cloud-link">Explore Azure Labs →</a>
+      </div>
+
+      <div class="cloud-card gcp">
+        <h2>GCP Labs</h2>
+        <p>
+          Workload Identity, IAM, and secure GCP architecture labs.
+        </p>
+        <a href="/labs/gcp/" class="cloud-link">Explore GCP Labs →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="labs-footer">
+    <div class="container">
+      <p>
+        SecureTheCloud Labs are part of the SecureTheCloud ecosystem —
+        powering education, architecture validation, and AI-driven security insights.
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
