@@ -1,0 +1,49 @@
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill:#0f172a; stroke:#38bdf8; stroke-width:2; rx:10; }
+    .text { fill:#e5e7eb; font-family:Arial, sans-serif; font-size:14px; }
+    .title { font-size:18px; font-weight:bold; }
+    .arrow { stroke:#9ca3af; stroke-width:2; marker-end:url(#arrowhead); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="330" y="30" class="text title">
+    GCP IAM — Identity Evaluation Flow
+  </text>
+
+  <!-- Human / Workload -->
+  <rect x="40" y="90" width="220" height="80" class="box"/>
+  <text x="70" y="130" class="text">Human / Workload</text>
+
+  <!-- Principal -->
+  <rect x="340" y="90" width="220" height="80" class="box"/>
+  <text x="360" y="120" class="text">
+    Principal
+  </text>
+  <text x="360" y="145" class="text">
+    (User / Service Account)
+  </text>
+
+  <!-- IAM Policy Bindings -->
+  <rect x="640" y="90" width="220" height="80" class="box"/>
+  <text x="655" y="132" class="text">
+    IAM Policy Bindings
+  </text>
+
+  <!-- Google Cloud Service -->
+  <rect x="340" y="240" width="220" height="80" class="box"/>
+  <text x="360" y="280" class="text">
+    Google Cloud Service
+  </text>
+
+  <!-- Arrows -->
+  <line x1="260" y1="130" x2="340" y2="130" class="arrow"/>
+  <line x1="560" y1="130" x2="640" y2="130" class="arrow"/>
+  <line x1="450" y1="170" x2="450" y2="240" class="arrow"/>
+</svg>
