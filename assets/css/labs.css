@@ -2,6 +2,13 @@
    SecureTheCloud Labs — Authoritative UI System
    ========================================================= */
 
+/* === Gold Standard Page Layout === */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 /* ---------- Root Variables ---------- */
 :root {
   --bg-primary: #0b0f14;
@@ -264,4 +271,40 @@ code {
   background: var(--accent-primary);
   color: #020617;
   border-color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- Lab Maturity Badges ---------- */
+.badge {
+  display: inline-block;
+  margin: 0.4rem 0;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, #f5c542, #c99700);
+  color: #111;
+}
+
+.badge-starter {
+  background: #1f2937;
+  color: #9ca3af;
+  border: 1px solid #374151;
 }
