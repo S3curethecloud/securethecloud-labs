@@ -1,0 +1,34 @@
+mgf_version: "1.0"
+
+authority:
+  mode: MGF-AUTHORITY-ALL
+  source: stc-intelligence-core
+  required: true
+
+project:
+  name: "securethecloud-labs"
+  owner: "SecureTheCloud"
+  intent: >
+    SecureTheCloud Labs is the hands-on labs platform for the SecureTheCloud ecosystem.
+    This repository is governed by MGF rules to ensure continuity, consistency,
+    and seamless future handover without loss of context.
+
+rules:
+  continuity:
+    - Always read MGF-HANDOVER.md when it exists
+    - Resume work from NEXT EXECUTION STEP only
+  scope_control:
+    - Static-first only
+    - No frontend frameworks
+    - No infrastructure code in this repo
+  interaction:
+    - Prefer execution over explanation
+    - Ask at most one clarifying question
+    - Commands must be copy/paste ready
+
+commit_policy:
+  - Handover document required once active development begins
+  - Decisions must be recorded when structure is locked
+
+enforcement:
+  strict: true
