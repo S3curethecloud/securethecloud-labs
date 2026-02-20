@@ -1,0 +1,32 @@
+{
+  "lab_id": "aws-cross-account-role-escalation",
+  "title": "AWS Cross-Account Role Escalation Modeling",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "difficulty": "Advanced",
+  "maturity": "gold",
+  "estimated_time_minutes": 75,
+  "prerequisites": [
+    "Two AWS accounts (Account A and Account B)",
+    "Basic IAM role knowledge",
+    "Understanding of trust policies"
+  ],
+  "objectives": [
+    "Model cross-account trust relationships",
+    "Identify privilege escalation via AssumeRole",
+    "Explain blast radius expansion across accounts",
+    "Connect escalation path to Shield attack-path modeling"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "identity-threat-modeling",
+    "interview_ready": true,
+    "shield_aligned": true
+  }
+}

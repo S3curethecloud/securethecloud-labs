@@ -1,0 +1,15 @@
+{
+  "lab_id": "aws-cross-account-role-escalation",
+  "cloud": "aws",
+  "domain": "identity",
+  "maturity": "gold",
+  "ingest": true,
+  "shield_alignment": "cross-account-attack-path",
+  "attack_pattern": [
+    "assume-role",
+    "cross-account-trust",
+    "privilege-escalation"
+  ],
+  "expected_risk_level": "high",
+  "dataset_version": "v1.0"
+}
