@@ -1,0 +1,180 @@
+# Architecture & Trust Modeling — Cross-Account Role Escalation
+
+## 1. Environment Topology
+
+We model two AWS accounts:
+
+- Account A (Target / Privileged)
+- Account B (External / Potentially Compromised)
+
+Account A contains a highly privileged IAM role:
+
+- Role Name: AdminAccessRole
+- Attached Policy: AdministratorAccess
+
+The objective is to analyze how a principal in Account B
+can escalate privileges into Account A.
+
+---
+
+## 2. Identity Flow Diagram (Logical)
+
+Account B Principal
+    ↓
+sts:AssumeRole
+    ↓
+Account A AdminAccessRole
+    ↓
+Full Administrative Permissions
+
+This is a trust-boundary traversal.
+
+---
+
+## 3. Vulnerable Trust Policy Example (BAD)
+
+Below is a permissive trust policy on Account A’s AdminAccessRole:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::222222222222:root"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+
+---
+
+## 4. Why This Is Risky
+
+This trust policy allows the root principal of Account B to assume a highly privileged role in Account A.
+
+This does not require software exploitation.
+
+The risk exists because the identity configuration creates a reachable privilege path.
+
+Shield models this as identity reachability:
+
+```text
+External Principal → sts:AssumeRole → AdminAccessRole → AdministratorAccess
+```
+
+## 5. What Shield Detects
+
+Shield detects the deterministic relationship between:
+
+an external trusted principal
+an assumable privileged role
+an attached high-privilege policy
+the resulting administrative blast radius
+
+Finding:
+
+Cross-Account Role Escalation Path Detected
+
+Category:
+
+Identity → Cross-Account Trust
+
+Severity:
+
+HIGH
+
+Linked lab:
+
+aws-cross-account-role-escalation
+
+## 6. Why This Is Deterministic
+
+This finding is deterministic because it is derived from static IAM configuration:
+
+trust policy allows sts:AssumeRole
+trusted principal belongs to another account
+target role has administrative permissions
+no exploit chain is required
+no runtime behavior is assumed
+
+If those conditions exist, the path exists.
+
+## 7. Fix Guidance
+
+Constrain the trust relationship.
+
+Recommended controls:
+
+avoid trusting external account root principals
+trust only specific role ARNs
+require sts:ExternalId where appropriate
+scope permissions attached to assumable roles
+review cross-account trust paths regularly
+
+Example safer trust pattern:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::222222222222:role/ApprovedExternalRole"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "approved-external-id"
+        }
+      }
+    }
+  ]
+}
+```
+
+## 8. Governance Boundary
+
+This lab is read-only and deterministic.
+
+It does not:
+
+exploit a vulnerability
+mutate a customer environment
+execute remediation
+assume runtime compromise
+infer access paths not present in IAM configuration
+
+The lab exists to teach and validate identity reachability modeling.
+
+## 9. Lab ↔ Shield Linkage
+
+Stable lab identifier:
+
+aws-cross-account-role-escalation
+
+Expected Shield finding identifier:
+
+shield-xacct-001
+
+This lab is intended to anchor the Shield finding:
+
+Cross-Account Role Escalation Path Detected
+
+The Shield finding must link back to this lab using the stable lab identifier, not an ad-hoc URL.
+
+## 10. Completion Criteria
+
+This lab is complete enough to cite when:
+
+metadata.json contains stable lab_id
+architecture.md renders correctly
+lab appears in manifest.json
+Shield finding includes linked lab metadata
+AI Explain can cite the lab dataset
+Shield UI renders “View linked lab”

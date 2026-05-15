@@ -1,0 +1,30 @@
+mgf_version: 1.0
+authority: MGF-GOLD-STANDARD
+
+repo:
+  name: securethecloud-labs
+  type: labs
+  owner: SecureTheCloud
+  visibility: public
+
+ingestion:
+  enabled: true
+  entrypoints:
+    - manifest.json
+    - labs/**/metadata.json
+
+semantics:
+  primary_domains:
+    - identity
+    - networking
+    - compute
+    - security
+  supported_clouds:
+    - aws
+    - azure
+    - gcp
+
+quality_gates:
+  require_maturity: true
+  require_objectives: true
+  require_interview_ready_flag: true

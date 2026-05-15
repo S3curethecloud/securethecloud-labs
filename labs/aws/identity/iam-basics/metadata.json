@@ -25,5 +25,15 @@
     "ingest": true,
     "lab_type": "hands-on",
     "interview_ready": true
+  },
+  "mgf": {
+    "ingest": true,
+    "entity_type": "lab",
+    "canonical": true,
+    "signals": {
+      "maturity": "gold",
+      "interview_ready": true,
+      "hands_on": true
+    }
   }
 }
