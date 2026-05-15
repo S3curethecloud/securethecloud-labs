@@ -1,0 +1,45 @@
+{
+  "lab_id": "aws-privilege-escalation-passrole",
+  "title": "AWS Privilege Escalation via iam:PassRole",
+  "cloud": "aws",
+  "domain": "identity",
+  "category": "Identity → Privilege Escalation",
+  "difficulty": "intermediate",
+  "level": "intermediate",
+  "estimated_time": "60m",
+  "maturity": "principal",
+  "summary": "Principal LAB modeling deterministic AWS privilege escalation through iam:PassRole combined with compute service creation or update capability.",
+  "feeds_stc_ai": true,
+  "source": "securethecloud-labs",
+  "linked_shield_finding": "shield-passrole-001",
+  "objectives": [
+    "Understand how iam:PassRole can create privilege escalation paths.",
+    "Model the relationship between a principal, a passable role, and a compute service.",
+    "Differentiate deterministic reachability risk from exploit execution.",
+    "Explain why broad PassRole permissions increase blast radius.",
+    "Identify safer trust and permission boundary patterns."
+  ],
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_remediation": true,
+    "no_customer_mutation": true,
+    "no_live_exploitation": true
+  },
+  "mgf": {
+    "ingest": true,
+    "entity_type": "lab",
+    "canonical": true,
+    "category": "identity",
+    "signal_strength": "high",
+    "interview_ready": true,
+    "shield_aligned": true,
+    "linked_lab": true,
+    "signals": {
+      "maturity": "principal",
+      "interview_ready": true,
+      "hands_on": true,
+      "deterministic": true
+    }
+  }
+}
