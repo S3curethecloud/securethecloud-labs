@@ -4,7 +4,6 @@
   "authority": "MGF-GOLD-STANDARD",
   "last_updated": "2026-01-30",
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
-
   "labs": [
     {
       "id": "aws-iam-basics",
@@ -15,8 +14,18 @@
       "maturity": "gold",
       "summary": "Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning.",
       "path": "/labs/aws/identity/iam-basics/",
-      "tags": ["iam", "identity", "least-privilege", "aws"],
-      "breadcrumbs": ["Labs", "AWS", "Identity", "IAM Basics"],
+      "tags": [
+        "iam",
+        "identity",
+        "least-privilege",
+        "aws"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "IAM Basics"
+      ],
       "mgf": {
         "ingest": true,
         "category": "identity",
@@ -24,7 +33,6 @@
         "interview_ready": true
       }
     },
-
     {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
@@ -34,8 +42,21 @@
       "maturity": "gold",
       "summary": "GOLD lab modeling deterministic AWS cross-account trust reachability through sts:AssumeRole and privileged role access.",
       "path": "/labs/aws/identity/cross-account-role-escalation/",
-      "tags": ["iam", "sts", "assume-role", "cross-account", "identity", "aws", "shield"],
-      "breadcrumbs": ["Labs", "AWS", "Identity", "Cross-Account Role Escalation"],
+      "tags": [
+        "iam",
+        "sts",
+        "assume-role",
+        "cross-account",
+        "identity",
+        "aws",
+        "shield"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "Cross-Account Role Escalation"
+      ],
       "linked_shield_finding": "shield-xacct-001",
       "mgf": {
         "ingest": true,
@@ -46,7 +67,41 @@
         "shield_aligned": true
       }
     },
-
+    {
+      "id": "aws-privilege-escalation-passrole",
+      "title": "AWS Privilege Escalation via iam:PassRole",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "principal",
+      "summary": "Principal LAB modeling deterministic AWS privilege escalation through iam:PassRole combined with compute service creation or update capability.",
+      "path": "/labs/aws/identity/privilege-escalation-passrole/",
+      "tags": [
+        "iam",
+        "passrole",
+        "privilege-escalation",
+        "lambda",
+        "identity",
+        "aws",
+        "shield"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "Privilege Escalation via iam:PassRole"
+      ],
+      "linked_shield_finding": "shield-passrole-001",
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "high",
+        "interview_ready": true,
+        "linked_lab": true,
+        "shield_aligned": true,
+        "principal_lab": true
+      }
+    },
     {
       "id": "azure-entra-id-basics",
       "title": "Azure Entra ID Basics",
@@ -56,8 +111,18 @@
       "maturity": "starter",
       "summary": "Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts.",
       "path": "/labs/azure/identity/entra-id-basics/",
-      "tags": ["entra-id", "rbac", "conditional-access", "azure"],
-      "breadcrumbs": ["Labs", "Azure", "Identity", "Entra ID Basics"],
+      "tags": [
+        "entra-id",
+        "rbac",
+        "conditional-access",
+        "azure"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "Azure",
+        "Identity",
+        "Entra ID Basics"
+      ],
       "mgf": {
         "ingest": true,
         "category": "identity",
@@ -65,7 +130,6 @@
         "interview_ready": true
       }
     },
-
     {
       "id": "gcp-iam-basics",
       "title": "GCP IAM Basics",
@@ -75,8 +139,18 @@
       "maturity": "starter",
       "summary": "Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization.",
       "path": "/labs/gcp/identity/iam-basics/",
-      "tags": ["iam", "principals", "policy-bindings", "gcp"],
-      "breadcrumbs": ["Labs", "GCP", "Identity", "IAM Basics"],
+      "tags": [
+        "iam",
+        "principals",
+        "policy-bindings",
+        "gcp"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "GCP",
+        "Identity",
+        "IAM Basics"
+      ],
       "mgf": {
         "ingest": true,
         "category": "identity",
