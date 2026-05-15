@@ -26,6 +26,28 @@
     },
 
     {
+      "id": "aws-cross-account-role-escalation",
+      "title": "AWS Cross-Account Role Escalation",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "gold",
+      "summary": "GOLD lab modeling deterministic AWS cross-account trust reachability through sts:AssumeRole and privileged role access.",
+      "path": "/labs/aws/identity/cross-account-role-escalation/",
+      "tags": ["iam", "sts", "assume-role", "cross-account", "identity", "aws", "shield"],
+      "breadcrumbs": ["Labs", "AWS", "Identity", "Cross-Account Role Escalation"],
+      "linked_shield_finding": "shield-xacct-001",
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "high",
+        "interview_ready": true,
+        "linked_lab": true,
+        "shield_aligned": true
+      }
+    },
+
+    {
       "id": "azure-entra-id-basics",
       "title": "Azure Entra ID Basics",
       "cloud": "azure",
