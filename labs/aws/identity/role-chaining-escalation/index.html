@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Role Chaining Escalation | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Principal LAB modeling deterministic AWS privilege expansion through chained sts:AssumeRole paths and Aegis Runtime signal mapping." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="evidence-pill warning">Principal LAB</span>
+    </div>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Role Chaining</p>
+      <h1>AWS Role Chaining Escalation</h1>
+      <p>
+        Principal LAB modeling deterministic AWS privilege expansion through
+        chained <code>sts:AssumeRole</code> paths across multiple IAM roles.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Principal</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Shield Finding</span>
+          <strong>shield-rolechain-001</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Aegis Signal</span>
+          <strong>IDENTITY_DRIFT_DETECTED</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Authority</span>
+          <strong>OPA</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#identity-path">Identity Path</a>
+        <a href="#shield">Shield Detection</a>
+        <a href="#aegis">Aegis Runtime</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This lab teaches how chained IAM role trust relationships can create
+            a transitive privilege path that is not obvious from the initial
+            principal alone.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill">Read-only</span>
+            <span class="evidence-pill">Deterministic</span>
+            <span class="evidence-pill">Shield-linked</span>
+            <span class="evidence-pill">Aegis Runtime-linked</span>
+          </div>
+        </section>
+
+        <section id="identity-path" class="lab-panel">
+          <h2>Identity Path</h2>
+          <pre><code>Low-Privilege Principal
+    →
+sts:AssumeRole into IntermediateRole
+    →
+sts:AssumeRole into PrivilegedRole
+    →
+Expanded Permissions / Administrative Blast Radius</code></pre>
+        </section>
+
+        <section id="shield" class="lab-panel">
+          <h2>Shield Detection</h2>
+          <div class="lab-panel-grid">
+            <div>
+              <h3>What Shield Detects</h3>
+              <ul>
+                <li>Initial principal can assume an intermediate role</li>
+                <li>Intermediate role can assume a downstream privileged role</li>
+                <li>Downstream role has broader permissions</li>
+                <li>The transitive path expands blast radius</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Finding Contract</h3>
+              <pre><code>Role Chaining Escalation Path Detected</code></pre>
+              <pre><code>shield-rolechain-001</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="aegis" class="lab-panel">
+          <h2>Aegis Runtime Mapping</h2>
+          <p>
+            This lab maps to Aegis Runtime / Decision Intelligence as a bounded
+            identity integrity signal.
+          </p>
+          <div class="lab-panel-grid">
+            <div>
+              <h3>Expected Signal</h3>
+              <pre><code>IDENTITY_DRIFT_DETECTED</code></pre>
+            </div>
+            <div>
+              <h3>Decision Boundary</h3>
+              <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This lab is read-only and deterministic.</p>
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate a customer environment</li>
+            <li>Does not deploy live infrastructure</li>
+            <li>Does not assume a real AWS role</li>
+            <li>Does not execute remediation</li>
+            <li>Does not override OPA</li>
+            <li>Does not treat Aegis as enforcement authority</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <div class="artifact-grid">
+            <div class="artifact-card"><strong>metadata.json</strong><span>Lab identity and maturity metadata</span></div>
+            <div class="artifact-card"><strong>architecture.md</strong><span>Role chain and deterministic reasoning</span></div>
+            <div class="artifact-card"><strong>runtime-mapping.json</strong><span>Aegis Runtime linkage contract</span></div>
+            <div class="artifact-card"><strong>shield-rolechain-001</strong><span>Reserved Intelligence Core finding</span></div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

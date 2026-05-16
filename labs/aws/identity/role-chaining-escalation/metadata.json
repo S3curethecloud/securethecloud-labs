@@ -1,0 +1,59 @@
+{
+  "lab_id": "aws-role-chaining-escalation",
+  "title": "AWS Role Chaining Escalation",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "difficulty": "Advanced",
+  "maturity": "principal",
+  "estimated_time_minutes": 90,
+  "summary": "Principal LAB modeling deterministic AWS privilege expansion through chained sts:AssumeRole paths across multiple IAM roles.",
+  "prerequisites": [
+    "AWS IAM role knowledge",
+    "Understanding of sts:AssumeRole",
+    "Understanding of trust policies",
+    "Understanding of privilege escalation paths"
+  ],
+  "objectives": [
+    "Model IAM role chaining paths",
+    "Identify privilege expansion through transitive AssumeRole reachability",
+    "Explain why chained trust relationships can create escalation risk",
+    "Connect role chaining to Shield attack-path modeling",
+    "Map the lab to Aegis Runtime identity integrity signals"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": true
+  },
+  "runtime_anchor": "aegis-runtime",
+  "runtime_surface": "Aegis Runtime / Decision Intelligence",
+  "runtime_mapping": "runtime-mapping.json",
+  "linked_shield_finding": "shield-rolechain-001",
+  "aegis": {
+    "aligned": true,
+    "scenario": "role_chaining_escalation_path",
+    "expected_signal": "IDENTITY_DRIFT_DETECTED",
+    "expected_minimum_risk_modifier": 20,
+    "signal_only": true,
+    "enforcement_authority": false,
+    "opa_decision_authority_preserved": true,
+    "runtime_source_of_truth_preserved": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_remediation": true,
+    "no_customer_mutation": true,
+    "no_live_exploitation": true
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "identity-threat-modeling",
+    "interview_ready": true,
+    "shield_aligned": true,
+    "principal_lab": true,
+    "aegis_runtime_aligned": true
+  }
+}

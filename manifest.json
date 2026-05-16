@@ -108,6 +108,47 @@
       }
     },
     {
+      "id": "aws-role-chaining-escalation",
+      "title": "AWS Role Chaining Escalation",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "advanced",
+      "maturity": "principal",
+      "summary": "Principal LAB modeling deterministic AWS privilege expansion through chained sts:AssumeRole paths across multiple IAM roles.",
+      "path": "/labs/aws/identity/role-chaining-escalation/",
+      "tags": [
+        "iam",
+        "sts",
+        "assume-role",
+        "role-chaining",
+        "privilege-escalation",
+        "identity",
+        "aws",
+        "shield",
+        "aegis-runtime"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "Role Chaining Escalation"
+      ],
+      "linked_shield_finding": "shield-rolechain-001",
+      "runtime_anchor": "aegis-runtime",
+      "runtime_surface": "Aegis Runtime / Decision Intelligence",
+      "runtime_mapping": "/labs/aws/identity/role-chaining-escalation/runtime-mapping.json",
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "high",
+        "interview_ready": true,
+        "linked_lab": true,
+        "shield_aligned": true,
+        "principal_lab": true,
+        "aegis_runtime_aligned": true
+      }
+    },
+    {
       "id": "azure-entra-id-basics",
       "title": "Azure Entra ID Basics",
       "cloud": "azure",
