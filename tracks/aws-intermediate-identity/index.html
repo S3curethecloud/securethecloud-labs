@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Intermediate Identity Track | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="L2 AWS Intermediate Identity learning path for IAM policy evaluation, permission boundaries, SCP reasoning, resource policies, and public access risk." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Intermediate Security Engineering</p>
+      <h1>AWS Intermediate Identity Track</h1>
+      <p>
+        A practical L2 learning path for AWS identity engineers: effective permissions,
+        explicit deny, permission boundaries, SCP guardrails, resource policies, and
+        public access risk reasoning.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Track Status</span>
+          <strong>Active</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Current LABs</span>
+          <strong>1</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Level</span>
+          <strong>L2</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Bridge</span>
+          <strong>L1 → L3</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Track Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#current">Current LAB</a>
+        <a href="#coming-next">Coming Next</a>
+        <a href="#ladder">Learning Ladder</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This track gives learners the intermediate reasoning layer between AWS IAM basics
+            and Principal-level identity attack-path modeling.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Policy reasoning</span>
+            <span class="evidence-pill">Effective permissions</span>
+            <span class="evidence-pill">Read-only</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="current" class="lab-panel">
+          <h2>Current LAB</h2>
+          <p>
+            The first active L2 LAB teaches IAM policy evaluation and effective-permission reasoning.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>AWS IAM Policy Evaluation</strong>
+              <span>Effective permissions, explicit deny, boundaries, SCPs, and authorization decision reasoning.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="coming-next" class="lab-panel">
+          <h2>Coming Next</h2>
+          <p>
+            These planned L2 LABs expand the intermediate identity lane without jumping directly into L3 Principal scenarios.
+          </p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>AWS Permission Boundary Basics</strong>
+              <span>How permission boundaries constrain maximum principal authority.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>AWS SCP Guardrail Reasoning</strong>
+              <span>How organization guardrails shape effective permissions across accounts.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>AWS Resource Policy Evaluation</strong>
+              <span>How bucket, key, queue, and role trust policies participate in authorization.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>AWS S3 Public Access Risk</strong>
+              <span>How public access settings, bucket policy, ACL history, and account guardrails interact.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="ladder" class="lab-panel">
+          <h2>Learning Ladder</h2>
+          <p>
+            The L2 Intermediate track is the bridge between foundational vocabulary and Principal LAB reasoning.
+          </p>
+
+          <pre><code>L1: AWS IAM Basics
+    ↓
+L2: AWS Intermediate Identity Track
+    └── AWS IAM Policy Evaluation
+    ↓
+L3: AWS Principal Identity Track
+    ├── Cross-Account Role Escalation
+    ├── iam:PassRole Privilege Escalation
+    └── Role Chaining Escalation</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This track is educational, read-only, and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not create runtime sessions</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>tracks/aws-intermediate-identity/index.html</strong>
+              <span>L2 Intermediate track index page.</span>
+            </div>
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>aws-iam-policy-evaluation</strong>
+              <span>Current active L2 LAB.</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
