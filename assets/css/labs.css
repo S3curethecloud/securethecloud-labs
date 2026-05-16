@@ -308,3 +308,237 @@ code {
   color: #9ca3af;
   border: 1px solid #374151;
 }
+
+/* =========================================================
+   Principal LAB Executive Console Layout
+   ========================================================= */
+
+.badge-principal {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #111827;
+  border: 1px solid rgba(251, 191, 36, 0.55);
+}
+
+.badge-gold {
+  background: #fbbf24;
+  color: #111827;
+  border: 1px solid rgba(251, 191, 36, 0.55);
+}
+
+.badge-starter {
+  background: #1f2937;
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.lab-detail-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.lab-detail-topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.lab-detail-topbar .lab-link {
+  font-size: 0.95rem;
+}
+
+.lab-hero {
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  margin-bottom: 1.5rem;
+}
+
+.lab-hero-kicker {
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+}
+
+.lab-hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+
+.lab-hero p {
+  max-width: 880px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+
+.lab-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.lab-status-card {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.lab-status-card span {
+  display: block;
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.lab-status-card strong {
+  display: block;
+  color: #f8fafc;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.lab-detail-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.lab-side-nav {
+  position: sticky;
+  top: 1rem;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.lab-side-nav-title {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+}
+
+.lab-side-nav a {
+  display: block;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  color: #dbeafe;
+  border: 1px solid transparent;
+  font-size: 0.92rem;
+}
+
+.lab-side-nav a:hover {
+  text-decoration: none;
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.18);
+}
+
+.lab-main-panels {
+  min-width: 0;
+}
+
+.lab-panel {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 18px;
+  padding: 1.4rem 1.55rem;
+  margin-bottom: 1rem;
+}
+
+.lab-panel h2 {
+  margin-top: 0;
+}
+
+.lab-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.evidence-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.evidence-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  background: rgba(56, 189, 248, 0.08);
+  color: #dff6ff;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.evidence-pill.warning {
+  border-color: rgba(251, 191, 36, 0.32);
+  background: rgba(251, 191, 36, 0.10);
+  color: #fde68a;
+}
+
+.artifact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.artifact-card {
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(2, 6, 23, 0.45);
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.artifact-card strong {
+  display: block;
+  color: #f8fafc;
+}
+
+.artifact-card span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 920px) {
+  .lab-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-side-nav {
+    position: relative;
+    top: auto;
+  }
+
+  .lab-status-grid,
+  .lab-panel-grid,
+  .artifact-grid {
+    grid-template-columns: 1fr;
+  }
+}
