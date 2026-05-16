@@ -180,3 +180,26 @@ First L2 LAB:
 
 aws-iam-policy-evaluation
 
+
+---
+
+## AWS Principal Track Curriculum Linkage
+
+The AWS Principal Identity Track is linked to the learning ladder:
+
+```text
+L1: AWS IAM Basics
+    ↓
+L2: AWS IAM Policy Evaluation
+    ↓
+L3: AWS Principal Identity Track
+
+This linkage ensures that learners can progress from foundational IAM concepts into effective-permission reasoning before attempting Principal LABs such as:
+
+cross-account role escalation
+iam:PassRole privilege escalation
+role chaining escalation
+
+This curriculum linkage is educational and read-only.
+
+No runtime, Shield, Aegis, or OPA logic changes are introduced by this linkage.

@@ -48,6 +48,7 @@
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Track Navigation</p>
         <a href="#overview">Overview</a>
+        <a href="#curriculum">Curriculum Ladder</a>
         <a href="#audiences">Audience Fit</a>
         <a href="#labs">Principal LABs</a>
         <a href="#architecture">Platform Loop</a>
@@ -71,6 +72,38 @@
             <span class="evidence-pill">Aegis Runtime-linked</span>
             <span class="evidence-pill">Executive-ready</span>
           </div>
+        </section>
+
+        <section id="curriculum" class="lab-panel">
+          <h2>Curriculum Ladder</h2>
+          <p>
+            The AWS Principal Identity Track is designed as a progressive learning path.
+            Learners should understand IAM concepts first, then policy evaluation, then
+            advanced deterministic identity paths.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-basics/">
+              <strong>L1 — AWS IAM Basics</strong>
+              <span>Foundation: principals, policies, roles, and identity vocabulary.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>L2 — AWS IAM Policy Evaluation</strong>
+              <span>Intermediate: effective permissions, explicit deny, boundaries, SCPs, and decision reasoning.</span>
+            </a>
+
+            <div class="artifact-card">
+              <strong>L3 — AWS Principal Identity Track</strong>
+              <span>Principal: cross-account trust, iam:PassRole, and role chaining escalation paths.</span>
+            </div>
+          </div>
+
+          <pre><code>L1: AWS IAM Basics
+    ↓
+L2: AWS IAM Policy Evaluation
+    ↓
+L3: AWS Principal Identity Track</code></pre>
         </section>
 
         <section id="audiences" class="lab-panel">
