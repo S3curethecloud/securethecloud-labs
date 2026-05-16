@@ -203,3 +203,33 @@ role chaining escalation
 This curriculum linkage is educational and read-only.
 
 No runtime, Shield, Aegis, or OPA logic changes are introduced by this linkage.
+
+---
+
+## AWS Intermediate Identity Track
+
+The AWS Intermediate Identity Track is the L2 learning lane between AWS IAM Basics and the AWS Principal Identity Track.
+
+Track path:
+
+```text
+/tracks/aws-intermediate-identity/
+
+Current active L2 LAB:
+
+aws-iam-policy-evaluation
+
+Planned next L2 LABs:
+
+aws-permission-boundary-basics
+aws-scp-guardrail-reasoning
+aws-resource-policy-evaluation
+aws-s3-public-access-risk
+
+Curriculum purpose:
+
+Teach effective-permission reasoning before learners enter Principal LABs.
+
+This track is read-only and educational.
+
+No runtime, Shield, Aegis, or OPA logic changes are introduced by this track page.
