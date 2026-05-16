@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS IAM Policy Evaluation | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS IAM policy evaluation, effective permissions, explicit deny, boundaries, and SCP reasoning." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Identity · IAM Policy Evaluation</p>
+      <h1>AWS IAM Policy Evaluation</h1>
+      <p>
+        Intermediate LAB for understanding how AWS evaluates effective permissions across identity policies,
+        resource policies, permission boundaries, session policies, SCPs, and explicit deny.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#model">Evaluation Model</a>
+        <a href="#deny">Explicit Deny</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This lab teaches how AWS IAM produces a final authorization decision when multiple policy layers apply.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Identity-first</span>
+            <span class="evidence-pill">Policy reasoning</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="model" class="lab-panel">
+          <h2>Evaluation Model</h2>
+          <pre><code>Principal
+  +
+Action
+  +
+Resource
+  +
+Context
+  =
+Authorization Decision</code></pre>
+
+          <pre><code>Request received
+    ↓
+Check explicit deny
+    ↓
+Evaluate identity policies
+    ↓
+Evaluate resource policies
+    ↓
+Apply permission boundaries
+    ↓
+Apply session policies
+    ↓
+Apply service control policies
+    ↓
+Final decision</code></pre>
+        </section>
+
+        <section id="deny" class="lab-panel">
+          <h2>Explicit Deny</h2>
+          <p>
+            The central IAM rule is simple but critical:
+          </p>
+          <pre><code>Explicit deny overrides allow.</code></pre>
+          <p>
+            A request can have an allow in one policy and still be denied if another applicable policy explicitly denies it.
+          </p>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            This L2 lab prepares learners for the AWS Principal Identity Track by teaching the policy evaluation logic
+            behind deterministic identity paths.
+          </p>
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Requires trust policy and AssumeRole reasoning.</span>
+            </a>
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Requires effective permission and service role reasoning.</span>
+            </a>
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Requires transitive role trust and effective authority reasoning.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

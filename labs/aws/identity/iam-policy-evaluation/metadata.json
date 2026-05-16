@@ -1,0 +1,46 @@
+{
+  "lab_id": "aws-iam-policy-evaluation",
+  "title": "AWS IAM Policy Evaluation",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 60,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how AWS evaluates effective permissions across identity policies, resource policies, permission boundaries, SCPs, and explicit deny.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "Understanding of principals, actions, resources, and policies",
+    "Basic JSON policy familiarity"
+  ],
+  "objectives": [
+    "Explain AWS IAM policy evaluation order",
+    "Differentiate identity policies, resource policies, boundaries, and SCPs",
+    "Reason about explicit deny versus allow",
+    "Determine effective permissions from multiple policy layers",
+    "Prepare for Principal LABs involving cross-account trust, PassRole, and role chaining"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "identity-policy-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}
