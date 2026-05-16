@@ -68,15 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const path = lab.path || "#";
 
       card.innerHTML = `
-        <span class="badge badge-${maturity}">
-          ${maturity.toUpperCase()}
-        </span>
+        <div class="lab-card-header">
+          <div>
+            <h3>${lab.title}</h3>
 
-        <h3>${lab.title}</h3>
+            <p class="lab-meta">
+              ${cloud.toUpperCase()} · ${domain} · ${level}
+            </p>
+          </div>
 
-        <p class="lab-meta">
-          ${cloud.toUpperCase()} · ${domain} · ${level}
-        </p>
+          <span class="badge badge-${maturity}">
+            ${maturity.toUpperCase()}
+          </span>
+        </div>
 
         <p>${summary}</p>
 
