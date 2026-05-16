@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Privilege Escalation via iam:PassRole | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Principal LAB modeling deterministic AWS privilege escalation through iam:PassRole and Aegis Runtime signal mapping." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="page-container">
+
+    <section>
+      <p class="lab-meta">AWS · Identity · Principal LAB</p>
+      <h1>AWS Privilege Escalation via iam:PassRole</h1>
+      <p>
+        Principal LAB modeling deterministic AWS privilege escalation through
+        <code>iam:PassRole</code> combined with compute service creation or update capability.
+      </p>
+      <p>
+        <a href="/" class="lab-link">← Back to Labs</a>
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>LAB Purpose</h2>
+      <p>
+        This lab teaches how a low-privilege AWS principal can create a deterministic
+        privilege escalation path when it can pass a higher-privilege execution role
+        to a compute service such as Lambda.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Identity Path</h2>
+      <pre><code>Low-Privilege Principal
+    →
+iam:PassRole
+    →
+Compute Service Creation or Update
+    →
+High-Privilege Execution Role
+    →
+Expanded Permissions / Administrative Blast Radius</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>What Shield Detects</h2>
+      <ul>
+        <li>Principal has <code>iam:PassRole</code></li>
+        <li>Principal can pass a role with broader privileges</li>
+        <li>Principal can create or update a service that accepts an execution role</li>
+        <li>The resulting path creates deterministic privilege escalation risk</li>
+      </ul>
+
+      <p><strong>Finding:</strong></p>
+      <pre><code>Privilege Escalation Path via iam:PassRole Detected</code></pre>
+
+      <p><strong>Linked Shield finding:</strong></p>
+      <pre><code>shield-passrole-001</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>Aegis Runtime Mapping</h2>
+      <p>
+        This lab is mapped to Aegis Runtime / Decision Intelligence as a bounded
+        identity integrity signal.
+      </p>
+
+      <p><strong>Expected Aegis signal:</strong></p>
+      <pre><code>IDENTITY_DRIFT_DETECTED</code></pre>
+
+      <p><strong>Expected minimum risk modifier:</strong></p>
+      <pre><code>&gt;= 20</code></pre>
+
+      <p><strong>Decision authority:</strong></p>
+      <pre><code>OPA</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>Governance Boundary</h2>
+      <p>This lab is read-only and deterministic.</p>
+
+      <p>It does not:</p>
+      <ul>
+        <li>exploit AWS</li>
+        <li>mutate a customer environment</li>
+        <li>deploy live infrastructure</li>
+        <li>pass a real AWS role</li>
+        <li>execute remediation</li>
+        <li>override OPA</li>
+        <li>treat Aegis as enforcement authority</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Source Artifacts</h2>
+      <ul>
+        <li><code>metadata.json</code></li>
+        <li><code>architecture.md</code></li>
+        <li><code>runtime-mapping.json</code></li>
+      </ul>
+    </section>
+
+  </main>
+</body>
+</html>
