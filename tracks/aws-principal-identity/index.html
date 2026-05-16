@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Principal Identity Track | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Executive-grade AWS Principal Identity LAB track covering cross-account trust, iam:PassRole, and role chaining escalation." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="evidence-pill warning">AWS Principal Track</span>
+    </div>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Principal Security Engineering</p>
+      <h1>AWS Principal Identity Track</h1>
+      <p>
+        A curated executive-grade learning path for deterministic AWS identity risk:
+        cross-account trust, iam:PassRole privilege escalation, and role chaining.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Track Status</span>
+          <strong>Active</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Principal LABs</span>
+          <strong>3</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Aegis Signal</span>
+          <strong>IDENTITY_DRIFT_DETECTED</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Authority</span>
+          <strong>OPA</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Track Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#audiences">Audience Fit</a>
+        <a href="#labs">Principal LABs</a>
+        <a href="#architecture">Platform Loop</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#governance">Governance</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This track teaches how AWS identity configuration creates deterministic
+            privilege paths without requiring malware, credential theft, or software
+            exploitation.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill">Read-only</span>
+            <span class="evidence-pill">Deterministic</span>
+            <span class="evidence-pill">Shield-linked</span>
+            <span class="evidence-pill">Aegis Runtime-linked</span>
+            <span class="evidence-pill">Executive-ready</span>
+          </div>
+        </section>
+
+        <section id="audiences" class="lab-panel">
+          <h2>Audience Fit</h2>
+          <div class="lab-panel-grid">
+            <div>
+              <h3>Students / Interns</h3>
+              <p>
+                Learn AWS IAM attack-path reasoning through structured, visual,
+                non-destructive labs.
+              </p>
+              <h3>Mentors / YouTube Teaching</h3>
+              <p>
+                Use the track as a guided lesson plan: concept, path, detection,
+                runtime meaning, and governance boundary.
+              </p>
+            </div>
+            <div>
+              <h3>CSO / CISO / Executives</h3>
+              <p>
+                Demonstrate deterministic cloud security modeling, risk explanation,
+                evidence discipline, and platform engineering maturity.
+              </p>
+              <h3>Security Engineers</h3>
+              <p>
+                Map IAM relationships into Shield findings and Aegis Runtime identity
+                integrity signals without relying on guesswork.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="labs" class="lab-panel">
+          <h2>Principal LABs</h2>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>1. Cross-Account Role Escalation</strong>
+              <span>Trust policy reachability through sts:AssumeRole into a privileged account role.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>2. iam:PassRole Privilege Escalation</strong>
+              <span>Binding a higher-privilege execution role to a compute service through PassRole.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>3. Role Chaining Escalation</strong>
+              <span>Transitive privilege expansion through chained sts:AssumeRole paths.</span>
+            </a>
+
+            <div class="artifact-card">
+              <strong>Next Candidate</strong>
+              <span>Service-linked roles, federated identity drift, or permission boundary bypass modeling.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="architecture" class="lab-panel">
+          <h2>Platform Loop</h2>
+          <p>
+            Each Principal LAB follows the same evidence-driven platform loop:
+          </p>
+          <pre><code>LAB artifact
+    →
+Shield deterministic finding
+    →
+Aegis Runtime identity signal
+    →
+OPA authority boundary
+    →
+Evidence record
+    →
+Executive / student explanation</code></pre>
+        </section>
+
+        <section id="evidence" class="lab-panel">
+          <h2>Evidence Records</h2>
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Phase 13 Evidence</strong>
+              <span>PassRole Principal LAB locked with runtime and Intelligence Core evidence.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Phase 14 Evidence</strong>
+              <span>Cross-account Principal LAB parity and UI polish recorded.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Phase 15 Evidence</strong>
+              <span>Role chaining Principal LAB locked with deployed Shield endpoint verification.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Runtime Tests</strong>
+              <span>Aegis identity integrity tests passed with all Principal LAB mappings.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This track is read-only, deterministic, and designed for learning,
+            platform demonstration, and executive security explanation.
+          </p>
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate customer infrastructure</li>
+            <li>Does not deploy live infrastructure</li>
+            <li>Does not execute remediation</li>
+            <li>Does not override OPA</li>
+            <li>Does not treat Aegis as enforcement authority</li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
