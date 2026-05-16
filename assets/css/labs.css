@@ -592,3 +592,32 @@ code {
   font-size: 0.86rem;
   font-weight: 800;
 }
+
+/* =========================================================
+   Homepage LAB Card Clarity
+   ========================================================= */
+
+.lab-card {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.42);
+  padding: 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.lab-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.lab-card-header h3 {
+  margin-top: 0;
+}
+
+.lab-card-header .badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+}
