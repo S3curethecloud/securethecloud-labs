@@ -49,6 +49,7 @@
         <p class="lab-side-nav-title">Lab Navigation</p>
         <a href="#overview">Overview</a>
         <a href="#model">Evaluation Model</a>
+        <a href="#visual">Visual Model</a>
         <a href="#deny">Explicit Deny</a>
         <a href="#principal">Principal Bridge</a>
         <a href="#governance">Governance</a>
@@ -97,6 +98,80 @@ Apply session policies
 Apply service control policies
     ↓
 Final decision</code></pre>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Evaluation Model</h2>
+          <p>
+            IAM authorization is easier to learn when the request is treated as a decision path.
+            The final result is not based on one policy alone; it is produced by the interaction
+            of identity, policy layers, resource, and request context.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, service, or federated identity</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Action</strong>
+                <span>Requested API operation such as s3:GetObject</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Resource</strong>
+                <span>Target ARN, bucket, role, key, or service object</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Context</strong>
+                <span>Region, source IP, MFA, tags, time, or session attributes</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node policy">
+                <strong>Identity Policy</strong>
+                <span>What the principal may request</span>
+              </div>
+              <div class="visual-node policy">
+                <strong>Resource Policy</strong>
+                <span>What the resource permits</span>
+              </div>
+              <div class="visual-node policy">
+                <strong>Boundary</strong>
+                <span>Maximum allowed authority</span>
+              </div>
+              <div class="visual-node policy">
+                <strong>SCP</strong>
+                <span>Organization-level guardrail</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Explicit Deny?</strong>
+                <span>If yes, final decision is DENY</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Effective Permission</strong>
+                <span>Combine applicable policy layers</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Allow / Deny</strong>
+                <span>Final authorization result</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              IAM evaluation is not “find an allow.” It is “check for deny, then prove an allow survives every boundary.”
+            </div>
+          </div>
         </section>
 
         <section id="deny" class="lab-panel">

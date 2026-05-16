@@ -163,3 +163,29 @@ index.html renders the L2 page
 manifest.json exposes the lab
 homepage renders the lab with INTERMEDIATE maturity
 LAB taxonomy identifies L2 as the next learning layer
+
+---
+
+## 11. Visual Learning Model
+
+This LAB includes a visual evaluation model to help learners reason through IAM authorization as an interconnected decision path.
+
+The visual model emphasizes:
+
+- principal
+- action
+- resource
+- request context
+- identity policy
+- resource policy
+- permission boundary
+- SCP
+- explicit deny
+- effective permission
+- final allow or deny decision
+
+The model is rendered with native HTML and CSS.
+
+No external image dependency is used.
+
+No runtime logic is introduced.
