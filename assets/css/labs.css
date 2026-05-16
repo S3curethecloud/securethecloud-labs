@@ -542,3 +542,53 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   Starter LAB Console Layout
+   ========================================================= */
+
+.starter-hero {
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.94));
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.starter-hero-kicker {
+  color: var(--accent-warning);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+}
+
+.starter-hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.08;
+}
+
+.starter-note {
+  border-left: 4px solid var(--accent-warning);
+  background: rgba(251, 191, 36, 0.08);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  color: #fde68a;
+  margin: 1rem 0;
+}
+
+.starter-track-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  background: rgba(251, 191, 36, 0.10);
+  color: #fde68a;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.86rem;
+  font-weight: 800;
+}

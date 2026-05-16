@@ -4,171 +4,131 @@
   <meta charset="UTF-8" />
   <title>GCP IAM Basics | SecureTheCloud Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Starter LAB introducing Google Cloud IAM principals, policy bindings, service accounts, Workspace identity, and workload federation concepts." />
   <link rel="stylesheet" href="/assets/css/labs.css">
 </head>
 
 <body>
+  <main class="lab-detail-shell">
 
-<main>
-
-  <!-- Breadcrumbs -->
-  <nav class="breadcrumbs">
-    <a href="/index.html">Labs</a>
-    <span>›</span>
-    <a href="/labs/gcp/">GCP</a>
-    <span>›</span>
-    <a href="/labs/gcp/identity/">Identity</a>
-    <span>›</span>
-    <span>IAM Basics</span>
-  </nav>
-
-  <!-- Starter Notice -->
-  <div class="callout warning">
-    <strong>Starter Lab:</strong>
-    This lab introduces Google Cloud IAM concepts.
-    Deeper hands-on scenarios will follow.
-  </div>
-
-  <!-- Header -->
-  <section>
-    <h1>GCP IAM Basics</h1>
-
-    <div class="lab-meta">
-      <span><strong>Cloud:</strong> GCP</span>
-      <span><strong>Domain:</strong> Identity</span>
-      <span><strong>Level:</strong> Foundation</span>
-      <span><strong>Estimated Time:</strong> 45 minutes</span>
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">Starter Track</span>
     </div>
 
-    <p class="subtitle">
-      A foundational lab focused on how Google Cloud Identity and Access Management (IAM)
-      governs every action in GCP. This lab emphasizes reasoning, not
-      console memorization.
-    </p>
-  </section>
+    <section class="starter-hero">
+      <p class="starter-hero-kicker">GCP · Identity · IAM</p>
+      <h1>GCP IAM Basics</h1>
+      <p>
+        Starter LAB for Google Cloud IAM principals, policy bindings, service accounts,
+        Workspace identity, and workload identity federation concepts.
+      </p>
 
-  <!-- Why IAM Matters -->
-  <section class="section">
-    <h2>Why IAM Matters</h2>
-    <p>
-      IAM is the security control plane of GCP. Every API call, service interaction,
-      and workload execution is evaluated through IAM.
-    </p>
-    <ul>
-      <li>Most GCP breaches involve IAM misconfiguration</li>
-      <li>Over-permissioned IAM roles and bindings silently expand blast radius</li>
-      <li>Identity mistakes compound across services</li>
-    </ul>
-  </section>
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Starter</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>GCP</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Future Track</span>
+          <strong>Workspace</strong>
+        </div>
+      </div>
+    </section>
 
-  <div class="callout warning">
-    <strong>Security Reality:</strong>
-    IAM failures rarely cause immediate outages — they create long-lived
-    exposure that attackers exploit later.
-  </div>
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Core Concepts</a>
+        <a href="#outcomes">Learning Outcomes</a>
+        <a href="#future">Future Expansion</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
 
-  <!-- Core Concepts -->
-  <section class="section">
-    <h2>Core IAM Concepts</h2>
+      <div class="lab-main-panels">
 
-    <h3>Principals</h3>
-    <p>
-      A principal is any entity that can make a request to GCP:
-      users, groups, service accounts, or Google-managed services.
-    </p>
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This starter lab introduces Google Cloud IAM as the authorization layer
+            for projects, resources, service accounts, and federated identities.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">Starter</span>
+            <span class="evidence-pill">Identity-first</span>
+            <span class="evidence-pill">Workspace-ready</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
 
-    <h3>Policies</h3>
-    <p>
-      Policies define <strong>what actions are allowed</strong>.
-      In GCP, access is granted through IAM roles and bindings
-      between principals and resources.
-    </p>
+        <section id="concepts" class="lab-panel">
+          <h2>Core Concepts</h2>
+          <div class="lab-panel-grid">
+            <div>
+              <h3>Principals</h3>
+              <p>Users, groups, service accounts, workload identities, and Google-managed identities.</p>
+              <h3>Policy Bindings</h3>
+              <p>Bindings that connect principals to roles on resources.</p>
+            </div>
+            <div>
+              <h3>Service Accounts</h3>
+              <p>Machine identities that can become privilege escalation anchors if over-permissioned.</p>
+              <h3>Workspace Identity</h3>
+              <p>Enterprise identity foundation for future GCP Workspace labs.</p>
+            </div>
+          </div>
+        </section>
 
-    <h3>Evaluation Logic</h3>
-    <ul>
-      <li>Explicit <strong>Deny</strong> always wins</li>
-      <li>Implicit deny is the default</li>
-      <li>All applicable IAM roles / bindings are evaluated together</li>
-    </ul>
-  </section>
+        <section id="outcomes" class="lab-panel">
+          <h2>Learning Outcomes</h2>
+          <ul>
+            <li>Understand Google Cloud IAM principals and bindings</li>
+            <li>Explain service account identity risk</li>
+            <li>Prepare for GCP Workspace and workload identity federation labs</li>
+          </ul>
+        </section>
 
-  <!-- Identity Architecture Diagram -->
-  <section class="section">
-    <h2>Identity Architecture Overview</h2>
-    <p>
-      This diagram illustrates how GCP evaluates identity and IAM policies
-      on every request.
-    </p>
-    <img
-      src="/labs/gcp/identity/iam-basics/assets/diagrams/identity-architecture.svg"
-      alt="GCP IAM Identity Evaluation Flow"
-      style="max-width:100%; margin-top:1rem;"
-    />
-  </section>
+        <section id="future" class="lab-panel">
+          <h2>Future Expansion</h2>
+          <p>
+            This starter lane remains reserved for GCP Workspace identity,
+            Workload Identity Federation, service account impersonation,
+            and organization-level IAM governance labs.
+          </p>
+          <div class="starter-note">
+            GCP is intentionally retained as a future Principal LAB track.
+          </div>
+        </section>
 
-  <div class="callout">
-    <strong>Architecture Insight:</strong>
-    IAM is evaluated on every request, not at login.
-    Short-lived service account credentials are the foundation
-    of modern GCP security.
-  </div>
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <ul>
+            <li>Does not mutate GCP resources</li>
+            <li>Does not execute remediation</li>
+            <li>Does not claim Shield or Aegis linkage until explicitly mapped</li>
+          </ul>
+        </section>
 
-  <!-- Lab Objectives -->
-  <section class="section">
-    <h2>Lab Objectives</h2>
-    <ul>
-      <li>Understand GCP IAM principals and service accounts</li>
-      <li>Reason about IAM roles and bindings</li>
-      <li>Identify over-permissioned access</li>
-      <li>Explain GCP IAM decisions clearly in interviews</li>
-    </ul>
-  </section>
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <div class="artifact-grid">
+            <div class="artifact-card"><strong>metadata.json</strong><span>Lab identity and starter metadata</span></div>
+            <div class="artifact-card"><strong>index.html</strong><span>Rendered starter lab page</span></div>
+          </div>
+        </section>
 
-  <!-- Interview Focus -->
-  <section class="section">
-    <h2>Interview Focus</h2>
-    <p>
-      When discussing GCP IAM in interviews, emphasize <strong>why service accounts
-      and short-lived credentials are preferred</strong> and how IAM bindings
-      limit blast radius.
-    </p>
-  </section>
-
-  <div class="callout success">
-    <strong>Interview Tip:</strong>
-    If you say “everything goes through IAM,” be prepared to explain
-    role inheritance, resource hierarchy, and credential lifetimes.
-  </div>
-
-  <!-- What This Lab Is Not -->
-  <section class="section">
-    <h2>What This Lab Is Not</h2>
-    <ul>
-      <li>A console click-through tutorial</li>
-      <li>A certification cram sheet</li>
-      <li>A least-privilege checkbox exercise</li>
-    </ul>
-    <p>
-      This lab is about thinking like a cloud security architect.
-    </p>
-  </section>
-
-  <!-- Bottom Lab Navigation -->
-  <div class="lab-nav">
-    <div>
-      ← <a href="/labs/gcp/">Back to GCP Labs</a>
+      </div>
     </div>
-    <div>
-      <a href="#">Next Lab →</a>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer-note">
-    SecureTheCloud Labs · GCP IAM Basics · Gold Reference Lab
-  </div>
-
-</main>
-
+  </main>
 </body>
 </html>

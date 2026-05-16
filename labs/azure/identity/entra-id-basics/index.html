@@ -4,169 +4,130 @@
   <meta charset="UTF-8" />
   <title>Azure Entra ID Basics | SecureTheCloud Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Starter LAB introducing Azure Entra ID, Conditional Access, RBAC, federation, and identity governance concepts." />
   <link rel="stylesheet" href="/assets/css/labs.css">
 </head>
 
 <body>
+  <main class="lab-detail-shell">
 
-<main>
-
-  <!-- Breadcrumbs -->
-  <nav class="breadcrumbs">
-    <a href="/index.html">Labs</a>
-    <span>›</span>
-    <a href="/labs/azure/">Azure</a>
-    <span>›</span>
-    <a href="/labs/azure/identity/">Identity</a>
-    <span>›</span>
-    <span>Entra ID Basics</span>
-  </nav>
-
-  <!-- Starter Notice -->
-  <div class="callout warning">
-    <strong>Starter Lab:</strong>
-    This lab establishes identity fundamentals in Azure Entra ID.
-    Hands-on scenarios will be expanded in future iterations.
-  </div>
-
-  <!-- Header -->
-  <section>
-    <h1>Azure Entra ID Basics</h1>
-
-    <div class="lab-meta">
-      <span><strong>Cloud:</strong> Azure</span>
-      <span><strong>Domain:</strong> Identity</span>
-      <span><strong>Level:</strong> Foundation</span>
-      <span><strong>Estimated Time:</strong> 45 minutes</span>
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">Starter Track</span>
     </div>
 
-    <p class="subtitle">
-      A foundational lab focused on how Azure Entra ID governs every identity
-      decision in the cloud. This lab emphasizes reasoning, not portal
-      memorization.
-    </p>
-  </section>
+    <section class="starter-hero">
+      <p class="starter-hero-kicker">Azure · Identity · Entra ID</p>
+      <h1>Azure Entra ID Basics</h1>
+      <p>
+        Starter LAB for Microsoft Entra ID identity flow, Conditional Access,
+        RBAC concepts, federation, and enterprise identity governance.
+      </p>
 
-  <!-- Why Entra ID Matters -->
-  <section class="section">
-    <h2>Why Entra ID Matters</h2>
-    <p>
-      Entra ID is the identity control plane of Azure. Every authentication,
-      token issuance, and access decision is evaluated through Entra ID.
-    </p>
-    <ul>
-      <li>Most Azure breaches involve identity misconfiguration</li>
-      <li>Over-permissioned identities silently expand blast radius</li>
-      <li>Identity mistakes compound across services</li>
-    </ul>
-  </section>
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Starter</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>Azure</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Future Track</span>
+          <strong>Federation</strong>
+        </div>
+      </div>
+    </section>
 
-  <div class="callout warning">
-    <strong>Security Reality:</strong>
-    Identity failures rarely cause immediate outages — they create long-lived
-    exposure that attackers exploit later.
-  </div>
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Core Concepts</a>
+        <a href="#outcomes">Learning Outcomes</a>
+        <a href="#future">Future Expansion</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
 
-  <!-- Core Concepts -->
-  <section class="section">
-    <h2>Core Entra ID Concepts</h2>
+      <div class="lab-main-panels">
 
-    <h3>Principals</h3>
-    <p>
-      A principal is any entity that can authenticate and request access:
-      users, service principals, managed identities, or applications.
-    </p>
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            This starter lab introduces Entra ID as the identity control plane
+            for Azure and Microsoft cloud access.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">Starter</span>
+            <span class="evidence-pill">Identity-first</span>
+            <span class="evidence-pill">Federation-ready</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
 
-    <h3>Policies</h3>
-    <p>
-      Policies define <strong>what access is allowed</strong>.
-      They are evaluated during authentication and authorization flows.
-    </p>
+        <section id="concepts" class="lab-panel">
+          <h2>Core Concepts</h2>
+          <div class="lab-panel-grid">
+            <div>
+              <h3>Tenants</h3>
+              <p>Identity boundary for users, groups, applications, and service principals.</p>
+              <h3>Conditional Access</h3>
+              <p>Policy engine for access decisions based on identity, device, risk, and context.</p>
+            </div>
+            <div>
+              <h3>RBAC</h3>
+              <p>Azure authorization model for resource access and administrative permissions.</p>
+              <h3>Federation</h3>
+              <p>Identity trust patterns that will support future ASO and enterprise federation labs.</p>
+            </div>
+          </div>
+        </section>
 
-    <h3>Evaluation Logic</h3>
-    <ul>
-      <li>Explicit <strong>Deny</strong> always wins</li>
-      <li>Default is implicit deny</li>
-      <li>Multiple controls are evaluated together</li>
-    </ul>
-  </section>
+        <section id="outcomes" class="lab-panel">
+          <h2>Learning Outcomes</h2>
+          <ul>
+            <li>Understand Entra ID tenant and identity structure</li>
+            <li>Explain Conditional Access and RBAC basics</li>
+            <li>Prepare for future Azure federation and workload identity labs</li>
+          </ul>
+        </section>
 
-  <!-- Identity Architecture Diagram -->
-  <section class="section">
-    <h2>Identity Architecture Overview</h2>
-    <p>
-      This diagram shows how Azure Entra ID evaluates identity and access
-      before a request reaches Azure resources.
-    </p>
-    <img
-      src="/labs/azure/identity/entra-id-basics/assets/diagrams/identity-architecture.svg"
-      alt="Azure Entra ID Identity Evaluation Flow"
-      style="max-width:100%; margin-top:1rem;"
-    />
-  </section>
+        <section id="future" class="lab-panel">
+          <h2>Future Expansion</h2>
+          <p>
+            This starter lane remains reserved for Azure federation, ASO identity,
+            Conditional Access drift, and enterprise identity governance labs.
+          </p>
+          <div class="starter-note">
+            Azure is intentionally retained as a future Principal LAB track.
+          </div>
+        </section>
 
-  <div class="callout">
-    <strong>Architecture Insight:</strong>
-    Entra ID evaluates identity continuously, not just at sign-in.
-    Token issuance and Entra trust relationships are the foundation
-    of modern Azure security.
-  </div>
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <ul>
+            <li>Does not mutate Azure resources</li>
+            <li>Does not execute remediation</li>
+            <li>Does not claim Shield or Aegis linkage until explicitly mapped</li>
+          </ul>
+        </section>
 
-  <!-- Lab Objectives -->
-  <section class="section">
-    <h2>Lab Objectives</h2>
-    <ul>
-      <li>Understand Entra ID users, groups, and service principals</li>
-      <li>Reason about identity and access decisions</li>
-      <li>Identify over-permissioned access</li>
-      <li>Explain Entra ID behavior in an interview setting</li>
-    </ul>
-  </section>
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <div class="artifact-grid">
+            <div class="artifact-card"><strong>metadata.json</strong><span>Lab identity and starter metadata</span></div>
+            <div class="artifact-card"><strong>index.html</strong><span>Rendered starter lab page</span></div>
+          </div>
+        </section>
 
-  <!-- Interview Focus -->
-  <section class="section">
-    <h2>Interview Focus</h2>
-    <p>
-      When discussing Entra ID in interviews, emphasize <strong>why identity-first
-      design matters</strong> and how token-based access limits blast radius.
-    </p>
-  </section>
-
-  <div class="callout success">
-    <strong>Interview Tip:</strong>
-    If you say “everything goes through Entra ID,” be prepared to explain
-    authentication vs authorization and token lifecycles.
-  </div>
-
-  <!-- What This Lab Is Not -->
-  <section class="section">
-    <h2>What This Lab Is Not</h2>
-    <ul>
-      <li>An Azure Portal click-through tutorial</li>
-      <li>A certification cram sheet</li>
-      <li>A checkbox compliance exercise</li>
-    </ul>
-    <p>
-      This lab is about thinking like a cloud security architect.
-    </p>
-  </section>
-
-  <!-- Bottom Lab Navigation -->
-  <div class="lab-nav">
-    <div>
-      ← <a href="/labs/azure/">Back to Azure Labs</a>
+      </div>
     </div>
-    <div>
-      <a href="#">Next Lab →</a>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer-note">
-    SecureTheCloud Labs · Azure Entra ID Basics · Gold Reference Lab
-  </div>
-
-</main>
-
+  </main>
 </body>
 </html>
