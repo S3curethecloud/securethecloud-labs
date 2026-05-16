@@ -621,3 +621,10 @@ code {
   flex: 0 0 auto;
   margin-top: 0.15rem;
 }
+
+.badge-intermediate {
+  background: rgba(56, 189, 248, 0.14);
+  color: #bae6fd;
+  border: 1px solid rgba(56, 189, 248, 0.38);
+}
+

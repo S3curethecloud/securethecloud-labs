@@ -34,6 +34,41 @@
       }
     },
     {
+      "id": "aws-iam-policy-evaluation",
+      "title": "AWS IAM Policy Evaluation",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching AWS effective-permission reasoning across identity policies, resource policies, permission boundaries, session policies, SCPs, and explicit deny.",
+      "path": "/labs/aws/identity/iam-policy-evaluation/",
+      "tags": [
+        "iam",
+        "policy-evaluation",
+        "effective-permissions",
+        "explicit-deny",
+        "permission-boundary",
+        "scp",
+        "aws",
+        "identity",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "IAM Policy Evaluation"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",
