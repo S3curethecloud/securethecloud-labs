@@ -13,22 +13,22 @@ The objective is to analyze how `iam:PassRole` can create a deterministic privil
 
 ---
 
-## 2. Identity Flow Diagram (Logical)
+## 2. Identity Flow Diagram
 
 ```text
 Low-Privilege Principal
-    ↓
+    ->
 iam:PassRole
-    ↓
+    ->
 Compute Service Creation or Update
-    ↓
+    ->
 High-Privilege Execution Role
-    ↓
+    ->
 Expanded Permissions / Administrative Blast Radius
 
 This is an identity-controlled privilege escalation path.
 
-3. Vulnerable Permission Pattern (BAD)
+3. Vulnerable Permission Pattern
 
 The low-privilege principal has permission to pass a high-privilege role:
 
@@ -59,11 +59,11 @@ Example service capability:
 
 iam:PassRole does not directly grant the caller the permissions of the role.
 
-However, if the caller can pass a privileged role to a service they control or can update, they may cause that service to run with permissions that exceed the caller’s own authority.
+However, if the caller can pass a privileged role to a service they control or can update, they may cause that service to run with permissions that exceed the caller's own authority.
 
 This creates a deterministic privilege escalation path:
 
-Principal → iam:PassRole → Lambda Execution Role → Elevated Permissions
+Principal -> iam:PassRole -> Lambda Execution Role -> Elevated Permissions
 
 The risk exists because the identity configuration allows the principal to bind a more privileged role to an executable service context.
 
@@ -82,7 +82,7 @@ Privilege Escalation Path via iam:PassRole Detected
 
 Category:
 
-Identity → Privilege Escalation
+Identity -> Privilege Escalation
 
 Severity:
 
@@ -154,7 +154,7 @@ infer access paths not present in IAM configuration
 
 The lab exists to teach and validate identity privilege escalation modeling.
 
-9. Lab ↔ Shield Linkage
+9. Lab to Shield Linkage
 
 Stable lab identifier:
 
@@ -192,8 +192,60 @@ This lab is complete enough to cite when:
 
 metadata.json contains stable lab_id
 architecture.md renders correctly
+runtime-mapping.json exists
 lab appears in manifest.json
 Shield finding includes linked lab metadata
 /shield/findings returns shield-passrole-001
+Aegis Runtime mapping exists
+Aegis fixture validates IDENTITY_DRIFT_DETECTED
+OPA authority remains preserved
 AI Explain can cite the lab dataset
-Shield UI renders “View linked lab”
+12. Aegis Runtime Mapping
+
+This lab is mapped to Aegis Runtime / Decision Intelligence.
+
+Aegis Runtime evaluates the runtime security meaning of the identity path using bounded signals such as:
+
+principal identity
+requested intent
+action scope
+runtime risk
+identity integrity
+recent denial pressure
+policy drift
+session context where applicable
+
+For this lab, the relevant Aegis runtime path is:
+
+Low-Privilege Principal
+    ->
+iam:PassRole intent
+    ->
+Compute service creation or update capability
+    ->
+Privileged execution role binding
+    ->
+Privilege escalation risk signal
+
+Expected Aegis scenario:
+
+privilege_escalation_path_via_iam_passrole
+
+Expected Aegis signal:
+
+IDENTITY_DRIFT_DETECTED
+
+Expected minimum risk modifier:
+
+>= 20
+
+Aegis does not enforce this finding.
+
+Aegis may enrich the operator view with bounded signal interpretation, but the decision boundary remains:
+
+Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only
+
+This preserves the SecureTheCloud governance model while allowing the lab to teach how identity misconfiguration becomes runtime risk.

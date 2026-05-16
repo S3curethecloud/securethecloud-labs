@@ -3,7 +3,7 @@
   "title": "AWS Privilege Escalation via iam:PassRole",
   "cloud": "aws",
   "domain": "identity",
-  "category": "Identity → Privilege Escalation",
+  "category": "Identity \u2192 Privilege Escalation",
   "difficulty": "intermediate",
   "level": "intermediate",
   "estimated_time": "60m",
@@ -41,5 +41,18 @@
       "hands_on": true,
       "deterministic": true
     }
+  },
+  "runtime_anchor": "aegis-runtime",
+  "runtime_surface": "Aegis Runtime / Decision Intelligence",
+  "runtime_mapping": "runtime-mapping.json",
+  "aegis": {
+    "aligned": true,
+    "scenario": "privilege_escalation_path_via_iam_passrole",
+    "expected_signal": "IDENTITY_DRIFT_DETECTED",
+    "expected_minimum_risk_modifier": 20,
+    "signal_only": true,
+    "enforcement_authority": false,
+    "opa_decision_authority_preserved": true,
+    "runtime_source_of_truth_preserved": true
   }
 }
