@@ -39,8 +39,8 @@
       "cloud": "aws",
       "domain": "identity",
       "level": "intermediate",
-      "maturity": "gold",
-      "summary": "GOLD lab modeling deterministic AWS cross-account trust reachability through sts:AssumeRole and privileged role access.",
+      "maturity": "principal",
+      "summary": "Principal LAB modeling deterministic AWS cross-account trust reachability through sts:AssumeRole, Shield finding linkage, and Aegis Runtime identity signal mapping.",
       "path": "/labs/aws/identity/cross-account-role-escalation/",
       "tags": [
         "iam",
@@ -64,8 +64,13 @@
         "signal_strength": "high",
         "interview_ready": true,
         "linked_lab": true,
-        "shield_aligned": true
-      }
+        "shield_aligned": true,
+        "principal_lab": true,
+        "aegis_runtime_aligned": true
+      },
+      "runtime_anchor": "aegis-runtime",
+      "runtime_surface": "Aegis Runtime / Decision Intelligence",
+      "runtime_mapping": "/labs/aws/identity/cross-account-role-escalation/runtime-mapping.json"
     },
     {
       "id": "aws-privilege-escalation-passrole",

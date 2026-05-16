@@ -178,3 +178,56 @@ lab appears in manifest.json
 Shield finding includes linked lab metadata
 AI Explain can cite the lab dataset
 Shield UI renders “View linked lab”
+
+---
+
+## 11. Aegis Runtime Mapping
+
+This lab is mapped to Aegis Runtime / Decision Intelligence.
+
+Aegis Runtime evaluates the runtime security meaning of the cross-account identity path using bounded signals such as:
+
+- principal identity
+- requested intent
+- action scope
+- runtime risk
+- identity integrity
+- recent denial pressure
+- policy drift
+- session context where applicable
+
+For this lab, the relevant Aegis runtime path is:
+
+```text
+External Account Principal
+    ->
+sts:AssumeRole intent
+    ->
+Privileged account role trust relationship
+    ->
+Administrative blast radius
+    ->
+Cross-account privilege escalation risk signal
+
+Expected Aegis scenario:
+
+cross_account_assume_role_escalation_path
+
+Expected Aegis signal:
+
+IDENTITY_DRIFT_DETECTED
+
+Expected minimum risk modifier:
+
+>= 20
+
+Aegis does not enforce this finding.
+
+Aegis may enrich the operator view with bounded signal interpretation, but the decision boundary remains:
+
+Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only
+
+This preserves the SecureTheCloud governance model while allowing the lab to teach how cross-account trust misconfiguration becomes runtime identity risk.
