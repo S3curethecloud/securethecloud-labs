@@ -44,6 +44,18 @@
       </div>
     </section>
 
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#visual">Visual Model</a>
+      <a href="#deny">Explicit Deny</a>
+      <a href="#principal">Principal Bridge</a>
+      <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
     <div class="lab-detail-layout">
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Lab Navigation</p>
@@ -71,7 +83,84 @@
           </div>
         </section>
 
-        <section id="model" class="lab-panel">
+                <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand each concept when you need a deeper explanation during study, mentoring, or executive walkthroughs.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is Zero Trust?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Zero Trust means every request must be evaluated based on identity, policy, resource,
+                  and context. Trust is not granted simply because the requester is inside a network or already authenticated.
+                </p>
+                <p>
+                  In this lab, Zero Trust shows up as policy evaluation: who is asking, what action is requested,
+                  what resource is targeted, and what context affects the final decision.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is effective permission?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Effective permission is the final permission outcome after all applicable controls are evaluated.
+                  It is not enough to find one allow. The allow must survive explicit deny, permission boundaries,
+                  session policies, and organization guardrails.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is explicit deny?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Explicit deny is a hard stop. If an applicable policy denies an action, the request is denied
+                  even when another policy allows it.
+                </p>
+                <p>
+                  This is why the first learning rule is: check for deny before proving allow.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a permission boundary?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A permission boundary limits the maximum authority a principal can have. It does not grant access by itself.
+                  It constrains what identity policies can successfully allow.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is an SCP?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A Service Control Policy is an AWS Organizations guardrail. It defines the maximum available permissions
+                  for accounts or organizational units. Like a boundary, it does not grant access by itself.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does this matter for Principal LABs?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Cross-account trust, iam:PassRole, and role chaining all depend on effective authority.
+                  This L2 lab teaches the decision logic required before analyzing those advanced paths.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+<section id="model" class="lab-panel">
           <h2>Evaluation Model</h2>
           <pre><code>Principal
   +

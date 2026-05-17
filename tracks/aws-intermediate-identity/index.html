@@ -45,6 +45,18 @@
       </div>
     </section>
 
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#current">Current LAB</a>
+      <a href="#coming-next">Coming Next</a>
+      <a href="#ladder">Learning Ladder</a>
+      <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
     <div class="lab-detail-layout">
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Track Navigation</p>
@@ -73,7 +85,58 @@
           </div>
         </section>
 
-        <section id="current" class="lab-panel">
+                <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Use these expandable windows for quick study, mentoring, and executive explanation.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>Why does L2 exist?</summary>
+              <div class="concept-card-body">
+                <p>
+                  L2 is the reasoning layer between vocabulary and advanced attack-path modeling.
+                  A learner should understand how permissions are evaluated before studying cross-account,
+                  PassRole, or role chaining paths.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is effective permission?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Effective permission is the final authority a principal actually has after identity policies,
+                  resource policies, boundaries, session policies, SCPs, and explicit denies are evaluated together.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How should students study this track?</summary>
+              <div class="concept-card-body">
+                <ul>
+                  <li>Start with the current L2 LAB.</li>
+                  <li>Use the visual model to reason through allow and deny paths.</li>
+                  <li>Then move into the L3 Principal Identity Track.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Identity risk is often created by permission composition, not a single bad setting.
+                  L2 explains why cloud authorization must be reviewed as a decision system.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+<section id="current" class="lab-panel">
           <h2>Current LAB</h2>
           <p>
             The first active L2 LAB teaches IAM policy evaluation and effective-permission reasoning.

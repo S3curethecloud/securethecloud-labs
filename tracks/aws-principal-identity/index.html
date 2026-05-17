@@ -44,6 +44,18 @@
       </div>
     </section>
 
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+      <a href="#overview">Overview</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#audiences">Audience Fit</a>
+      <a href="#labs">Principal LABs</a>
+      <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
     <div class="lab-detail-layout">
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Track Navigation</p>
@@ -106,7 +118,56 @@ L2: AWS IAM Policy Evaluation
 L3: AWS Principal Identity Track</code></pre>
         </section>
 
-        <section id="audiences" class="lab-panel">
+                <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            These explanations help students, interns, mentors, and executives understand why the Principal track matters.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a Principal LAB?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A Principal LAB models advanced identity risk with deterministic evidence. It is not a toy example
+                  and it does not require live exploitation. It shows how real cloud authorization paths can create risk.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does identity create blast radius?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Identity controls define what can be done, by whom, and against which resources.
+                  When trust, role passing, or role chaining is over-permissive, the reachable blast radius expands.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should a CISO take away?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Cloud identity risk should be explained as a decision path: principal, permission, trust,
+                  runtime signal, and governance boundary. The track provides evidence-backed language for that review.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How does L2 prepare learners for L3?</summary>
+              <div class="concept-card-body">
+                <p>
+                  L2 teaches effective permission and explicit deny reasoning. L3 then applies that reasoning
+                  to cross-account escalation, PassRole paths, and chained role assumptions.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+<section id="audiences" class="lab-panel">
           <h2>Audience Fit</h2>
           <div class="lab-panel-grid">
             <div>
