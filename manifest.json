@@ -283,6 +283,42 @@
       }
     },
     {
+      "id": "aws-lambda-execution-role-risk",
+      "title": "AWS Lambda Execution Role Risk",
+      "cloud": "aws",
+      "domain": "compute",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how Lambda execution roles create workload identity risk when function update authority, iam:PassRole, Secrets Manager access, KMS decrypt, and resource permissions combine.",
+      "path": "/labs/aws/compute/lambda-execution-role-risk/",
+      "tags": [
+        "lambda",
+        "execution-role",
+        "iam-passrole",
+        "workload-identity",
+        "secrets-manager",
+        "kms",
+        "serverless",
+        "compute",
+        "aws",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Compute",
+        "Lambda Execution Role Risk"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "compute",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

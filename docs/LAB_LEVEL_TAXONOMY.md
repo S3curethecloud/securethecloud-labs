@@ -455,3 +455,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS Lambda Execution Role Risk L2 LAB
+
+The AWS Lambda Execution Role Risk LAB has been added to the AWS Intermediate Identity Track as a workload identity and serverless authorization-risk LAB.
+
+LAB path:
+
+```text
+/labs/aws/compute/lambda-execution-role-risk/
+
+LAB ID:
+
+aws-lambda-execution-role-risk
+
+Curriculum role:
+
+L2 workload identity and serverless execution-role risk reasoning
+
+Purpose:
+
+Teach how Lambda execution roles create workload identity risk when function update authority, iam:PassRole, Secrets Manager access, KMS decrypt, and resource permissions combine.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+

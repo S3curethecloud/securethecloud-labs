@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Lambda Execution Role Risk | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS Lambda execution role risk, workload identity, iam:PassRole, Secrets Manager, KMS decrypt authority, and effective workload permissions." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Compute · Workload Identity Risk</p>
+      <h1>AWS Lambda Execution Role Risk</h1>
+      <p>
+        Intermediate LAB for understanding how Lambda execution roles, function management permissions,
+        iam:PassRole, Secrets Manager access, and KMS decrypt authority combine into workload identity risk.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Compute</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2 Applied</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            Lambda execution role risk appears when a principal can influence code or configuration that runs under a stronger role.
+            This is workload identity risk: the workload performs actions the caller may not be able to perform directly.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Workload identity</span>
+            <span class="evidence-pill">iam:PassRole bridge</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying Lambda workload identity or explaining applied privilege paths.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a Lambda execution role?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A Lambda execution role is the IAM role assumed by the Lambda service when a function runs.
+                  The function's runtime permissions come from this role, not from the caller who created or invoked the function.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does iam:PassRole matter?</summary>
+              <div class="concept-card-body">
+                <p>
+                  iam:PassRole controls whether a principal can attach an IAM role to a service such as Lambda.
+                  If a principal can pass a powerful role and create or update a function, a workload identity path may emerge.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is workload identity risk?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Workload identity risk occurs when an application, function, job, or service runs with permissions
+                  that can access sensitive resources, especially when lower-privilege users can influence that workload.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How do Secrets Manager and KMS connect?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Lambda functions often retrieve secrets and decrypt data. If the execution role has
+                  Secrets Manager and KMS authority, function code may access sensitive values at runtime.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Serverless risk is identity risk. The important question is not only who can call a function,
+                  but who can change what it runs as and what protected systems that role can access.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Lambda Workload Identity Model</h2>
+          <p>
+            Lambda execution role risk is easiest to understand as a caller-to-workload identity path.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Caller / CI Principal</strong>
+                <span>User, pipeline, or automation with Lambda permissions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Function Control</strong>
+                <span>Create, update code, update config, or invoke</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Execution Role</strong>
+                <span>Runtime authority assumed by Lambda</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Workload Risk</strong>
+                <span>Access secrets, decrypt data, read storage, or call APIs</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Can Update Code</strong>
+                <span>Caller controls function behavior</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>Role Has Sensitive Access</strong>
+                <span>Secrets Manager, KMS, S3, or admin APIs</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Risk Possible</strong>
+                <span>Workload may perform sensitive actions</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Can Create Function</strong>
+                <span>Caller can define new workload</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>PassRole Denied</strong>
+                <span>Caller cannot attach stronger role</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Path Reduced</strong>
+                <span>Execution-role escalation is blocked</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              Lambda risk is not only "who can invoke?" It is also "who can control code or configuration that runs under this role?"
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A developer can update Lambda code. The function's execution role can retrieve a production secret and decrypt it.
+          </p>
+
+          <pre><code>Caller permission: lambda:UpdateFunctionCode allowed
+Execution role: secretsmanager:GetSecretValue allowed
+Execution role: kms:Decrypt allowed
+Function behavior: controlled by caller
+Final result: WORKLOAD IDENTITY RISK POSSIBLE</code></pre>
+        </section>
+
+        <section id="authorization" class="lab-panel">
+          <h2>Authorization Layers</h2>
+          <p>
+            This lab connects workload identity risk to the broader L2 authorization model.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>IAM Policy Evaluation</strong>
+              <span>Can the caller create, update, pass, or invoke?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Can the caller attach a stronger role to Lambda?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/secrets-manager-access-evaluation/">
+              <strong>Secrets Manager Access Evaluation</strong>
+              <span>Can the execution role retrieve sensitive secrets?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/kms-key-policy-evaluation/">
+              <strong>KMS Key Policy Evaluation</strong>
+              <span>Can the execution role decrypt protected data?</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            Lambda execution role risk is an applied bridge into Principal LABs because it demonstrates how workload identity
+            can expand authority through role attachment, function code, and runtime permissions.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Passing a stronger role to Lambda is a classic workload escalation path.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Lambda execution roles may access cross-account resources when trust permits.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Lambda-managed identities can participate in downstream role assumptions.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy Lambda functions</li>
+            <li>Does not update real function code</li>
+            <li>Does not pass IAM roles</li>
+            <li>Does not invoke AWS APIs against customer accounts</li>
+            <li>Does not retrieve secrets or decrypt data</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
