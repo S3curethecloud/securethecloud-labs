@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS L2 Authorization Model | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Executive and mentor study guide for the SecureTheCloud AWS L2 authorization model covering IAM policy evaluation, permission boundaries, SCPs, resource policies, S3 public access risk, and KMS key policy evaluation." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">Executive Study Guide</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · L2 Authorization Model · Executive Learning Path</p>
+      <h1>AWS L2 Authorization Model</h1>
+      <p>
+        Executive, mentor, and student study guide for understanding how AWS authorization decisions are made,
+        constrained, exposed, and protected across identity, organization, resource, storage, and cryptographic layers.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Audience</span>
+          <strong>Executive / Mentor</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>L2 LABs</span>
+          <strong>6</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Model</span>
+          <strong>Authorization</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Runtime</span>
+          <strong>Read-only</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#model">Visual Model</a>
+        <a href="#labs">Six LABs</a>
+        <a href="#study-paths">Study Paths</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Guide Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#model">Visual Model</a>
+        <a href="#labs">Six LABs</a>
+        <a href="#study-paths">Study Paths</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#governance">Governance</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Executive Overview</h2>
+          <p>
+            The AWS L2 Authorization Model explains how cloud access is actually decided.
+            It turns six technical LABs into one clear learning path for students, interns, mentors,
+            security engineers, CISOs, and executives.
+          </p>
+
+          <p>
+            The key lesson is simple: AWS authorization is not one policy. It is a layered decision system.
+          </p>
+
+          <pre><code>Identity policy
+→ principal boundary
+→ organization guardrail
+→ resource policy
+→ applied exposure state
+→ cryptographic access control</code></pre>
+        </section>
+
+        <section id="model" class="lab-panel">
+          <h2>Visual Authorization Model</h2>
+          <p>
+            This visual model shows how the six L2 labs work together.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node policy">
+                <strong>1. IAM Policy Evaluation</strong>
+                <span>Can the principal request the action?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>2. Permission Boundary</strong>
+                <span>Does the principal stay inside its maximum authority?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>3. SCP Guardrail</strong>
+                <span>Does the account or OU allow this class of action?</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node policy">
+                <strong>4. Resource Policy</strong>
+                <span>Does the resource trust or deny the principal?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>5. S3 Public Exposure</strong>
+                <span>Do policies and safety controls create public reachability?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>6. KMS Key Policy</strong>
+                <span>Can the principal use the key to decrypt protected data?</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Executive rule:</strong>
+              cloud risk is the final state of multiple controls, not a single setting.
+            </div>
+          </div>
+        </section>
+
+        <section id="labs" class="lab-panel">
+          <h2>The Six L2 LABs</h2>
+          <p>
+            These six labs form the AWS Intermediate Identity and Authorization curriculum.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>1. AWS IAM Policy Evaluation</strong>
+              <span>Identity-side authorization, explicit deny, and effective permission reasoning.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/permission-boundary-basics/">
+              <strong>2. AWS Permission Boundary Basics</strong>
+              <span>Principal-level maximum authority and delegated administration controls.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/scp-guardrail-reasoning/">
+              <strong>3. AWS SCP Guardrail Reasoning</strong>
+              <span>Organization and account-level maximum authority.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/resource-policy-evaluation/">
+              <strong>4. AWS Resource Policy Evaluation</strong>
+              <span>Resource-side trust, explicit deny, and cross-account authorization.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/storage/s3-public-access-risk/">
+              <strong>5. AWS S3 Public Access Risk</strong>
+              <span>Applied public exposure reasoning across policy, ACLs, public blocks, and guardrails.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/kms-key-policy-evaluation/">
+              <strong>6. AWS KMS Key Policy Evaluation</strong>
+              <span>Cryptographic authorization across key policies, grants, context, and IAM permissions.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="study-paths" class="lab-panel">
+          <h2>Study Paths</h2>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Students</strong>
+              <span>Start with IAM Policy Evaluation, then move one layer at a time until KMS key policy reasoning feels natural.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>Interns</strong>
+              <span>Use the visual model to explain each authorization layer out loud before opening the detailed LAB.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>Mentors</strong>
+              <span>Teach one LAB per session, then use S3 and KMS to show applied business risk.</span>
+            </div>
+
+            <div class="artifact-card">
+              <strong>CISO / Executive Review</strong>
+              <span>Use the model to ask whether identity, resource, organization, storage, and cryptographic controls agree.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts during mentoring, executive walkthroughs, or quick mobile study.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is effective permission?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Effective permission is the final result after every relevant policy layer is evaluated.
+                  A single allow is not enough. The request must survive identity policy, boundaries, SCPs,
+                  resource policies, and explicit deny.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a guardrail?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A guardrail is a control that limits what can happen even when a local policy appears to allow it.
+                  Permission boundaries constrain principals. SCPs constrain accounts and organizational units.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does resource-side authorization matter?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A resource can decide who it trusts. Bucket policies, key policies, queue policies, topic policies,
+                  and role trust policies all participate in authorization.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does KMS change the risk conversation?</summary>
+              <div class="concept-card-body">
+                <p>
+                  KMS controls whether encrypted data can actually be decrypted. A user may reach a storage object,
+                  snapshot, or secret, but still fail if KMS denies decrypt authority.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives ask?</summary>
+              <div class="concept-card-body">
+                <ul>
+                  <li>Which identities can change access state?</li>
+                  <li>Which guardrails prevent excessive authority?</li>
+                  <li>Which resources trust external or broad principals?</li>
+                  <li>Which data remains protected by cryptographic controls?</li>
+                  <li>Which controls are proven by evidence instead of assumption?</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This guide is a static learning artifact. It summarizes existing L2 LABs and does not create runtime authority.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not create Shield findings</li>
+            <li>Does not create Aegis fixtures</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

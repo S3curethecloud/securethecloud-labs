@@ -388,3 +388,39 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS L2 Authorization Model Executive Study Guide
+
+The AWS L2 Authorization Model guide packages the intermediate AWS authorization curriculum into a mentor, student, and executive-facing learning artifact.
+
+Guide path:
+
+```text
+/guides/aws-l2-authorization-model/
+
+Covered L2 LABs:
+
+AWS IAM Policy Evaluation
+AWS Permission Boundary Basics
+AWS SCP Guardrail Reasoning
+AWS Resource Policy Evaluation
+AWS S3 Public Access Risk
+AWS KMS Key Policy Evaluation
+
+Curriculum role:
+
+L2 executive study guide and authorization model summary
+
+Purpose:
+
+Summarize identity-side authorization, principal ceilings, organization guardrails, resource-side authorization, applied public exposure risk, and cryptographic access control.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+
