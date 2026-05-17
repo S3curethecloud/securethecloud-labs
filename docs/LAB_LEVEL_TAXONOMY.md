@@ -233,3 +233,34 @@ Teach effective-permission reasoning before learners enter Principal LABs.
 This track is read-only and educational.
 
 No runtime, Shield, Aegis, or OPA logic changes are introduced by this track page.
+
+---
+
+## AWS Permission Boundary Basics L2 LAB
+
+The AWS Permission Boundary Basics LAB has been added to the AWS Intermediate Identity Track.
+
+LAB path:
+
+```text
+/labs/aws/identity/permission-boundary-basics/
+
+LAB ID:
+
+aws-permission-boundary-basics
+
+Curriculum role:
+
+L2 intermediate identity-policy reasoning
+
+Purpose:
+
+Teach how permission boundaries constrain maximum principal authority without granting access by themselves.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+

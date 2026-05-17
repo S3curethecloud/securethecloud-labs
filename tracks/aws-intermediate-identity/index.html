@@ -32,7 +32,7 @@
         </div>
         <div class="lab-status-card">
           <span>Current LABs</span>
-          <strong>1</strong>
+          <strong>2</strong>
         </div>
         <div class="lab-status-card">
           <span>Level</span>
@@ -147,6 +147,11 @@
               <strong>AWS IAM Policy Evaluation</strong>
               <span>Effective permissions, explicit deny, boundaries, SCPs, and authorization decision reasoning.</span>
             </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/permission-boundary-basics/">
+              <strong>AWS Permission Boundary Basics</strong>
+              <span>Maximum authority, delegated administration, boundary limits, and effective-permission control.</span>
+            </a>
           </div>
         </section>
 
@@ -157,11 +162,6 @@
           </p>
 
           <div class="artifact-grid">
-            <div class="artifact-card">
-              <strong>AWS Permission Boundary Basics</strong>
-              <span>How permission boundaries constrain maximum principal authority.</span>
-            </div>
-
             <div class="artifact-card">
               <strong>AWS SCP Guardrail Reasoning</strong>
               <span>How organization guardrails shape effective permissions across accounts.</span>
@@ -188,7 +188,8 @@
           <pre><code>L1: AWS IAM Basics
     ↓
 L2: AWS Intermediate Identity Track
-    └── AWS IAM Policy Evaluation
+    ├── AWS IAM Policy Evaluation
+    └── AWS Permission Boundary Basics
     ↓
 L3: AWS Principal Identity Track
     ├── Cross-Account Role Escalation

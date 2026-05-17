@@ -1,0 +1,47 @@
+{
+  "lab_id": "aws-permission-boundary-basics",
+  "title": "AWS Permission Boundary Basics",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 55,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how AWS permission boundaries constrain maximum principal authority without granting access by themselves.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "AWS IAM Policy Evaluation",
+    "Basic understanding of IAM users, roles, policies, and effective permissions"
+  ],
+  "objectives": [
+    "Explain what a permission boundary is",
+    "Differentiate permission boundaries from identity policies",
+    "Explain why boundaries do not grant permissions by themselves",
+    "Reason about maximum allowed authority",
+    "Understand how boundaries reduce privilege-escalation risk",
+    "Prepare for Principal LABs involving PassRole, cross-account trust, and role chaining"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "identity-policy-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}

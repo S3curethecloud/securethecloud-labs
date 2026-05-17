@@ -69,6 +69,40 @@
       }
     },
     {
+      "id": "aws-permission-boundary-basics",
+      "title": "AWS Permission Boundary Basics",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how AWS permission boundaries constrain maximum principal authority without granting access by themselves.",
+      "path": "/labs/aws/identity/permission-boundary-basics/",
+      "tags": [
+        "iam",
+        "permission-boundary",
+        "effective-permissions",
+        "delegated-administration",
+        "least-privilege",
+        "aws",
+        "identity",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "Permission Boundary Basics"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

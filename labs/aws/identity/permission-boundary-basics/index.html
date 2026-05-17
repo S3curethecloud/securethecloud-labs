@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Permission Boundary Basics | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS permission boundaries, maximum authority, effective permissions, and delegated IAM governance." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Permission Boundaries</p>
+      <h1>AWS Permission Boundary Basics</h1>
+      <p>
+        Intermediate LAB for understanding how AWS permission boundaries constrain maximum principal authority
+        without granting access by themselves.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            Permission boundaries define the maximum permissions an IAM principal can have.
+            They are a critical safety mechanism for delegated administration and privilege-escalation prevention.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Policy reasoning</span>
+            <span class="evidence-pill">Maximum authority</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying permission boundaries or explaining delegated IAM governance.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a permission boundary?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A permission boundary is an IAM policy used to set the maximum permissions an identity can have.
+                  It does not grant access by itself. It only limits what identity policies can successfully allow.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How is a boundary different from an identity policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  An identity policy grants or denies requested actions. A boundary defines the outer limit of what the identity
+                  is allowed to receive. The final decision requires both the identity policy and the boundary to permit the action.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does a boundary not grant access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A boundary is a limit, not a permission source. If only the boundary allows an action but no identity policy allows it,
+                  the action is still denied.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does this matter for delegated administration?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Boundaries let platform teams delegate IAM creation or management while preventing delegated users from creating
+                  identities with authority above an approved ceiling.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Permission boundaries are governance guardrails. They help reduce the risk that teams accidentally or intentionally
+                  create identities with excessive authority.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Boundary Model</h2>
+          <p>
+            Permission boundary reasoning is easiest when viewed as a maximum-authority decision path.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, workload, or delegated admin</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Identity Policy</strong>
+                <span>Requests or allows an action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Permission Boundary</strong>
+                <span>Defines maximum allowed authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Effective Decision</strong>
+                <span>Allow only if the action survives the boundary</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal has an apparent allow</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>Boundary Allows</strong>
+                <span>The maximum-authority ceiling permits it</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Possible Allow</strong>
+                <span>Unless another explicit deny applies</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal has an apparent allow</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>Boundary Does Not Allow</strong>
+                <span>The ceiling blocks the action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny</strong>
+                <span>The requested authority exceeds the boundary</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              a permission boundary is a maximum-authority guardrail. It limits access; it does not grant access.
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A developer role has an identity policy that allows role creation, but a permission boundary prevents the developer
+            from creating roles with administrative authority.
+          </p>
+
+          <pre><code>Identity policy: iam:CreateRole allowed
+Permission boundary: administrative role patterns not allowed
+Final decision: DENY when requested authority exceeds boundary</code></pre>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            Permission boundaries prepare learners to reason about whether advanced identity paths become exploitable escalation paths.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Boundary design can limit roles that may be created or passed.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Boundary reasoning helps evaluate delegated role administration safely.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Boundaries can reduce downstream authority when attached consistently.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
