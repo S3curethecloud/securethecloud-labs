@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Secrets Manager Access Evaluation | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS Secrets Manager access evaluation, IAM permissions, resource policies, KMS decrypt authority, and effective secret retrieval decisions." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Security · Secret Access Authorization</p>
+      <h1>AWS Secrets Manager Access Evaluation</h1>
+      <p>
+        Intermediate LAB for understanding how IAM permissions, secret resource policies,
+        KMS decrypt authority, explicit deny, and organization guardrails combine into an effective secret-access decision.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Security</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2 Applied</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            Secrets Manager access is a layered authorization decision.
+            A principal may be allowed to request a secret, but still fail if the secret resource policy,
+            KMS key policy, SCP, or explicit deny blocks the path.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Secret access</span>
+            <span class="evidence-pill">KMS dependency</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying secret retrieval or explaining sensitive credential access risk.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is Secrets Manager access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Secrets Manager access is the ability to list, describe, retrieve, or manage secrets.
+                  The most sensitive action is usually retrieving the secret value.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why is GetSecretValue high risk?</summary>
+              <div class="concept-card-body">
+                <p>
+                  GetSecretValue returns the sensitive material stored in the secret, such as database passwords,
+                  API tokens, service credentials, or application keys.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does KMS matter for secrets?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Secrets are encrypted. If a customer-managed KMS key protects the secret, the caller may need
+                  both Secrets Manager permission and KMS decrypt authority.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a secret resource policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A secret resource policy is a resource-based policy attached to a secret.
+                  It can define who may access the secret, including cross-account principals.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Secrets are high-value access material. The governance question is not only who can see secrets,
+                  but who can assume, pass, or chain into identities that can retrieve and decrypt them.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Secrets Access Model</h2>
+          <p>
+            Secret access is easiest to understand as a layered retrieval decision.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, workload, service, or external account</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>IAM Policy</strong>
+                <span>Can request GetSecretValue?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Secret Resource Policy</strong>
+                <span>Does the secret trust the principal?</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Secret Access Decision</strong>
+                <span>Retrieve, block, or deny</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Secrets Manager Allows</strong>
+                <span>GetSecretValue is permitted</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>KMS Allows</strong>
+                <span>Decrypt is permitted</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Secret Value Returned</strong>
+                <span>Unless explicit deny or guardrail blocks it</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Secrets Manager Allows</strong>
+                <span>GetSecretValue is permitted</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>KMS Denies</strong>
+                <span>Decrypt is not permitted</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny</strong>
+                <span>Secret value cannot be decrypted</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              secret access is not just "can I call Secrets Manager?" It is also
+              "can this identity decrypt the protected secret value?"
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A workload role can request a secret, but the customer-managed KMS key does not allow that role to decrypt.
+          </p>
+
+          <pre><code>IAM policy: secretsmanager:GetSecretValue allowed
+Secret resource policy: same-account access allowed
+KMS key policy: workload role not trusted
+Final decision: DENY</code></pre>
+        </section>
+
+        <section id="authorization" class="lab-panel">
+          <h2>Authorization Layers</h2>
+          <p>
+            This lab connects secret access to the broader L2 authorization model.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>IAM Policy Evaluation</strong>
+              <span>Can the principal request secret access?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/resource-policy-evaluation/">
+              <strong>Resource Policy Evaluation</strong>
+              <span>Does the secret resource policy trust the principal?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/kms-key-policy-evaluation/">
+              <strong>KMS Key Policy Evaluation</strong>
+              <span>Can the principal decrypt the secret value?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/scp-guardrail-reasoning/">
+              <strong>SCP Guardrail Reasoning</strong>
+              <span>Can the organization prevent risky secret retrieval?</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            Secrets are often the target after privilege escalation. A principal that can assume, pass,
+            or chain into a role with Secrets Manager and KMS authority may retrieve sensitive credentials.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Passed roles may inherit secret retrieval and decrypt authority.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Cross-account paths may expose secrets if resource and key policies trust the path.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Chained roles may eventually reach secret-access authority.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not enumerate real secrets</li>
+            <li>Does not retrieve secret values</li>
+            <li>Does not decrypt real data</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

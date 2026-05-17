@@ -424,3 +424,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS Secrets Manager Access Evaluation L2 LAB
+
+The AWS Secrets Manager Access Evaluation LAB has been added to the AWS Intermediate Identity Track as a data-protection and secret-access authorization LAB.
+
+LAB path:
+
+```text
+/labs/aws/security/secrets-manager-access-evaluation/
+
+LAB ID:
+
+aws-secrets-manager-access-evaluation
+
+Curriculum role:
+
+L2 secret-access authorization and data-protection reasoning
+
+Purpose:
+
+Teach how AWS Secrets Manager access depends on IAM permissions, resource policies, KMS decrypt authority, explicit deny, and organization guardrails.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+

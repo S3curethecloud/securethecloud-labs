@@ -247,6 +247,42 @@
       }
     },
     {
+      "id": "aws-secrets-manager-access-evaluation",
+      "title": "AWS Secrets Manager Access Evaluation",
+      "cloud": "aws",
+      "domain": "security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how AWS Secrets Manager access depends on IAM permissions, resource policies, KMS decrypt authority, explicit deny, and organization guardrails.",
+      "path": "/labs/aws/security/secrets-manager-access-evaluation/",
+      "tags": [
+        "secrets-manager",
+        "secrets",
+        "kms",
+        "decrypt",
+        "resource-policy",
+        "get-secret-value",
+        "security",
+        "aws",
+        "l2",
+        "data-protection"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Security",
+        "Secrets Manager Access Evaluation"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "security",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",
