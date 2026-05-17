@@ -48,6 +48,7 @@
       <p class="mobile-study-menu-title">Study Menu</p>
       <div class="mobile-study-links">
         <a href="#overview">Overview</a>
+        <a href="#deep-dives">Concept Deep Dives</a>
         <a href="#concepts">Core Concepts</a>
         <a href="#outcomes">Learning Outcomes</a>
         <a href="#future">Future Expansion</a>
@@ -60,6 +61,7 @@
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Lab Navigation</p>
         <a href="#overview">Overview</a>
+        <a href="#deep-dives">Concept Deep Dives</a>
         <a href="#concepts">Core Concepts</a>
         <a href="#outcomes">Learning Outcomes</a>
         <a href="#future">Future Expansion</a>
@@ -82,6 +84,56 @@
             <span class="evidence-pill">No live mutation</span>
           </div>
         </section>
+
+        <section id="deep-dives" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when introducing Google Cloud IAM, Workspace identity, and workload federation.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is Google Cloud IAM?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Google Cloud IAM controls who can do what on which Google Cloud resources. It uses principals, roles,
+                  permissions, policies, and resource hierarchy to evaluate access.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a service account?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A service account is a machine identity used by applications and workloads. Over-permissioned service accounts
+                  can become major privilege-escalation anchors.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is Workspace identity?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Workspace identity connects users, groups, and organizational identity to Google services. It can become
+                  the foundation for future GCP Workspace and enterprise access labs.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is Workload Identity Federation?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Workload Identity Federation allows external workloads to access Google Cloud without long-lived service account keys.
+                  It is a core pattern for safer cloud-to-cloud and CI/CD identity integration.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
 
         <section id="concepts" class="lab-panel">
           <h2>Core Concepts</h2>

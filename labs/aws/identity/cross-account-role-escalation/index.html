@@ -49,6 +49,7 @@
       <p class="mobile-study-menu-title">Study Menu</p>
       <div class="mobile-study-links">
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -61,6 +62,7 @@
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Lab Navigation</p>
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -84,6 +86,58 @@
             <span class="evidence-pill">Aegis Runtime-linked</span>
           </div>
         </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when teaching cross-account trust and AssumeRole escalation.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is cross-account trust?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Cross-account trust allows a principal in one AWS account to assume a role in another account.
+                  This is a normal enterprise pattern, but it must be constrained to specific trusted principals and conditions.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is sts:AssumeRole?</summary>
+              <div class="concept-card-body">
+                <p>
+                  sts:AssumeRole lets a principal request temporary credentials for a role. The final decision depends on both
+                  the caller's permissions and the target role's trust policy.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does trust policy shape blast radius?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A permissive trust policy can allow external identities to enter a privileged account boundary.
+                  If the target role has administrative permissions, the blast radius becomes the target account.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should reviewers look for?</summary>
+              <div class="concept-card-body">
+                <ul>
+                  <li>Trusting account root instead of specific roles.</li>
+                  <li>Missing ExternalId conditions for third-party access.</li>
+                  <li>Administrative target roles reachable from external accounts.</li>
+                  <li>AssumeRole permissions that are broader than intended.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
 
         <section id="identity-path" class="lab-panel">
           <h2>Identity Path</h2>

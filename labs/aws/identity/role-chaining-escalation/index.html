@@ -48,6 +48,7 @@
       <p class="mobile-study-menu-title">Study Menu</p>
       <div class="mobile-study-links">
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -60,6 +61,7 @@
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Lab Navigation</p>
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -83,6 +85,56 @@
             <span class="evidence-pill">Aegis Runtime-linked</span>
           </div>
         </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when teaching chained role assumptions and transitive identity risk.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is role chaining?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Role chaining occurs when temporary credentials from one assumed role are used to assume another role.
+                  This can create multi-step privilege paths that are hard to see from any single policy document.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does transitive trust matter?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A role may look safe in isolation, but its reachable downstream roles can expand effective authority.
+                  Reviewers must evaluate the chain, not only the first assumption.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is session context?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Session context includes attributes of the assumed role session, such as session name, tags, source identity,
+                  MFA context, and duration. These details help explain who assumed what and under which conditions.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Role chaining is identity-path risk. It can turn individually approved roles into an unintended escalation route
+                  when the relationships are evaluated together.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
 
         <section id="identity-path" class="lab-panel">
           <h2>Identity Path</h2>

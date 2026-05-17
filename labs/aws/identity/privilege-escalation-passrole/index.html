@@ -48,6 +48,7 @@
       <p class="mobile-study-menu-title">Study Menu</p>
       <div class="mobile-study-links">
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -60,6 +61,7 @@
       <aside class="lab-side-nav">
         <p class="lab-side-nav-title">Lab Navigation</p>
         <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
         <a href="#identity-path">Identity Path</a>
         <a href="#shield">Shield Detection</a>
         <a href="#aegis">Aegis Runtime</a>
@@ -83,6 +85,58 @@
             <span class="evidence-pill">Aegis Runtime-linked</span>
           </div>
         </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when teaching iam:PassRole escalation to students, interns, or executives.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is iam:PassRole?</summary>
+              <div class="concept-card-body">
+                <p>
+                  iam:PassRole allows a principal to pass an IAM role to an AWS service. By itself, it does not execute code,
+                  but it becomes dangerous when combined with a service action such as creating or updating Lambda, EC2, ECS,
+                  Glue, or other compute resources.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does compute creation matter?</summary>
+              <div class="concept-card-body">
+                <p>
+                  If a low-privilege identity can create or update a compute service and pass a higher-privilege role to it,
+                  the service may run with permissions the original identity could not directly use.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why is this privilege escalation?</summary>
+              <div class="concept-card-body">
+                <p>
+                  The escalation path is created by permission composition: PassRole plus service-control capability.
+                  The attacker does not need AdministratorAccess directly; they only need the ability to cause a trusted
+                  service to assume a stronger role.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  iam:PassRole risk is a governance problem, not only a technical misconfiguration. Teams must review
+                  which identities can pass powerful roles and which services those identities can create or modify.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
 
         <section id="identity-path" class="lab-panel">
           <h2>Identity Path</h2>
