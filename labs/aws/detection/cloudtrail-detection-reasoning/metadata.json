@@ -1,0 +1,51 @@
+{
+  "lab_id": "aws-cloudtrail-detection-reasoning",
+  "title": "AWS CloudTrail Detection Reasoning",
+  "cloud": "AWS",
+  "domain": "Detection",
+  "service": "CloudTrail",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 80,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how CloudTrail evidence supports detection reasoning for iam:PassRole, sts:AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity activity.",
+  "prerequisites": [
+    "AWS IAM Policy Evaluation",
+    "AWS Resource Policy Evaluation",
+    "AWS KMS Key Policy Evaluation",
+    "AWS Secrets Manager Access Evaluation",
+    "AWS Lambda Execution Role Risk"
+  ],
+  "objectives": [
+    "Explain how CloudTrail records AWS API activity",
+    "Identify high-value identity and workload events",
+    "Reason about iam:PassRole and sts:AssumeRole evidence",
+    "Connect Lambda update events to workload identity risk",
+    "Connect Secrets Manager and KMS events to data access evidence",
+    "Differentiate event presence from confirmed impact",
+    "Prepare learners for Principal LAB evidence analysis"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": false,
+    "runtime_mapping": false,
+    "event_examples": true
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "cloudtrail-detection-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}

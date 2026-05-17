@@ -319,6 +319,42 @@
       }
     },
     {
+      "id": "aws-cloudtrail-detection-reasoning",
+      "title": "AWS CloudTrail Detection Reasoning",
+      "cloud": "aws",
+      "domain": "detection",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how CloudTrail evidence supports detection reasoning for iam:PassRole, sts:AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity activity.",
+      "path": "/labs/aws/detection/cloudtrail-detection-reasoning/",
+      "tags": [
+        "cloudtrail",
+        "detection",
+        "iam-passrole",
+        "assume-role",
+        "lambda",
+        "secrets-manager",
+        "kms",
+        "evidence",
+        "aws",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Detection",
+        "CloudTrail Detection Reasoning"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "detection",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

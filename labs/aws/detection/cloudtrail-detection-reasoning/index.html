@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS CloudTrail Detection Reasoning | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for CloudTrail detection reasoning across PassRole, AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity evidence." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Detection · CloudTrail Evidence</p>
+      <h1>AWS CloudTrail Detection Reasoning</h1>
+      <p>
+        Intermediate LAB for understanding how CloudTrail evidence supports detection reasoning for
+        iam:PassRole, sts:AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity activity.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Detection</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2 Evidence</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Links</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Links</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            CloudTrail Detection Reasoning teaches how to interpret AWS API activity as security evidence.
+            It moves the L2 track from access-control theory into investigation reasoning.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Detection reasoning</span>
+            <span class="evidence-pill">CloudTrail evidence</span>
+            <span class="evidence-pill">No live query</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying event evidence, investigation context, or detection logic.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is CloudTrail?</summary>
+              <div class="concept-card-body">
+                <p>
+                  CloudTrail records AWS API activity. It helps analysts understand who made a request,
+                  which API was called, which resource was targeted, when it happened, and whether the request succeeded or failed.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is detection reasoning?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Detection reasoning is the process of turning raw event records into security meaning.
+                  The analyst asks whether the event is expected, risky, denied, successful, chained, or part of a larger path.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does iam:PassRole matter in CloudTrail?</summary>
+              <div class="concept-card-body">
+                <p>
+                  PassRole events show when a principal attempted to attach or delegate a role to an AWS service.
+                  When paired with Lambda create or update activity, PassRole can indicate workload identity risk.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why do Secrets Manager and KMS events matter together?</summary>
+              <div class="concept-card-body">
+                <p>
+                  GetSecretValue shows secret retrieval. KMS Decrypt may show cryptographic access used to read protected secret material.
+                  Together, they can form a stronger evidence path than either event alone.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  CloudTrail is evidence, not just logging. It helps prove whether sensitive access happened,
+                  whether a risky path was attempted, and whether control assumptions match real activity.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual CloudTrail Detection Model</h2>
+          <p>
+            Detection reasoning is easiest to understand as an evidence path from API call to investigation decision.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal / Workload</strong>
+                <span>User, role, session, function, or service identity</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>AWS API Call</strong>
+                <span>PassRole, AssumeRole, UpdateFunctionCode, GetSecretValue, Decrypt</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>CloudTrail Event</strong>
+                <span>Event source, event name, identity, resource, result, and time</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Investigation Decision</strong>
+                <span>Expected, suspicious, denied, successful, or needs context</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>PassRole</strong>
+                <span>Role delegated to service</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>Lambda Update</strong>
+                <span>Function behavior changed</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Workload Signal</strong>
+                <span>Investigate execution role and downstream access</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>GetSecretValue</strong>
+                <span>Secret retrieval event</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>KMS Decrypt</strong>
+                <span>Cryptographic access event</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Data Access Evidence</strong>
+                <span>Correlate identity, key, secret, and session</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              CloudTrail tells the evidence story. The analyst still needs context to decide whether the event is expected, risky, or incident-worthy.
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A role updates Lambda code, then the workload accesses Secrets Manager and KMS.
+          </p>
+
+          <pre><code>CloudTrail signal path:
+1. lambda:UpdateFunctionCode
+2. secretsmanager:GetSecretValue
+3. kms:Decrypt
+
+Detection reasoning:
+- Did the same identity or session initiate the path?
+- Did the Lambda execution role retrieve the secret?
+- Was this expected deployment behavior?
+- Did KMS decrypt align with the secret access?
+- Should this become a finding or investigation?</code></pre>
+        </section>
+
+        <section id="authorization" class="lab-panel">
+          <h2>Authorization Links</h2>
+          <p>
+            Detection reasoning depends on understanding the underlying authorization model.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>PassRole evidence is central to detecting workload delegation paths.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/compute/lambda-execution-role-risk/">
+              <strong>Lambda Execution Role Risk</strong>
+              <span>Lambda updates and execution-role activity create workload identity evidence.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/secrets-manager-access-evaluation/">
+              <strong>Secrets Manager Access Evaluation</strong>
+              <span>GetSecretValue events indicate sensitive secret retrieval attempts.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/security/kms-key-policy-evaluation/">
+              <strong>KMS Key Policy Evaluation</strong>
+              <span>KMS Decrypt events help confirm cryptographic access paths.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            Principal LABs become more complete when learners can connect attack-path reasoning to evidence-path reasoning.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Detect role delegation into AWS services.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Detect AssumeRole activity and cross-account session context.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Detect chained role sessions and downstream resource access.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not query customer CloudTrail</li>
+            <li>Does not invoke AWS APIs against customer accounts</li>
+            <li>Does not deploy detection rules</li>
+            <li>Does not create alerts</li>
+            <li>Does not execute remediation</li>
+            <li>Does not create Shield findings</li>
+            <li>Does not create Aegis fixtures</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

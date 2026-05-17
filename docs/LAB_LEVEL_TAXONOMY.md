@@ -486,3 +486,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS CloudTrail Detection Reasoning L2 LAB
+
+The AWS CloudTrail Detection Reasoning LAB has been added to the AWS Intermediate Identity Track as the first detection-reasoning LAB.
+
+LAB path:
+
+```text
+/labs/aws/detection/cloudtrail-detection-reasoning/
+
+LAB ID:
+
+aws-cloudtrail-detection-reasoning
+
+Curriculum role:
+
+L2 detection reasoning and CloudTrail evidence analysis
+
+Purpose:
+
+Teach how CloudTrail evidence supports detection reasoning for iam:PassRole, sts:AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity activity.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+
