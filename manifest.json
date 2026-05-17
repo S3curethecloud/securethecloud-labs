@@ -210,6 +210,43 @@
       }
     },
     {
+      "id": "aws-kms-key-policy-evaluation",
+      "title": "AWS KMS Key Policy Evaluation",
+      "cloud": "aws",
+      "domain": "security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how AWS KMS key policies, IAM permissions, grants, encryption context, and organization guardrails combine to control cryptographic access.",
+      "path": "/labs/aws/security/kms-key-policy-evaluation/",
+      "tags": [
+        "kms",
+        "key-policy",
+        "encryption",
+        "decrypt",
+        "grants",
+        "encryption-context",
+        "resource-policy",
+        "security",
+        "aws",
+        "l2",
+        "data-protection"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Security",
+        "KMS Key Policy Evaluation"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "security",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS KMS Key Policy Evaluation | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS KMS key policies, grants, encryption context, cryptographic authorization, and effective KMS access decisions." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Security · Cryptographic Authorization</p>
+      <h1>AWS KMS Key Policy Evaluation</h1>
+      <p>
+        Intermediate LAB for understanding how KMS key policies, IAM permissions, grants,
+        encryption context, and guardrails combine into an effective cryptographic access decision.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Security</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2 Applied</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            KMS key policies control cryptographic access. A principal can have access to a service resource
+            but still fail to decrypt data when the KMS key policy, grant, or encryption context does not permit the operation.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Cryptographic authorization</span>
+            <span class="evidence-pill">Key policy reasoning</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying KMS key policies or explaining data-protection access decisions.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a KMS key policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A KMS key policy is the resource policy attached to a KMS key. It defines who can administer the key
+                  and who can use the key for cryptographic operations such as encrypt, decrypt, and generate data keys.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why is KMS different from ordinary resource policies?</summary>
+              <div class="concept-card-body">
+                <p>
+                  KMS protects cryptographic access to data. A user may reach an encrypted object or secret, but still fail
+                  if KMS does not allow the decrypt operation.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a KMS grant?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A KMS grant delegates permission to use a key, often for AWS services or workloads. Grants can allow
+                  specific cryptographic operations under defined conditions.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is encryption context?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Encryption context is additional authenticated metadata passed with KMS operations.
+                  Policies and grants can require matching context values before decrypt is allowed.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  KMS is a data-protection control plane. Weak key policies can expose encrypted data,
+                  while overly restrictive policies can break business-critical services.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual KMS Authorization Model</h2>
+          <p>
+            KMS access is easiest to understand as a cryptographic decision path.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, workload, AWS service, or external account</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>IAM Policy</strong>
+                <span>Principal-side request authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>KMS Key Policy</strong>
+                <span>Key-side trust and usage authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>KMS Decision</strong>
+                <span>Encrypt, decrypt, generate data key, or deny</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>IAM Allows</strong>
+                <span>The principal may request kms:Decrypt</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>Key Policy Allows</strong>
+                <span>The key trusts the principal or account path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Possible Allow</strong>
+                <span>Unless grant, context, SCP, or deny blocks it</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>IAM Allows</strong>
+                <span>The principal has an apparent allow</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>Key Policy Does Not Trust</strong>
+                <span>The key does not permit the path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny</strong>
+                <span>Cryptographic access fails</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Grant Allows</strong>
+                <span>A grant delegates key usage</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node policy">
+                <strong>Encryption Context</strong>
+                <span>Request metadata must match policy expectations</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Context-Aware Decision</strong>
+                <span>Allow or deny based on context match</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              KMS authorization is not only "can I access the resource?" It is also
+              "can this principal use this key for this cryptographic operation in this context?"
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A workload role has an IAM policy allowing <code>kms:Decrypt</code>, but the KMS key policy does not trust that role.
+          </p>
+
+          <pre><code>IAM policy: kms:Decrypt allowed
+KMS key policy: workload role not trusted
+Grant: none
+Encryption context: not applicable
+Final decision: DENY</code></pre>
+        </section>
+
+        <section id="authorization" class="lab-panel">
+          <h2>Authorization Layers</h2>
+          <p>
+            This lab connects cryptographic access control to the broader L2 authorization model.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>IAM Policy Evaluation</strong>
+              <span>Can the principal request KMS operations?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/resource-policy-evaluation/">
+              <strong>Resource Policy Evaluation</strong>
+              <span>How does the key policy participate as resource-side authorization?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/scp-guardrail-reasoning/">
+              <strong>SCP Guardrail Reasoning</strong>
+              <span>Can the organization prevent risky KMS administration or usage?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/storage/s3-public-access-risk/">
+              <strong>S3 Public Access Risk</strong>
+              <span>Does encryption reduce exposure, or does key policy design permit decrypt?</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            KMS access often becomes valuable after identity escalation. A principal that can assume, pass,
+            or chain into a role with KMS authority may gain access to encrypted data.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Passed roles may inherit decrypt authority through key policy or grants.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Cross-account KMS access requires careful key policy and principal trust review.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Chained roles may eventually reach cryptographic authority.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not enumerate real keys</li>
+            <li>Does not decrypt real data</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -357,3 +357,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS KMS Key Policy Evaluation L2 LAB
+
+The AWS KMS Key Policy Evaluation LAB has been added to the AWS Intermediate Identity Track as a high-value data-protection and cryptographic authorization LAB.
+
+LAB path:
+
+```text
+/labs/aws/security/kms-key-policy-evaluation/
+
+LAB ID:
+
+aws-kms-key-policy-evaluation
+
+Curriculum role:
+
+L2 cryptographic authorization and key-policy reasoning
+
+Purpose:
+
+Teach how AWS KMS key policies, IAM permissions, grants, encryption context, and organization guardrails combine to control cryptographic access.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+

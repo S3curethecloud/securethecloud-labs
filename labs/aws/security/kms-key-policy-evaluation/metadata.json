@@ -1,0 +1,50 @@
+{
+  "lab_id": "aws-kms-key-policy-evaluation",
+  "title": "AWS KMS Key Policy Evaluation",
+  "cloud": "AWS",
+  "domain": "Security",
+  "service": "KMS",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 75,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how AWS KMS key policies, IAM permissions, grants, encryption context, and organization guardrails combine to control cryptographic access.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "AWS IAM Policy Evaluation",
+    "AWS Resource Policy Evaluation",
+    "AWS SCP Guardrail Reasoning",
+    "AWS S3 Public Access Risk"
+  ],
+  "objectives": [
+    "Explain what a KMS key policy is",
+    "Differentiate KMS key policies from IAM identity policies",
+    "Explain why IAM allow alone may not be enough for KMS access",
+    "Understand KMS grants and encryption context",
+    "Reason about cross-account KMS access",
+    "Understand how KMS policy design affects S3, EBS, RDS, Lambda, and Secrets Manager",
+    "Prepare learners for applied cloud data-protection and Principal LAB reasoning"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "kms-key-policy-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}
