@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS Resource Policy Evaluation | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS resource-based policies, resource-side authorization, cross-account access, and effective permission reasoning." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Resource-Side Authorization</p>
+      <h1>AWS Resource Policy Evaluation</h1>
+      <p>
+        Intermediate LAB for understanding how AWS resource-based policies participate in authorization decisions
+        alongside identity policies, permission boundaries, SCPs, and explicit deny.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            Resource policies define who can access a resource and under what conditions.
+            They are essential for cross-account access, resource-side explicit deny, and trust-policy reasoning.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Resource-side authorization</span>
+            <span class="evidence-pill">Cross-account reasoning</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying resource-side authorization or explaining cross-account access.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a resource policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A resource policy is a policy attached to a resource. It defines which principals may access that resource
+                  and which conditions must be true for access to succeed.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How is a resource policy different from an identity policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  An identity policy is attached to a principal and says what the principal may request.
+                  A resource policy is attached to a resource and says who the resource trusts or denies.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why do resource policies matter for cross-account access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Cross-account access often requires the resource to explicitly trust an external principal.
+                  Without the resource-side trust, the external principal may be blocked even if its own account allows the request.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is a role trust policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A role trust policy is a resource-based policy attached to an IAM role. It controls which principals are allowed
+                  to assume the role.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Resource policies can expose sensitive assets or trust external identities. They must be reviewed as part of
+                  enterprise identity governance, not only as application configuration.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Resource Policy Model</h2>
+          <p>
+            Resource policy reasoning is easiest when viewed as a two-sided authorization decision.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, workload, service, or external account identity</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Identity Policy</strong>
+                <span>Principal-side requested authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Resource Policy</strong>
+                <span>Resource-side trust or deny decision</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Effective Decision</strong>
+                <span>Final allow or deny after all policy layers</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal may request the action</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>Resource Allows</strong>
+                <span>The resource trusts the principal</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Possible Allow</strong>
+                <span>Unless boundary, SCP, or explicit deny blocks it</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal may request the action</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>Resource Denies</strong>
+                <span>The resource policy blocks the request</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny</strong>
+                <span>Resource-side deny overrides the apparent allow</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              resource policies are the resource side of authorization. For cross-account access, both sides matter.
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A role has an identity policy allowing S3 object access, but the bucket policy denies access unless the request
+            comes through an approved VPC endpoint.
+          </p>
+
+          <pre><code>Identity policy: s3:GetObject allowed
+Resource policy: deny unless aws:sourceVpce matches approved endpoint
+Final decision: DENY when the request violates the resource policy condition</code></pre>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            Resource policy evaluation prepares learners for advanced identity paths because cross-account trust depends on
+            resource-side authorization.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Role trust policies are resource policies that control who can assume a role.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Resource-side trust and service role design influence escalation paths.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Each role assumption depends on a trust relationship that must be evaluated.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

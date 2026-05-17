@@ -139,6 +139,41 @@
       }
     },
     {
+      "id": "aws-resource-policy-evaluation",
+      "title": "AWS Resource Policy Evaluation",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how AWS resource-based policies participate in authorization decisions alongside identity policies, boundaries, SCPs, and explicit deny.",
+      "path": "/labs/aws/identity/resource-policy-evaluation/",
+      "tags": [
+        "iam",
+        "resource-policy",
+        "resource-based-policy",
+        "cross-account-access",
+        "trust-policy",
+        "effective-permissions",
+        "aws",
+        "identity",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "Resource Policy Evaluation"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

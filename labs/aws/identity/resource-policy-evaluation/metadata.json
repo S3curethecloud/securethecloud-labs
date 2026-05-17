@@ -1,0 +1,48 @@
+{
+  "lab_id": "aws-resource-policy-evaluation",
+  "title": "AWS Resource Policy Evaluation",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "IAM",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 65,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how AWS resource-based policies participate in authorization decisions alongside identity policies, boundaries, SCPs, and explicit deny.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "AWS IAM Policy Evaluation",
+    "AWS Permission Boundary Basics",
+    "AWS SCP Guardrail Reasoning"
+  ],
+  "objectives": [
+    "Explain what a resource-based policy is",
+    "Differentiate resource policies from identity policies",
+    "Reason about same-account and cross-account resource access",
+    "Explain how explicit deny in a resource policy affects authorization",
+    "Understand how S3, KMS, SQS, SNS, Lambda, and IAM role trust policies use resource-side authorization",
+    "Prepare for Principal LABs involving cross-account trust, PassRole, and role chaining"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "resource-policy-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}

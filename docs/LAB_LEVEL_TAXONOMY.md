@@ -295,3 +295,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS Resource Policy Evaluation L2 LAB
+
+The AWS Resource Policy Evaluation LAB has been added to the AWS Intermediate Identity Track.
+
+LAB path:
+
+```text
+/labs/aws/identity/resource-policy-evaluation/
+
+LAB ID:
+
+aws-resource-policy-evaluation
+
+Curriculum role:
+
+L2 intermediate resource-side authorization reasoning
+
+Purpose:
+
+Teach how AWS resource-based policies participate in authorization decisions alongside identity policies, boundaries, SCPs, and explicit deny.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+
