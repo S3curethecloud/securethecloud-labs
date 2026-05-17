@@ -878,3 +878,69 @@ code {
     overflow-x: auto;
   }
 }
+
+/* Phase 56 — Mobile overflow hardening */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.lab-detail-shell,
+.lab-detail-layout,
+.lab-main-panels,
+.lab-panel,
+.lab-hero,
+.visual-flow,
+.artifact-card,
+.concept-card {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+pre,
+code {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .lab-detail-shell {
+    padding: 1rem;
+  }
+
+  .lab-detail-layout {
+    display: block;
+  }
+
+  .lab-side-nav {
+    display: none;
+  }
+
+  .mobile-study-menu {
+    display: block;
+  }
+
+  .lab-panel,
+  .lab-hero {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .lab-status-grid,
+  .artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-flow-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .visual-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
