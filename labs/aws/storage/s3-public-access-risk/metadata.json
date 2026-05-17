@@ -1,0 +1,49 @@
+{
+  "lab_id": "aws-s3-public-access-risk",
+  "title": "AWS S3 Public Access Risk",
+  "cloud": "AWS",
+  "domain": "Storage",
+  "service": "S3",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 70,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Applied L2 LAB teaching how S3 public access risk emerges from bucket policy, Block Public Access settings, ACL history, identity permissions, resource policies, and organization guardrails.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "AWS IAM Policy Evaluation",
+    "AWS Permission Boundary Basics",
+    "AWS SCP Guardrail Reasoning",
+    "AWS Resource Policy Evaluation"
+  ],
+  "objectives": [
+    "Explain what makes S3 access public",
+    "Differentiate bucket policies, ACLs, and Block Public Access settings",
+    "Reason about identity-side and resource-side authorization",
+    "Understand how explicit deny and organization guardrails affect S3 exposure",
+    "Explain why public access is an exposure scenario, not a single setting",
+    "Prepare learners for applied cloud risk analysis and Principal LAB reasoning"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "applied-storage-risk-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}

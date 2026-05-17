@@ -326,3 +326,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS S3 Public Access Risk L2 LAB
+
+The AWS S3 Public Access Risk LAB has been added to the AWS Intermediate Identity Track as the first applied L2 risk lab after the four-part authorization model.
+
+LAB path:
+
+```text
+/labs/aws/storage/s3-public-access-risk/
+
+LAB ID:
+
+aws-s3-public-access-risk
+
+Curriculum role:
+
+L2 applied storage exposure and authorization-risk reasoning
+
+Purpose:
+
+Teach how S3 public access risk emerges from bucket policy, Block Public Access settings, ACL history, identity permissions, resource policies, and organization guardrails.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+

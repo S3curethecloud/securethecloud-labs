@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS S3 Public Access Risk | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Applied L2 SecureTheCloud LAB for S3 public access risk, bucket policy exposure, Block Public Access, ACL history, guardrails, and effective exposure reasoning." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Storage · Applied Public Exposure Risk</p>
+      <h1>AWS S3 Public Access Risk</h1>
+      <p>
+        Applied L2 LAB for understanding how S3 public exposure emerges from bucket policies,
+        ACL history, Block Public Access settings, identity permissions, resource policies, and organization guardrails.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Storage</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2 Applied</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#authorization">Authorization Layers</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            S3 public access risk is an applied exposure scenario. It combines resource policy reasoning,
+            identity permissions, public-access safety controls, explicit deny, and organization guardrails.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Applied risk</span>
+            <span class="evidence-pill">Storage exposure</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying S3 public exposure or explaining cloud storage risk to students and executives.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is S3 public access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  S3 public access means an unauthenticated or broadly external principal can reach bucket or object data.
+                  Public access may come from bucket policies, object ACLs, or other resource-side exposure patterns.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What is Block Public Access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Block Public Access is an S3 safety control that can block public bucket policies, public ACLs,
+                  or public access paths. It helps prevent accidental exposure even when a policy attempts to allow broad access.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why do ACLs still matter?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Some environments have legacy ACL history. Even when teams mostly use bucket policies,
+                  reviewers should understand whether object-level ACLs ever contributed to public access.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why is S3 exposure not a single setting?</summary>
+              <div class="concept-card-body">
+                <p>
+                  Public exposure is the result of multiple layers: bucket policy, ACLs, Block Public Access,
+                  identity authority, explicit deny, and organization guardrails.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  S3 public access is a business exposure risk. The important question is not only whether a bucket is public,
+                  but whether governance prevents sensitive data from becoming public again.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual S3 Exposure Model</h2>
+          <p>
+            S3 public access risk is easiest to understand as an exposure decision path.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Internet Principal</strong>
+                <span>Anonymous user, external user, or broad principal</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Bucket Policy / ACL</strong>
+                <span>Resource-side public allow or deny path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Block Public Access</strong>
+                <span>S3 public-access safety control</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Exposure Decision</strong>
+                <span>Public, blocked, or denied</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Public Allow</strong>
+                <span>Policy or ACL allows broad access</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>Block Public Access Enabled</strong>
+                <span>Safety layer blocks exposure</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Blocked</strong>
+                <span>Public path is stopped</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Public Allow</strong>
+                <span>Policy or ACL allows broad access</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>No Public Block</strong>
+                <span>No safety layer blocks the path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Exposure Possible</strong>
+                <span>Unless SCP or explicit deny blocks it</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              S3 public access risk is not one setting. It is the final exposure state after public allow, public block,
+              guardrail, and deny layers are evaluated together.
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A bucket policy allows public object reads. Block Public Access is disabled. No explicit deny or SCP prevents the exposure.
+          </p>
+
+          <pre><code>Bucket policy: Principal "*" can s3:GetObject
+Block Public Access: disabled
+Explicit deny: none
+Organization guardrail: none
+Final decision: PUBLIC EXPOSURE POSSIBLE</code></pre>
+        </section>
+
+        <section id="authorization" class="lab-panel">
+          <h2>Authorization Layers</h2>
+          <p>
+            This applied lab connects all four L2 authorization concepts.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/iam-policy-evaluation/">
+              <strong>IAM Policy Evaluation</strong>
+              <span>Can a principal read or modify S3 access?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/permission-boundary-basics/">
+              <strong>Permission Boundary Basics</strong>
+              <span>Can a delegated principal exceed approved authority?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/scp-guardrail-reasoning/">
+              <strong>SCP Guardrail Reasoning</strong>
+              <span>Can an account create or preserve public S3 exposure?</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/resource-policy-evaluation/">
+              <strong>Resource Policy Evaluation</strong>
+              <span>Does the bucket policy or object access model allow public access?</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            S3 exposure often depends on identity authority. A principal that can modify bucket policy, disable safety controls,
+            or pass a role with S3 authority can change exposure state.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>Passed roles can grant storage access or modify exposure paths.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>Cross-account trust can expand who can reach or modify storage resources.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>Chained identities may eventually reach storage administration authority.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not enumerate real buckets</li>
+            <li>Does not access public objects</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
