@@ -103,6 +103,42 @@
       }
     },
     {
+      "id": "aws-scp-guardrail-reasoning",
+      "title": "AWS SCP Guardrail Reasoning",
+      "cloud": "aws",
+      "domain": "identity",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Intermediate LAB teaching how AWS Service Control Policies define organization-level maximum permissions without granting access by themselves.",
+      "path": "/labs/aws/identity/scp-guardrail-reasoning/",
+      "tags": [
+        "iam",
+        "aws-organizations",
+        "scp",
+        "service-control-policy",
+        "guardrails",
+        "effective-permissions",
+        "multi-account",
+        "aws",
+        "identity",
+        "l2"
+      ],
+      "breadcrumbs": [
+        "Labs",
+        "AWS",
+        "Identity",
+        "SCP Guardrail Reasoning"
+      ],
+      "mgf": {
+        "ingest": true,
+        "category": "identity",
+        "signal_strength": "medium",
+        "interview_ready": true,
+        "taxonomy_level": "L2",
+        "principal_prerequisite": true
+      }
+    },
+    {
       "id": "aws-cross-account-role-escalation",
       "title": "AWS Cross-Account Role Escalation",
       "cloud": "aws",

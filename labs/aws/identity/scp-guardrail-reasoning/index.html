@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AWS SCP Guardrail Reasoning | SecureTheCloud Labs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Intermediate SecureTheCloud LAB for AWS Service Control Policies, organization guardrails, effective permissions, and account-level maximum authority." />
+  <link rel="stylesheet" href="/assets/css/labs.css">
+</head>
+
+<body>
+  <main class="lab-detail-shell">
+
+    <div class="lab-detail-topbar">
+      <a href="/" class="lab-link">← Back to Labs</a>
+      <span class="starter-track-pill">L2 Intermediate</span>
+    </div>
+
+    <section class="lab-hero starter-track-hero">
+      <p class="lab-hero-kicker">AWS · Identity · Organizations Guardrails</p>
+      <h1>AWS SCP Guardrail Reasoning</h1>
+      <p>
+        Intermediate LAB for understanding how AWS Service Control Policies constrain organization-level maximum authority
+        without granting access by themselves.
+      </p>
+
+      <div class="lab-status-grid">
+        <div class="lab-status-card">
+          <span>Status</span>
+          <strong>Intermediate</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Cloud</span>
+          <strong>AWS</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Domain</span>
+          <strong>Identity</strong>
+        </div>
+        <div class="lab-status-card">
+          <span>Track</span>
+          <strong>L2</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-study-menu" aria-label="Mobile study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <div class="mobile-study-links">
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+
+    <div class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p class="lab-side-nav-title">Lab Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#example">Example Scenario</a>
+        <a href="#principal">Principal Bridge</a>
+        <a href="#governance">Governance</a>
+        <a href="#artifacts">Artifacts</a>
+      </aside>
+
+      <div class="lab-main-panels">
+
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>
+            Service Control Policies define the maximum permissions available to AWS accounts and organizational units.
+            They are a critical governance layer for multi-account cloud security.
+          </p>
+          <div class="evidence-pill-row">
+            <span class="evidence-pill warning">L2 Intermediate</span>
+            <span class="evidence-pill">Organization guardrails</span>
+            <span class="evidence-pill">Maximum authority</span>
+            <span class="evidence-pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>
+            Expand these concepts when studying SCP guardrails or explaining organization-level governance.
+          </p>
+
+          <div class="concept-grid">
+            <details class="concept-card">
+              <summary>What is a Service Control Policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  A Service Control Policy is an AWS Organizations policy that sets the maximum permissions available
+                  to accounts or organizational units. It constrains what identities inside those accounts can do.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>How is an SCP different from an identity policy?</summary>
+              <div class="concept-card-body">
+                <p>
+                  An identity policy grants or denies permissions to a principal. An SCP controls the permission ceiling
+                  for an account or OU. The SCP does not grant access by itself.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does an SCP not grant access?</summary>
+              <div class="concept-card-body">
+                <p>
+                  An SCP is a guardrail, not a permission grant. If an SCP allows an action but no identity policy allows it,
+                  the action is still denied.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>Why does SCP reasoning matter for multi-account security?</summary>
+              <div class="concept-card-body">
+                <p>
+                  In a multi-account environment, SCPs help enforce organization-wide restrictions even when individual accounts
+                  have local administrators or delegated teams.
+                </p>
+              </div>
+            </details>
+
+            <details class="concept-card">
+              <summary>What should executives understand?</summary>
+              <div class="concept-card-body">
+                <p>
+                  SCPs are governance guardrails. They reduce enterprise blast radius by limiting what accounts can do,
+                  even before individual identity policies are reviewed.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual SCP Guardrail Model</h2>
+          <p>
+            SCP reasoning is easiest when viewed as an organization-level maximum-authority decision path.
+          </p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Principal</strong>
+                <span>User, role, workload, or service identity</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Identity Policy</strong>
+                <span>Requests or allows an action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node policy">
+                <strong>Account / OU SCP</strong>
+                <span>Defines organization-level ceiling</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Effective Decision</strong>
+                <span>Allow only if the action survives the guardrail</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal has an apparent allow</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node allow">
+                <strong>SCP Allows</strong>
+                <span>The organization guardrail permits it</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Possible Allow</strong>
+                <span>Unless another explicit deny applies</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Identity Allows</strong>
+                <span>The principal has an apparent allow</span>
+              </div>
+              <div class="visual-arrow">+</div>
+              <div class="visual-node deny">
+                <strong>SCP Denies</strong>
+                <span>The organization guardrail blocks it</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny</strong>
+                <span>The requested action exceeds organization policy</span>
+              </div>
+            </div>
+
+            <div class="visual-note">
+              <strong>Learning rule:</strong>
+              an SCP is an organization-level maximum-authority guardrail. It limits access; it does not grant access.
+            </div>
+          </div>
+        </section>
+
+        <section id="example" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>
+            A developer role has an identity policy that allows S3 bucket creation, but an SCP denies S3 bucket creation
+            outside approved regions.
+          </p>
+
+          <pre><code>Identity policy: s3:CreateBucket allowed
+SCP: deny s3:CreateBucket outside approved region
+Final decision: DENY when requested region violates organization guardrail</code></pre>
+        </section>
+
+        <section id="principal" class="lab-panel">
+          <h2>Bridge to Principal LABs</h2>
+          <p>
+            SCP guardrails prepare learners to reason about whether advanced identity paths are allowed or blocked at the organization level.
+          </p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/labs/aws/identity/privilege-escalation-passrole/">
+              <strong>iam:PassRole Privilege Escalation</strong>
+              <span>SCPs can restrict role passing, service creation, and privileged IAM actions.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/cross-account-role-escalation/">
+              <strong>Cross-Account Role Escalation</strong>
+              <span>SCPs can reduce account-level blast radius in multi-account environments.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/aws/identity/role-chaining-escalation/">
+              <strong>Role Chaining Escalation</strong>
+              <span>SCPs can constrain downstream authority across accounts and organizational units.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>
+            This lab is read-only and deterministic.
+          </p>
+
+          <pre><code>Runtime = source of truth
+OPA = decision authority
+Aegis = bounded intelligence
+Frontend = rendering only</code></pre>
+
+          <ul>
+            <li>Does not exploit AWS</li>
+            <li>Does not mutate infrastructure</li>
+            <li>Does not deploy live resources</li>
+            <li>Does not issue runtime tokens</li>
+            <li>Does not override OPA</li>
+          </ul>
+        </section>
+
+        <section id="artifacts" class="lab-panel">
+          <h2>Source Artifacts</h2>
+          <ul>
+            <li><code>metadata.json</code></li>
+            <li><code>architecture.md</code></li>
+            <li><code>index.html</code></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "lab_id": "aws-scp-guardrail-reasoning",
+  "title": "AWS SCP Guardrail Reasoning",
+  "cloud": "AWS",
+  "domain": "Identity",
+  "service": "AWS Organizations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "estimated_time_minutes": 60,
+  "track": "AWS Identity Engineering",
+  "taxonomy_level": "L2",
+  "summary": "Intermediate LAB teaching how AWS Service Control Policies define organization-level maximum permissions without granting access by themselves.",
+  "prerequisites": [
+    "AWS IAM Basics",
+    "AWS IAM Policy Evaluation",
+    "AWS Permission Boundary Basics",
+    "Basic understanding of AWS Organizations"
+  ],
+  "objectives": [
+    "Explain what a Service Control Policy is",
+    "Differentiate SCPs from identity policies and permission boundaries",
+    "Explain why SCPs do not grant permissions by themselves",
+    "Reason about organization-level maximum authority",
+    "Understand how SCPs affect accounts and organizational units",
+    "Prepare for Principal LABs involving cross-account trust, PassRole, and role chaining"
+  ],
+  "artifacts": {
+    "terraform": false,
+    "diagrams": true,
+    "policy_examples": true,
+    "runtime_mapping": false
+  },
+  "stc": {
+    "ingest": true,
+    "lab_type": "organization-guardrail-reasoning",
+    "interview_ready": true,
+    "shield_aligned": false,
+    "aegis_runtime_eligible": true,
+    "principal_lab_prerequisite": true
+  },
+  "governance": {
+    "read_only": true,
+    "deterministic": true,
+    "no_live_exploitation": true,
+    "no_customer_mutation": true,
+    "no_runtime_override": true
+  }
+}

@@ -264,3 +264,34 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+
+---
+
+## AWS SCP Guardrail Reasoning L2 LAB
+
+The AWS SCP Guardrail Reasoning LAB has been added to the AWS Intermediate Identity Track.
+
+LAB path:
+
+```text
+/labs/aws/identity/scp-guardrail-reasoning/
+
+LAB ID:
+
+aws-scp-guardrail-reasoning
+
+Curriculum role:
+
+L2 intermediate organization-guardrail reasoning
+
+Purpose:
+
+Teach how AWS Service Control Policies define organization-level maximum permissions without granting access by themselves.
+
+Runtime / Shield / Aegis boundary:
+
+Runtime change required: false
+Shield finding required: false
+Aegis fixture required: false
+OPA authority preserved: true
+
