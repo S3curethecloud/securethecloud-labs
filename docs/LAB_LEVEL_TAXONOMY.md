@@ -590,3 +590,17 @@ Live audit pipeline: false.
 Enterprise evidence access: false.
 Production enforcement claim: false.
 
+## AI Cost, Token, and Rate Limit Governance L2 LAB
+
+```text
+Lab: AI Cost, Token, and Rate Limit Governance
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how to govern AI cost, token usage, runaway agent loops, repeated tool attempts, expensive retrieval calls, rate limits, budget thresholds, and operational evidence.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live billing integration: false.
+Live rate-limit enforcement: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+
