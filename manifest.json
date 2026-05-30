@@ -666,6 +666,18 @@
       "level": "intermediate",
       "maturity": "intermediate",
       "summary": "Guided course for enterprise AI governance command center design."
+    },
+    {
+      "id": "ai-security-engineering",
+      "title": "AI Security Engineering L2 Track",
+      "path": "/tracks/ai-security-engineering/",
+      "level": "intermediate",
+      "maturity": "planned",
+      "status": "track-shell",
+      "summary": "Planned SecureTheCloud Labs intermediate track for engineering secure AI systems with prompt boundaries, tool permissions, retrieval controls, runtime guardrails, abuse controls, testing harnesses, and evidence packages.",
+      "runtime_change_required": false,
+      "backend_exposure": false,
+      "production_enforcement_claim": false
     }
   ]
 }
