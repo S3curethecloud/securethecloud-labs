@@ -539,3 +539,15 @@ Backend exposure: false.
 Live tool execution: false.
 Production enforcement claim: false.
 
+## Prompt Injection and Tool Hijacking L2 LAB
+
+```text
+Lab: Prompt Injection and Tool Hijacking
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how prompt injection can manipulate AI agent instructions, tool selection, policy bypass attempts, and approval-gated execution paths.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live tool execution: false.
+Production enforcement claim: false.
+

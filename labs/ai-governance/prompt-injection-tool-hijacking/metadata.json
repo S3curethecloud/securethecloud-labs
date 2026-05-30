@@ -1,0 +1,15 @@
+{
+  "id": "ai-prompt-injection-tool-hijacking",
+  "title": "Prompt Injection and Tool Hijacking",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/prompt-injection-tool-hijacking/",
+  "summary": "Intermediate LAB teaching how prompt injection can manipulate AI agent instructions, tool selection, policy bypass attempts, and approval-gated execution paths.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_tool_execution": false,
+  "production_enforcement_claim": false
+}
