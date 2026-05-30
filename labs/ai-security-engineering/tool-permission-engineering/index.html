@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tool Permission Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Tool Permissions · L2</p>
+      <h1>Tool Permission Engineering</h1>
+      <p>Intermediate LAB teaching scoped AI tool permissions, action classification, read-only vs mutating tool boundaries, approval gates, self-approval prevention, and evidence capture.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design AI tool permissions so model recommendations cannot directly become unauthorized actions. Tool permission engineering protects the action layer of AI systems.</p>
+
+          <div class="pill-row">
+            <span class="pill">Tool permissions</span>
+            <span class="pill">Action classification</span>
+            <span class="pill">Approval gates</span>
+            <span class="pill">No live tool execution</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying secure tool permission engineering.</p>
+
+          <details class="concept-card" open>
+            <summary>What is tool permission engineering?</summary>
+            <p>Tool permission engineering is the design of scoped, classified, and policy-controlled tool access for AI workflows. It ensures the AI can request actions only within governed boundaries.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why should model output not execute tools directly?</summary>
+            <p>Model output is a recommendation, not authority. Direct model-to-tool execution can create unauthorized changes, data exposure, approval bypass, and production impact.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is action classification?</summary>
+            <p>Action classification labels each tool request as read-only, sensitive read, mutating, privileged, or prohibited before any execution decision is made.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is self-approval prevention?</summary>
+            <p>Self-approval prevention means the AI workflow cannot approve its own sensitive or mutating action. Human approval or an independent policy decision is required.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a tool registry?</summary>
+            <p>A tool registry defines which tools exist, what each tool can do, what risk class each tool belongs to, and what policy or approval is required.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should happen when tool permission is unclear?</summary>
+            <p>The workflow should fail closed by denying, escalating, or requesting human review. It should not execute tools when permission, tenant, scope, or action risk is uncertain.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Tool Permission Engineering Model</h2>
+          <p>Secure tool use separates model recommendations from execution authority.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Model Recommendation</strong>
+                <span>Proposes an action, but has no execution authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Tool Request</strong>
+                <span>Structured request with action, scope, target, and reason</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Action Classification</strong>
+                <span>Read-only, sensitive read, mutating, privileged, prohibited</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Permission Scope</strong>
+                <span>Workflow, tenant, role, risk tier, environment</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Policy Gate</strong>
+                <span>Allow, deny, approval required, escalate</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Self-Approval Block</strong>
+                <span>AI cannot approve its own sensitive action</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Human Approval</strong>
+                <span>Required for sensitive or mutating action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Bounded Execution</strong>
+                <span>Only if policy and approval pass</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Request, classification, policy, approval, outcome</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> The AI may recommend a tool action, but policy and approval decide whether it can execute.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI workflow recommends updating a vendor payment record based on a support case.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Tool request</strong>
+              <span>The AI requests a vendor payment update tool.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Action class</strong>
+              <span>The request is classified as mutating and sensitive.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Approval gate</strong>
+              <span>The action requires human approval before execution.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>The tool request, policy decision, approval state, and outcome are recorded.</span>
+            </div>
+          </div>
+
+          <pre><code>Workflow:
+
+AI recommends updating vendor payment record.
+
+Secure tool permission handling:
+
+classify requested tool action
+identify mutating and sensitive impact
+verify tenant and role scope
+deny direct execution
+require policy decision
+require human approval
+prevent AI self-approval
+record evidence
+
+Result:
+The AI can recommend the action, but cannot execute it without governed approval.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern lets the model choose and execute tools directly.</p>
+
+          <pre><code>Unsafe pattern:
+
+Model response
+→ tool selected by model
+→ tool executes directly
+→ production state changes
+
+Risk:
+
+model output becomes authority
+user injection can manipulate tool choice
+mutating action may bypass approval
+tenant or role scope may be ignored
+evidence may not capture decision path
+repeated attempts may create operational risk
+
+Secure alternative:
+Classify every action.
+Scope every permission.
+Route sensitive actions through policy.
+Require human approval for mutating actions.
+Block self-approval.
+Record evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

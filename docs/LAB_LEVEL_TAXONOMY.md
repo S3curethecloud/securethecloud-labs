@@ -649,3 +649,18 @@ Live retrieval execution: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Tool Permission Engineering L2 LAB
+
+```text
+Lab: Tool Permission Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach scoped AI tool permissions, action classification, read-only vs mutating tool boundaries, approval gates, self-approval prevention, and evidence capture.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

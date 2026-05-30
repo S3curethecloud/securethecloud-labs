@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "tool-permission-engineering",
+      "title": "Tool Permission Engineering",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/tool-permission-engineering/",
+      "summary": "Intermediate LAB teaching scoped AI tool permissions, action classification, read-only vs mutating tool boundaries, approval gates, self-approval prevention, and evidence capture."
+    },
+    {
       "id": "prompt-boundary-engineering",
       "title": "Prompt Boundary Engineering",
       "cloud": "ai-security-engineering",
@@ -711,7 +722,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 3,
+      "implemented_modules": 4,
       "planned_modules": 9
     }
   ]
