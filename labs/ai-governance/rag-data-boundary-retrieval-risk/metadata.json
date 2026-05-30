@@ -1,0 +1,15 @@
+{
+  "id": "ai-rag-data-boundary-retrieval-risk",
+  "title": "RAG Data Boundary and Retrieval Risk",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/rag-data-boundary-retrieval-risk/",
+  "summary": "Intermediate LAB teaching how RAG and retrieval systems create AI governance risk when trusted, untrusted, sensitive, stale, or poisoned context is retrieved and treated as authority.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}

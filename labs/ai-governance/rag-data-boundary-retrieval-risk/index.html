@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RAG Data Boundary and Retrieval Risk | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · RAG · Retrieval Risk</p>
+      <h1>RAG Data Boundary and Retrieval Risk</h1>
+      <p>Intermediate LAB for understanding how retrieval-augmented generation creates governance risk when trusted, untrusted, sensitive, stale, or poisoned context is retrieved and treated as authority.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how retrieval can turn enterprise knowledge into AI governance risk. The key issue is not only what the model knows, but what the system retrieves, whether the user is allowed to see it, and whether the retrieved context should be trusted.</p>
+          <div class="pill-row">
+            <span class="pill">RAG risk</span>
+            <span class="pill">Data boundaries</span>
+            <span class="pill">Source authority</span>
+            <span class="pill">No live retrieval</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying retrieval-augmented generation, enterprise data exposure, source trust, or AI governance controls.</p>
+
+          <details class="concept-card" open>
+            <summary>What is RAG?</summary>
+            <p>Retrieval-augmented generation is a pattern where an AI system retrieves external context before generating an answer, recommendation, or action plan.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does retrieval create governance risk?</summary>
+            <p>Retrieval can bring sensitive, stale, untrusted, poisoned, or unauthorized context into the model's reasoning path. Once retrieved, that context may influence answers, recommendations, or tool-use decisions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a data boundary?</summary>
+            <p>A data boundary defines which users, roles, tenants, workflows, or agents are allowed to access a source or document. RAG systems must enforce data boundaries before context reaches the model.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is source authority?</summary>
+            <p>Source authority answers whether retrieved content should be treated as policy, evidence, context, untrusted input, or prohibited data. A vendor note should not override enterprise policy.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is retrieval poisoning?</summary>
+            <p>Retrieval poisoning occurs when manipulated or malicious content is placed where the AI system may retrieve it, causing unsafe answers, misleading recommendations, or policy bypass attempts.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that RAG systems can expose data, confuse authority, and amplify stale or poisoned content unless retrieval is governed with access control, source classification, and evidence.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual RAG Data Boundary Model</h2>
+          <p>Retrieval risk starts before generation. It begins with what source is selected and whether that context is allowed, trusted, and current.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Request</strong>
+                <span>Question or task enters the AI workflow</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Retrieval Query</strong>
+                <span>System searches documents or knowledge base</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Data Boundary Check</strong>
+                <span>Verify user, role, tenant, and sensitivity</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Source Authority</strong>
+                <span>Policy, evidence, context, or untrusted data</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Risk Signals</strong>
+                <span>Poisoned, stale, sensitive, or unauthorized</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Model Reasoning</strong>
+                <span>Only approved context should influence output</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node allow">
+                <strong>Safe Answer</strong>
+                <span>Grounded response with source evidence</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Approval Gate</strong>
+                <span>Required for high-risk use or action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Log sources, decision, and boundary result</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Retrieved context is not automatically trusted authority.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A support agent uses retrieval to answer an operational question about inventory exceptions. The retrieval system returns a mix of approved policy, stale notes, vendor content, and internal support history.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Trusted source</strong>
+              <span>Approved internal policy document with current owner and version.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Untrusted source</strong>
+              <span>Vendor note or external text that may include embedded instructions.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Sensitive source</strong>
+              <span>Internal record that may contain employee, customer, supplier, or financial context.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Required evidence</strong>
+              <span>Record retrieved source, sensitivity, authority, access decision, and final answer boundary.</span>
+            </div>
+          </div>
+
+          <pre><code>User asks:
+
+"Why did STORE-1042 inventory reorder fail?"
+
+Retrieved context:
+
+Current support runbook
+Stale vendor note
+Internal ticket with sensitive comments
+Old approval record
+
+Governance decision:
+Use current runbook as evidence.
+Treat vendor note as untrusted context.
+Filter sensitive ticket comments.
+Do not treat stale approval record as current authority.
+
+Evidence:
+Source IDs, authority classification, sensitivity result, answer boundary.</code></pre>
+        </section>
+
+        <section id="source" class="lab-panel">
+          <h2>Detailed Study Source</h2>
+          <p>For deeper implementation study, review the source repository for the Family Dollar AI Governance Platform Lab.</p>
+          <p><a class="lab-link" href="https://github.com/S3curethecloud/family-dollar-ai-governance-platform-lab.git" target="_blank" rel="noopener noreferrer">Open detailed implementation repo →</a></p>
+          <pre><code>Detailed source = Family Dollar AI Governance Platform Lab
+
+Reusable concept = SecureTheCloud AI Governance Command Center
+Boundary = case study / lab, not live production deployment</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not perform retrieval, query a vector database, access enterprise data, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live retrieval execution = false
+Enterprise data access = false
+Vector database access = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
