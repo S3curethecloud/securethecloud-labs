@@ -551,3 +551,16 @@ Backend exposure: false.
 Live tool execution: false.
 Production enforcement claim: false.
 
+## RAG Data Boundary and Retrieval Risk L2 LAB
+
+```text
+Lab: RAG Data Boundary and Retrieval Risk
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how RAG and retrieval systems create AI governance risk when trusted, untrusted, sensitive, stale, or poisoned context is retrieved and treated as authority.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live retrieval execution: false.
+Enterprise data access: false.
+Production enforcement claim: false.
+

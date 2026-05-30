@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-rag-data-boundary-retrieval-risk",
+      "title": "RAG Data Boundary and Retrieval Risk",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/rag-data-boundary-retrieval-risk/",
+      "summary": "Intermediate LAB teaching how RAG and retrieval systems create AI governance risk when trusted, untrusted, sensitive, stale, or poisoned context is retrieved and treated as authority."
+    },
+    {
       "id": "ai-prompt-injection-tool-hijacking",
       "title": "Prompt Injection and Tool Hijacking",
       "cloud": "ai-governance",
