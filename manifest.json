@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-audit-evidence-traceability",
+      "title": "AI Audit Evidence and Traceability",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/ai-audit-evidence-traceability/",
+      "summary": "Intermediate LAB teaching how to build audit-ready evidence trails for AI decisions, prompts, retrieved context, tool attempts, policy decisions, human approvals, blocked actions, and executive summaries."
+    },
+    {
       "id": "ai-human-approval-gate-design",
       "title": "Human Approval Gate Design",
       "cloud": "ai-governance",

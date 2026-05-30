@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Audit Evidence and Traceability | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Evidence · Traceability</p>
+      <h1>AI Audit Evidence and Traceability</h1>
+      <p>Intermediate LAB for designing audit-ready evidence trails across AI prompts, retrieval, tool attempts, policy decisions, human approvals, blocked actions, and executive summaries.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to trace an AI governance decision from user request to final outcome. The goal is not only to block unsafe actions, but to prove why a decision was allowed, blocked, escalated, or approved.</p>
+          <div class="pill-row">
+            <span class="pill">Audit evidence</span>
+            <span class="pill">Decision trace</span>
+            <span class="pill">Evidence timeline</span>
+            <span class="pill">No live pipeline</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI auditability, governance traceability, and executive evidence packages.</p>
+
+          <details class="concept-card" open>
+            <summary>What is AI audit evidence?</summary>
+            <p>AI audit evidence is the recorded proof of what happened during an AI workflow: the request, inputs, retrieved sources, decisions, tool attempts, approvals, blocked actions, and final outcome.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does AI governance need traceability?</summary>
+            <p>Traceability connects a final AI outcome back to the evidence that produced it. Without traceability, teams cannot prove why an AI decision was made, who approved it, or whether controls worked.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be captured from prompts and inputs?</summary>
+            <p>Prompt/input evidence should record the initiating request, user or workflow identity, source channel, timestamp, risk signals, and any untrusted or attacker-controlled content indicators.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be captured from retrieval?</summary>
+            <p>Retrieved source evidence should record document IDs, source authority, sensitivity classification, access boundary, freshness, relevance, and whether retrieved context was trusted, filtered, or blocked.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be captured from tool attempts?</summary>
+            <p>Tool attempt evidence should record the requested tool, action type, parameters, risk tier, mutation potential, policy decision, approval requirement, and whether execution was blocked or allowed.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that audit-ready AI governance turns technical activity into accountable evidence: what happened, why it happened, who approved it, and what was prevented.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Audit Evidence Model</h2>
+          <p>Auditability requires a connected evidence chain from request through outcome.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Request</strong>
+                <span>Who asked, what was requested, and when</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Prompt Evidence</strong>
+                <span>Input, source channel, and risk signals</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Retrieved Sources</strong>
+                <span>Documents, data boundary, source authority</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Agent Trace</strong>
+                <span>Recommendation, reasoning summary, next step</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Tool Attempt</strong>
+                <span>Action type, parameters, mutation risk</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Policy Decision</strong>
+                <span>Allow, deny, approval required, or escalate</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Human Approval</strong>
+                <span>Reviewer, decision, reason, timestamp</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Allowed / Blocked Action</strong>
+                <span>Proof of final execution boundary</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Audit Timeline</strong>
+                <span>Evidence chain and executive summary</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Governance decisions are only as strong as the evidence chain that proves them.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI inventory workflow recommends a supplier reorder after retrieving store demand data, support tickets, supplier notes, and policy guidance.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Prompt evidence</strong>
+              <span>User request, workflow owner, timestamp, request scope, and untrusted-content indicators.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Retrieval evidence</strong>
+              <span>Source IDs, authority level, sensitivity classification, freshness, and access-boundary result.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Tool evidence</strong>
+              <span>Attempted purchasing action, mutation risk, parameters, policy gate result, and blocked/allowed outcome.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Approval evidence</strong>
+              <span>Reviewer, decision, reason, timestamp, escalations, and allowed next action.</span>
+            </div>
+          </div>
+
+          <pre><code>Workflow:
+
+AI inventory agent recommends reorder for STORE-1042.
+
+Evidence timeline:
+
+User request captured.
+Retrieved sources classified.
+Prompt injection check performed.
+Tool attempt identified as purchase-order mutation.
+Policy gate required human approval.
+Agent self-approval blocked.
+Reviewer approved draft recommendation only.
+Purchase order execution remained blocked.
+Executive summary generated from evidence.
+
+Audit result:
+The organization can prove what was requested, what was retrieved, what was attempted, what was blocked, who reviewed it, and what outcome was allowed.</code></pre>
+        </section>
+
+        <section id="source" class="lab-panel">
+          <h2>Detailed Study Source</h2>
+          <p>For deeper implementation study, review the source repository for the Family Dollar AI Governance Platform Lab.</p>
+          <p><a class="lab-link" href="https://github.com/S3curethecloud/family-dollar-ai-governance-platform-lab.git" target="_blank" rel="noopener noreferrer">Open detailed implementation repo →</a></p>
+          <pre><code>Detailed source = Family Dollar AI Governance Platform Lab
+
+Reusable concept = SecureTheCloud AI Governance Command Center
+Boundary = case study / lab, not live production deployment</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not run an audit pipeline, access enterprise evidence systems, call backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live audit pipeline = false
+Enterprise evidence access = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

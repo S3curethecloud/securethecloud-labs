@@ -1,0 +1,15 @@
+{
+  "id": "ai-audit-evidence-traceability",
+  "title": "AI Audit Evidence and Traceability",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/ai-audit-evidence-traceability/",
+  "summary": "Intermediate LAB teaching how to build audit-ready evidence trails for AI decisions, prompts, retrieved context, tool attempts, policy decisions, human approvals, blocked actions, and executive summaries.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_audit_pipeline": false,
+  "production_enforcement_claim": false
+}

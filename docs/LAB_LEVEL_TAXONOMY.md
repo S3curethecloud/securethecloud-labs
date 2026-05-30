@@ -577,3 +577,16 @@ Live approval execution: false.
 Enterprise API mutation: false.
 Production enforcement claim: false.
 
+## AI Audit Evidence and Traceability L2 LAB
+
+```text
+Lab: AI Audit Evidence and Traceability
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how to build audit-ready evidence trails for AI decisions, prompts, retrieved context, tool attempts, policy decisions, human approvals, blocked actions, and executive summaries.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live audit pipeline: false.
+Enterprise evidence access: false.
+Production enforcement claim: false.
+
