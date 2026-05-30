@@ -619,3 +619,18 @@ Live retrieval execution: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Secure AI Application Architecture L2 LAB
+
+```text
+Lab: Secure AI Application Architecture
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach secure AI application architecture patterns across frontend, backend/API, model, retrieval, tool, policy, approval, evidence, observability, and runtime boundaries.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

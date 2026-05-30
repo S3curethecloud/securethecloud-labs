@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "secure-ai-application-architecture",
+      "title": "Secure AI Application Architecture",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/secure-ai-application-architecture/",
+      "summary": "Intermediate LAB teaching secure AI application architecture patterns across frontend, backend/API, model, retrieval, tool, policy, approval, evidence, observability, and runtime boundaries."
+    },
+    {
       "id": "ai-security-engineering-overview",
       "title": "AI Security Engineering Overview",
       "cloud": "ai-security-engineering",
@@ -689,7 +700,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 1,
+      "implemented_modules": 2,
       "planned_modules": 9
     }
   ]

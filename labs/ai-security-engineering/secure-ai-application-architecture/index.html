@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure AI Application Architecture | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Architecture · L2</p>
+      <h1>Secure AI Application Architecture</h1>
+      <p>Intermediate LAB teaching secure AI application architecture patterns across frontend, backend/API, model, retrieval, tool, policy, approval, evidence, observability, and runtime boundaries.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to architect AI applications as controlled systems. The goal is to prevent untrusted user input, retrieved content, or model output from directly becoming execution authority.</p>
+
+          <div class="pill-row">
+            <span class="pill">Secure architecture</span>
+            <span class="pill">AI boundaries</span>
+            <span class="pill">Policy gates</span>
+            <span class="pill">No live execution</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying secure AI application architecture.</p>
+
+          <details class="concept-card" open>
+            <summary>What is secure AI application architecture?</summary>
+            <p>Secure AI application architecture is the design of an AI workflow so each trust layer, execution layer, approval layer, evidence layer, and runtime layer is separated and controlled.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why is direct model-to-tool execution risky?</summary>
+            <p>Direct model-to-tool execution allows a probabilistic model output to become operational authority. Secure architectures classify tool intent, apply policy, and require approval for sensitive or mutating actions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should the frontend be allowed to do?</summary>
+            <p>The frontend should collect input, display output, and guide the user experience. It should not hold trusted authority, secrets, policy enforcement, or direct mutation capability.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should the backend/API boundary do?</summary>
+            <p>The backend/API boundary should validate requests, protect trusted operations, enforce contracts, control tool access, and preserve evidence. It is where trusted server-side controls belong.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should retrieval be architected?</summary>
+            <p>Retrieval should be scoped by tenant, source authority, sensitivity, freshness, and relevance. Retrieved content should be treated as context, not instruction authority.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes an AI architecture audit-ready?</summary>
+            <p>Audit-ready AI architecture records prompts, retrieved sources, tool attempts, policy decisions, approvals, denials, outputs, cost signals, retry behavior, and final outcomes.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Secure AI Application Architecture Model</h2>
+          <p>A secure AI app separates trust, reasoning, action, approval, and evidence into explicit layers.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User / Browser</strong>
+                <span>Input, display, UX, no trusted authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Backend/API Boundary</strong>
+                <span>Validation, contracts, trusted operations</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Prompt Assembly</strong>
+                <span>Separate system, developer, user, retrieved, tool content</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Retrieval Layer</strong>
+                <span>Tenant, source authority, sensitivity, freshness</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Model Boundary</strong>
+                <span>Recommendation, not operational authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Tool/API Boundary</strong>
+                <span>Read-only, sensitive, mutating, prohibited</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Policy Decision</strong>
+                <span>Allow, deny, approval required, escalate</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Human Approval</strong>
+                <span>Prevent self-approval for sensitive actions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence & Observability</strong>
+                <span>Prompt, retrieval, tool, policy, approval, outcome</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Secure AI architecture keeps recommendation, authority, and execution separated.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI inventory support assistant receives a request to investigate a store exception and recommend a corrective action.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Frontend boundary</strong>
+              <span>Collects issue details and displays recommended next steps.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Backend/API boundary</strong>
+              <span>Validates request, assigns workflow ID, and controls trusted server operations.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Model boundary</strong>
+              <span>Produces recommendation only. It does not become execution authority.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Policy boundary</strong>
+              <span>Classifies any tool request and requires approval for mutating actions.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure workflow:
+
+User submits inventory exception.
+Frontend sends structured request.
+Backend validates and assigns workflow ID.
+Prompt is assembled with trusted instruction separation.
+Retrieval is scoped by source and sensitivity.
+Model recommends investigation steps.
+Tool request is classified.
+Policy requires approval for mutation.
+Evidence is recorded.
+Workflow fails closed if evidence is insufficient.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A common unsafe pattern is direct user input to model output to production action.</p>
+
+          <pre><code>Unsafe pattern:
+
+User input
+→ direct prompt
+→ model response
+→ tool execution
+→ production mutation
+
+Why unsafe:
+
+user input may be malicious
+retrieved content may be untrusted
+model output is not authority
+tool requests may mutate systems
+approval can be bypassed
+evidence may be incomplete
+runtime loops may go uncontrolled</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

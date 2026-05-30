@@ -1,0 +1,17 @@
+{
+  "id": "secure-ai-application-architecture",
+  "title": "Secure AI Application Architecture",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/secure-ai-application-architecture/",
+  "summary": "Intermediate LAB teaching secure AI application architecture patterns across frontend, backend/API, model, retrieval, tool, policy, approval, evidence, observability, and runtime boundaries.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}
