@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Cost, Token, and Rate Limit Governance | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Cost · Tokens · Rate Limits</p>
+      <h1>AI Cost, Token, and Rate Limit Governance</h1>
+      <p>Intermediate LAB for governing AI cost, token usage, runaway agent loops, repeated tool attempts, expensive retrieval calls, rate-limit pressure, budget thresholds, and operational evidence.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how operational AI governance controls cost, token usage, retrieval spend, tool retries, and rate-limit pressure before an AI workflow becomes expensive, abusive, or unbounded.</p>
+          <div class="pill-row">
+            <span class="pill">Cost governance</span>
+            <span class="pill">Token controls</span>
+            <span class="pill">Rate limits</span>
+            <span class="pill">No live enforcement</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying operational AI governance, cost controls, token limits, rate limits, and abuse prevention.</p>
+
+          <details class="concept-card" open>
+            <summary>What is AI cost governance?</summary>
+            <p>AI cost governance defines how AI workflows consume budget, tokens, model calls, retrieval calls, tool attempts, and retries. It prevents uncontrolled spend and creates accountability for operational usage.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do token limits matter?</summary>
+            <p>Tokens are the unit of model input and output. Long prompts, large retrieved context, repeated retries, and verbose outputs can rapidly increase cost and latency. Token ceilings make AI usage bounded and predictable.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a runaway agent loop?</summary>
+            <p>A runaway agent loop occurs when an AI workflow repeatedly reasons, retrieves, retries tools, or re-prompts itself without reaching a safe terminal state. Governance must stop, throttle, or escalate the loop.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do rate limits matter?</summary>
+            <p>Rate limits prevent abuse, accidental overload, runaway retry storms, provider quota exhaustion, and denial-of-service patterns. In AI workflows, rate limits should apply to model calls, retrieval calls, and tool attempts.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What evidence should be recorded?</summary>
+            <p>Evidence should record workflow owner, model calls, token usage, retrieval calls, tool attempts, retry count, threshold decision, budget status, rate-limit status, stop reason, escalation, and reviewer action.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that AI operational risk includes cost runaway and abuse. Budget controls, usage ceilings, and rate-limit evidence turn AI spend into governed operational behavior.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Cost and Rate Limit Governance Model</h2>
+          <p>Cost governance follows the workflow from request through token consumption, retrieval, tool attempts, limits, and evidence.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Request</strong>
+                <span>Workflow begins with owner and purpose</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Model Call</strong>
+                <span>Prompt, output, token usage, and latency</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Retrieval Calls</strong>
+                <span>Documents, searches, vector queries, source count</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Tool Attempts</strong>
+                <span>Retries, failed calls, mutation risk, repeated actions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Budget Threshold</strong>
+                <span>Cost ceiling, token ceiling, retry ceiling</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Rate Limit Policy</strong>
+                <span>Throttle, stop, escalate, or require approval</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Runaway Loop Block</strong>
+                <span>Stop unbounded retries or expensive workflow loops</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Allowed Continuation</strong>
+                <span>Only bounded, justified workflow continues</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Usage, thresholds, decision, reason, owner</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> AI workflows need cost and rate controls before autonomy scales operational waste.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI support workflow attempts to resolve a store inventory exception. It repeatedly retrieves documents, retries tool calls, and re-prompts itself without reaching a safe outcome.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Cost signal</strong>
+              <span>Token usage exceeds the expected range for this workflow type.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Loop signal</strong>
+              <span>The agent repeats retrieval and tool attempts without new evidence or terminal decision.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Rate-limit signal</strong>
+              <span>Model calls, retrieval calls, or tool attempts approach configured thresholds.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Required evidence</strong>
+              <span>Record token count, retrieval count, tool attempts, threshold decision, stop reason, and escalation path.</span>
+            </div>
+          </div>
+
+          <pre><code>Workflow:
+
+AI support agent investigates STORE-1042 inventory exception.
+
+Observed behavior:
+
+9 model calls
+7 retrieval calls
+5 repeated tool attempts
+no new evidence after retry 3
+cost threshold exceeded
+rate-limit warning triggered
+
+Governance decision:
+Stop autonomous loop.
+Escalate to human reviewer.
+Block additional tool attempts until review.
+
+Evidence:
+Workflow owner, model calls, token usage, retrieval calls, tool attempts, threshold state, stop reason, reviewer requirement.</code></pre>
+        </section>
+
+        <section id="source" class="lab-panel">
+          <h2>Detailed Study Source</h2>
+          <p>For deeper implementation study, review the source repository for the Family Dollar AI Governance Platform Lab.</p>
+          <p><a class="lab-link" href="https://github.com/S3curethecloud/family-dollar-ai-governance-platform-lab.git" target="_blank" rel="noopener noreferrer">Open detailed implementation repo →</a></p>
+          <pre><code>Detailed source = Family Dollar AI Governance Platform Lab
+
+Reusable concept = SecureTheCloud AI Governance Command Center
+Boundary = case study / lab, not live production deployment</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to billing systems, enforce live rate limits, mutate provider quotas, call backend APIs, or modify runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live billing integration = false
+Live rate-limit enforcement = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

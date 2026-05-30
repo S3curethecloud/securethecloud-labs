@@ -1,0 +1,16 @@
+{
+  "id": "ai-cost-token-rate-limit-governance",
+  "title": "AI Cost, Token, and Rate Limit Governance",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/ai-cost-token-rate-limit-governance/",
+  "summary": "Intermediate LAB teaching how to govern AI cost, token usage, runaway agent loops, repeated tool attempts, expensive retrieval calls, rate limits, budget thresholds, and operational evidence.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_billing_integration": false,
+  "live_rate_limit_enforcement": false,
+  "production_enforcement_claim": false
+}
