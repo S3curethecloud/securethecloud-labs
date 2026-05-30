@@ -1,203 +1,767 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SecureTheCloud Labs</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hands-on, production-grade security labs across AWS, Azure, and GCP." />
-  <link rel="stylesheet" href="/assets/css/labs.css">
+  <title>Secure TheCloud Labs</title>
+  <style>
+    :root {
+      color: #f8fafc;
+      background: #05080d;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(14, 165, 233, 0.16), transparent 30rem),
+        radial-gradient(circle at 100% 10%, rgba(250, 204, 21, 0.08), transparent 26rem),
+        linear-gradient(180deg, #05080d 0%, #07101b 48%, #05080d 100%);
+      color: #f8fafc;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    a:hover {
+      color: #facc15;
+    }
+
+    .site-shell {
+      width: min(1440px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1rem 0 4rem;
+    }
+
+    .brand-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 auto 1.25rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 18px;
+      background: rgba(5, 8, 13, 0.88);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .brand-shield {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px 9px 13px 13px;
+      background: #facc15;
+      color: #0f172a;
+      box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.12);
+    }
+
+    .brand span span {
+      color: #facc15;
+    }
+
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+
+    .top-nav a,
+    .filter-button {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.78);
+      color: #cbd5e1;
+      padding: 0.48rem 0.78rem;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .top-nav a:hover,
+    .filter-button:hover,
+    .filter-button.active {
+      border-color: rgba(56, 189, 248, 0.55);
+      color: #f8fafc;
+      background: rgba(14, 116, 144, 0.42);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-panel,
+    .quick-panel,
+    .section-panel,
+    .track-card,
+    .lab-card {
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(15, 23, 42, 0.72);
+      box-shadow: 0 20px 52px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-panel,
+    .quick-panel,
+    .section-panel {
+      border-radius: 28px;
+      padding: 1.4rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.7rem;
+      color: #38bdf8;
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 1rem;
+      font-size: clamp(2.6rem, 7vw, 6.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+    }
+
+    h2 {
+      margin-bottom: 0.85rem;
+      font-size: clamp(1.45rem, 3vw, 2.3rem);
+      letter-spacing: -0.045em;
+    }
+
+    h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      color: #cbd5e1;
+      line-height: 1.65;
+    }
+
+    .hero-actions,
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .hero-actions {
+      margin-top: 1.2rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #38bdf8;
+      color: #031018;
+      padding: 0.72rem 1rem;
+      box-shadow: 0 12px 24px rgba(56, 189, 248, 0.16);
+    }
+
+    .primary-link:hover {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .stat {
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      border-radius: 18px;
+      background: rgba(2, 6, 23, 0.44);
+      padding: 1rem;
+    }
+
+    .stat strong,
+    .stat span {
+      display: block;
+    }
+
+    .stat strong {
+      font-size: 1.55rem;
+      color: #f8fafc;
+    }
+
+    .stat span {
+      color: #94a3b8;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .section-panel {
+      margin-top: 1rem;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .track-card,
+    .lab-card {
+      border-radius: 22px;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .track-card span,
+    .level-badge {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(250, 204, 21, 0.42);
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.12);
+      color: #fde68a;
+      padding: 0.32rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .search {
+      width: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 16px;
+      background: rgba(2, 6, 23, 0.55);
+      color: #f8fafc;
+      padding: 0.95rem 1rem;
+      font: inherit;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .lab-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+
+    .lab-card-meta,
+    .track-note {
+      color: #93c5fd;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .track-note {
+      color: #94a3b8;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .empty-state {
+      display: none;
+      border: 1px dashed rgba(148, 163, 184, 0.28);
+      border-radius: 18px;
+      color: #cbd5e1;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .footer-note {
+      margin-top: 1rem;
+      border-left: 4px solid #38bdf8;
+      border-radius: 14px;
+      background: rgba(8, 47, 73, 0.38);
+      padding: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .track-grid,
+      .lab-grid,
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .top-nav {
+        display: none;
+      }
+
+      .brand-bar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-shell {
+        width: min(100% - 1rem, 1440px);
+        padding-top: 0.5rem;
+      }
+
+      .hero-panel,
+      .quick-panel,
+      .section-panel {
+        border-radius: 20px;
+        padding: 1rem;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 15vw, 4rem);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="site-shell">
+    <header class="brand-bar">
+      <a class="brand" href="/">
+        <span class="brand-shield">◆</span>
+        <span>Secure <span>TheCloud</span></span>
+      </a>
+      <nav class="top-nav">
+        <a href="#paths">Learning Paths</a>
+        <a href="#catalog">Lab Catalog</a>
+        <a href="/tracks/ai-governance-command-center/">AI Governance</a>
+        <a href="/guides/aws-l2-authorization-model/">L2 Study Guide</a>
+      </nav>
+    </header>
 
-  <main class="page-container">
-
-    <!-- Header -->
-    <section>
-      <h1>SecureTheCloud Labs</h1>
-      <p>
-        Hands-on, production-grade security labs designed for real-world
-        cloud architectures, interviews, and operational readiness.
-      </p>
-    </section>
-
-    <!-- Principles -->
-    <section class="card">
-      <h2>Design Principles</h2>
-      <ul>
-        <li>Real cloud primitives — no toy examples</li>
-        <li>Identity-first and Zero Trust aligned</li>
-        <li>Built for architecture reviews and interviews</li>
-        <li>Structured for STC AI and MGF ingestion</li>
-      </ul>
-    </section>
-
-    <!-- Cloud Providers -->
-    <section>
-      <h2>Lab Domains</h2>
-
-      <div class="card">
-        <h3>AWS Labs</h3>
-        <p>
-          Identity, networking, compute, and security labs built on
-          AWS-native services and best practices.
-        </p>
-        <!-- AWS -->
-        <a href="#available-labs"
-           class="explore-link"
-           data-filter="aws">
-          Explore AWS Labs →
-        </a>
+    <section class="hero">
+      <div class="hero-panel">
+        <p class="eyebrow">Secure TheCloud Labs</p>
+        <h1>Cloud security learning paths for real enterprise decisions.</h1>
+        <p>Guided LABs for identity, authorization, workload risk, detection reasoning, AI governance, executive readiness, and architecture validation.</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#paths">Browse learning paths →</a>
+          <a href="#catalog">Search all labs →</a>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Azure Labs</h3>
-        <p>
-          Microsoft Entra ID, Azure networking, and enterprise
-          security architecture labs.
-        </p>
-        <!-- Azure -->
-        <a href="#available-labs"
-           class="explore-link"
-           data-filter="azure">
-          Explore Azure Labs →
-        </a>
-      </div>
-
-      <div class="card">
-        <h3>GCP Labs</h3>
-        <p>
-          Workload Identity, IAM, and secure Google Cloud
-          architecture labs.
-        </p>
-        <!-- GCP -->
-        <a href="#available-labs"
-           class="explore-link"
-           data-filter="gcp">
-          Explore GCP Labs →
-        </a>
-      </div>
+      <aside class="quick-panel">
+        <p class="eyebrow">Platform snapshot</p>
+        <div class="stat-grid">
+          <div class="stat"><strong>21</strong><span>LAB modules</span></div>
+          <div class="stat"><strong>1</strong><span>Learning paths</span></div>
+          <div class="stat"><strong>6</strong><span>AI governance modules</span></div>
+          <div class="stat"><strong>0</strong><span>Backend exposure</span></div>
+        </div>
+      </aside>
     </section>
 
-    <!-- Lab Filters -->
-    <section id="lab-filters">
-      <button data-cloud="all" class="filter-btn active">All</button>
-      <button data-cloud="aws" class="filter-btn">AWS</button>
-      <button data-cloud="azure" class="filter-btn">Azure</button>
-      <button data-cloud="gcp" class="filter-btn">GCP</button>
-    </section>
-
-    <!-- Available Labs -->
-    
-    <section class="lab-panel" id="aws-principal-track">
-      <p class="lab-hero-kicker">Executive Learning Path</p>
-      <h2>AWS Principal Identity Track</h2>
-      <p>
-        A curated three-lab track for students, interns, mentors, and security executives:
-        cross-account trust, iam:PassRole, and role chaining escalation.
-      </p>
-      <div class="evidence-pill-row">
-        <span class="evidence-pill warning">3 Principal LABs</span>
-        <span class="evidence-pill">Shield-linked</span>
-        <span class="evidence-pill">Aegis Runtime-linked</span>
-        <span class="evidence-pill">OPA preserved</span>
-      </div>
-      <p>
-        <a href="/tracks/aws-principal-identity/" class="lab-link">Open AWS Principal Track →</a>
-      </p>
-    </section>
-
-<section id="available-labs">
-      <section class="lab-panel">
-    <p class="lab-hero-kicker">Intermediate Learning Path</p>
-    <h2>AWS Intermediate Identity Track</h2>
-    <p>
-      A practical L2 bridge from AWS IAM basics into Principal identity-risk modeling:
-      effective permissions, explicit deny, permission boundaries, SCPs, and resource policy reasoning.
-    </p>
-    <div class="evidence-pill-row">
-      <span class="evidence-pill warning">L2 Intermediate</span>
-      <span class="evidence-pill">Policy reasoning</span>
-      <span class="evidence-pill">Principal prerequisite</span>
-      <span class="evidence-pill">No live mutation</span>
-    </div>
-    <a href="/tracks/aws-intermediate-identity/" class="lab-link">Open AWS Intermediate Track →</a>
-  </section>
-
-    <section class="lab-track-card">
-      <p class="lab-hero-kicker">Executive Study Guide</p>
-      <h2>AWS L2 Authorization Model</h2>
-      <p>
-        A mentor, student, and executive-facing summary of the six-part AWS L2 authorization curriculum:
-        IAM policies, permission boundaries, SCPs, resource policies, S3 exposure, and KMS key policies.
-      </p>
-      <div class="evidence-pill-row">
-        <span class="evidence-pill warning">L2 Summary</span>
-        <span class="evidence-pill">Executive-ready</span>
-        <span class="evidence-pill">Visual learning</span>
-        <span class="evidence-pill">No runtime mutation</span>
-      </div>
-      <a href="/guides/aws-l2-authorization-model/" class="lab-link">Open L2 Executive Study Guide →</a>
-    </section>
-
-
-  <h2>Available Labs</h2>
-
-      <div id="labs-container">
-
-        <!--
-          LAB CARD RENDERING CONTRACT (AUTHORITATIVE)
-
-          All explore links:
-          - Trigger the SAME JS handler
-          - Activate the matching filter button
-          - Filter lab cards by data-cloud
-          - Smooth-scroll to this section
-
-          labs.js MUST render each lab as:
-
-          <div class="lab-card" data-cloud="aws|azure|gcp">
-            <span class="badge badge-gold">GOLD</span>
-            OR
-            <span class="badge badge-starter">STARTER</span>
-
-            <h3>Lab Title</h3>
-            <p>Short lab description...</p>
-
-            <a href="/labs/..." class="start-lab-btn">
-              Start Lab →
-            </a>
-          </div>
-        -->
-
-        <!-- Labs injected dynamically by labs.js -->
+    <section id="paths" class="section-panel">
+      <p class="eyebrow">Guided learning paths</p>
+      <h2>Start with a track, not a scroll.</h2>
+      <div class="track-grid">
+        
+          <article class="track-card">
+            <span>intermediate</span>
+            <h3>AI Governance Command Center Track</h3>
+            <p>Guided course for enterprise AI governance command center design.</p>
+            <a href="/tracks/ai-governance-command-center/">Open Track →</a>
+          </article>
 
       </div>
     </section>
 
-    <!-- Callout -->
-    <section class="callout">
-      <strong>Note:</strong>
-      These labs are continuously expanded and refined.
-      Each lab is designed to reflect real enterprise security decisions,
-      not simplified demos.
+    <section id="catalog" class="section-panel">
+      <p class="eyebrow">Searchable catalog</p>
+      <h2>Find the right LAB quickly.</h2>
+      <div class="controls">
+        <input id="labSearch" class="search" type="search" placeholder="Search by topic, cloud, track, domain, or level..." />
+        <div class="filter-row">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="ai-governance">AI Governance</button>
+          <button class="filter-button" type="button" data-filter="aws">AWS</button>
+          <button class="filter-button" type="button" data-filter="azure">Azure</button>
+          <button class="filter-button" type="button" data-filter="gcp">GCP</button>
+        </div>
+      </div>
+
+      <div id="labGrid" class="lab-grid">
+        
+          <article class="lab-card" data-search="ai governance command center overview ai-governance-command-center-overview ai-governance governance intermediate intermediate ai-governance-command-center learn how an enterprise ai governance command center connects intake, risk, policy, approvals, evidence, observability, and operational handoff." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>AI Governance Command Center Overview</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how an enterprise AI governance command center connects intake, risk, policy, approvals, evidence, observability, and operational handoff.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/command-center-overview/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="governance intake and risk tiering ai-governance-risk-tiering-and-intake ai-governance governance intermediate intermediate ai-governance-command-center learn how intake questions and risk tiers create consistent ai governance triage before a workflow reaches production." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>Governance Intake and Risk Tiering</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how intake questions and risk tiers create consistent AI governance triage before a workflow reaches production.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/risk-tiering-and-intake/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="policy gates and human approval ai-governance-policy-gates-human-approval ai-governance governance intermediate intermediate ai-governance-command-center learn how policy gates convert ai governance rules into deterministic allow, deny, or approval-required decisions." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>Policy Gates and Human Approval</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how policy gates convert AI governance rules into deterministic allow, deny, or approval-required decisions.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/policy-gates-human-approval/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="agent workflow governance ai-governance-agent-workflow-governance ai-governance governance intermediate intermediate ai-governance-command-center learn how governed agent workflows separate recommendation, approval, and execution boundaries." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>Agent Workflow Governance</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how governed agent workflows separate recommendation, approval, and execution boundaries.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/agent-workflow-governance/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="observability, cost controls, and support handoff ai-governance-observability-cost-handoff ai-governance governance intermediate intermediate ai-governance-command-center learn how traces, cost controls, guardrails, sops, and runbooks make ai workflows operable after demo or deployment." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>Observability, Cost Controls, and Support Handoff</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how traces, cost controls, guardrails, SOPs, and runbooks make AI workflows operable after demo or deployment.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/observability-cost-handoff/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="executive demo and portfolio boundary ai-governance-executive-demo-boundary ai-governance governance intermediate intermediate ai-governance-command-center learn how to present an ai governance command center to executives while preserving case-study, demo, and production boundaries." data-cloud="ai-governance" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AI-GOVERNANCE · governance · intermediate</p>
+                <h3>Executive Demo and Portfolio Boundary</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Learn how to present an AI governance command center to executives while preserving case-study, demo, and production boundaries.</p>
+            <p class="track-note">Track: ai-governance-command-center</p>
+            <a href="/labs/ai-governance/executive-demo-boundary/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws iam basics aws-iam-basics aws identity foundation gold  foundational aws iam lab focusing on identity evaluation, least privilege, and interview-ready reasoning." data-cloud="aws" data-level="foundation">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · foundation</p>
+                <h3>AWS IAM Basics</h3>
+              </div>
+              <span class="level-badge">foundation</span>
+            </div>
+            <p>Foundational AWS IAM lab focusing on identity evaluation, least privilege, and interview-ready reasoning.</p>
+            
+            <a href="/labs/aws/identity/iam-basics/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws iam policy evaluation aws-iam-policy-evaluation aws identity intermediate intermediate  intermediate lab teaching aws effective-permission reasoning across identity policies, resource policies, permission boundaries, session policies, scps, and explicit deny." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS IAM Policy Evaluation</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching AWS effective-permission reasoning across identity policies, resource policies, permission boundaries, session policies, SCPs, and explicit deny.</p>
+            
+            <a href="/labs/aws/identity/iam-policy-evaluation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws permission boundary basics aws-permission-boundary-basics aws identity intermediate intermediate  intermediate lab teaching how aws permission boundaries constrain maximum principal authority without granting access by themselves." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS Permission Boundary Basics</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how AWS permission boundaries constrain maximum principal authority without granting access by themselves.</p>
+            
+            <a href="/labs/aws/identity/permission-boundary-basics/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws scp guardrail reasoning aws-scp-guardrail-reasoning aws identity intermediate intermediate  intermediate lab teaching how aws service control policies define organization-level maximum permissions without granting access by themselves." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS SCP Guardrail Reasoning</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how AWS Service Control Policies define organization-level maximum permissions without granting access by themselves.</p>
+            
+            <a href="/labs/aws/identity/scp-guardrail-reasoning/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws resource policy evaluation aws-resource-policy-evaluation aws identity intermediate intermediate  intermediate lab teaching how aws resource-based policies participate in authorization decisions alongside identity policies, boundaries, scps, and explicit deny." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS Resource Policy Evaluation</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how AWS resource-based policies participate in authorization decisions alongside identity policies, boundaries, SCPs, and explicit deny.</p>
+            
+            <a href="/labs/aws/identity/resource-policy-evaluation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws s3 public access risk aws-s3-public-access-risk aws storage intermediate intermediate  applied l2 lab teaching how s3 public access risk emerges from bucket policy, block public access settings, acl history, identity permissions, resource policies, and organization guardrails." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · storage · intermediate</p>
+                <h3>AWS S3 Public Access Risk</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Applied L2 LAB teaching how S3 public access risk emerges from bucket policy, Block Public Access settings, ACL history, identity permissions, resource policies, and organization guardrails.</p>
+            
+            <a href="/labs/aws/storage/s3-public-access-risk/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws kms key policy evaluation aws-kms-key-policy-evaluation aws security intermediate intermediate  intermediate lab teaching how aws kms key policies, iam permissions, grants, encryption context, and organization guardrails combine to control cryptographic access." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · security · intermediate</p>
+                <h3>AWS KMS Key Policy Evaluation</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how AWS KMS key policies, IAM permissions, grants, encryption context, and organization guardrails combine to control cryptographic access.</p>
+            
+            <a href="/labs/aws/security/kms-key-policy-evaluation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws secrets manager access evaluation aws-secrets-manager-access-evaluation aws security intermediate intermediate  intermediate lab teaching how aws secrets manager access depends on iam permissions, resource policies, kms decrypt authority, explicit deny, and organization guardrails." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · security · intermediate</p>
+                <h3>AWS Secrets Manager Access Evaluation</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how AWS Secrets Manager access depends on IAM permissions, resource policies, KMS decrypt authority, explicit deny, and organization guardrails.</p>
+            
+            <a href="/labs/aws/security/secrets-manager-access-evaluation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws lambda execution role risk aws-lambda-execution-role-risk aws compute intermediate intermediate  intermediate lab teaching how lambda execution roles create workload identity risk when function update authority, iam:passrole, secrets manager access, kms decrypt, and resource permissions combine." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · compute · intermediate</p>
+                <h3>AWS Lambda Execution Role Risk</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how Lambda execution roles create workload identity risk when function update authority, iam:PassRole, Secrets Manager access, KMS decrypt, and resource permissions combine.</p>
+            
+            <a href="/labs/aws/compute/lambda-execution-role-risk/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws cloudtrail detection reasoning aws-cloudtrail-detection-reasoning aws detection intermediate intermediate  intermediate lab teaching how cloudtrail evidence supports detection reasoning for iam:passrole, sts:assumerole, lambda updates, secrets manager access, kms decrypt, and workload identity activity." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · detection · intermediate</p>
+                <h3>AWS CloudTrail Detection Reasoning</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Intermediate LAB teaching how CloudTrail evidence supports detection reasoning for iam:PassRole, sts:AssumeRole, Lambda updates, Secrets Manager access, KMS decrypt, and workload identity activity.</p>
+            
+            <a href="/labs/aws/detection/cloudtrail-detection-reasoning/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws cross-account role escalation aws-cross-account-role-escalation aws identity intermediate principal  principal lab modeling deterministic aws cross-account trust reachability through sts:assumerole, shield finding linkage, and aegis runtime identity signal mapping." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS Cross-Account Role Escalation</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Principal LAB modeling deterministic AWS cross-account trust reachability through sts:AssumeRole, Shield finding linkage, and Aegis Runtime identity signal mapping.</p>
+            
+            <a href="/labs/aws/identity/cross-account-role-escalation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws privilege escalation via iam:passrole aws-privilege-escalation-passrole aws identity intermediate principal  principal lab modeling deterministic aws privilege escalation through iam:passrole combined with compute service creation or update capability." data-cloud="aws" data-level="intermediate">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · intermediate</p>
+                <h3>AWS Privilege Escalation via iam:PassRole</h3>
+              </div>
+              <span class="level-badge">intermediate</span>
+            </div>
+            <p>Principal LAB modeling deterministic AWS privilege escalation through iam:PassRole combined with compute service creation or update capability.</p>
+            
+            <a href="/labs/aws/identity/privilege-escalation-passrole/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="aws role chaining escalation aws-role-chaining-escalation aws identity advanced principal  principal lab modeling deterministic aws privilege expansion through chained sts:assumerole paths across multiple iam roles." data-cloud="aws" data-level="advanced">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AWS · identity · advanced</p>
+                <h3>AWS Role Chaining Escalation</h3>
+              </div>
+              <span class="level-badge">advanced</span>
+            </div>
+            <p>Principal LAB modeling deterministic AWS privilege expansion through chained sts:AssumeRole paths across multiple IAM roles.</p>
+            
+            <a href="/labs/aws/identity/role-chaining-escalation/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="azure entra id basics azure-entra-id-basics azure identity foundation starter  starter lab introducing azure entra id identity flow, conditional access, and rbac concepts." data-cloud="azure" data-level="foundation">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">AZURE · identity · foundation</p>
+                <h3>Azure Entra ID Basics</h3>
+              </div>
+              <span class="level-badge">foundation</span>
+            </div>
+            <p>Starter lab introducing Azure Entra ID identity flow, Conditional Access, and RBAC concepts.</p>
+            
+            <a href="/labs/azure/identity/entra-id-basics/">Open Lab →</a>
+          </article>
+
+          <article class="lab-card" data-search="gcp iam basics gcp-iam-basics gcp identity foundation starter  starter lab covering google cloud iam principals, policy bindings, and request-time authorization." data-cloud="gcp" data-level="foundation">
+            <div class="lab-card-top">
+              <div>
+                <p class="lab-card-meta">GCP · identity · foundation</p>
+                <h3>GCP IAM Basics</h3>
+              </div>
+              <span class="level-badge">foundation</span>
+            </div>
+            <p>Starter lab covering Google Cloud IAM principals, policy bindings, and request-time authorization.</p>
+            
+            <a href="/labs/gcp/identity/iam-basics/">Open Lab →</a>
+          </article>
+
+      </div>
+
+      <div id="emptyState" class="empty-state">No labs match that search yet.</div>
     </section>
 
-    <!-- Footer -->
-    <section class="lab-meta">
-      SecureTheCloud Labs are part of the SecureTheCloud ecosystem —
-      supporting education, architecture validation, and AI-driven
-      security insights.
+    <section class="footer-note">
+      <strong>Note:</strong> Secure TheCloud Labs are continuously expanded and refined. Each LAB is designed to reflect real enterprise security decisions, not simplified demos.
     </section>
+  </div>
 
-  
-<!-- Phase 61 AI Governance Command Center Track -->
+  <script>
+    const search = document.getElementById("labSearch");
+    const cards = Array.from(document.querySelectorAll(".lab-card"));
+    const buttons = Array.from(document.querySelectorAll(".filter-button"));
+    const empty = document.getElementById("emptyState");
+    let activeFilter = "all";
 
-<section class="lab-section"> <p class="lab-hero-kicker">Executive Learning Path</p> <h2>AI Governance Command Center</h2> <p>A guided SecureTheCloud Labs course for enterprise AI governance: intake, risk tiering, policy gates, human approval, agent workflow boundaries, observability, support handoff, and executive demo readiness.</p> <div class="pill-row"> <span class="pill">AI Governance</span> <span class="pill">Executive-ready</span> <span class="pill">Visual learning</span> <span class="pill">No backend exposure</span> </div> <a href="/tracks/ai-governance-command-center/" class="lab-link">Open AI Governance Command Center Track →</a> </section> 
-</main>
+    function applyFilters() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
 
-  <!-- Labs JS -->
-  <script src="/assets/js/labs.js?v=homepage-badge-header-1734d05"></script>
+      cards.forEach((card) => {
+        const matchesSearch = !query || card.dataset.search.includes(query);
+        const matchesFilter = activeFilter === "all" || card.dataset.cloud === activeFilter;
+        const show = matchesSearch && matchesFilter;
+        card.style.display = show ? "" : "none";
+        if (show) visible += 1;
+      });
 
+      empty.style.display = visible ? "none" : "block";
+    }
+
+    search.addEventListener("input", applyFilters);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        button.classList.add("active");
+        activeFilter = button.dataset.filter;
+        applyFilters();
+      });
+    });
+  </script>
 </body>
 </html>
