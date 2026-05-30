@@ -776,6 +776,23 @@
   }
 }
 
+
+/* Phase 105 - Platform Snapshot Count Semantics Polish */
+.snapshot-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.snapshot-grid .stat span,
+.stat span {
+  line-height: 1.25;
+}
+
+@media (max-width: 720px) {
+  .snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -814,8 +831,10 @@
         <p class="eyebrow">Platform snapshot</p>
         <div class="stat-grid">
           <div class="stat"><strong>31</strong><span>LAB modules</span></div>
-          <div class="stat"><strong>1</strong><span>Learning paths</span></div>
-          <div class="stat"><strong>12</strong><span>AI governance modules</span></div>
+          <div class="stat"><strong>2</strong><span>Learning paths</span></div>
+          <div class="stat"><strong>16</strong><span>Total AI modules</span></div>
+          <div class="stat"><strong>12</strong><span>AI Governance modules</span></div>
+          <div class="stat"><strong>4</strong><span>AI Security Engineering modules</span></div>
           <div class="stat"><strong>0</strong><span>Backend exposure</span></div>
         </div>
       </aside>
