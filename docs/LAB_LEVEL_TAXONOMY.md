@@ -604,3 +604,18 @@ Live rate-limit enforcement: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## AI Security Engineering Overview L2 LAB
+
+```text
+Lab: AI Security Engineering Overview
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Introduce secure AI system engineering, AI threat surfaces, prompt/model/retrieval/tool/policy/evidence boundaries, and the relationship between AI governance and AI security engineering.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

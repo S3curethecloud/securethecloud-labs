@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Security Engineering Overview | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Overview · L2</p>
+      <h1>AI Security Engineering Overview</h1>
+      <p>Intermediate LAB introducing secure AI system engineering, AI threat surfaces, control boundaries, prompt/model/retrieval/tool/policy/evidence layers, and the relationship between AI governance and AI security engineering.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#prerequisite">Prerequisite</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#prerequisite">Prerequisite</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB introduces the AI Security Engineering track. It teaches how to think about AI applications as engineered systems with distinct trust boundaries, execution boundaries, evidence boundaries, and failure boundaries.</p>
+
+          <div class="pill-row">
+            <span class="pill">AI security engineering</span>
+            <span class="pill">Threat surface</span>
+            <span class="pill">Control boundaries</span>
+            <span class="pill">No live execution</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying how secure AI systems should be designed.</p>
+
+          <details class="concept-card" open>
+            <summary>What is AI security engineering?</summary>
+            <p>AI security engineering is the discipline of designing AI systems so prompts, models, retrieval, tools, approvals, evidence, and runtime behavior are constrained, observable, testable, and safe by design.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How is this different from AI governance?</summary>
+            <p>AI governance decides whether a workflow should be allowed, blocked, approved, escalated, or audited. AI security engineering builds the technical boundaries that make those decisions enforceable.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is the AI threat surface?</summary>
+            <p>The AI threat surface includes user input, prompt instructions, retrieved content, model behavior, tool calls, API actions, approval flows, logs, evidence records, cost limits, and runtime guardrails.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do boundaries matter?</summary>
+            <p>Boundaries prevent untrusted input from becoming trusted instruction, prevent retrieved content from becoming authority, prevent tools from executing without permission, and prevent AI workflows from mutating systems without approval.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What does "fail safely" mean?</summary>
+            <p>Failing safely means the AI workflow stops, denies, escalates, or requests human review when it cannot prove the action is allowed, bounded, and supported by evidence.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should security engineers understand first?</summary>
+            <p>Security engineers should understand that AI systems are not just model calls. They are full workflows with inputs, context, tools, permissions, policy decisions, evidence records, and operational limits.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Security Engineering Boundary Model</h2>
+          <p>Secure AI engineering starts by separating every major trust and execution layer.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Input</strong>
+                <span>Untrusted requests, files, messages, and instructions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Prompt Boundary</strong>
+                <span>Separate system, developer, user, retrieved, and tool content</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Model Boundary</strong>
+                <span>Reasoning output is not authority by itself</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Retrieval Boundary</strong>
+                <span>Source authority, tenant scope, sensitivity, freshness</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Tool Boundary</strong>
+                <span>Read-only vs mutating action permissions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Policy Boundary</strong>
+                <span>Allow, deny, approval required, or escalate</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Approval Boundary</strong>
+                <span>Human review for sensitive or mutating actions</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Boundary</strong>
+                <span>Prompt, retrieval, tool, policy, approval, outcome</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Runtime Boundary</strong>
+                <span>Retry caps, loop stops, rate limits, safe terminal states</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> A secure AI system is a bounded workflow, not an unconstrained model response.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI workflow receives a request to investigate a store inventory exception and recommend next steps.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Prompt boundary</strong>
+              <span>Separate trusted system instructions from user input and retrieved content.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Retrieval boundary</strong>
+              <span>Verify source authority, tenant scope, data sensitivity, and relevance.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Tool boundary</strong>
+              <span>Permit read-only investigation but block mutating supplier or inventory actions without approval.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence boundary</strong>
+              <span>Record request, sources, tool attempts, policy result, approval state, and final outcome.</span>
+            </div>
+          </div>
+
+          <pre><code>Workflow:
+
+AI investigates STORE-1042 inventory exception.
+
+Secure engineering requirements:
+
+user input is untrusted
+retrieved documents are classified
+tool permissions are scoped
+mutating actions require approval
+self-approval is blocked
+repeated retries are capped
+evidence is recorded
+unsafe uncertainty fails closed
+
+Result:
+The workflow can recommend, but cannot mutate production systems without governed approval and evidence.</code></pre>
+        </section>
+
+        <section id="prerequisite" class="lab-panel">
+          <h2>Prerequisite Track</h2>
+          <p>Learners should complete the AI Governance Command Center Track before starting AI Security Engineering.</p>
+
+          <div class="artifact-grid">
+            <a class="artifact-card" href="/tracks/ai-governance-command-center/">
+              <strong>AI Governance Command Center</strong>
+              <span>Recommended prerequisite track for governance, approval, audit, and operational boundary concepts.</span>
+            </a>
+            <a class="artifact-card" href="/docs/learning-paths/START_HERE.md">
+              <strong>Start Here</strong>
+              <span>Review the SecureTheCloud Labs learning path reference.</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-security-engineering-overview",
+      "title": "AI Security Engineering Overview",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/ai-security-engineering-overview/",
+      "summary": "Intermediate LAB introducing secure AI system engineering, AI threat surfaces, control boundaries, prompt/model/retrieval/tool/policy/evidence layers, and the relationship between AI governance and AI security engineering."
+    },
+    {
       "id": "ai-cost-token-rate-limit-governance",
       "title": "AI Cost, Token, and Rate Limit Governance",
       "cloud": "ai-governance",
@@ -673,11 +684,13 @@
       "path": "/tracks/ai-security-engineering/",
       "level": "intermediate",
       "maturity": "planned",
-      "status": "track-shell",
+      "status": "active-track",
       "summary": "Planned SecureTheCloud Labs intermediate track for engineering secure AI systems with prompt boundaries, tool permissions, retrieval controls, runtime guardrails, abuse controls, testing harnesses, and evidence packages.",
       "runtime_change_required": false,
       "backend_exposure": false,
-      "production_enforcement_claim": false
+      "production_enforcement_claim": false,
+      "implemented_modules": 1,
+      "planned_modules": 9
     }
   ]
 }

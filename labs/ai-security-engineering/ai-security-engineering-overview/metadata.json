@@ -1,0 +1,17 @@
+{
+  "id": "ai-security-engineering-overview",
+  "title": "AI Security Engineering Overview",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/ai-security-engineering-overview/",
+  "summary": "Intermediate LAB introducing secure AI system engineering, AI threat surfaces, control boundaries, prompt/model/retrieval/tool/policy/evidence layers, and the relationship between AI governance and AI security engineering.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}
