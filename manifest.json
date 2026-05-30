@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-agent-tool-use-risk",
+      "title": "AI Agent Tool-Use Risk",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/agent-tool-use-risk/",
+      "summary": "Intermediate LAB teaching how AI agent tool-use becomes enterprise risk when recommendations, API calls, human approvals, and autonomous execution boundaries are not clearly governed."
+    },
+    {
       "id": "aws-iam-basics",
       "title": "AWS IAM Basics",
       "cloud": "aws",

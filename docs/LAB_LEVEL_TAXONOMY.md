@@ -527,3 +527,15 @@ Runtime: Read-only learning course.
 Backend exposure: false.
 Production enforcement claim: false.
 
+## AI Agent Tool-Use Risk L2 LAB
+
+```text
+Lab: AI Agent Tool-Use Risk
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how AI agent tool-use becomes enterprise risk when tool permissions, API action boundaries, human approval gates, and autonomous execution controls are not governed.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live tool execution: false.
+Production enforcement claim: false.
+

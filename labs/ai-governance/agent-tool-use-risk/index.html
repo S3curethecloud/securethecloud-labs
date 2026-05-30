@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Agent Tool-Use Risk | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Agents · Tool-Use Risk</p>
+      <h1>AI Agent Tool-Use Risk</h1>
+      <p>Intermediate LAB for understanding how AI agent tool-use becomes enterprise risk when tool permissions, API actions, human approvals, and autonomous execution boundaries are not clearly governed.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches the security difference between an AI system that only generates text and an AI agent that can call tools, APIs, workflows, or enterprise actions.</p>
+          <div class="pill-row">
+            <span class="pill">AI Governance</span>
+            <span class="pill">Agent risk</span>
+            <span class="pill">Tool-use boundaries</span>
+            <span class="pill">No live mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying agentic AI governance, tool-use risk, or enterprise workflow controls.</p>
+
+          <details class="concept-card" open>
+            <summary>What is AI agent tool-use?</summary>
+            <p>AI agent tool-use means the model can select or invoke external capabilities such as APIs, databases, enterprise workflows, ticketing systems, code execution, deployment tools, or business applications.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why is tool-use riskier than text generation?</summary>
+            <p>Text generation can produce bad recommendations, but tool-use can create operational impact. Once an agent can call tools, governance must decide what the agent can read, draft, submit, approve, or execute.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is the recommend / draft / submit / approve / execute boundary?</summary>
+            <p>Recommendation is advisory. Drafting prepares an action. Submission requests action. Approval authorizes action. Execution changes a system. Each step needs a separate permission and evidence boundary.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do policy gates matter?</summary>
+            <p>Policy gates prevent AI workflows from bypassing human approval, enterprise change control, security review, or operational ownership. They turn governance rules into deterministic allow, deny, or approval-required decisions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that agent risk is not only model risk. It is operational authority risk: what systems the agent can touch and what actions it can perform without accountable approval.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Agent Tool-Use Risk Model</h2>
+          <p>Tool-use risk is easiest to understand as a path from user intent to enterprise action.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Request</strong>
+                <span>Business asks the agent for help</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Agent Reasoning</strong>
+                <span>Model chooses a plan or next step</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Tool / API Selection</strong>
+                <span>Agent attempts to use a capability</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Policy Gate</strong>
+                <span>Evaluate action, risk, and authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Human Approval</strong>
+                <span>Required for sensitive or mutating action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Recommendation Allowed</strong>
+                <span>Agent may summarize or draft safely</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Autonomous Execution Blocked</strong>
+                <span>No purchase order, system mutation, or self-approval</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Log decision, reason, controls, and next step</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> AI agent risk is not only what the model says. It is what the agent can do.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An inventory agent is asked to help with store replenishment after demand signals show a potential stockout.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Safe actions</strong>
+              <span>Read inventory signals, read demand context, draft replenishment recommendation, record evidence.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Blocked actions</strong>
+              <span>Create purchase order, change supplier contract, mutate inventory, approve its own action.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Required control</strong>
+              <span>Policy gate and human approval before any enterprise mutation.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>Record agent request, tool attempted, decision, reason, required controls, and next step.</span>
+            </div>
+          </div>
+
+          <pre><code>Agent request: Recommend replenishment for STORE-1042
+
+Allowed:
+
+Read governed inventory API
+Read POS demand summary
+Draft replenishment recommendation
+
+Denied:
+
+Create purchase order
+Modify supplier terms
+Execute inventory mutation
+
+Decision:
+Human approval required before business-system change.</code></pre>
+        </section>
+
+        <section id="source" class="lab-panel">
+          <h2>Detailed Study Source</h2>
+          <p>For deeper implementation study, review the source repository for the Family Dollar AI Governance Platform Lab.</p>
+          <p><a class="lab-link" href="https://github.com/S3curethecloud/family-dollar-ai-governance-platform-lab.git" target="_blank" rel="noopener noreferrer">Open detailed implementation repo →</a></p>
+          <pre><code>Detailed source = Family Dollar AI Governance Platform Lab
+
+Reusable concept = SecureTheCloud AI Governance Command Center
+Boundary = case study / lab, not live production deployment</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not execute tools, call enterprise APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live tool execution = false
+Enterprise API mutation = false
+Autonomous production enforcement = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
