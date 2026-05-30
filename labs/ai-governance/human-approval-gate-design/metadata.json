@@ -1,0 +1,15 @@
+{
+  "id": "ai-human-approval-gate-design",
+  "title": "Human Approval Gate Design",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/human-approval-gate-design/",
+  "summary": "Intermediate LAB teaching how human approval gates prevent AI agents, tool-use, prompt injection, and retrieval risk from becoming ungoverned enterprise execution.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_approval_execution": false,
+  "production_enforcement_claim": false
+}

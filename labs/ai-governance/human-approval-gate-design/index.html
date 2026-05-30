@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Human Approval Gate Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Approval Gates · Human Control</p>
+      <h1>Human Approval Gate Design</h1>
+      <p>Intermediate LAB for designing approval gates that prevent AI agents, tool-use, prompt injection, and retrieval risk from becoming ungoverned enterprise execution.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#source">Detailed Study</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design approval gates for AI workflows that may recommend, draft, submit, approve, or execute enterprise actions.</p>
+          <div class="pill-row">
+            <span class="pill">Human approval</span>
+            <span class="pill">AI control gates</span>
+            <span class="pill">Evidence review</span>
+            <span class="pill">No live approval</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI approval gates, accountable control, and execution boundaries.</p>
+
+          <details class="concept-card" open>
+            <summary>What is a human approval gate?</summary>
+            <p>A human approval gate is a controlled decision point where an accountable reviewer approves, rejects, escalates, or requests changes before a sensitive AI-assisted action proceeds.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why are approval gates necessary for AI agents?</summary>
+            <p>AI agents can recommend or draft actions, but enterprise-impacting execution needs accountable human authority. Approval gates prevent agents from converting uncertain reasoning into ungoverned business-system change.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What evidence should an approver review?</summary>
+            <p>The approver should see the request, agent reasoning summary, source evidence, retrieved context, risk tier, policy decision, affected systems, cost or customer impact, and blocked/allowed next actions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is self-approval risk?</summary>
+            <p>Self-approval risk occurs when the same AI workflow that recommends an action can also approve or execute it. A secure design separates recommendation from approval and approval from execution.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that approval gates are accountability controls. They define who owns high-risk AI decisions and prevent automated workflows from silently crossing business, data, financial, or compliance boundaries.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Human Approval Gate Model</h2>
+          <p>Approval gate design starts with action classification and ends with accountable evidence.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Request</strong>
+                <span>Agent recommends, drafts, submits, or attempts action</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Risk Tier</strong>
+                <span>Classify sensitivity and operational impact</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Package</strong>
+                <span>Reasoning, sources, policy result, affected systems</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Human Reviewer</strong>
+                <span>Accountable role with approval authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Approve / Reject / Escalate</strong>
+                <span>Decision is explicit and recorded</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Self-Approval Blocked</strong>
+                <span>Agent cannot authorize its own action</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Execution Boundary</strong>
+                <span>Only approved next steps may proceed</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Audit Record</strong>
+                <span>Reviewer, evidence, decision, timestamp, next action</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Approval is not a UI button. Approval is accountable authority plus evidence.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI inventory workflow recommends a supplier reorder after detecting store-level demand risk. The agent may draft the recommendation, but cannot approve or execute the purchase order.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Agent recommendation</strong>
+              <span>Reorder inventory for affected stores based on demand and stockout signals.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Approval evidence</strong>
+              <span>Risk tier, affected stores, cost estimate, source data, policy result, and recommended next action.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Blocked behavior</strong>
+              <span>Agent cannot approve its own recommendation, create a purchase order, or mutate supplier workflow.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Human decision</strong>
+              <span>Reviewer may approve, reject, escalate, or request changes with evidence recorded.</span>
+            </div>
+          </div>
+
+          <pre><code>AI recommendation:
+
+Create replenishment plan for STORE-1042.
+
+Gate result:
+Human approval required.
+
+Approver must review:
+
+inventory signal
+demand source
+supplier impact
+cost estimate
+policy decision
+risk tier
+
+Blocked:
+Agent self-approval.
+Autonomous purchase order creation.
+Runtime mutation without accountable approval.
+
+Evidence:
+Reviewer, decision, reason, source context, timestamp, allowed next action.</code></pre>
+        </section>
+
+        <section id="source" class="lab-panel">
+          <h2>Detailed Study Source</h2>
+          <p>For deeper implementation study, review the source repository for the Family Dollar AI Governance Platform Lab.</p>
+          <p><a class="lab-link" href="https://github.com/S3curethecloud/family-dollar-ai-governance-platform-lab.git" target="_blank" rel="noopener noreferrer">Open detailed implementation repo →</a></p>
+          <pre><code>Detailed source = Family Dollar AI Governance Platform Lab
+
+Reusable concept = SecureTheCloud AI Governance Command Center
+Boundary = case study / lab, not live production deployment</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not execute approval workflows, call enterprise APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live approval execution = false
+Enterprise API mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

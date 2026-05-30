@@ -564,3 +564,16 @@ Live retrieval execution: false.
 Enterprise data access: false.
 Production enforcement claim: false.
 
+## Human Approval Gate Design L2 LAB
+
+```text
+Lab: Human Approval Gate Design
+Track: AI Governance Command Center
+Level: Intermediate / L2
+Purpose: Teach how human approval gates prevent AI agents, tool-use, prompt injection, and retrieval risk from becoming ungoverned enterprise execution.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live approval execution: false.
+Enterprise API mutation: false.
+Production enforcement claim: false.
+
