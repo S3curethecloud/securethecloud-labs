@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "prompt-boundary-engineering",
+      "title": "Prompt Boundary Engineering",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/prompt-boundary-engineering/",
+      "summary": "Intermediate LAB teaching how to engineer prompt boundaries by separating trusted instructions from untrusted user input, retrieved content, tool output, and model-generated recommendations."
+    },
+    {
       "id": "secure-ai-application-architecture",
       "title": "Secure AI Application Architecture",
       "cloud": "ai-security-engineering",
@@ -700,7 +711,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 2,
+      "implemented_modules": 3,
       "planned_modules": 9
     }
   ]

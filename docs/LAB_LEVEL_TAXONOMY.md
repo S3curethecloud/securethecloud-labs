@@ -634,3 +634,18 @@ Live retrieval execution: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Prompt Boundary Engineering L2 LAB
+
+```text
+Lab: Prompt Boundary Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach prompt boundary engineering by separating trusted instructions from untrusted user input, retrieved content, tool output, and model-generated recommendations.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

@@ -1,0 +1,17 @@
+{
+  "id": "prompt-boundary-engineering",
+  "title": "Prompt Boundary Engineering",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/prompt-boundary-engineering/",
+  "summary": "Intermediate LAB teaching how to engineer prompt boundaries by separating trusted instructions from untrusted user input, retrieved content, tool output, and model-generated recommendations.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}
