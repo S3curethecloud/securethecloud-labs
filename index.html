@@ -408,7 +408,375 @@
         font-size: clamp(2.25rem, 15vw, 4rem);
       }
     }
-  </style>
+  
+/* Phase 91 — Labs Homepage UX + Enterprise Footer Polish */
+.phase91-ai-security-section {
+  margin: 2.5rem auto 2rem;
+  max-width: 1320px;
+  padding: 0 1.5rem;
+}
+
+.phase91-ai-security-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: clamp(2rem, 4vw, 4.25rem);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 82% 38%, rgba(14, 165, 233, 0.20), transparent 34%),
+    radial-gradient(circle at 18% 12%, rgba(250, 204, 21, 0.08), transparent 30%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.42);
+}
+
+.phase91-ai-security-card::after {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #6366f1, #db2777, #f59e0b);
+  opacity: 0.85;
+}
+
+.phase91-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.2rem;
+  color: #fbbf24;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.phase91-eyebrow span:first-child {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  border-radius: 0.75rem;
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.phase91-ai-security-card h2 {
+  margin: 0;
+  max-width: 720px;
+  color: #f8fafc;
+  font-size: clamp(2.35rem, 5.8vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.07em;
+}
+
+.phase91-ai-security-copy {
+  max-width: 760px;
+  margin: 1.35rem 0 0;
+  color: #cbd5e1;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.phase91-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin: 1.65rem 0 0;
+}
+
+.phase91-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.phase91-pill-blue {
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  background: rgba(8, 145, 178, 0.12);
+}
+
+.phase91-pill-gold {
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.52);
+  background: rgba(180, 83, 9, 0.10);
+}
+
+.phase91-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem 1.35rem;
+  min-width: 280px;
+  border-radius: 1rem;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.32);
+}
+
+.phase91-visual {
+  position: relative;
+  min-height: 310px;
+  display: grid;
+  place-items: center;
+}
+
+.phase91-visual-orbit {
+  position: absolute;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 45%),
+    conic-gradient(from 90deg, transparent, rgba(56, 189, 248, 0.25), transparent, rgba(251, 191, 36, 0.22), transparent);
+  filter: blur(2px);
+  opacity: 0.9;
+}
+
+.phase91-shield {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 12rem;
+  height: 14rem;
+  color: #38bdf8;
+  border: 2px solid rgba(56, 189, 248, 0.65);
+  clip-path: polygon(50% 0, 88% 15%, 82% 68%, 50% 100%, 18% 68%, 12% 15%);
+  background:
+    linear-gradient(145deg, rgba(14, 165, 233, 0.24), rgba(15, 23, 42, 0.92)),
+    radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.35), transparent 48%);
+  box-shadow: 0 0 44px rgba(14, 165, 233, 0.45);
+  font-size: 3rem;
+  font-weight: 950;
+}
+
+.phase91-feature-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  max-width: 1320px;
+  margin: 1.2rem auto 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.92));
+}
+
+.phase91-feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1rem 1.3rem;
+  border-right: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.phase91-feature:last-child {
+  border-right: 0;
+}
+
+.phase91-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: rgba(14, 165, 233, 0.08);
+  font-weight: 900;
+}
+
+.phase91-feature h3 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.phase91-feature p {
+  margin: 0.35rem 0 0;
+  color: #94a3b8;
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.stc-footer {
+  margin-top: 3rem;
+  border-top: 1px solid rgba(56, 189, 248, 0.16);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.98));
+}
+
+.stc-footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2.2rem;
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr 1fr 0.95fr;
+  gap: 2rem;
+}
+
+.stc-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #f8fafc;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.stc-footer-mark {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 1rem;
+  color: #fbbf24;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(14, 165, 233, 0.08);
+}
+
+.stc-footer-description {
+  max-width: 340px;
+  margin: 1rem 0 0;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+.stc-footer-column {
+  border-left: 1px solid rgba(148, 163, 184, 0.14);
+  padding-left: 1.8rem;
+}
+
+.stc-footer-column h3 {
+  margin: 0 0 1rem;
+  color: #fbbf24;
+  font-size: 0.82rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.stc-footer-list {
+  display: grid;
+  gap: 0.82rem;
+}
+
+.stc-footer a,
+.stc-footer-list span {
+  color: #dbeafe;
+  text-decoration: none;
+}
+
+.stc-footer a:hover {
+  color: #38bdf8;
+}
+
+.stc-footer-small {
+  display: block;
+  margin-top: 0.15rem;
+  color: #38bdf8;
+  font-size: 0.85rem;
+}
+
+.stc-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #dbeafe;
+}
+
+.stc-trust-icon {
+  color: #fbbf24;
+  font-weight: 900;
+}
+
+.stc-footer-bottom {
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.stc-footer-bottom-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #94a3b8;
+  font-size: 0.88rem;
+}
+
+.stc-footer-bottom-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.stc-footer-dot {
+  color: #fbbf24;
+}
+
+@media (max-width: 980px) {
+  .phase91-ai-security-card {
+    grid-template-columns: 1fr;
+  }
+
+  .phase91-visual {
+    min-height: 220px;
+  }
+
+  .phase91-feature-strip,
+  .stc-footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .phase91-feature:nth-child(2) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .phase91-ai-security-section {
+    padding: 0 1rem;
+  }
+
+  .phase91-ai-security-card {
+    padding: 1.5rem;
+  }
+
+  .phase91-feature-strip,
+  .stc-footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .phase91-feature,
+  .stc-footer-column {
+    border-right: 0;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .stc-footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="site-shell">
@@ -890,21 +1258,117 @@
       });
     });
   </script>
+
+<!-- Phase 91 Labs Homepage UX and Footer Polish -->
+<section class="phase91-ai-security-section" id="ai-security-engineering-preview">
+  <div class="phase91-ai-security-card">
+    <div>
+      <p class="phase91-eyebrow"><span>▣</span> Planned Learning Path</p>
+      <h2>AI Security Engineering L2 Track</h2>
+      <p class="phase91-ai-security-copy">A planned SecureTheCloud Labs intermediate track for secure AI system engineering: prompt boundaries, tool permissions, retrieval controls, runtime guardrails, abuse controls, testing harnesses, and evidence packages.</p>
+
+      <div class="phase91-pill-row">
+        <span class="phase91-pill phase91-pill-blue">◇ AI Security Engineering Intermediate</span>
+        <span class="phase91-pill phase91-pill-gold">▣ L2 Track • No backend exposure</span>
+      </div>
+
+      <a class="phase91-cta" href="/tracks/ai-security-engineering/">Open AI Security Engineering Track →</a>
+    </div>
+
+    <div class="phase91-visual" aria-hidden="true">
+      <div class="phase91-visual-orbit"></div>
+      <div class="phase91-shield">AI</div>
+    </div>
+  </div>
+</section>
+
+<section class="phase91-feature-strip" aria-label="SecureTheCloud Labs principles">
+  <div class="phase91-feature">
+    <div class="phase91-feature-icon">✓</div>
+    <div>
+      <h3>Practical & Hands-On</h3>
+      <p>Real-world labs and exercises that build production-ready security skills.</p>
+    </div>
+  </div>
+  <div class="phase91-feature">
+    <div class="phase91-feature-icon">▤</div>
+    <div>
+      <h3>Structured Learning</h3>
+      <p>Planned learning paths that progress from foundational to advanced.</p>
+    </div>
+  </div>
+  <div class="phase91-feature">
+    <div class="phase91-feature-icon">☁</div>
+    <div>
+      <h3>Cloud-Native Focus</h3>
+      <p>Security and governance practices for modern cloud and AI systems.</p>
+    </div>
+  </div>
+  <div class="phase91-feature">
+    <div class="phase91-feature-icon">⌂</div>
+    <div>
+      <h3>Trust & Boundaries</h3>
+      <p>Education-first platform with no backend exposure and no live enforcement.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="stc-footer" aria-label="SecureTheCloud Labs footer">
+  <div class="stc-footer-inner">
+    <div>
+      <div class="stc-footer-brand">
+        <span class="stc-footer-mark">◇</span>
+        <span>SecureTheCloud<br><small style="color:#fbbf24;letter-spacing:.18em;">LABS</small></span>
+      </div>
+      <p class="stc-footer-description">SecureTheCloud delivers practical cloud security learning, AI governance education, and architecture-focused labs for real enterprise decisions.</p>
+    </div>
+
+    <div class="stc-footer-column">
+      <h3>Platform</h3>
+      <div class="stc-footer-list">
+        <a href="https://securethecloud.dev/">Website</a>
+        <a href="/">Labs</a>
+        <a href="#learning-paths">Learning Paths</a>
+        <a href="/tracks/ai-governance-command-center/">AI Governance</a>
+      </div>
+    </div>
+
+    <div class="stc-footer-column">
+      <h3>Connect</h3>
+      <div class="stc-footer-list">
+        <span>Website <small class="stc-footer-small">securethecloud.dev</small></span>
+        <span>LinkedIn <small class="stc-footer-small">linkedin.com/company/113012228</small></span>
+        <span>YouTube <small class="stc-footer-small">@SecureTheCloud-dev</small></span>
+      </div>
+    </div>
+
+    <div class="stc-footer-column">
+      <h3>Trust & Boundary</h3>
+      <div class="stc-footer-list">
+        <span class="stc-trust-item"><span class="stc-trust-icon">◇</span> Educational content only</span>
+        <span class="stc-trust-item"><span class="stc-trust-icon">◇</span> No backend exposure</span>
+        <span class="stc-trust-item"><span class="stc-trust-icon">◇</span> No live enforcement</span>
+        <span class="stc-trust-item"><span class="stc-trust-icon">◇</span> No runtime mutation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stc-footer-bottom">
+    <div class="stc-footer-bottom-inner">
+      <span>© 2026 SecureTheCloud. All rights reserved.</span>
+      <span>Educational labs. No production systems. No customer data.</span>
+      <span class="stc-footer-bottom-links">
+        <a href="https://securethecloud.dev/">Privacy Policy</a>
+        <span class="stc-footer-dot">•</span>
+        <a href="https://securethecloud.dev/">Terms of Service</a>
+        <span class="stc-footer-dot">•</span>
+        <a href="https://securethecloud.dev/">Responsible Disclosure</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
 
 
-<!-- Phase 88 AI Security Engineering Track Shell -->
-<section class="lab-section">
-  <p class="lab-hero-kicker">Planned Engineering Path</p>
-  <h2>AI Security Engineering L2 Track</h2>
-  <p>A planned SecureTheCloud Labs intermediate track for secure AI system engineering: prompt boundaries, tool permissions, retrieval controls, runtime guardrails, abuse controls, testing harnesses, and evidence packages.</p>
-  <div class="pill-row">
-    <span class="pill">AI Security</span>
-    <span class="pill">Engineering</span>
-    <span class="pill">Intermediate / L2</span>
-    <span class="pill">Track shell</span>
-    <span class="pill">No backend exposure</span>
-  </div>
-  <a href="/tracks/ai-security-engineering/" class="lab-link">Open AI Security Engineering Track →</a>
-</section>
