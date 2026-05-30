@@ -1,0 +1,14 @@
+{
+  "id": "ai-governance-policy-gates-human-approval",
+  "title": "Policy Gates and Human Approval",
+  "cloud": "AI Governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "AI Governance Command Center",
+  "path": "/labs/ai-governance/policy-gates-human-approval/",
+  "summary": "Learn how policy gates convert AI governance rules into deterministic allow, deny, or approval-required decisions.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "production_enforcement_claim": false
+}

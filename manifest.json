@@ -524,6 +524,82 @@
         "signal_strength": "medium",
         "interview_ready": true
       }
+    },
+    {
+      "id": "ai-governance-command-center-overview",
+      "title": "AI Governance Command Center Overview",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/command-center-overview/",
+      "summary": "Learn how an enterprise AI governance command center connects intake, risk, policy, approvals, evidence, observability, and operational handoff."
+    },
+    {
+      "id": "ai-governance-risk-tiering-and-intake",
+      "title": "Governance Intake and Risk Tiering",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/risk-tiering-and-intake/",
+      "summary": "Learn how intake questions and risk tiers create consistent AI governance triage before a workflow reaches production."
+    },
+    {
+      "id": "ai-governance-policy-gates-human-approval",
+      "title": "Policy Gates and Human Approval",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/policy-gates-human-approval/",
+      "summary": "Learn how policy gates convert AI governance rules into deterministic allow, deny, or approval-required decisions."
+    },
+    {
+      "id": "ai-governance-agent-workflow-governance",
+      "title": "Agent Workflow Governance",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/agent-workflow-governance/",
+      "summary": "Learn how governed agent workflows separate recommendation, approval, and execution boundaries."
+    },
+    {
+      "id": "ai-governance-observability-cost-handoff",
+      "title": "Observability, Cost Controls, and Support Handoff",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/observability-cost-handoff/",
+      "summary": "Learn how traces, cost controls, guardrails, SOPs, and runbooks make AI workflows operable after demo or deployment."
+    },
+    {
+      "id": "ai-governance-executive-demo-boundary",
+      "title": "Executive Demo and Portfolio Boundary",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/executive-demo-boundary/",
+      "summary": "Learn how to present an AI governance command center to executives while preserving case-study, demo, and production boundaries."
+    }
+  ],
+  "tracks": [
+    {
+      "id": "ai-governance-command-center",
+      "title": "AI Governance Command Center Track",
+      "path": "/tracks/ai-governance-command-center/",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "summary": "Guided course for enterprise AI governance command center design."
     }
   ]
 }

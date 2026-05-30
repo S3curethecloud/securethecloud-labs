@@ -517,3 +517,13 @@ Shield finding required: false
 Aegis fixture required: false
 OPA authority preserved: true
 
+## AI Governance Command Center Track
+
+```text
+Track: AI Governance Command Center
+Level: Intermediate / Executive Learning Path
+Purpose: Teach enterprise AI governance command center design using intake, risk tiering, policy gates, human approval, agent workflow governance, observability, support handoff, and executive demo boundaries.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Production enforcement claim: false.
+

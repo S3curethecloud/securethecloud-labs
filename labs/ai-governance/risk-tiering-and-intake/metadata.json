@@ -1,0 +1,14 @@
+{
+  "id": "ai-governance-risk-tiering-and-intake",
+  "title": "Governance Intake and Risk Tiering",
+  "cloud": "AI Governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "AI Governance Command Center",
+  "path": "/labs/ai-governance/risk-tiering-and-intake/",
+  "summary": "Learn how intake questions and risk tiers create consistent AI governance triage before a workflow reaches production.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "production_enforcement_claim": false
+}

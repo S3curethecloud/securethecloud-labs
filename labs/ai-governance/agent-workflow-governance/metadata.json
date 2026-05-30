@@ -1,0 +1,14 @@
+{
+  "id": "ai-governance-agent-workflow-governance",
+  "title": "Agent Workflow Governance",
+  "cloud": "AI Governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "AI Governance Command Center",
+  "path": "/labs/ai-governance/agent-workflow-governance/",
+  "summary": "Learn how governed agent workflows separate recommendation, approval, and execution boundaries.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "production_enforcement_claim": false
+}

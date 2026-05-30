@@ -1,0 +1,14 @@
+{
+  "id": "ai-governance-executive-demo-boundary",
+  "title": "Executive Demo and Portfolio Boundary",
+  "cloud": "AI Governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "AI Governance Command Center",
+  "path": "/labs/ai-governance/executive-demo-boundary/",
+  "summary": "Learn how to present an AI governance command center to executives while preserving case-study, demo, and production boundaries.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "production_enforcement_claim": false
+}
