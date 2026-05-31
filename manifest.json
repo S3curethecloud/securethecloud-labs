@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-abuse-cost-rate-limit-engineering",
+      "title": "AI Abuse, Cost, and Rate Limit Engineering",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/ai-abuse-cost-rate-limit-engineering/",
+      "summary": "Intermediate LAB teaching AI abuse, cost, and rate limit engineering: token budgets, quota controls, repeated attempts, expensive retrieval/tool paths, throttling, denial, and evidence capture."
+    },
+    {
       "id": "ai-runtime-guardrails-failure-mode-engineering",
       "title": "AI Runtime Guardrails and Failure Mode Engineering",
       "cloud": "ai-security-engineering",
@@ -755,7 +766,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 7,
+      "implemented_modules": 8,
       "planned_modules": 9
     }
   ]

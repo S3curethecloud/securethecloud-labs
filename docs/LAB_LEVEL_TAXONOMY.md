@@ -715,3 +715,22 @@ Enterprise data access: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## AI Abuse, Cost, and Rate Limit Engineering L2 LAB
+
+```text
+Lab: AI Abuse, Cost, and Rate Limit Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach AI abuse, cost, and rate limit engineering, including token budgets, quota controls, repeated attempts, expensive retrieval/tool paths, throttling, denial, and evidence capture.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live billing integration: false.
+Live rate-limit enforcement: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Vector database access: false.
+Enterprise data access: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

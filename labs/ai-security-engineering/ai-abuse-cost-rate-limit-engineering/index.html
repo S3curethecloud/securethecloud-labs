@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Abuse, Cost, and Rate Limit Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Abuse and Cost Controls · L2</p>
+      <h1>AI Abuse, Cost, and Rate Limit Engineering</h1>
+      <p>Intermediate LAB teaching AI abuse, cost, and rate limit engineering: token budgets, quota controls, repeated attempts, expensive retrieval/tool paths, throttling, denial, and evidence capture.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to engineer AI abuse and cost resilience so token growth, repeated attempts, expensive retrieval, expensive tool paths, and quota exhaustion are bounded before they create cost, availability, or governance risk.</p>
+
+          <div class="pill-row">
+            <span class="pill">Token budgets</span>
+            <span class="pill">Rate limits</span>
+            <span class="pill">Quota controls</span>
+            <span class="pill">No live billing integration</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI abuse, cost, and rate limit engineering.</p>
+
+          <details class="concept-card" open>
+            <summary>What is AI abuse and cost engineering?</summary>
+            <p>AI abuse and cost engineering is the design of controls that limit excessive, abusive, expensive, or suspicious usage across model calls, retrieval, tools, sessions, tenants, and workflows.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do AI systems need token budgets?</summary>
+            <p>Token budgets prevent prompts, retrieved context, tool output, conversation memory, and generated responses from growing beyond safe cost and performance limits.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is denial-of-wallet?</summary>
+            <p>Denial-of-wallet is an abuse pattern where attackers or runaway workflows trigger expensive model, retrieval, or tool usage to create financial or availability impact.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is rate limit engineering?</summary>
+            <p>Rate limit engineering defines request velocity limits by user, tenant, API key, session, route, workflow, model, tool, and risk tier.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is quota scope?</summary>
+            <p>Quota scope defines how usage is budgeted and capped across tenants, users, roles, providers, workflows, models, and tool classes.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What evidence should be recorded for throttling or denial?</summary>
+            <p>The evidence record should include identity scope, tenant scope, limit key, counters, quota state, token budget, abuse signal, cost class, decision reason, and final outcome.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Abuse, Cost, and Rate Limit Engineering Model</h2>
+          <p>Secure AI cost controls classify usage before expensive work is performed.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Request</strong>
+                <span>User, tenant, session, route, workflow, risk tier</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Token Budget</strong>
+                <span>Input, output, retrieved context, memory, tool output</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Rate Limit Key</strong>
+                <span>User, tenant, API key, route, model, tool</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Quota Check</strong>
+                <span>Daily, monthly, provider, workflow, tenant</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Cost Classifier</strong>
+                <span>Model, retrieval, tool, external API, operational load</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Abuse Signals</strong>
+                <span>Flooding, scraping, repeated denial, bypass attempts</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Decision</strong>
+                <span>Allow, throttle, deny, degrade, escalate</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Counters, quotas, budgets, signals, reason, outcome</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Bounded Response</strong>
+                <span>Safe response, retry guidance, or escalation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Expensive AI work should be budgeted before it starts, not explained after the bill arrives.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A user repeatedly requests broad analysis of large document sets, causing repeated retrieval and expensive model calls.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Token budget</strong>
+              <span>The workflow caps input, retrieved context, output, and memory size.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Rate limit key</strong>
+              <span>The request is counted by tenant, user, route, and workflow.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Cost classifier</strong>
+              <span>Broad retrieval and large model calls are classified as expensive.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Decision evidence</strong>
+              <span>Throttle or deny decisions record counters, quota state, abuse signals, and outcome.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure abuse and cost handling:
+assign token budget
+select rate limit key
+check tenant and workflow quota
+classify retrieval and model cost
+detect repeated attempts
+detect abuse signals
+allow, throttle, deny, degrade, or escalate
+record decision evidence
+
+Result:
+The workflow remains available, bounded, auditable, and cost-aware.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern performs expensive AI work before checking budget, limits, quota, or abuse signals.</p>
+
+          <pre><code>Unsafe pattern:
+
+User or attacker request
+-> repeated prompt attempts
+-> broad retrieval and model calls
+-> expensive tool path
+-> quota exhaustion
+-> degraded availability
+-> weak or missing evidence
+
+Risk:
+
+denial-of-wallet
+runaway model cost
+repeated retrieval load
+provider quota exhaustion
+noisy neighbor impact across tenants
+expensive tool or external API usage
+throttling cannot be explained
+
+Secure alternative:
+Assign token budget.
+Check rate limit key.
+Check quota scope.
+Classify cost path.
+Detect repeated attempts.
+Evaluate abuse signals.
+Throttle, deny, degrade, or escalate.
+Record evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, enforce live rate limits, integrate with billing, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live billing integration = false
+Live rate-limit enforcement = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Vector database access = false
+Enterprise data access = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

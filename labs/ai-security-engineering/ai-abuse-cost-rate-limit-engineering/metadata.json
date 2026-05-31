@@ -1,0 +1,20 @@
+{
+  "id": "ai-abuse-cost-rate-limit-engineering",
+  "title": "AI Abuse, Cost, and Rate Limit Engineering",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/ai-abuse-cost-rate-limit-engineering/",
+  "summary": "Intermediate LAB teaching AI abuse, cost, and rate limit engineering: token budgets, quota controls, repeated attempts, expensive retrieval/tool paths, throttling, denial, and evidence capture.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_billing_integration": false,
+  "live_rate_limit_enforcement": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "provider_quota_mutation": false,
+  "production_enforcement_claim": false
+}
