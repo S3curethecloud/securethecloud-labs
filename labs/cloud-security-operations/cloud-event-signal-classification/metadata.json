@@ -1,0 +1,21 @@
+{
+  "id": "cloud-event-signal-classification",
+  "title": "Cloud Event and Signal Classification",
+  "cloud": "cloud-security-operations",
+  "domain": "cloud-security-operations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "cloud-security-operations",
+  "path": "/labs/cloud-security-operations/cloud-event-signal-classification/",
+  "summary": "Intermediate LAB teaching cloud event and signal classification by source, actor, asset, action, severity, confidence, tenant context, and evidence quality.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "cloud_provider_integration": false,
+  "siem_integration": false,
+  "ticketing_integration": false,
+  "alert_pipeline": false,
+  "customer_data_access": false,
+  "live_detector_execution": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Event and Signal Classification | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Signal Classification · L2</p>
+      <h1>Cloud Event and Signal Classification</h1>
+      <p>Intermediate LAB teaching cloud event and signal classification by source, actor, asset, action, severity, confidence, tenant context, and evidence quality.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to classify cloud security signals before triage, escalation, or incident narrative creation. Classification turns raw events into structured operational evidence.</p>
+
+          <div class="pill-row">
+            <span class="pill">Event source</span>
+            <span class="pill">Actor</span>
+            <span class="pill">Asset</span>
+            <span class="pill">Severity and confidence</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying cloud event and signal classification.</p>
+
+          <details class="concept-card" open>
+            <summary>What is cloud event classification?</summary>
+            <p>Cloud event classification is the process of identifying the source, actor, asset, action, scope, severity, confidence, and evidence quality of a cloud security signal.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why classify before triage?</summary>
+            <p>Triage depends on context. Without classification, the analyst may not know whether the signal is identity-related, workload-related, network-related, configuration-related, expected behavior, noise, or an incident candidate.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is the difference between severity and confidence?</summary>
+            <p>Severity estimates potential impact. Confidence estimates how strongly the evidence supports the interpretation. Both are needed for defensible triage decisions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is evidence quality?</summary>
+            <p>Evidence quality describes whether the analyst has only a raw event, a correlated event set, enriched context, owner confirmation, or reviewer-validated evidence.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does tenant or scope matter?</summary>
+            <p>Tenant or scope identifies which environment, account, project, workload, owner, or business context is affected. This prevents overscoped or underscoped incident narratives.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How does classification improve escalation?</summary>
+            <p>Classification gives the escalation path a clear reason: what happened, what is affected, how severe it may be, how confident the evidence is, and what remains unknown.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Event and Signal Classification Model</h2>
+          <p>A reliable classification model turns raw cloud events into structured triage inputs.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Signal</strong>
+                <span>Audit log, identity log, workload log, network event, detection</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Classify Context</strong>
+                <span>Source, actor, asset, action, tenant, owner</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Assess Risk</strong>
+                <span>Severity, confidence, evidence quality, unknowns</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Compare Behavior</strong>
+                <span>Expected, unusual, policy-violating, suspicious, unknown</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Route Decision</strong>
+                <span>Monitor, investigate, escalate, document, close</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Triage Input</strong>
+                <span>Evidence-backed classification summary</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Classification is the bridge between raw cloud events and defensible triage.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A detection reports a policy change in a production account. The analyst must classify the signal before deciding whether it is expected administration, risky misconfiguration, or suspicious activity.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Source</strong>
+              <span>Cloud audit log shows a policy update event.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Actor and asset</strong>
+              <span>Role, account, policy, affected workload, and owner are identified.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Severity and confidence</strong>
+              <span>Potential impact and evidence confidence are recorded separately.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Triage route</strong>
+              <span>Case is monitored, investigated, escalated, documented, or closed based on evidence.</span>
+            </div>
+          </div>
+
+          <pre><code>Classification handling:
+identify event source
+identify actor and asset
+classify action
+determine tenant or environment scope
+compare against expected behavior
+estimate severity
+assign confidence
+record evidence quality
+identify unknowns
+route to triage
+
+Result:
+The alert becomes a structured security signal with enough context for defensible triage.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak cloud operations pattern copies severity from the alerting tool without validating context, confidence, or evidence quality.</p>
+
+          <pre><code>Unsafe pattern:
+
+Alert fires
+→ no source classification
+→ actor is assumed
+→ asset scope is unclear
+→ severity is copied from the tool
+→ confidence is not recorded
+→ triage decision is weak
+
+Risk:
+
+false escalation
+missed high-risk signals
+weak incident timeline
+poor executive narrative
+no evidence-backed confidence
+confusion between raw alert and validated signal
+
+Secure alternative:
+Classify source.
+Identify actor and asset.
+Separate severity from confidence.
+Record evidence quality.
+Route to triage based on context.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, integrate with SIEM, open tickets, run detectors, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Customer data access = false
+Live detector execution = false
+Cloud provider mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

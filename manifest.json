@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "cloud-event-signal-classification",
+      "title": "Cloud Event and Signal Classification",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/cloud-event-signal-classification/",
+      "summary": "Intermediate LAB teaching cloud event and signal classification by source, actor, asset, action, severity, confidence, tenant context, and evidence quality."
+    },
+    {
       "id": "cloud-security-operations-overview",
       "title": "Cloud Security Operations Overview",
       "cloud": "cloud-security-operations",
@@ -797,7 +808,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 1,
+      "implemented_modules": 2,
       "planned_modules": 9
     }
   ]

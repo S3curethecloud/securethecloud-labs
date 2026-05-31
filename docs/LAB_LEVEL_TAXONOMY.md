@@ -769,3 +769,21 @@ Live detector execution: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Event and Signal Classification L2 LAB
+
+```text
+Lab: Cloud Event and Signal Classification
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach cloud event and signal classification by source, actor, asset, action, severity, confidence, tenant context, and evidence quality.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Customer data access: false.
+Live detector execution: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+
