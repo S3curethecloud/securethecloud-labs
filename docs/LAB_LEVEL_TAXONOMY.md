@@ -890,3 +890,26 @@ Notification execution: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Response Decision and Handoff L2 LAB
+
+```text
+Lab: Cloud Response Decision and Handoff
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach cloud response decisioning and handoff including response options, escalation owners, evidence packages, approval boundaries, containment recommendations, ticket-ready summaries, handoff quality, and non-mutating operational communication.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Live log ingestion: false.
+Customer data access: false.
+Live detector execution: false.
+Live response execution: false.
+Containment execution: false.
+Ticket creation: false.
+Notification execution: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+

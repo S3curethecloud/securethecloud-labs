@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Response Decision and Handoff | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Response Handoff · L2</p>
+      <h1>Cloud Response Decision and Handoff</h1>
+      <p>Intermediate LAB teaching cloud response decisioning and handoff: response options, escalation owners, evidence packages, approval boundaries, containment recommendations, ticket-ready summaries, handoff quality, and non-mutating operational communication.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to turn cloud incident evidence into a response decision and handoff package without executing live response actions.</p>
+
+          <div class="pill-row">
+            <span class="pill">Response options</span>
+            <span class="pill">Approval boundary</span>
+            <span class="pill">Handoff owner</span>
+            <span class="pill">Ticket-ready summary</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying cloud response decisions and handoffs.</p>
+
+          <details class="concept-card" open>
+            <summary>What is a cloud response decision?</summary>
+            <p>A cloud response decision is a bounded recommendation for what should happen next, based on available evidence, risk, confidence, ownership, and approval requirements.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a handoff package?</summary>
+            <p>A handoff package is the reviewer-safe summary sent to the responsible owner or response team. It includes the timeline, evidence anchors, severity, confidence, unknowns, recommended action, and approval boundary.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does ownership matter?</summary>
+            <p>Cloud response often crosses IAM, workload, network, application, legal, compliance, and customer boundaries. The right owner must approve or execute the next action.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why separate recommendation from execution?</summary>
+            <p>Analysts may recommend containment, rotation, isolation, or notification, but execution may require authorization. The handoff must not imply production mutation occurred.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes a handoff ticket-ready?</summary>
+            <p>A ticket-ready handoff includes a clear title, affected scope, owner, evidence summary, severity and confidence, unknowns, requested action, and next review step.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why preserve uncertainty?</summary>
+            <p>Uncertainty helps responders decide whether to enrich, monitor, escalate, contain, or close. Hidden uncertainty can cause overreaction or missed risk.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Response Decision and Handoff Model</h2>
+          <p>A reliable handoff turns evidence into an accountable next action.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Evidence Package</strong>
+                <span>Timeline, sources, actor, action, resource, severity, confidence</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Response Options</strong>
+                <span>Monitor, enrich, escalate, contain, revoke, rotate, isolate, notify</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Approval Boundary</strong>
+                <span>Owner, incident commander, cloud team, app owner, customer reviewer</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Handoff Package</strong>
+                <span>Known facts, unknowns, recommendation, evidence anchors</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Non-Mutating Boundary</strong>
+                <span>No containment execution, no ticket creation, no notifications</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Next Action</strong>
+                <span>Reviewer-safe owner assignment and response recommendation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> A response handoff recommends the next action; it does not pretend the action was executed.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An analyst verifies a suspicious control-plane change and public exposure. The analyst must decide whether to monitor, enrich, escalate, or recommend containment, then prepare a ticket-ready handoff for the appropriate owner.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>Timeline and log sources support the response recommendation.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Decision</strong>
+              <span>Response options are compared against severity, confidence, and impact.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Owner</strong>
+              <span>Cloud owner, application owner, or incident commander is identified.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Handoff</strong>
+              <span>Ticket-ready summary requests review or authorized action without executing mutation.</span>
+            </div>
+          </div>
+
+          <pre><code>Response handoff handling:
+review incident evidence package
+identify affected scope
+compare response options
+assign severity and confidence
+identify accountable owner
+identify approval requirement
+document unknowns
+write ticket-ready summary
+recommend next action without executing mutation
+
+Result:
+The response decision becomes clear, bounded, and ready for the proper owner.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous handoff pattern recommends or implies production-impacting action before evidence, ownership, and approval boundaries are clear.</p>
+
+          <pre><code>Unsafe pattern:
+
+Incident looks risky
+-> analyst recommends containment
+-> owner and approval path are unclear
+-> evidence package is incomplete
+-> impact and confidence are mixed together
+-> handoff implies action was already taken
+
+Risk:
+
+wrong owner receives the handoff
+unauthorized production-impacting action
+weak evidence support
+unclear escalation path
+missed approval requirement
+confusion between recommendation and execution
+
+Secure alternative:
+Review evidence.
+Select response options.
+Identify owner.
+Preserve approval boundary.
+Write bounded recommendation.
+Do not imply live action was executed.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, ingest live logs, integrate with SIEM, open tickets, run detectors, execute response workflows, contain resources, send notifications, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Live log ingestion = false
+Customer data access = false
+Live detector execution = false
+Live response execution = false
+Containment execution = false
+Ticket creation = false
+Notification execution = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

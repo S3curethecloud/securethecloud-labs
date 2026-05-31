@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "cloud-response-decision-handoff",
+      "title": "Cloud Response Decision and Handoff",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/cloud-response-decision-handoff/",
+      "summary": "Intermediate LAB teaching cloud response decisioning and handoff: response options, escalation owners, evidence packages, approval boundaries, containment recommendations, ticket-ready summaries, handoff quality, and non-mutating operational communication."
+    },
+    {
       "id": "cloud-incident-timeline-escalation-narrative",
       "title": "Cloud Incident Timeline and Escalation Narrative",
       "cloud": "cloud-security-operations",
@@ -863,7 +874,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 7,
+      "implemented_modules": 8,
       "planned_modules": 9
     }
   ]
