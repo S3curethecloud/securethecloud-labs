@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Security Testing and Evidence Harness | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Testing and Evidence · L2</p>
+      <h1>AI Security Testing and Evidence Harness</h1>
+      <p>Intermediate LAB teaching AI security testing and evidence harness design: prompt boundary tests, tool permission tests, retrieval tests, output safety checks, runtime guardrail tests, abuse/cost tests, expected outcomes, and audit-ready evidence packages.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design AI security tests that prove controls work across prompt, tool, retrieval, output, runtime, abuse, cost, and evidence boundaries.</p>
+
+          <div class="pill-row">
+            <span class="pill">Security testing</span>
+            <span class="pill">Evidence harness</span>
+            <span class="pill">Negative tests</span>
+            <span class="pill">Audit-ready proof</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI security testing and evidence harness design.</p>
+
+          <details class="concept-card" open>
+            <summary>What is an AI security testing harness?</summary>
+            <p>An AI security testing harness is a structured way to define test cases, expected outcomes, control checks, pass/fail results, and evidence records for AI security boundaries.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do AI controls need negative tests?</summary>
+            <p>Negative tests prove that unsafe, unauthorized, overscoped, or unsupported behavior is blocked. They validate deny paths, refusal behavior, escalation, throttling, and fail-closed outcomes.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be tested in prompt boundaries?</summary>
+            <p>Tests should verify that untrusted user input, retrieved content, and tool output cannot override trusted system or developer instructions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be tested in tool permissions?</summary>
+            <p>Tests should verify tool classification, permission scope, approval requirements, self-approval prevention, deny decisions, and decision evidence.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be tested in retrieval security?</summary>
+            <p>Tests should verify tenant scope, source authority, sensitivity filters, freshness checks, conflict handling, poisoning resistance, and context packaging.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes evidence audit-ready?</summary>
+            <p>Audit-ready evidence explains the input, control boundary, expected outcome, actual decision, reason, final outcome, and reviewer-safe summary without claiming production enforcement.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Security Testing and Evidence Harness Model</h2>
+          <p>A secure testing harness turns AI security controls into repeatable proof.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Test Case</strong>
+                <span>Scenario, input, threat, control boundary</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Expected Outcome</strong>
+                <span>Allow, deny, redact, throttle, escalate, fail closed</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Control Check</strong>
+                <span>Prompt, tool, retrieval, output, runtime, cost</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Negative Test</strong>
+                <span>Unsafe path should be blocked or escalated</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Pass / Fail Result</strong>
+                <span>Compare actual outcome to expected decision</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Input, checks, reason, result, outcome</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Regression Set</strong>
+                <span>Repeatable suite for future changes</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Reviewer Summary</strong>
+                <span>Audit-ready explanation of control behavior</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Governance Package</strong>
+                <span>Safe evidence without production enforcement claims</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Untested AI controls are assumptions; tested controls become evidence.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A test case attempts to make retrieved content override tool permissions and request an unauthorized mutating action.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Threat input</strong>
+              <span>Retrieved content contains an instruction to bypass tool approval.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Expected outcome</strong>
+              <span>Deny unauthorized tool path and preserve tool permission boundary.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Control checks</strong>
+              <span>Prompt boundary, retrieval trust, tool permission, and output policy.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence package</strong>
+              <span>Records input, expected result, actual decision, reason, and reviewer summary.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure test harness handling:
+define scenario and threat condition
+declare expected outcome before review
+validate prompt boundary behavior
+validate retrieval source trust
+validate tool permission denial
+validate output safety response
+record pass/fail outcome
+produce reviewer-safe evidence summary
+
+Result:
+The AI system can prove that retrieved content cannot override tool authorization.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern relies on informal testing or screenshots without structured evidence.</p>
+
+          <pre><code>Unsafe pattern:
+
+AI controls exist
+-> tests are informal or manual
+-> expected outcomes are undefined
+-> failures are not captured
+-> evidence is incomplete
+-> control effectiveness cannot be proven
+
+Risk:
+
+prompt boundary bypass goes unnoticed
+tool permission denials are not regression-tested
+retrieval poisoning controls are assumed, not proven
+output safety failures lack evidence
+runtime and cost controls are not repeatable
+audit reviewer cannot trace the decision path
+
+Secure alternative:
+Define deterministic test cases.
+Declare expected outcomes.
+Run positive and negative tests.
+Record pass/fail evidence.
+Summarize for reviewers.
+Repeat as regression suite.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, query vector databases, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Vector database access = false
+Enterprise data access = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

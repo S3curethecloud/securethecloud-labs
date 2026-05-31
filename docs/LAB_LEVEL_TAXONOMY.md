@@ -734,3 +734,20 @@ Enterprise data access: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## AI Security Testing and Evidence Harness L2 LAB
+
+```text
+Lab: AI Security Testing and Evidence Harness
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach AI security testing and evidence harness design, including prompt boundary tests, tool permission tests, retrieval tests, output safety checks, runtime guardrail tests, abuse/cost tests, expected outcomes, and audit-ready evidence packages.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Vector database access: false.
+Enterprise data access: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

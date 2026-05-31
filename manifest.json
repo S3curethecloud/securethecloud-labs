@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-security-testing-evidence-harness",
+      "title": "AI Security Testing and Evidence Harness",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/ai-security-testing-evidence-harness/",
+      "summary": "Intermediate LAB teaching AI security testing and evidence harness design: prompt boundary tests, tool permission tests, retrieval tests, output safety checks, runtime guardrail tests, abuse/cost tests, expected outcomes, and audit-ready evidence packages."
+    },
+    {
       "id": "ai-abuse-cost-rate-limit-engineering",
       "title": "AI Abuse, Cost, and Rate Limit Engineering",
       "cloud": "ai-security-engineering",
@@ -766,7 +777,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 8,
+      "implemented_modules": 9,
       "planned_modules": 9
     }
   ]
