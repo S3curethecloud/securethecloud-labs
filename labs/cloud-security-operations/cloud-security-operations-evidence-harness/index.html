@@ -46,13 +46,36 @@
       <div class="lab-main-panels">
         <section id="concepts" class="lab-panel">
           <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when building a repeatable Cloud Security Operations evidence harness.</p>
+
           <details class="concept-card" open>
             <summary>What is an evidence harness?</summary>
-            <p>An evidence harness is a repeatable package of claims, sources, fields, timelines, severity, confidence, unknowns, summaries, and handoff artifacts.</p>
+            <p>An evidence harness is a repeatable package of claims, sources, fields, timelines, severity, confidence, unknowns, summaries, and handoff artifacts. It gives reviewers a consistent way to inspect how an analyst moved from signal to conclusion.</p>
           </details>
+
           <details class="concept-card">
             <summary>Why is repeatability important?</summary>
-            <p>Repeatability lets reviewers reproduce the analyst’s reasoning and compare cases consistently.</p>
+            <p>Repeatability lets reviewers reproduce the analyst’s reasoning, compare similar cases, identify missing evidence, and distinguish strong conclusions from weak or unsupported claims.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What belongs in a cloud operations evidence package?</summary>
+            <p>A strong evidence package should include the original signal, detection context, affected identity or workload, source logs, relevant fields, timeline, known facts, unknowns, severity rationale, confidence rationale, escalation decision, executive summary, and response handoff.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How do claims map to sources and fields?</summary>
+            <p>Every claim should map to a source and field. For example, an identity claim may map to an audit event actor field, a network claim may map to a flow record, and a storage claim may map to an object access event. Unmapped claims should be treated as assumptions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should uncertainty and gaps be recorded?</summary>
+            <p>Uncertainty should be explicit. The harness should record missing logs, incomplete retention, ambiguous ownership, unconfirmed impact, conflicting signals, and follow-up evidence needed before stronger conclusions are made.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes an evidence harness portfolio-ready?</summary>
+            <p>A portfolio-ready harness is readable, reproducible, bounded, and reviewer-safe. It shows the signal, evidence trail, reasoning path, timeline, decision, and handoff without implying live production access, enforcement, or unauthorized response execution.</p>
           </details>
         </section>
 
