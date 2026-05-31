@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Incident Timeline and Escalation Narrative | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Incident Timeline · L2</p>
+      <h1>Cloud Incident Timeline and Escalation Narrative</h1>
+      <p>Intermediate LAB teaching cloud incident timeline and escalation narratives: event sequencing, evidence anchors, uncertainty handling, severity and confidence language, reviewer-safe summaries, escalation paths, and bounded incident communication.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to build cloud incident timelines and escalation narratives that are evidence-backed, bounded, and reviewer-safe.</p>
+
+          <div class="pill-row">
+            <span class="pill">Timeline</span>
+            <span class="pill">Evidence anchors</span>
+            <span class="pill">Uncertainty</span>
+            <span class="pill">Escalation narrative</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying incident timelines and escalation narratives.</p>
+
+          <details class="concept-card" open>
+            <summary>What is a cloud incident timeline?</summary>
+            <p>A cloud incident timeline is an ordered sequence of evidence-backed events that explains what happened, when it happened, who or what acted, which resources were affected, and what is still unknown.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do evidence anchors matter?</summary>
+            <p>Evidence anchors connect each timeline claim to a source log, event field, timestamp, actor, resource, request ID, or related context. They make the narrative reviewable.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why separate severity from confidence?</summary>
+            <p>Severity describes possible impact. Confidence describes how strongly the available evidence supports the interpretation. A high-severity situation may still have medium or low confidence.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is bounded escalation language?</summary>
+            <p>Bounded escalation language avoids overstating what is proven. It separates known facts, likely interpretations, unknowns, impact, and recommended action.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why document unknowns?</summary>
+            <p>Unknowns help reviewers understand evidence limits, retention gaps, incomplete context, or follow-up work needed before stronger conclusions can be made.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes an escalation narrative reviewer-safe?</summary>
+            <p>A reviewer-safe narrative can be traced back to evidence, states uncertainty clearly, avoids unsupported compromise claims, and recommends a specific next action.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Incident Timeline Model</h2>
+          <p>A reliable timeline turns scattered events into a reviewable escalation package.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Incident Candidate</strong>
+                <span>Alert, identity event, control-plane change, workload or network signal</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Evidence Anchors</strong>
+                <span>Log source, event, timestamp, actor, action, resource</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Timeline</strong>
+                <span>Before, during, after, related events, gaps, context</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Interpretation</strong>
+                <span>Known facts, likely meaning, impact, unknowns</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Risk Language</strong>
+                <span>Severity, confidence, evidence limits, next checks</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Escalation Narrative</strong>
+                <span>Reviewer-safe summary and recommended response path</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Escalation narratives should be built from evidence first, conclusions second.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An analyst sees a sequence of privileged role assumption, logging configuration change, public exposure update, and network access. The analyst must build a timeline and prepare an escalation summary without overstating compromise.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Timeline</strong>
+              <span>Events are ordered by timestamp and linked to evidence sources.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Facts</strong>
+              <span>Known actor, action, resource, and response values are separated from assumptions.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Unknowns</strong>
+              <span>Missing retention, uncertain owner, and unconfirmed access are documented.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Escalation</strong>
+              <span>The narrative recommends a response owner and next evidence checks.</span>
+            </div>
+          </div>
+
+          <pre><code>Timeline and escalation handling:
+identify incident candidate
+collect event sources
+normalize timestamps
+map actor, action, resource, and response
+correlate identity, control-plane, workload, network, and storage evidence
+document evidence gaps and unknowns
+assign severity and confidence
+write reviewer-safe escalation summary
+recommend next action
+
+Result:
+The incident narrative becomes evidence-backed, bounded, and operationally useful.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous escalation pattern writes the conclusion first and then selectively fits evidence around it.</p>
+
+          <pre><code>Unsafe pattern:
+
+Alert fires
+-> analyst writes a conclusion first
+-> timeline is reconstructed from memory
+-> missing evidence is not disclosed
+-> severity is copied from tooling
+-> confidence is not explained
+-> escalation summary overstates certainty
+
+Risk:
+
+unsupported compromise claim
+weak evidence trail
+poor reviewer trust
+wrong escalation path
+missed unknowns
+bad operational decision
+
+Secure alternative:
+Build from evidence.
+Normalize event order.
+Record gaps.
+Separate severity from confidence.
+Use bounded language.
+Recommend the next evidence-backed action.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, ingest live logs, integrate with SIEM, open tickets, run detectors, execute incident workflows, send notifications, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Live log ingestion = false
+Customer data access = false
+Live detector execution = false
+Incident workflow execution = false
+Notification execution = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

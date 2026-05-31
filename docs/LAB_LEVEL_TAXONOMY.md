@@ -869,3 +869,24 @@ Cloud provider mutation: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Incident Timeline and Escalation Narrative L2 LAB
+
+```text
+Lab: Cloud Incident Timeline and Escalation Narrative
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach cloud incident timelines and escalation narratives including event sequencing, evidence anchors, uncertainty handling, severity and confidence language, reviewer-safe summaries, escalation paths, and bounded incident communication.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Live log ingestion: false.
+Customer data access: false.
+Live detector execution: false.
+Incident workflow execution: false.
+Notification execution: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+

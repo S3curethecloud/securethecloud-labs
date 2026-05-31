@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "cloud-incident-timeline-escalation-narrative",
+      "title": "Cloud Incident Timeline and Escalation Narrative",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/cloud-incident-timeline-escalation-narrative/",
+      "summary": "Intermediate LAB teaching cloud incident timeline and escalation narratives: event sequencing, evidence anchors, uncertainty handling, severity and confidence language, reviewer-safe summaries, escalation paths, and bounded incident communication."
+    },
+    {
       "id": "cloud-log-source-evidence-mapping",
       "title": "Cloud Log Source and Evidence Mapping",
       "cloud": "cloud-security-operations",
@@ -852,7 +863,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 6,
+      "implemented_modules": 7,
       "planned_modules": 9
     }
   ]
