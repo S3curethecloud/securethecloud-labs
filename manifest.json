@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "retrieval-security-engineering",
+      "title": "Retrieval Security Engineering",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/retrieval-security-engineering/",
+      "summary": "Intermediate LAB teaching secure retrieval engineering for AI systems: source authority, tenant scope, sensitivity, freshness, retrieval poisoning resistance, context packaging, and evidence capture."
+    },
+    {
       "id": "tool-permission-engineering",
       "title": "Tool Permission Engineering",
       "cloud": "ai-security-engineering",
@@ -722,7 +733,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 4,
+      "implemented_modules": 5,
       "planned_modules": 9
     }
   ]

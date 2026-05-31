@@ -664,3 +664,20 @@ Live retrieval execution: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Retrieval Security Engineering L2 LAB
+
+```text
+Lab: Retrieval Security Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach secure retrieval engineering for AI systems, including source authority, tenant scope, sensitivity, freshness, retrieval poisoning resistance, context packaging, and evidence capture.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Vector database access: false.
+Enterprise data access: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

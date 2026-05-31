@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retrieval Security Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Retrieval Security · L2</p>
+      <h1>Retrieval Security Engineering</h1>
+      <p>Intermediate LAB teaching secure retrieval engineering for AI systems: source authority, tenant scope, sensitivity, freshness, retrieval poisoning resistance, context packaging, and evidence capture.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to secure retrieval in AI systems so enterprise knowledge can support reasoning without becoming untrusted instruction, cross-tenant leakage, stale authority, or poisoned context.</p>
+
+          <div class="pill-row">
+            <span class="pill">Retrieval security</span>
+            <span class="pill">Source authority</span>
+            <span class="pill">Tenant scope</span>
+            <span class="pill">No live retrieval</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying secure retrieval engineering.</p>
+
+          <details class="concept-card" open>
+            <summary>What is retrieval security engineering?</summary>
+            <p>Retrieval security engineering is the design of controls that govern what information an AI system can retrieve, how that information is scoped, how authority is ranked, and how retrieved content is packaged for model reasoning.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why is retrieved content not instruction authority?</summary>
+            <p>Retrieved content may be stale, poisoned, user-controlled, tenant-scoped, conflicting, or sensitive. It should inform reasoning, but it should not override system instructions, policy, approval, or tool permissions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is source authority?</summary>
+            <p>Source authority defines whether a retrieved source is trusted enough to support a decision. Approved policy, governed evidence, and systems-of-record should outrank unverified notes or user-uploaded files.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is tenant scope?</summary>
+            <p>Tenant scope prevents retrieval from crossing customer, business unit, environment, or workflow boundaries. It protects against accidental context leakage and unauthorized data mixing.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is retrieval poisoning?</summary>
+            <p>Retrieval poisoning occurs when hostile or manipulated content is placed where retrieval systems may fetch it, causing the AI workflow to follow malicious instructions, expose data, or request unsafe tools.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should happen when retrieval authority is unclear?</summary>
+            <p>The workflow should fail closed, reduce context, escalate, or require human review. It should not use unclear or low-authority retrieved content to justify sensitive action.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Retrieval Security Engineering Model</h2>
+          <p>Secure retrieval ranks and filters context before the model sees it.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>User Request</strong>
+                <span>Untrusted intent or workflow request</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Retrieval Intent</strong>
+                <span>Define why retrieval is needed</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Tenant Scope</strong>
+                <span>Limit by tenant, role, workflow, environment</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Source Authority</strong>
+                <span>Policy, evidence, system-of-record, untrusted</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Sensitivity Filter</strong>
+                <span>Confidential, regulated, identity, financial, security</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Freshness Check</strong>
+                <span>Version, date, current policy, conflict state</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Poisoning Check</strong>
+                <span>Hidden directives, override text, suspicious content</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Context Packaging</strong>
+                <span>Context only, not instruction authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Query, source, authority, scope, sensitivity, outcome</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Retrieval can support reasoning, but source authority and policy decide whether it can support action.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI workflow retrieves a policy document, store incident note, and user-uploaded memo while analyzing an operational exception.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Policy document</strong>
+              <span>High authority if approved, current, and in scope.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Store incident note</strong>
+              <span>Tenant-scoped and sensitivity-checked before use.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>User-uploaded memo</strong>
+              <span>Untrusted context and scanned for injection or poisoning.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence record</strong>
+              <span>Stores query intent, sources, authority, sensitivity, freshness, and final context package.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure retrieval handling:
+classify retrieval intent
+scope query by tenant and workflow
+rank approved policy above notes and uploads
+check sensitivity before context packaging
+detect poisoned or hostile instructions
+mark retrieved text as context only
+preserve source evidence
+escalate if authority or scope is unclear
+
+Result:
+The AI can reason over governed context, but retrieved content cannot become instruction or execution authority.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern retrieves broad content and injects it into the prompt without source authority, scope, or poisoning checks.</p>
+
+          <pre><code>Unsafe pattern:
+
+User request
+→ broad vector search
+→ mixed trusted and untrusted content
+→ retrieved text injected into prompt
+→ model treats retrieval as authority
+→ unsafe recommendation or tool request
+
+Risk:
+
+cross-tenant data leakage
+stale policy overrides current policy
+user-uploaded content manipulates model behavior
+poisoned retrieval causes unsafe tool selection
+sensitivity is exposed to the model unnecessarily
+evidence does not prove source authority
+
+Secure alternative:
+Classify retrieval intent.
+Scope by tenant and workflow.
+Filter sensitivity.
+Rank source authority.
+Check freshness and conflict state.
+Detect poisoning.
+Package retrieved content as context only.
+Record source evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, query vector databases, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Vector database access = false
+Enterprise data access = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
