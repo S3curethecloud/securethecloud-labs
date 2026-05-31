@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Security Operations Evidence Harness | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Evidence Harness · L2</p>
+      <h1>Cloud Security Operations Evidence Harness</h1>
+      <p>Create repeatable evidence packages for detection, triage, escalation, executive summaries, and portfolio-ready response artifacts.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Evidence Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Evidence Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <details class="concept-card" open>
+            <summary>What is an evidence harness?</summary>
+            <p>An evidence harness is a repeatable package of claims, sources, fields, timelines, severity, confidence, unknowns, summaries, and handoff artifacts.</p>
+          </details>
+          <details class="concept-card">
+            <summary>Why is repeatability important?</summary>
+            <p>Repeatability lets reviewers reproduce the analyst’s reasoning and compare cases consistently.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Security Operations Evidence Harness Model</h2>
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node"><strong>Detection</strong><span>Signal, rule, source, reason</span></div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision"><strong>Triage</strong><span>Identity, workload, network, evidence map</span></div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node"><strong>Evidence Package</strong><span>Timeline, summary, handoff, portfolio artifact</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Evidence Scenario</h2>
+          <pre><code>Evidence harness output:
+- signal classification
+- detection rule reasoning
+- false positive review
+- identity and workload context
+- timeline
+- evidence map
+- executive security summary
+- response handoff
+- portfolio-ready artifact</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <pre><code>Unsafe pattern:
+Analyst writes a one-off summary
+-> sources are missing
+-> timeline is incomplete
+-> false positive reasoning is undocumented
+-> executive summary overstates certainty
+-> handoff is not reproducible
+
+Secure alternative:
+Use a repeatable harness.
+Map every claim to evidence.
+Record unknowns.
+Produce reviewer-safe artifacts.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Live log ingestion = false
+Customer data access = false
+Live detector execution = false
+Live incident simulation = false
+Live response execution = false
+Containment execution = false
+Ticket creation = false
+Notification execution = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

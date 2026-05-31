@@ -1,0 +1,23 @@
+{
+  "id": "executive-security-summary",
+  "title": "Executive Security Summary",
+  "cloud": "cloud-security-operations",
+  "domain": "cloud-security-operations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "cloud-security-operations",
+  "path": "/labs/cloud-security-operations/executive-security-summary/",
+  "summary": "Intermediate LAB teaching executive security summaries that convert operational evidence into concise, bounded, non-overstated leadership-ready communication.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "cloud_provider_integration": false,
+  "siem_integration": false,
+  "ticketing_integration": false,
+  "alert_pipeline": false,
+  "live_log_ingestion": false,
+  "customer_data_access": false,
+  "live_detector_execution": false,
+  "notification_execution": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}

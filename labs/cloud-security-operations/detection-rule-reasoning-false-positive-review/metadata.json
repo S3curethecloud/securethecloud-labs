@@ -1,0 +1,23 @@
+{
+  "id": "detection-rule-reasoning-false-positive-review",
+  "title": "Detection Rule Reasoning and False Positive Review",
+  "cloud": "cloud-security-operations",
+  "domain": "cloud-security-operations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "cloud-security-operations",
+  "path": "/labs/cloud-security-operations/detection-rule-reasoning-false-positive-review/",
+  "summary": "Intermediate LAB teaching detection rule reasoning, false positive review, false negative risk, tuning thresholds, evidence quality, and safe detection explanations.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "cloud_provider_integration": false,
+  "siem_integration": false,
+  "ticketing_integration": false,
+  "alert_pipeline": false,
+  "live_log_ingestion": false,
+  "customer_data_access": false,
+  "live_detector_execution": false,
+  "rule_mutation": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}
