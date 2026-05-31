@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "cloud-control-plane-incident-evidence",
+      "title": "Cloud Control-Plane Incident Evidence",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/cloud-control-plane-incident-evidence/",
+      "summary": "Intermediate LAB teaching cloud control-plane incident evidence: administrative API calls, resource changes, policy edits, actor/action/resource timelines, evidence quality, escalation, and bounded incident narratives."
+    },
+    {
       "id": "workload-network-signal-triage",
       "title": "Workload and Network Signal Triage",
       "cloud": "cloud-security-operations",
@@ -830,7 +841,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 4,
+      "implemented_modules": 5,
       "planned_modules": 9
     }
   ]

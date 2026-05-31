@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Control-Plane Incident Evidence | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Control-Plane Evidence · L2</p>
+      <h1>Cloud Control-Plane Incident Evidence</h1>
+      <p>Intermediate LAB teaching cloud control-plane incident evidence: administrative API calls, resource changes, policy edits, actor/action/resource timelines, evidence quality, escalation, and bounded incident narratives.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to collect and explain cloud control-plane incident evidence by reviewing actor, source, action, resource, request parameters, related events, timeline, confidence, impact, and escalation path.</p>
+
+          <div class="pill-row">
+            <span class="pill">API calls</span>
+            <span class="pill">Resource changes</span>
+            <span class="pill">Incident timeline</span>
+            <span class="pill">Evidence package</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying cloud control-plane incident evidence.</p>
+
+          <details class="concept-card" open>
+            <summary>What is cloud control-plane incident evidence?</summary>
+            <p>Cloud control-plane incident evidence is the structured record of administrative actions, resource changes, request parameters, actors, source context, timelines, and related events used to explain a possible cloud security incident.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does the control plane matter?</summary>
+            <p>The control plane is where identities create, modify, expose, delete, and configure cloud resources. A suspicious control-plane action can indicate misconfiguration, privilege misuse, unauthorized change, or an incident candidate.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes API request parameters important?</summary>
+            <p>Request parameters show what the action attempted to change. They can explain whether a resource was exposed, a policy was expanded, logging was disabled, or a security control was weakened.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why correlate related events?</summary>
+            <p>Control-plane evidence is stronger when related identity, workload, network, policy, and logging events support the same timeline or explain the change path.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a control-plane incident timeline?</summary>
+            <p>A timeline sequences the actor, action, resource, source, request, response, and related events so reviewers can understand what happened and what decision is justified.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why must the narrative be bounded?</summary>
+            <p>Control-plane evidence can suggest risk without proving compromise. A safe narrative separates known facts, assumptions, unknowns, severity, confidence, and recommended next steps.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Control-Plane Evidence Model</h2>
+          <p>A reliable evidence workflow turns administrative events into reviewer-safe incident narratives.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Control-Plane Event</strong>
+                <span>Administrative API call, resource change, policy edit, logging update</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Classify Action</strong>
+                <span>Actor, source, session, API action, resource, request parameters</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Correlate Evidence</strong>
+                <span>Identity, workload, network, policy, logging, owner context</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Build Timeline</strong>
+                <span>Before, during, after, related events, expected change path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Estimate Impact</strong>
+                <span>Severity, confidence, evidence quality, unknowns</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Incident Evidence Package</strong>
+                <span>Known facts, timeline, evidence, recommended escalation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Control-plane incidents require evidence that explains actor, action, resource, timeline, impact, and uncertainty.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A logging trail is modified shortly after a privileged role is assumed. The analyst must determine whether this is approved administration, misconfiguration, suspicious control-plane activity, or an incident candidate.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Actor</strong>
+              <span>Identity, role, source, session, and authentication context are identified.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Action</strong>
+              <span>Administrative API call, request parameters, and response status are reviewed.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Timeline</strong>
+              <span>Related identity, logging, policy, workload, and network events are correlated.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence Package</strong>
+              <span>Reviewer-safe summary separates known facts, impact, uncertainty, and next action.</span>
+            </div>
+          </div>
+
+          <pre><code>Control-plane evidence handling:
+identify event source
+identify actor, source, and session context
+classify API action
+identify affected resource
+inspect request parameters and response status
+correlate related identity, workload, network, policy, and logging events
+compare against approved change or expected behavior
+estimate severity and confidence
+build timeline
+escalate with bounded language
+
+Result:
+The control-plane event becomes an evidence-backed incident candidate or documented operational change.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous control-plane evidence pattern treats a single administrative event as confirmed compromise without correlating actor, source, parameters, timeline, and expected change context.</p>
+
+          <pre><code>Unsafe pattern:
+
+Control-plane alert fires
+-> analyst assumes incident
+-> actor context is not verified
+-> resource impact is unclear
+-> related events are not correlated
+-> request parameters are ignored
+-> escalation summary overstates certainty
+
+Risk:
+
+false incident declaration
+missed unauthorized control-plane change
+weak evidence trail
+incomplete timeline
+inaccurate executive summary
+confusion between suspicious administration and confirmed compromise
+
+Secure alternative:
+Classify API action.
+Identify actor, source, session, and resource.
+Inspect request parameters.
+Correlate related events.
+Build a timeline.
+Record confidence and unknowns.
+Escalate with bounded evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, integrate with SIEM, open tickets, run detectors, mutate the control plane, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Customer data access = false
+Live detector execution = false
+Control-plane mutation = false
+Cloud provider mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

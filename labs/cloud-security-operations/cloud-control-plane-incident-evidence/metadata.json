@@ -1,0 +1,23 @@
+{
+  "id": "cloud-control-plane-incident-evidence",
+  "title": "Cloud Control-Plane Incident Evidence",
+  "cloud": "cloud-security-operations",
+  "domain": "cloud-security-operations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "cloud-security-operations",
+  "path": "/labs/cloud-security-operations/cloud-control-plane-incident-evidence/",
+  "summary": "Intermediate LAB teaching cloud control-plane incident evidence: administrative API calls, resource changes, policy edits, actor/action/resource timelines, evidence quality, escalation, and bounded incident narratives.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "cloud_provider_integration": false,
+  "siem_integration": false,
+  "ticketing_integration": false,
+  "alert_pipeline": false,
+  "customer_data_access": false,
+  "live_detector_execution": false,
+  "control_plane_mutation": false,
+  "cloud_provider_mutation": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}

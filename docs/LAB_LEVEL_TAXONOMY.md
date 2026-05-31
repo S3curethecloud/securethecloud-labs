@@ -828,3 +828,23 @@ Cloud provider mutation: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Control-Plane Incident Evidence L2 LAB
+
+```text
+Lab: Cloud Control-Plane Incident Evidence
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach cloud control-plane incident evidence including administrative API calls, resource changes, policy edits, actor/action/resource timelines, evidence quality, escalation, and bounded incident narratives.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Customer data access: false.
+Live detector execution: false.
+Control-plane mutation: false.
+Cloud provider mutation: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+
