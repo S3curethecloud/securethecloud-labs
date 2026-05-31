@@ -1562,7 +1562,7 @@
 
   <script>
     const search = document.getElementById("labSearch");
-    const cards = Array.from(document.querySelectorAll(".lab-card"));
+    const cards = Array.from(document.querySelectorAll("#labGrid .lab-card"));
     const buttons = Array.from(document.querySelectorAll(".filter-button"));
     const empty = document.getElementById("emptyState");
     let activeFilter = "all";
@@ -1572,8 +1572,10 @@
       let visible = 0;
 
       cards.forEach((card) => {
-        const matchesSearch = !query || card.dataset.search.includes(query);
-        const matchesFilter = activeFilter === "all" || card.dataset.cloud === activeFilter;
+        const searchableText = (card.dataset.search || "").toLowerCase();
+        const cardCloud = card.dataset.cloud || "";
+        const matchesSearch = !query || searchableText.includes(query);
+        const matchesFilter = activeFilter === "all" || cardCloud === activeFilter;
         const show = matchesSearch && matchesFilter;
         card.style.display = show ? "" : "none";
         if (show) visible += 1;
