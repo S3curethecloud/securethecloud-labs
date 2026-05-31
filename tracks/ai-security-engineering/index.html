@@ -26,7 +26,7 @@
       <p class="mobile-study-menu-title">Track Menu</p>
       <nav>
         <a href="#start">Start Here</a>
-        <a href="#roadmap">Planned Modules</a>
+        <a href="#roadmap">Track Modules</a>
         <a href="#prerequisites">Prerequisites</a>
         <a href="#relationship">Track Relationship</a>
         <a href="#boundary">Track Boundary</a>
@@ -37,7 +37,7 @@
       <aside class="lab-side-nav">
         <p>Track Navigation</p>
         <a href="#start">Start Here</a>
-        <a href="#roadmap">Planned Modules</a>
+        <a href="#roadmap">Track Modules</a>
         <a href="#prerequisites">Prerequisites</a>
         <a href="#relationship">Track Relationship</a>
         <a href="#boundary">Track Boundary</a>
@@ -103,45 +103,62 @@
 
 
  <section id="roadmap" class="lab-panel">
-          <h2>Planned Modules</h2>
-          <p>The modules below are planned. They are not implemented as LAB pages in this phase.</p>
+          <h2>Track Modules</h2>
+          <p>Completed modules are linked as LAB pages. Upcoming modules remain planned until they are implemented, verified, and gated.</p>
 
           <div class="artifact-grid">
-            <div class="artifact-card">
+            <a class="artifact-card" href="/labs/ai-security-engineering/ai-security-engineering-overview/">
               <strong>1. AI Security Engineering Overview</strong>
+              <span>Implemented LAB - production quality-gated.</span>
               <span>Introduce secure AI system design, core threats, control layers, and engineering boundaries.</span>
-            </div>
+            </a>
+
             <a class="artifact-card" href="/labs/ai-security-engineering/secure-ai-application-architecture/">
               <strong>2. Secure AI Application Architecture</strong>
+              <span>Implemented LAB - production quality-gated.</span>
               <span>Teach frontend/backend separation, model boundary, API boundary, policy boundary, and evidence boundary.</span>
             </a>
+
             <a class="artifact-card" href="/labs/ai-security-engineering/prompt-boundary-engineering/">
               <strong>3. Prompt Boundary Engineering</strong>
+              <span>Implemented LAB - production quality-gated.</span>
               <span>Separate system instructions, developer instructions, user input, retrieved content, and tool outputs.</span>
             </a>
+
             <a class="artifact-card" href="/labs/ai-security-engineering/tool-permission-engineering/">
               <strong>4. Tool Permission Engineering</strong>
+              <span>Implemented LAB - production quality-gated.</span>
               <span>Design scoped tool permissions, action classification, approval gates, and self-approval prevention.</span>
-            </div>
+            </a>
+
             <a class="artifact-card" href="/labs/ai-security-engineering/retrieval-security-engineering/">
               <strong>5. Retrieval Security Engineering</strong>
-              <span>Design secure RAG controls for source authority, tenant boundaries, sensitivity filtering, and poisoning defense.</span>
-            </div>
+              <span>Implemented LAB - production quality-gated.</span>
+              <span>Design secure retrieval controls for source authority, tenant scope, sensitivity, freshness, and poisoning resistance.</span>
+            </a>
+
+            <a class="artifact-card" href="/labs/ai-security-engineering/output-safety-response-policy-engineering/">
+              <strong>6. Output Safety and Response Policy Engineering</strong>
+              <span>Implemented LAB - production quality-gated.</span>
+              <span>Teach response classification, sensitive data handling, grounded answers, refusal behavior, escalation, and unsafe-response prevention.</span>
+            </a>
+
             <div class="artifact-card">
-              <strong>6. Agent Runtime Guardrails</strong>
-              <span>Control loops, action limits, retry caps, escalation, kill switches, and safe terminal states.</span>
+              <strong>7. AI Runtime Guardrails and Failure Mode Engineering</strong>
+              <span>Planned LAB - not implemented yet.</span>
+              <span>Design loop control, retries, timeouts, fail-closed behavior, circuit breakers, degradation, escalation, and evidence capture.</span>
             </div>
+
             <div class="artifact-card">
-              <strong>7. AI Abuse, Cost, and Rate Limit Controls</strong>
-              <span>Govern token budgets, model calls, retrieval calls, tool retries, quota ceilings, and abuse detection.</span>
+              <strong>8. AI Abuse, Cost, and Rate Limit Engineering</strong>
+              <span>Planned LAB - not implemented yet.</span>
+              <span>Engineer limits for runaway loops, token growth, repeated tool attempts, budget thresholds, and abuse detection.</span>
             </div>
+
             <div class="artifact-card">
-              <strong>8. AI Security Testing Harness</strong>
-              <span>Test prompt injection, tool hijacking, retrieval poisoning, data leakage, approval bypass, and runaway loops.</span>
-            </div>
-            <div class="artifact-card">
-              <strong>9. AI Security Evidence Package</strong>
-              <span>Package engineering evidence for security review, audit review, executive review, and readiness gates.</span>
+              <strong>9. AI Security Testing and Evidence Harness</strong>
+              <span>Planned LAB - not implemented yet.</span>
+              <span>Build AI security test cases, failure-path evidence, prompt/tool/retrieval/output checks, and audit-ready validation packages.</span>
             </div>
           </div>
         </section>
