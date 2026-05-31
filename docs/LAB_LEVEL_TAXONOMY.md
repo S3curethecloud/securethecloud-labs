@@ -913,3 +913,27 @@ Notification execution: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Security Operations Capstone L2 LAB
+
+```text
+Lab: Cloud Security Operations Capstone
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Integrate signal intake, classification, IAM triage, workload and network triage, control-plane evidence, log source mapping, incident timeline, escalation narrative, response decision, handoff package, and portfolio-ready evidence.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Live log ingestion: false.
+Customer data access: false.
+Live detector execution: false.
+Live incident simulation: false.
+Live response execution: false.
+Containment execution: false.
+Ticket creation: false.
+Notification execution: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+
