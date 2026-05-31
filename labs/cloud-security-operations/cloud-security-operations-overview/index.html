@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Security Operations Overview | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Detection and Triage · L2</p>
+      <h1>Cloud Security Operations Overview</h1>
+      <p>Intermediate LAB introducing cloud security operations: detection, triage, event context, evidence collection, escalation, incident narrative, and safe production boundary language.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how cloud security operations convert cloud signals into reliable triage, evidence, escalation, and security narratives without overstating certainty or claiming live enforcement.</p>
+
+          <div class="pill-row">
+            <span class="pill">Detection</span>
+            <span class="pill">Triage</span>
+            <span class="pill">Evidence</span>
+            <span class="pill">No live integrations</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying cloud security operations fundamentals.</p>
+
+          <details class="concept-card" open>
+            <summary>What is cloud security operations?</summary>
+            <p>Cloud security operations is the practice of detecting, triaging, evidencing, escalating, and explaining cloud security events across identities, workloads, networks, control planes, and operational processes.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is signal classification?</summary>
+            <p>Signal classification determines what kind of event occurred, which source produced it, which actor and asset are involved, and whether the signal suggests risk, noise, misconfiguration, or expected behavior.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why is evidence more important than alert volume?</summary>
+            <p>Alerts create attention. Evidence creates confidence. A high-quality operations workflow uses evidence to explain what happened, why it matters, what remains unknown, and what decision should follow.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is escalation in cloud security operations?</summary>
+            <p>Escalation is the handoff of a case to a higher authority, response team, owner, or decision process when risk, uncertainty, impact, or policy requires review.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is an incident narrative?</summary>
+            <p>An incident narrative is a clear, bounded explanation of the event, affected assets, evidence, confidence level, impact, decision, and recommended next action.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why must detection be separated from enforcement?</summary>
+            <p>Detection identifies possible risk. Enforcement changes or blocks runtime behavior. This LAB teaches detection, triage, and evidence only; it does not implement production enforcement.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Security Operations Workflow</h2>
+          <p>A strong operations workflow turns cloud events into evidence-backed decisions.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Cloud Event</strong>
+                <span>Identity, workload, network, or control-plane signal</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Classify Signal</strong>
+                <span>Source, severity, actor, asset, action, tenant</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Collect Evidence</strong>
+                <span>Timestamp, logs, related events, context, expected behavior</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Triage</strong>
+                <span>Risk, false-positive review, impact, confidence</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Escalation Decision</strong>
+                <span>Owner, response team, reviewer, executive path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Security Narrative</strong>
+                <span>What happened, why it matters, evidence, next step</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> An alert is not an incident until evidence and context support the decision.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An alert fires for unusual role assumption activity in a cloud environment. The analyst must determine whether the event is expected behavior, misconfiguration, suspicious activity, or an incident candidate.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Signal</strong>
+              <span>Unusual role assumption event observed.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Context</strong>
+              <span>Actor, asset, timestamp, source, and expected access path reviewed.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>Related events, access history, policy changes, and false-positive factors collected.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Narrative</strong>
+              <span>Bounded summary explains known facts, uncertainty, risk, and recommended next step.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure operations handling:
+classify the event source and type
+identify actor, asset, action, and time
+gather supporting evidence
+compare against expected behavior
+review false-positive possibility
+estimate severity and impact
+escalate if required
+write a bounded security narrative
+
+Result:
+The event becomes an evidence-backed decision rather than an unsupported alert reaction.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous operations pattern treats every alert as confirmed compromise or implies production response without evidence.</p>
+
+          <pre><code>Unsafe pattern:
+
+Alert fires
+→ analyst assumes compromise
+→ evidence is incomplete
+→ impact is overstated
+→ production response is implied
+→ no timeline is preserved
+→ executive summary becomes inaccurate
+
+Risk:
+
+false incident declaration
+poor escalation
+inaccurate executive reporting
+weak evidence trail
+confusion between detection and enforcement
+loss of trust in security operations
+
+Secure alternative:
+Classify the signal.
+Collect evidence.
+Review context.
+Record uncertainty.
+Escalate when appropriate.
+Write bounded narratives.
+Preserve the evidence package.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, integrate with SIEM, open tickets, run detectors, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Customer data access = false
+Live detector execution = false
+Cloud provider mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

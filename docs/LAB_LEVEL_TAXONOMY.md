@@ -751,3 +751,21 @@ Enterprise data access: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Cloud Security Operations Overview L2 LAB
+
+```text
+Lab: Cloud Security Operations Overview
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Introduce cloud security operations fundamentals including detection, triage, event context, evidence collection, escalation, incident narrative, and safe production boundary language.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Customer data access: false.
+Live detector execution: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+

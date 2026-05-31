@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "cloud-security-operations-overview",
+      "title": "Cloud Security Operations Overview",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/cloud-security-operations-overview/",
+      "summary": "Intermediate LAB introducing cloud security operations: detection, triage, event context, evidence collection, escalation, incident narrative, and safe production boundary language."
+    },
+    {
       "id": "ai-security-testing-evidence-harness",
       "title": "AI Security Testing and Evidence Harness",
       "cloud": "ai-security-engineering",
@@ -785,8 +796,8 @@
       "title": "Cloud Security Operations L2 Track",
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
-      "status": "track-shell",
-      "implemented_modules": 0,
+      "status": "active-track",
+      "implemented_modules": 1,
       "planned_modules": 9
     }
   ]
