@@ -698,3 +698,20 @@ Enterprise data access: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## AI Runtime Guardrails and Failure Mode Engineering L2 LAB
+
+```text
+Lab: AI Runtime Guardrails and Failure Mode Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach AI runtime guardrails and failure mode engineering, including loop control, retries, timeouts, deny paths, fail-closed behavior, circuit breakers, degradation, escalation, and evidence capture.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Vector database access: false.
+Enterprise data access: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

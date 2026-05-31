@@ -1,0 +1,17 @@
+{
+  "id": "ai-runtime-guardrails-failure-mode-engineering",
+  "title": "AI Runtime Guardrails and Failure Mode Engineering",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/ai-runtime-guardrails-failure-mode-engineering/",
+  "summary": "Intermediate LAB teaching AI runtime guardrails and failure mode engineering: loop control, retries, timeouts, deny paths, fail-closed behavior, circuit breakers, degradation, escalation, and evidence capture.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}

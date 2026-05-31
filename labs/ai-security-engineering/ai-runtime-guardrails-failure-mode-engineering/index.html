@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Runtime Guardrails and Failure Mode Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Runtime Guardrails · L2</p>
+      <h1>AI Runtime Guardrails and Failure Mode Engineering</h1>
+      <p>Intermediate LAB teaching AI runtime guardrails and failure mode engineering: loop control, retries, timeouts, deny paths, fail-closed behavior, circuit breakers, degradation, escalation, and evidence capture.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to engineer AI runtime behavior so loops, retries, timeouts, denials, dependency failures, degraded modes, and uncertainty fail safely instead of creating hidden bypass paths.</p>
+
+          <div class="pill-row">
+            <span class="pill">Runtime guardrails</span>
+            <span class="pill">Fail-closed behavior</span>
+            <span class="pill">Circuit breakers</span>
+            <span class="pill">No runtime mutation</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI runtime guardrails and failure mode engineering.</p>
+
+          <details class="concept-card" open>
+            <summary>What are AI runtime guardrails?</summary>
+            <p>AI runtime guardrails are controls that govern workflow behavior while the AI system is operating: step limits, retry limits, timeouts, deny paths, circuit breakers, degraded modes, escalation, and evidence capture.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do AI systems need loop control?</summary>
+            <p>AI workflows can repeatedly plan, retrieve, call tools, or regenerate responses. Loop control prevents runaway behavior, cost growth, repeated unsafe attempts, and hidden bypass paths.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is fail-closed behavior?</summary>
+            <p>Fail-closed behavior means the workflow stops, denies, or escalates when safety, authority, policy, dependency health, or runtime state is unclear. It does not continue in a less controlled mode.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a deny-path boundary?</summary>
+            <p>A deny-path boundary ensures that once policy denies an action, the workflow cannot retry the same objective through a different prompt, tool, route, or degraded fallback.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is a runtime circuit breaker?</summary>
+            <p>A runtime circuit breaker stops or restricts workflow execution when dependencies are unhealthy, risk thresholds are crossed, repeated failures occur, or unsafe retry patterns appear.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should be recorded as runtime evidence?</summary>
+            <p>Runtime evidence should include step count, retry count, timeouts, denials, dependency failures, circuit breaker triggers, degraded-mode decisions, escalations, and final outcome.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual AI Runtime Guardrails Model</h2>
+          <p>Secure runtime behavior stops unsafe repetition, degraded execution, and denial bypass.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Request</strong>
+                <span>Workflow starts with runtime budget and limits</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Loop Control</strong>
+                <span>Maximum steps, planning cycles, retrieval/tool attempts</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Retry Control</strong>
+                <span>Limit failed, denied, expensive, or sensitive repeats</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Timeout Control</strong>
+                <span>Model, retrieval, tool, approval, policy deadlines</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Deny-Path Enforcement</strong>
+                <span>Denied action cannot reroute or retry elsewhere</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Circuit Breaker</strong>
+                <span>Stops unsafe dependency or failure patterns</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Degraded Mode</strong>
+                <span>Restricted, safe, non-mutating fallback only</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Escalation</strong>
+                <span>Human or policy review when unsafe or unclear</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Limits, failures, denials, breaker, outcome</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Runtime failure must become a safe stop, not an alternate execution path.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI workflow receives a request to update an operational setting. The policy gate denies the action, but the AI attempts to find another route.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Deny decision</strong>
+              <span>Policy denies the mutating action.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Retry attempt</strong>
+              <span>The workflow attempts another tool or prompt path.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Runtime guardrail</strong>
+              <span>Deny-path enforcement blocks alternate execution.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence record</strong>
+              <span>Denial, retry attempt, guardrail trigger, and final outcome are recorded.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure runtime handling:
+assign workflow step limit
+enforce retry limit
+apply model, retrieval, tool, approval, and policy timeouts
+block alternate route after policy denial
+trigger circuit breaker on unsafe repeat attempts
+restrict degraded mode to safe read-only response
+escalate if workflow cannot safely complete
+record failure-mode evidence
+
+Result:
+The denied action remains denied, and runtime failure becomes a safe stop or escalation.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern lets the AI continue after uncertainty, failure, timeout, or denial.</p>
+
+          <pre><code>Unsafe pattern:
+
+AI request
+→ model uncertainty
+→ repeated retrieval/tool attempts
+→ policy denial
+→ alternate route attempted
+→ timeout ignored
+→ degraded response emitted
+→ weak or missing evidence
+
+Risk:
+
+denied action is retried through another route
+loop creates cost and operational risk
+dependency failure causes unsafe fallback
+timeout leads to incomplete or stale response
+evidence does not explain the failure path
+unsafe degraded mode bypasses control layers
+
+Secure alternative:
+Limit loops.
+Limit retries.
+Enforce timeouts.
+Block deny-path bypass.
+Use circuit breakers.
+Restrict degraded modes.
+Escalate unsafe states.
+Record runtime evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, query vector databases, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Vector database access = false
+Enterprise data access = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
