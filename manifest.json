@@ -779,6 +779,15 @@
       "production_enforcement_claim": false,
       "implemented_modules": 9,
       "planned_modules": 9
+    },
+    {
+      "id": "cloud-security-operations",
+      "title": "Cloud Security Operations L2 Track",
+      "path": "/tracks/cloud-security-operations/",
+      "type": "learning-path",
+      "status": "track-shell",
+      "implemented_modules": 0,
+      "planned_modules": 9
     }
   ]
 }
