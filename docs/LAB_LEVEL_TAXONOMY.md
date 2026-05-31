@@ -807,3 +807,24 @@ Cloud provider mutation: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Workload and Network Signal Triage L2 LAB
+
+```text
+Lab: Workload and Network Signal Triage
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach workload and network signal triage including compute events, storage access, public exposure, network paths, service behavior, suspicious workload activity, evidence quality, escalation, and bounded response narratives.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Customer data access: false.
+Live detector execution: false.
+Workload mutation: false.
+Network mutation: false.
+Cloud provider mutation: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+

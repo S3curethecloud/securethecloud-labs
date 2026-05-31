@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "workload-network-signal-triage",
+      "title": "Workload and Network Signal Triage",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/workload-network-signal-triage/",
+      "summary": "Intermediate LAB teaching workload and network signal triage: compute events, storage access, public exposure, network paths, service behavior, suspicious workload activity, evidence quality, escalation, and bounded response narratives."
+    },
+    {
       "id": "iam-activity-triage",
       "title": "IAM Activity Triage",
       "cloud": "cloud-security-operations",
@@ -819,7 +830,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 3,
+      "implemented_modules": 4,
       "planned_modules": 9
     }
   ]
