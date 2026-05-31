@@ -681,3 +681,20 @@ Enterprise data access: false.
 Provider quota mutation: false.
 Production enforcement claim: false.
 
+## Output Safety and Response Policy Engineering L2 LAB
+
+```text
+Lab: Output Safety and Response Policy Engineering
+Track: AI Security Engineering
+Level: Intermediate / L2
+Purpose: Teach AI output safety and response policy engineering, including response classification, sensitive data handling, grounded answers, refusal behavior, escalation, unsafe-response prevention, and evidence capture.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Live model integration: false.
+Live tool execution: false.
+Live retrieval execution: false.
+Vector database access: false.
+Enterprise data access: false.
+Provider quota mutation: false.
+Production enforcement claim: false.
+

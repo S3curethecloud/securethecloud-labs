@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Output Safety and Response Policy Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-security-engineering/">← Back to AI Security Engineering Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Security Engineering · Output Safety · L2</p>
+      <h1>Output Safety and Response Policy Engineering</h1>
+      <p>Intermediate LAB teaching AI output safety and response policy engineering: response classification, sensitive data handling, grounded answers, refusal behavior, escalation, unsafe-response prevention, and evidence capture.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>AI Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to secure the AI response layer so model output is not delivered directly without classification, sensitivity checks, grounding validation, response policy, refusal logic, or escalation.</p>
+
+          <div class="pill-row">
+            <span class="pill">Output safety</span>
+            <span class="pill">Response policy</span>
+            <span class="pill">Grounded answers</span>
+            <span class="pill">No live model calls</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying output safety and response policy engineering.</p>
+
+          <details class="concept-card" open>
+            <summary>What is output safety engineering?</summary>
+            <p>Output safety engineering is the design of controls that classify, validate, redact, refuse, or escalate AI responses before they are delivered to a user or downstream workflow.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why should raw model output not be shown directly?</summary>
+            <p>Raw model output may contain sensitive data, unsupported claims, unsafe recommendations, hallucinated evidence, or language that sounds like an approved action. A response policy layer must review it first.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is response classification?</summary>
+            <p>Response classification labels output as informational, evidence-backed, sensitive, recommendation, refusal, or escalation so the system can apply the right policy before delivery.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is grounding validation?</summary>
+            <p>Grounding validation checks whether the response is supported by approved sources, retrieved context, tool results, or audit evidence before factual or operational claims are presented.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should sensitive data be handled?</summary>
+            <p>Sensitive data should be minimized, redacted, suppressed, or escalated unless the user, role, tenant, workflow, and policy allow disclosure.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>When should the AI refuse or escalate?</summary>
+            <p>The AI should refuse prohibited or unsafe requests and escalate when uncertainty, source conflict, sensitivity, lack of grounding, or high-risk action prevents safe completion.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Output Safety and Response Policy Model</h2>
+          <p>Secure response policy separates draft generation from final user-visible output.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Model Draft</strong>
+                <span>Untrusted draft response, not final authority</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Response Classification</strong>
+                <span>Informational, evidence-backed, sensitive, recommendation, refusal, escalation</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Sensitivity Check</strong>
+                <span>Customer, identity, financial, security, regulated, tenant-scoped</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Grounding Check</strong>
+                <span>Approved source, retrieval, tool result, evidence</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Response Policy</strong>
+                <span>Allow, redact, refuse, or escalate</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Unsafe Output Block</strong>
+                <span>Unsupported, oversharing, unauthorized, unsafe</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Final Response</strong>
+                <span>Safe, bounded, grounded, policy-compliant</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Class, grounding, policy, redaction, refusal, escalation</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>User Delivery</strong>
+                <span>Only after response policy passes</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> The model drafts; response policy decides what can be shown.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI workflow drafts a response about a customer account exception after reviewing retrieved context and a support note.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Model draft</strong>
+              <span>Contains an explanation and possible customer-sensitive details.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Sensitivity check</strong>
+              <span>Detects customer, identity, or account information before delivery.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Grounding check</strong>
+              <span>Requires approved source or evidence before factual claims are shown.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Response policy</strong>
+              <span>Allows, redacts, refuses, or escalates the response based on risk.</span>
+            </div>
+          </div>
+
+          <pre><code>Secure response handling:
+classify response intent
+check sensitivity and authorization
+verify grounding against approved evidence
+separate recommendation from approval
+redact unnecessary sensitive data
+refuse prohibited requests
+escalate unclear or high-risk answers
+record response policy evidence
+
+Result:
+The AI can explain and recommend, but only within the response policy boundary.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern sends the raw model response directly to the user or downstream workflow.</p>
+
+          <pre><code>Unsafe pattern:
+
+Model answer
+→ shown directly to user
+→ includes sensitive data, unsupported claims, or unsafe recommendation
+→ user treats it as approved authority
+
+Risk:
+
+sensitive data leakage
+unsupported or hallucinated claims
+recommendations look like approvals
+unsafe operational guidance
+policy refusal is bypassed
+evidence does not show response review
+
+Secure alternative:
+Classify response.
+Check sensitivity.
+Verify grounding.
+Apply response policy.
+Redact, refuse, or escalate.
+Record evidence.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not call models, execute tools, retrieve enterprise data, query vector databases, expose backend APIs, or mutate runtime systems.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Live model integration = false
+Live tool execution = false
+Live retrieval execution = false
+Vector database access = false
+Enterprise data access = false
+Provider quota mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

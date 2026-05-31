@@ -1,0 +1,17 @@
+{
+  "id": "output-safety-response-policy-engineering",
+  "title": "Output Safety and Response Policy Engineering",
+  "cloud": "ai-security-engineering",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-security-engineering",
+  "path": "/labs/ai-security-engineering/output-safety-response-policy-engineering/",
+  "summary": "Intermediate LAB teaching AI output safety and response policy engineering: response classification, sensitive data handling, grounded answers, refusal behavior, escalation, unsafe-response prevention, and evidence capture.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_model_integration": false,
+  "live_tool_execution": false,
+  "live_retrieval_execution": false,
+  "production_enforcement_claim": false
+}

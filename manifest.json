@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "output-safety-response-policy-engineering",
+      "title": "Output Safety and Response Policy Engineering",
+      "cloud": "ai-security-engineering",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-security-engineering",
+      "path": "/labs/ai-security-engineering/output-safety-response-policy-engineering/",
+      "summary": "Intermediate LAB teaching AI output safety and response policy engineering: response classification, sensitive data handling, grounded answers, refusal behavior, escalation, unsafe-response prevention, and evidence capture."
+    },
+    {
       "id": "retrieval-security-engineering",
       "title": "Retrieval Security Engineering",
       "cloud": "ai-security-engineering",
@@ -733,7 +744,7 @@
       "runtime_change_required": false,
       "backend_exposure": false,
       "production_enforcement_claim": false,
-      "implemented_modules": 5,
+      "implemented_modules": 6,
       "planned_modules": 9
     }
   ]
