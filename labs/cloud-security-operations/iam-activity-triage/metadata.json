@@ -1,0 +1,23 @@
+{
+  "id": "iam-activity-triage",
+  "title": "IAM Activity Triage",
+  "cloud": "cloud-security-operations",
+  "domain": "cloud-security-operations",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "cloud-security-operations",
+  "path": "/labs/cloud-security-operations/iam-activity-triage/",
+  "summary": "Intermediate LAB teaching IAM activity triage: role assumption, privilege changes, access key activity, policy edits, failed access, suspicious identity behavior, evidence quality, escalation, and safe response narratives.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "cloud_provider_integration": false,
+  "siem_integration": false,
+  "ticketing_integration": false,
+  "alert_pipeline": false,
+  "customer_data_access": false,
+  "live_detector_execution": false,
+  "iam_mutation": false,
+  "cloud_provider_mutation": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}

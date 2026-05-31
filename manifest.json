@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "iam-activity-triage",
+      "title": "IAM Activity Triage",
+      "cloud": "cloud-security-operations",
+      "domain": "cloud-security-operations",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "cloud-security-operations",
+      "path": "/labs/cloud-security-operations/iam-activity-triage/",
+      "summary": "Intermediate LAB teaching IAM activity triage: role assumption, privilege changes, access key activity, policy edits, failed access, suspicious identity behavior, evidence quality, escalation, and safe response narratives."
+    },
+    {
       "id": "cloud-event-signal-classification",
       "title": "Cloud Event and Signal Classification",
       "cloud": "cloud-security-operations",
@@ -808,7 +819,7 @@
       "path": "/tracks/cloud-security-operations/",
       "type": "learning-path",
       "status": "active-track",
-      "implemented_modules": 2,
+      "implemented_modules": 3,
       "planned_modules": 9
     }
   ]

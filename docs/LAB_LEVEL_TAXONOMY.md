@@ -787,3 +787,23 @@ Live detector execution: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## IAM Activity Triage L2 LAB
+
+```text
+Lab: IAM Activity Triage
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach IAM activity triage including role assumption, privilege changes, access key activity, policy edits, failed access, suspicious identity behavior, evidence quality, escalation, and safe response narratives.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Customer data access: false.
+Live detector execution: false.
+IAM mutation: false.
+Cloud provider mutation: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+
