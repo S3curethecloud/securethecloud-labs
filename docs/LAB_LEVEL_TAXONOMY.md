@@ -848,3 +848,24 @@ Cloud provider mutation: false.
 Runtime mutation: false.
 Production enforcement claim: false.
 
+## Cloud Log Source and Evidence Mapping L2 LAB
+
+```text
+Lab: Cloud Log Source and Evidence Mapping
+Track: Cloud Security Operations
+Level: Intermediate / L2
+Purpose: Teach cloud log source and evidence mapping including audit logs, identity logs, workload logs, network logs, storage logs, control-plane records, evidence gaps, retention, correlation, and reviewer-safe evidence mapping.
+Runtime: Read-only learning course.
+Backend exposure: false.
+Cloud provider integration: false.
+SIEM integration: false.
+Ticketing integration: false.
+Alert pipeline: false.
+Live log ingestion: false.
+Customer data access: false.
+Live detector execution: false.
+Log pipeline mutation: false.
+Cloud provider mutation: false.
+Runtime mutation: false.
+Production enforcement claim: false.
+

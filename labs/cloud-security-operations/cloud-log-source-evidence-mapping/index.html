@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Log Source and Evidence Mapping | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/cloud-security-operations/">← Back to Cloud Security Operations Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">Cloud Security Operations · Log Evidence Mapping · L2</p>
+      <h1>Cloud Log Source and Evidence Mapping</h1>
+      <p>Intermediate LAB teaching cloud log source and evidence mapping: audit logs, identity logs, workload logs, network logs, storage logs, control-plane records, evidence gaps, retention, correlation, and reviewer-safe evidence mapping.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Cloud Security Ops</strong></div>
+        <div><span>Track</span><strong>Cloud Security Operations</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to map cloud log sources to evidence needs. A good operations narrative names the source, maps the relevant event fields, identifies gaps, and explains the confidence level.</p>
+
+          <div class="pill-row">
+            <span class="pill">Audit logs</span>
+            <span class="pill">Identity logs</span>
+            <span class="pill">Network logs</span>
+            <span class="pill">Evidence gaps</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying cloud log source and evidence mapping.</p>
+
+          <details class="concept-card" open>
+            <summary>What is log source evidence mapping?</summary>
+            <p>Log source evidence mapping is the process of linking a security claim to the exact log source, event type, field, timestamp, actor, resource, and context that support or limit the claim.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why map sources to claims?</summary>
+            <p>Reviewers need to understand why a claim is justified. Mapping sources to claims makes evidence reproducible, auditable, and easier to challenge or confirm.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is an evidence gap?</summary>
+            <p>An evidence gap is a missing or unavailable source, field, timestamp, retention window, or context needed to prove a security claim with higher confidence.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does retention matter?</summary>
+            <p>Retention determines whether evidence is still available. A missing event outside the retention window should be recorded as a limitation rather than interpreted as proof of no activity.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How does correlation improve confidence?</summary>
+            <p>Confidence improves when audit, identity, workload, network, storage, and security service logs support the same timeline or explain the same actor/action/resource relationship.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why must the evidence map be reviewer-safe?</summary>
+            <p>A reviewer-safe evidence map separates known facts, mapped sources, assumptions, gaps, confidence, and recommended next steps without overstating what the logs prove.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Cloud Log Source Evidence Mapping Model</h2>
+          <p>A reliable evidence map turns raw logs into traceable support for operational conclusions.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Security Claim</strong>
+                <span>Identity changed policy, workload exposed, data accessed, logging modified</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Evidence Need</strong>
+                <span>Actor, action, resource, timestamp, source, response, related context</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Log Source</strong>
+                <span>Audit, identity, workload, network, storage, security service logs</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Field Mapping</strong>
+                <span>Event type, request ID, resource ID, source IP, response code</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Gap Review</strong>
+                <span>Missing source, retention limit, incomplete field, low confidence</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Evidence Map</strong>
+                <span>Mapped claims, supporting logs, gaps, confidence, reviewer summary</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Every security claim should map to a log source, event field, timestamp, and confidence rationale.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An analyst needs to explain whether a production storage resource was exposed and accessed. The analyst maps the claim to control-plane audit logs, storage access logs, identity events, and network context.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Claim</strong>
+              <span>Storage resource was made public and may have been accessed.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Sources</strong>
+              <span>Audit logs, storage access logs, identity logs, and network records are mapped.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Gaps</strong>
+              <span>Missing retention, incomplete fields, or unavailable access records are documented.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence Map</strong>
+              <span>Reviewer-safe summary separates proven facts, gaps, confidence, and next steps.</span>
+            </div>
+          </div>
+
+          <pre><code>Evidence mapping:
+state the security claim
+define required evidence
+select relevant log sources
+map event fields to actor, action, resource, timestamp, and response
+correlate related sources
+identify gaps and retention boundaries
+assign confidence
+prepare reviewer-safe summary
+
+Result:
+The incident narrative becomes traceable to specific logs instead of unsupported operational memory.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous evidence pattern writes incident conclusions without naming the log source, event field, timestamp, or evidence gap.</p>
+
+          <pre><code>Unsafe pattern:
+
+Incident claim is written
+-> log source is not named
+-> event fields are not mapped
+-> timeline is unsupported
+-> evidence gaps are hidden
+-> reviewer cannot reproduce reasoning
+
+Risk:
+
+weak auditability
+poor reviewer confidence
+unsupported incident conclusions
+missed evidence gaps
+bad escalation decisions
+false confidence in incomplete logs
+
+Secure alternative:
+State the claim.
+Map the log source.
+Map the event field.
+Record retention and gaps.
+Correlate supporting evidence.
+Assign confidence.
+Write bounded conclusions.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It does not connect to cloud providers, query customer environments, ingest live logs, integrate with SIEM, open tickets, run detectors, mutate log pipelines, expose backend APIs, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Cloud provider integration = false
+SIEM integration = false
+Ticketing integration = false
+Alert pipeline = false
+Live log ingestion = false
+Customer data access = false
+Live detector execution = false
+Log pipeline mutation = false
+Cloud provider mutation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
