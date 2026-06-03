@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Red Team Scenario Design Overview | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/lab.css" />
+</head>
+<body>
+  <main class="lab-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
+
+    <!-- Hero Section -->
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
+      <h1>AI Red Team Scenario Design Overview</h1>
+      <p>Learn how to design safe, bounded AI red-team scenarios that test failure modes without executing live attacks, using real customer data, handling credentials, or mutating production systems.</p>
+      <div class="lab-meta-grid">
+        <div><span>Level</span><strong>Intermediate</strong></div>
+        <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
+        <div><span>Mode</span><strong>Static LAB</strong></div>
+        <div><span>Runtime</span><strong>Read-only</strong></div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav class="lab-toc" aria-label="Study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <ul>
+        <li><a href="#concepts">Concept Deep Dives</a></li>
+        <li><a href="#model">Visual Scenario Design Model</a></li>
+        <li><a href="#anti-pattern">High-Risk Anti-Pattern</a></li>
+        <li><a href="#governance">Governance Boundary</a></li>
+      </ul>
+    </nav>
+
+    <!-- Concept Deep Dives -->
+    <section class="lab-panel" id="concepts">
+      <h2>📚 Concept Deep Dives</h2>
+
+      <details open>
+        <summary><strong>1. What is AI red-team scenario design?</strong></summary>
+        <p>AI red-team scenario design is the structured planning of safe tests that explore how an AI system might fail. The goal is <strong>not</strong> to attack real systems, but to define a bounded scenario, expected controls, evidence requirements, and safe reporting language.</p>
+      </details>
+
+      <details>
+        <summary><strong>2. Why must red-team work be scoped and authorized?</strong></summary>
+        <p>Red-team work can cross sensitive boundaries if not properly scoped. A safe scenario identifies: what is in scope, what is out of scope, who authorized the review, what data is synthetic, and which actions are forbidden.</p>
+      </details>
+
+      <details>
+        <summary><strong>3. What belongs in a safe AI red-team scenario?</strong></summary>
+        <p>A safe scenario includes: objective, authorization boundary, system context, failure mode, expected control, synthetic inputs, observation steps, evidence template, uncertainty notes, and remediation guidance.</p>
+      </details>
+
+      <details>
+        <summary><strong>4. How do failure modes map to controls?</strong></summary>
+        <p>Each failure mode should map to a control:</p>
+        <ul>
+          <li><strong>Prompt injection</strong> → instruction hierarchy and untrusted-input handling</li>
+          <li><strong>Tool abuse</strong> → permissions and approval gates</li>
+          <li><strong>Retrieval poisoning</strong> → source authority, tenant scope, and context validation</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>5. How should evidence and uncertainty be recorded?</strong></summary>
+        <p>Evidence should distinguish: what was observed, what was expected, what remains unknown, and what cannot be concluded. Good red-team evidence avoids unsupported compromise claims and uses bounded risk language.</p>
+      </details>
+
+      <details>
+        <summary><strong>6. What makes a red-team finding portfolio-ready?</strong></summary>
+        <p>A portfolio-ready finding explains the scenario, control objective, evidence, impact, uncertainty, and remediation in a way that a reviewer can evaluate without needing access to private systems or sensitive data.</p>
+      </details>
+    </section>
+
+    <!-- Visual Model -->
+    <section class="lab-panel" id="model">
+      <h2>🎨 Visual AI Red Team Scenario Design Model</h2>
+      <div class="visual-flow">
+        <div class="flow-step">Business or system concern</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Authorized scope</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Scenario objective</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Failure mode under review</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Expected control</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Synthetic test evidence</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Observed behavior</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Risk explanation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Uncertainty and gaps</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Remediation recommendation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Reviewer-safe finding</div>
+      </div>
+    </section>
+
+    <!-- Anti-Pattern -->
+    <section class="lab-panel" id="anti-pattern">
+      <h2>⚠️ High-Risk Anti-Pattern</h2>
+      <p>A dangerous red-team pattern is attempting live attacks, using real sensitive data, or testing outside authorization while describing the activity as "learning" or "research."</p>
+      
+      <div class="comparison-grid">
+        <div class="unsafe">
+          <h3>❌ Unsafe Pattern</h3>
+          <ul>
+            <li>Unclear authorization</li>
+            <li>Real customer data</li>
+            <li>Live credential material</li>
+            <li>Production system interaction</li>
+            <li>Exploit execution</li>
+            <li>Unsupported compromise claims</li>
+          </ul>
+        </div>
+        <div class="safe">
+          <h3>✅ Safe Alternative</h3>
+          <ul>
+            <li>Synthetic data</li>
+            <li>Bounded scenario</li>
+            <li>No live execution</li>
+            <li>Documented scope</li>
+            <li>Reviewer-safe evidence</li>
+            <li>Remediation-focused finding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Boundary -->
+    <section class="lab-panel" id="governance">
+      <h2>🛡️ Governance Boundary</h2>
+      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only.</p>
+      
+      <table class="boundary-table">
+        <tr><th>Control</th><th>Status</th></tr>
+        <tr><td>Backend exposure</td><td>false</td></tr>
+        <tr><td>Public backend exposed</td><td>false</td></tr>
+        <tr><td>Live model abuse execution</td><td>false</td></tr>
+        <tr><td>Live exploit execution</td><td>false</td></tr>
+        <tr><td>Live red-team execution</td><td>false</td></tr>
+        <tr><td>Customer data access</td><td>false</td></tr>
+        <tr><td>Credential handling</td><td>false</td></tr>
+        <tr><td>Real prompt-injection attack execution</td><td>false</td></tr>
+        <tr><td>Real data exfiltration</td><td>false</td></tr>
+        <tr><td>Runtime mutation</td><td>false</td></tr>
+        <tr><td>Production enforcement claim</td><td>false</td></tr>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
