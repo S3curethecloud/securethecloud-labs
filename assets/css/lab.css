@@ -1,0 +1,205 @@
+:root {
+  color-scheme: dark;
+  --stc-bg: #020617;
+  --stc-panel: #0f172a;
+  --stc-panel-soft: #111827;
+  --stc-border: rgba(148, 163, 184, 0.22);
+  --stc-cyan: #38bdf8;
+  --stc-gold: #facc15;
+  --stc-text: #f8fafc;
+  --stc-muted: #bfdbfe;
+  --stc-soft: #93c5fd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 34%),
+              radial-gradient(circle at top right, rgba(250, 204, 21, 0.08), transparent 28%),
+              var(--stc-bg);
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+  color: var(--stc-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--stc-cyan);
+}
+
+.lab-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 72px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 24px;
+  color: var(--stc-cyan);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.lab-hero,
+.lab-panel {
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 24px;
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.42);
+}
+
+.lab-hero {
+  padding: 42px;
+  margin-bottom: 24px;
+}
+
+.lab-hero-kicker {
+  color: var(--stc-cyan);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.lab-hero h1 {
+  margin: 0 0 18px;
+  max-width: 980px;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.lab-hero p {
+  max-width: 980px;
+  color: #dbeafe;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.lab-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.lab-meta-grid div {
+  border: 1px solid var(--stc-border);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.42);
+}
+
+.lab-meta-grid span {
+  display: block;
+  color: var(--stc-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.lab-meta-grid strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.lab-panel {
+  padding: 34px;
+  margin-top: 24px;
+}
+
+.lab-panel h2 {
+  margin: 0 0 22px;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: -0.04em;
+}
+
+.lab-panel p {
+  color: #dbeafe;
+}
+
+.artifact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.artifact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 150px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: rgba(2, 6, 23, 0.46);
+  color: #dbeafe;
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.artifact-card:hover {
+  border-color: rgba(56, 189, 248, 0.62);
+  background: rgba(8, 47, 73, 0.44);
+  transform: translateY(-1px);
+}
+
+.artifact-card strong {
+  color: #ffffff;
+  font-size: 1.04rem;
+  line-height: 1.35;
+}
+
+.artifact-card span {
+  color: #bfdbfe;
+  line-height: 1.5;
+}
+
+.lab-panel pre {
+  overflow-x: auto;
+  border-radius: 16px;
+  padding: 18px;
+  background: rgba(2, 6, 23, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: #dbeafe;
+}
+
+.lab-panel code {
+  color: #dbeafe;
+}
+
+@media (max-width: 780px) {
+  .lab-shell {
+    padding: 22px 14px 56px;
+  }
+
+  .lab-hero,
+  .lab-panel {
+    padding: 24px;
+    border-radius: 18px;
+  }
+
+  .lab-meta-grid,
+  .artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-hero h1 {
+    font-size: clamp(2.2rem, 12vw, 3.7rem);
+  }
+}
