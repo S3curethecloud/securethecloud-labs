@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt Injection Scenario Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/lab.css" />
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
+    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
+    .unsafe h3, .safe h3 { margin-top: 0; }
+    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
+    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
+    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .boundary-table th { background: #edf2f7; font-weight: 600; }
+    .badge-true { color: #38a169; font-weight: 600; }
+    .badge-false { color: #e53e3e; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main class="lab-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
+
+    <!-- Hero Section -->
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
+      <h1>🔐 Prompt Injection Scenario Design</h1>
+      <p>Learn how to design safe prompt-injection red-team scenarios that evaluate instruction hierarchy, untrusted input boundaries, retrieved content risk, expected controls, and reviewer-safe evidence — without providing operational jailbreak payloads.</p>
+      <div class="lab-meta-grid">
+        <div><span>Level</span><strong>Intermediate</strong></div>
+        <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
+        <div><span>Mode</span><strong>Static LAB</strong></div>
+        <div><span>Runtime</span><strong>Read-only</strong></div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav class="lab-toc" aria-label="Study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <ul>
+        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
+        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
+        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
+        <li><a href="#governance">🛡️ Governance Boundary</a></li>
+      </ul>
+    </nav>
+
+    <!-- Concept Deep Dives -->
+    <section class="lab-panel" id="concepts">
+      <h2>📖 Concept Deep Dives</h2>
+
+      <details open>
+        <summary><strong>1. What is prompt-injection scenario design?</strong></summary>
+        <p>Prompt-injection scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI system can distinguish trusted instructions from untrusted user input, retrieved content, tool output, or other external text. The goal is to assess controls — not to exploit systems.</p>
+      </details>
+
+      <details>
+        <summary><strong>2. Why is instruction hierarchy important?</strong></summary>
+        <p>Instruction hierarchy defines which instructions have authority. A safe scenario checks whether system and policy instructions remain authoritative when lower-trust content attempts to influence behavior. Without this, prompt injection becomes operational risk.</p>
+      </details>
+
+      <details>
+        <summary><strong>3. Where does untrusted input enter an AI workflow?</strong></summary>
+        <p>Untrusted input can come from multiple sources:</p>
+        <ul>
+          <li>User messages and prompts</li>
+          <li>Uploaded documents and files</li>
+          <li>Tickets and support requests</li>
+          <li>Retrieved webpages and search results</li>
+          <li>Tool output and API responses</li>
+          <li>Email content and chat history</li>
+          <li>Logs and audit trails</li>
+        </ul>
+        <p>A scenario should identify the input source and trust level <strong>before</strong> testing controls.</p>
+      </details>
+
+      <details>
+        <summary><strong>4. How does retrieved content become a prompt-injection risk?</strong></summary>
+        <p>Retrieved content becomes risky when the model treats external text as <strong>authority</strong> instead of <strong>context</strong>. A safe scenario checks whether the system validates:</p>
+        <ul>
+          <li>Source authority (policy document vs. vendor note)</li>
+          <li>Tenant scope (customer A vs. customer B)</li>
+          <li>Sensitivity classification (public vs. confidential)</li>
+          <li>Freshness and relevance</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>5. What controls should a scenario test?</strong></summary>
+        <p>Prompt-injection scenarios should map to specific controls:</p>
+        <ul>
+          <li><strong>Instruction hierarchy</strong> — Trusted vs. untrusted content separation</li>
+          <li><strong>Source trust labeling</strong> — Marking user input as untrusted</li>
+          <li><strong>Retrieval filtering</strong> — Scope and authority checks</li>
+          <li><strong>Tool permission checks</strong> — Authorization before action</li>
+          <li><strong>Refusal behavior</strong> — Safe "cannot do that" responses</li>
+          <li><strong>Human approval gates</strong> — Escalation for sensitive actions</li>
+          <li><strong>Evidence capture</strong> — Logging decisions and reasoning</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>6. How should prompt-injection findings be documented safely?</strong></summary>
+        <p>A <strong>safe finding</strong> should include:</p>
+        <ul>
+          <li>Objective — What was being evaluated?</li>
+          <li>Scope — What was in/out of bounds?</li>
+          <li>Untrusted input source — Where did the test input come from?</li>
+          <li>Expected control — What should have prevented the issue?</li>
+          <li>Observed behavior — What actually happened?</li>
+          <li>Uncertainty — What remains unknown?</li>
+          <li>Impact — Why does this matter?</li>
+          <li>Remediation — What should be fixed?</li>
+        </ul>
+        <p><strong>Avoid:</strong> Publishing reusable jailbreak instructions or operational payloads.</p>
+      </details>
+    </section>
+
+    <!-- Visual Model -->
+    <section class="lab-panel" id="model">
+      <h2>🎨 Visual Prompt Injection Scenario Design Model</h2>
+      <div class="visual-flow">
+        <div class="flow-step">🎯 System under review</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📋 Instruction hierarchy</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📥 Untrusted input source</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">💥 Failure mode hypothesis</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🛡️ Expected control</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🧪 Synthetic scenario description</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">👁️ Observed behavior</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📄 Evidence artifact</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">❓ Uncertainty and gaps</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🔧 Remediation recommendation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">✅ Reviewer-safe finding</div>
+      </div>
+    </section>
+
+    <!-- Anti-Pattern -->
+    <section class="lab-panel" id="anti-pattern">
+      <h2>⚠️ High-Risk Anti-Pattern</h2>
+      <p>A dangerous pattern is publishing or running reusable prompt-injection payloads against real systems while calling the activity "training," "testing," or "research."</p>
+      
+      <div class="comparison-grid">
+        <div class="unsafe">
+          <h3>❌ Unsafe Pattern</h3>
+          <ul>
+            <li>Unclear authorization</li>
+            <li>Live target system</li>
+            <li>Reusable jailbreak text</li>
+            <li>Real sensitive data</li>
+            <li>Real tool execution</li>
+            <li>Unsupported compromise claims</li>
+          </ul>
+        </div>
+        <div class="safe">
+          <h3>✅ Safe Alternative</h3>
+          <ul>
+            <li>Authorized scope</li>
+            <li>Synthetic scenario description</li>
+            <li>No operational payload library</li>
+            <li>No live execution</li>
+            <li>Control-mapped evidence</li>
+            <li>Remediation-focused finding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Boundary -->
+    <section class="lab-panel" id="governance">
+      <h2>🛡️ Governance Boundary</h2>
+      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational execution is performed.</p>
+      
+      <table class="boundary-table">
+        <thead>
+          <tr><th>Control</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
+          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
+          <tr><td>Live prompt-injection execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live model abuse execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live exploit execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live red-team execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
+          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
+          <tr><td>Prompt payload library</td><td class="badge-false">false</td></tr>
+          <tr><td>Jailbreak instruction library</td><td class="badge-false">false</td></tr>
+          <tr><td>Real data exfiltration</td><td class="badge-false">false</td></tr>
+          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

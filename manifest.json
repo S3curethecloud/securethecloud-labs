@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "prompt-injection-scenario-design",
+      "title": "Prompt Injection Scenario Design",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/prompt-injection-scenario-design/",
+      "summary": "Intermediate LAB teaching safe prompt-injection scenario design: instruction hierarchy, untrusted input boundaries, retrieved content risk, expected controls, evidence capture, uncertainty, and non-execution boundaries."
+    },
+    {
       "id": "ai-red-team-scenario-design-overview",
       "title": "AI Red Team Scenario Design Overview",
       "cloud": "ai-red-team-scenario-design",
@@ -905,7 +915,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 1,
+      "implemented_modules": 2,
       "planned_modules": 9
     }
   ]

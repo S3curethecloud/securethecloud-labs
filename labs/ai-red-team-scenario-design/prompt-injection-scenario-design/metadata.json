@@ -1,0 +1,10 @@
+{
+  "id": "prompt-injection-scenario-design",
+  "title": "Prompt Injection Scenario Design",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/prompt-injection-scenario-design/",
+  "summary": "Intermediate LAB teaching safe prompt-injection scenario design: instruction hierarchy, untrusted input boundaries, retrieved content risk, expected controls, evidence capture, uncertainty, and non-execution boundaries."
+}
