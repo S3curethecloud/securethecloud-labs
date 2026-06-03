@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "human-approval-bypass-scenario-design",
+      "title": "Human Approval Bypass Scenario Design",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/human-approval-bypass-scenario-design/",
+      "summary": "Intermediate LAB teaching safe human approval bypass scenario design: approval gates, escalation paths, policy decisions, recommendation-versus-execution boundaries, evidence capture, uncertainty, and non-execution constraints."
+    },
+    {
       "id": "agent-loop-cost-abuse-scenario-design",
       "title": "Agent Loop and Cost Abuse Scenario Design",
       "cloud": "ai-red-team-scenario-design",
@@ -955,7 +965,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 6,
+      "implemented_modules": 7,
       "planned_modules": 9
     }
   ]

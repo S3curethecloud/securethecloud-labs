@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Human Approval Bypass Scenario Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
+    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
+    .unsafe h3, .safe h3 { margin-top: 0; }
+    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
+    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
+    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .boundary-table th { background: #edf2f7; font-weight: 600; }
+    .badge-false { color: #e53e3e; font-weight: 600; }
+    .info-card { background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 1rem 0; border-left: 4px solid #4299e1; }
+    .info-card h4 { margin: 0 0 0.5rem 0; color: #2b6cb0; }
+    .approval-level { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+    .approval-critical { background: #fed7d7; color: #c53030; }
+    .approval-sensitive { background: #feebc8; color: #c05621; }
+    .approval-standard { background: #c6f6d5; color: #276749; }
+    .confusion-source { background: #fff5f5; padding: 0.75rem; border-radius: 6px; margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+  <main class="lab-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
+
+    <!-- Hero Section -->
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
+      <h1>👤 Human Approval Bypass Scenario Design</h1>
+      <p>Learn how to design safe scenarios that test whether AI workflows preserve human approval gates, escalation paths, policy decisions, and recommendation-versus-execution boundaries — without bypassing real approvals.</p>
+      <div class="lab-meta-grid">
+        <div><span>Level</span><strong>Intermediate</strong></div>
+        <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
+        <div><span>Mode</span><strong>Static LAB</strong></div>
+        <div><span>Runtime</span><strong>Read-only</strong></div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav class="lab-toc" aria-label="Study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <ul>
+        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
+        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
+        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
+        <li><a href="#governance">🛡️ Governance Boundary</a></li>
+      </ul>
+    </nav>
+
+    <!-- Concept Deep Dives -->
+    <section class="lab-panel" id="concepts">
+      <h2>📖 Concept Deep Dives</h2>
+
+      <details open>
+        <summary><strong>1. What is human approval bypass scenario design?</strong></summary>
+        <p>Human approval bypass scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI workflow preserves required human decision points before sensitive actions are executed. The goal is to assess approval controls — not to bypass real approvals.</p>
+      </details>
+
+      <details>
+        <summary><strong>2. Why do approval gates matter in AI workflows?</strong></summary>
+        <p>Approval gates prevent AI systems from turning recommendations into actions without the right authority. They are especially important when workflows involve:</p>
+        <ul>
+          <li>🔒 Sensitive data access or disclosure</li>
+          <li>📧 External communication or notifications</li>
+          <li>🚀 Deployment or infrastructure changes</li>
+          <li>🔧 Remediation or access modifications</li>
+          <li>💰 Financial transactions or commitments</li>
+          <li>⚖️ Compliance or regulatory decisions</li>
+        </ul>
+        <div class="info-card">
+          <h4>📊 Approval Gate Criticality Levels</h4>
+          <div>
+            <span class="approval-level approval-critical">Critical — Financial, Regulatory, Production Changes</span>
+            <span class="approval-level approval-sensitive">Sensitive — Customer Data, Access Changes</span>
+            <span class="approval-level approval-standard">Standard — Routine Recommendations</span>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary><strong>3. How should recommendation and execution authority stay separate?</strong></summary>
+        <p>An AI system may <strong>recommend</strong> an action, but execution authority should remain with the approved human, policy, or governed automation boundary.</p>
+        <div class="info-card">
+          <h4>🔐 Separation of Duties</h4>
+          <ul>
+            <li><strong>Recommendation</strong> — AI can suggest or draft an action</li>
+            <li><strong>Review</strong> — Human or policy reviews the recommendation</li>
+            <li><strong>Approval</strong> — Authorized reviewer grants permission</li>
+            <li><strong>Execution</strong> — Approved action is performed</li>
+          </ul>
+          <p>A safe scenario checks whether this separation is preserved.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><strong>4. Where can escalation and approval-state confusion appear?</strong></summary>
+        <p>Confusion can appear when approval state is inferred from ambiguous sources:</p>
+        <div class="confusion-source">
+          <strong>⚠️ Common Confusion Sources</strong>
+          <ul>
+            <li>💬 Chat context or conversation history</li>
+            <li>📝 Stale tickets or outdated approvals</li>
+            <li>🗣️ Ambiguous language ("go ahead" vs. formal approval)</li>
+            <li>✅ Prior approvals for different actions</li>
+            <li>🏷️ Role labels without explicit authorization</li>
+            <li>📊 Incomplete workflow metadata</li>
+          </ul>
+        </div>
+        <p>A scenario should identify the <strong>required approval evidence explicitly</strong> and test whether the AI workflow respects it.</p>
+      </details>
+
+      <details>
+        <summary><strong>5. What controls should an approval-bypass scenario test?</strong></summary>
+        <p>Approval-bypass scenarios should map to specific controls:</p>
+        <ul>
+          <li><strong>Approval-state validation</strong> — Verify explicit approval exists</li>
+          <li><strong>Separation of duties</strong> — Recommender ≠ Approver</li>
+          <li><strong>Escalation rules</strong> — Path to higher authority</li>
+          <li><strong>Policy decision points</strong> — Required gates per action type</li>
+          <li><strong>Tool-call gates</strong> — Approval before tool execution</li>
+          <li><strong>Audit logging</strong> — Record all approval decisions</li>
+          <li><strong>Fail-closed behavior</strong> — Deny when approval unclear</li>
+          <li><strong>Reviewer-safe evidence capture</strong> — Synthetic approval records</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>6. How should approval-bypass findings be documented safely?</strong></summary>
+        <p>A <strong>safe finding</strong> should include:</p>
+        <ul>
+          <li><strong>Approval gate</strong> — What decision point was tested?</li>
+          <li><strong>Expected human decision point</strong> — Who should approve?</li>
+          <li><strong>Observed behavior</strong> — What did the workflow do?</li>
+          <li><strong>Evidence</strong> — Synthetic evidence of the finding</li>
+          <li><strong>Uncertainty</strong> — What remains unknown?</li>
+          <li><strong>Impact</strong> — Why does this matter?</li>
+          <li><strong>Remediation</strong> — What should be fixed?</li>
+        </ul>
+        <p><strong>Avoid:</strong> Bypassing real approvals, manipulating production approval state, or providing operational bypass steps.</p>
+      </details>
+    </section>
+
+    <!-- Visual Model -->
+    <section class="lab-panel" id="model">
+      <h2>🎨 Visual Human Approval Bypass Scenario Design Model</h2>
+      <div class="visual-flow">
+        <div class="flow-step">🤖 AI workflow under review</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">⚡ Sensitive action or decision point</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">✅ Required human approval gate</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📋 Recommendation-versus-execution boundary</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📤 Escalation path</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🔒 Approval-state integrity expectation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🛡️ Expected control</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🧪 Synthetic evidence artifact</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">👁️ Observed behavior</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">❓ Uncertainty and gaps</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">✅ Reviewer-safe finding</div>
+      </div>
+    </section>
+
+    <!-- Anti-Pattern -->
+    <section class="lab-panel" id="anti-pattern">
+      <h2>⚠️ High-Risk Anti-Pattern</h2>
+      <p>A dangerous pattern is treating <strong>implied approval, model confidence, or ambiguous chat language</strong> as permission to execute a sensitive action.</p>
+      
+      <div class="comparison-grid">
+        <div class="unsafe">
+          <h3>❌ Unsafe Pattern</h3>
+          <ul>
+            <li>Implied approval</li>
+            <li>Stale approval context</li>
+            <li>Unclear human decision point</li>
+            <li>Live policy override</li>
+            <li>Workflow state manipulation</li>
+            <li>Direct tool execution</li>
+            <li>Unsupported authorization claims</li>
+          </ul>
+        </div>
+        <div class="safe">
+          <h3>✅ Safe Alternative</h3>
+          <ul>
+            <li>Explicit approval state</li>
+            <li>Documented decision point</li>
+            <li>No live execution</li>
+            <li>No workflow mutation</li>
+            <li>Control-mapped evidence</li>
+            <li>Fail-closed remediation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Boundary -->
+    <section class="lab-panel" id="governance">
+      <h2>🛡️ Governance Boundary</h2>
+      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational approval bypass is performed.</p>
+      
+      <table class="boundary-table">
+        <thead>
+          <tr><th>Control</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
+          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
+          <tr><td>Live approval bypass</td><td class="badge-false">false</td></tr>
+          <tr><td>Policy override execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Approval-state manipulation</td><td class="badge-false">false</td></tr>
+          <tr><td>Workflow mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Live tool invocation</td><td class="badge-false">false</td></tr>
+          <tr><td>Live API call execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
+          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
+          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

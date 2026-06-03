@@ -1,0 +1,10 @@
+{
+  "id": "human-approval-bypass-scenario-design",
+  "title": "Human Approval Bypass Scenario Design",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/human-approval-bypass-scenario-design/",
+  "summary": "Intermediate LAB teaching safe human approval bypass scenario design: approval gates, escalation paths, policy decisions, recommendation-versus-execution boundaries, evidence capture, uncertainty, and non-execution constraints."
+}
