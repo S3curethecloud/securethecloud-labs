@@ -806,20 +806,120 @@
 }
 
 
-/* PHASE 212 FOOTER DUPLICATE LINK POLISH START */
-.stc-footer-trust-line {
-  padding-bottom: 1rem;
+
+
+/* PHASE 212B FOOTER LEGAL DEDUPLICATION AND ALIGNMENT START */
+.stc-footer {
+  overflow: hidden;
 }
 
-.stc-footer-trust-line a {
-  color: inherit;
+.stc-footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 1.35fr) minmax(150px, 0.75fr) minmax(210px, 1fr) minmax(220px, 0.95fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+  padding-inline: 1.25rem;
+}
+
+.stc-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stc-footer-brand small {
+  color: #fbbf24;
+  letter-spacing: 0.18em;
+}
+
+.stc-footer-description {
+  max-width: 330px;
+}
+
+.stc-footer-column {
+  min-width: 0;
+}
+
+.stc-footer-column h3 {
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  margin-bottom: 1.05rem;
+}
+
+.stc-footer-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.stc-footer-list a {
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+.stc-footer-list small {
+  display: block;
+  margin-top: 0.18rem;
+  color: #38bdf8;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.stc-footer-boundary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.72rem;
+}
+
+.stc-footer-boundary li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.stc-footer-boundary li::before {
+  content: "◇";
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.stc-footer-trust-line {
+  max-width: 1180px;
+  margin: 2rem auto 0;
+  padding: 1.15rem 1.25rem 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  color: rgba(226, 232, 240, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.stc-footer-trust-line p {
+  max-width: 980px;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.stc-footer-trust-line strong {
+  color: #ffffff;
 }
 
 .stc-footer-bottom {
   max-width: 1180px;
   margin: 0 auto;
   padding: 1rem 1.25rem 1.35rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(260px, 1.15fr) minmax(300px, auto);
+  gap: 1rem 1.5rem;
+  align-items: center;
   line-height: 1.5;
 }
 
@@ -828,9 +928,8 @@
 }
 
 .stc-footer-legal {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: flex-end;
   gap: 0.45rem;
   white-space: normal;
@@ -840,17 +939,21 @@
 .stc-footer-legal a {
   color: #ffffff;
   text-decoration: none;
+  font-weight: 800;
 }
 
 .stc-footer-legal a:hover {
   color: #38bdf8;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 980px) {
+  .stc-footer-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .stc-footer-bottom {
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-inline: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
   }
 
   .stc-footer-legal {
@@ -858,7 +961,19 @@
     text-align: left;
   }
 }
-/* PHASE 212 FOOTER DUPLICATE LINK POLISH END */
+
+@media (max-width: 640px) {
+  .stc-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 1rem;
+  }
+
+  .stc-footer-trust-line,
+  .stc-footer-bottom {
+    padding-inline: 1rem;
+  }
+}
+/* PHASE 212B FOOTER LEGAL DEDUPLICATION AND ALIGNMENT END */
 
 </style>
 
@@ -2043,10 +2158,10 @@ body {
 
 <footer class="stc-footer" aria-label="SecureTheCloud Labs footer">
   <div class="stc-footer-inner">
-    <div>
+    <div class="stc-footer-about">
       <div class="stc-footer-brand">
         <span class="stc-footer-mark">◇</span>
-        <span>SecureTheCloud<br><small style="color:#fbbf24;letter-spacing:.18em;">LABS</small></span>
+        <span>SecureTheCloud<br><small>LABS</small></span>
       </div>
       <p class="stc-footer-description">SecureTheCloud delivers practical cloud security learning, AI governance education, and architecture-focused labs for real enterprise decisions.</p>
     </div>
@@ -2070,7 +2185,7 @@ body {
       </div>
     </div>
 
-    <div class="stc-footer-column">
+    <div class="stc-footer-column stc-footer-boundary-column">
       <h3>Trust &amp; Boundary</h3>
       <ul class="stc-footer-boundary">
         <li>Educational content only</li>
@@ -2080,24 +2195,21 @@ body {
       </ul>
     </div>
   </div>
+
   <div class="stc-footer-trust-line">
-    <p><strong>SecureTheCloud:</strong> Practical cloud and AI security education for real enterprise decisions. Educational content only - no backend exposure, no live enforcement, no customer data, and no runtime mutation. Privacy posture, platform use, and vulnerability reporting are documented in the Labs-local trust pages below.</p>
+    <p><strong>SecureTheCloud:</strong> Practical cloud and AI security education for real enterprise decisions. Educational content only — no backend exposure, no live enforcement, no customer data, and no runtime mutation. Privacy posture, platform use, and vulnerability reporting are documented in the Labs-local trust pages below.</p>
   </div>
 
-<div class="stc-footer-bottom">
+  <div class="stc-footer-bottom">
     <span>© 2026 SecureTheCloud. All rights reserved.</span>
     <span>Educational labs. No production systems. No customer data.</span>
-    <span class="stc-footer-legal">
+    <nav class="stc-footer-legal" aria-label="Legal links">
       <a href="/privacy-policy/">Privacy Policy</a>
-      <span>•</span>
+      <span aria-hidden="true">•</span>
       <a href="/terms-of-service/">Terms of Service</a>
-      <span>•</span>
+      <span aria-hidden="true">•</span>
       <a href="/responsible-disclosure/">Responsible Disclosure</a>
-    </span>
-<a href="/terms-of-service/">Terms of Service</a>
-      <span>•</span>
-      <a href="/responsible-disclosure/">Responsible Disclosure</a>
-    </span>
+    </nav>
   </div>
 </footer>
 
