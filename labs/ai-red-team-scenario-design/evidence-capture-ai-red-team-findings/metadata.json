@@ -1,0 +1,10 @@
+{
+  "id": "evidence-capture-ai-red-team-findings",
+  "title": "Evidence Capture for AI Red Team Findings",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/evidence-capture-ai-red-team-findings/",
+  "summary": "Intermediate LAB teaching safe evidence capture for AI red-team findings: objectives, preconditions, expected controls, observed behavior, findings, uncertainty, remediation, and reviewer-safe documentation."
+}

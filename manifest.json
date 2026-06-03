@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "evidence-capture-ai-red-team-findings",
+      "title": "Evidence Capture for AI Red Team Findings",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/evidence-capture-ai-red-team-findings/",
+      "summary": "Intermediate LAB teaching safe evidence capture for AI red-team findings: objectives, preconditions, expected controls, observed behavior, findings, uncertainty, remediation, and reviewer-safe documentation."
+    },
+    {
       "id": "human-approval-bypass-scenario-design",
       "title": "Human Approval Bypass Scenario Design",
       "cloud": "ai-red-team-scenario-design",
@@ -965,7 +975,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 7,
+      "implemented_modules": 8,
       "planned_modules": 9
     }
   ]
