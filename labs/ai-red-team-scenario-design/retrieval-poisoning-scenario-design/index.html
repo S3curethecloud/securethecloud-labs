@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retrieval Poisoning Scenario Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/lab.css" />
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
+    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
+    .unsafe h3, .safe h3 { margin-top: 0; }
+    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
+    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
+    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .boundary-table th { background: #edf2f7; font-weight: 600; }
+    .badge-false { color: #e53e3e; font-weight: 600; }
+    .info-card { background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 1rem 0; border-left: 4px solid #4299e1; }
+    .info-card h4 { margin: 0 0 0.5rem 0; color: #2b6cb0; }
+    .risk-level { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; }
+    .risk-high { background: #fed7d7; color: #c53030; }
+    .risk-medium { background: #feebc8; color: #c05621; }
+    .risk-low { background: #c6f6d5; color: #276749; }
+  </style>
+</head>
+<body>
+  <main class="lab-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
+
+    <!-- Hero Section -->
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
+      <h1>📚 Retrieval Poisoning Scenario Design</h1>
+      <p>Learn how to design safe retrieval poisoning scenarios that evaluate source authority, tenant boundaries, stale content risk, retrieval trust, expected controls, and reviewer-safe evidence — without mutating corpora or live systems.</p>
+      <div class="lab-meta-grid">
+        <div><span>Level</span><strong>Intermediate</strong></div>
+        <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
+        <div><span>Mode</span><strong>Static LAB</strong></div>
+        <div><span>Runtime</span><strong>Read-only</strong></div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav class="lab-toc" aria-label="Study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <ul>
+        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
+        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
+        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
+        <li><a href="#governance">🛡️ Governance Boundary</a></li>
+      </ul>
+    </nav>
+
+    <!-- Concept Deep Dives -->
+    <section class="lab-panel" id="concepts">
+      <h2>📖 Concept Deep Dives</h2>
+
+      <details open>
+        <summary><strong>1. What is retrieval poisoning scenario design?</strong></summary>
+        <p>Retrieval poisoning scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI workflow can be influenced by untrusted, stale, low-authority, tenant-crossing, or misleading retrieved content. The goal is to assess retrieval controls — not to poison real data sources.</p>
+      </details>
+
+      <details>
+        <summary><strong>2. Why does source authority matter?</strong></summary>
+        <p>Source authority determines whether retrieved content should be treated as:</p>
+        <ul>
+          <li><span class="risk-level risk-high">Trusted evidence</span> — Approved policy documents, system-of-record</li>
+          <li><span class="risk-level risk-medium">Low-confidence context</span> — User notes, vendor emails, support tickets</li>
+          <li><span class="risk-level risk-low">Untrusted input</span> — External web content, unverified sources</li>
+        </ul>
+        <p>A safe scenario identifies which sources have authority and which do not, then tests whether the system respects those boundaries.</p>
+      </details>
+
+      <details>
+        <summary><strong>3. How do stale or low-authority sources create risk?</strong></summary>
+        <div class="info-card">
+          <h4>📊 Risk Scenarios</h4>
+          <ul>
+            <li><strong>Stale policy document</strong> — Agent follows outdated compliance rules</li>
+            <li><strong>Vendor note injection</strong> — External text overrides system instructions</li>
+            <li><strong>Support ticket manipulation</strong> — Attacker-controlled content poisons context</li>
+            <li><strong>Outdated pricing data</strong> — Agent recommends incorrect financial actions</li>
+          </ul>
+        </div>
+        <p>A scenario should define freshness expectations and review how the system handles weak, stale, or conflicting evidence.</p>
+      </details>
+
+      <details>
+        <summary><strong>4. Where can tenant or context boundaries fail?</strong></summary>
+        <p>Boundary failures can occur when retrieved content crosses:</p>
+        <ul>
+          <li><strong>Tenant boundaries</strong> — Customer A's documents leak to Customer B</li>
+          <li><strong>Project boundaries</strong> — Internal project context visible to unauthorized users</li>
+          <li><strong>Role boundaries</strong> — Regular user sees admin-only documents</li>
+          <li><strong>Environment boundaries</strong> — Production receives development/test data</li>
+          <li><strong>Sensitivity boundaries</strong> — Confidential or regulated data exposed</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>5. What controls should a retrieval-risk scenario test?</strong></summary>
+        <p>Retrieval-risk scenarios should map to specific controls:</p>
+        <ul>
+          <li><strong>Source allowlists</strong> — Only approved sources can be retrieved</li>
+          <li><strong>Source ranking</strong> — Higher-authority sources outrank lower ones</li>
+          <li><strong>Freshness checks</strong> — Stale content is flagged or excluded</li>
+          <li><strong>Tenant scoping</strong> — Retrieval respects tenant boundaries</li>
+          <li><strong>Context labeling</strong> — Retrieved content marked as context, not authority</li>
+          <li><strong>Citation requirements</strong> — Claims must be supported by evidence</li>
+          <li><strong>Fail-closed behavior</strong> — Low confidence leads to escalation, not unsafe action</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>6. How should retrieval-risk findings be documented safely?</strong></summary>
+        <p>A <strong>safe finding</strong> should include:</p>
+        <ul>
+          <li><strong>Retrieval source</strong> — What source was tested?</li>
+          <li><strong>Authority level</strong> — Trusted, low-confidence, or untrusted?</li>
+          <li><strong>Expected control</strong> — What should have prevented the issue?</li>
+          <li><strong>Observed behavior</strong> — What actually happened?</li>
+          <li><strong>Uncertainty</strong> — What remains unknown?</li>
+          <li><strong>Risk impact</strong> — Why does this matter?</li>
+          <li><strong>Remediation</strong> — What should be fixed?</li>
+        </ul>
+        <p><strong>Avoid:</strong> Modifying live indexes, tampering with real sources, or publishing source-poisoning steps.</p>
+      </details>
+    </section>
+
+    <!-- Visual Model -->
+    <section class="lab-panel" id="model">
+      <h2>🎨 Visual Retrieval Poisoning Scenario Design Model</h2>
+      <div class="visual-flow">
+        <div class="flow-step">🤖 AI workflow under review</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📚 Retrieval source inventory</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">⭐ Source authority level</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🔒 Tenant and context boundary</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🕐 Freshness expectation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">⚠️ Retrieval-risk hypothesis</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🛡️ Expected control</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🧪 Synthetic evidence artifact</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">👁️ Observed behavior</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">❓ Uncertainty and gaps</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">✅ Reviewer-safe finding</div>
+      </div>
+    </section>
+
+    <!-- Anti-Pattern -->
+    <section class="lab-panel" id="anti-pattern">
+      <h2>⚠️ High-Risk Anti-Pattern</h2>
+      <p>A dangerous pattern is modifying or seeding <strong>real retrieval sources</strong> to influence model behavior while treating the activity as "safe testing" or "research."</p>
+      
+      <div class="comparison-grid">
+        <div class="unsafe">
+          <h3>❌ Unsafe Pattern</h3>
+          <ul>
+            <li>Real corpus mutation</li>
+            <li>Vector database writes</li>
+            <li>Source tampering</li>
+            <li>Customer data exposure</li>
+            <li>Tenant boundary crossing</li>
+            <li>Unsupported compromise claims</li>
+          </ul>
+        </div>
+        <div class="safe">
+          <h3>✅ Safe Alternative</h3>
+          <ul>
+            <li>Synthetic evidence artifact</li>
+            <li>Documented source authority</li>
+            <li>No live index mutation</li>
+            <li>No customer data access</li>
+            <li>Control-mapped observation</li>
+            <li>Remediation-focused finding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Boundary -->
+    <section class="lab-panel" id="governance">
+      <h2>🛡️ Governance Boundary</h2>
+      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational retrieval poisoning is performed.</p>
+      
+      <table class="boundary-table">
+        <thead>
+          <tr><th>Control</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
+          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
+          <tr><td>Live retrieval poisoning</td><td class="badge-false">false</td></tr>
+          <tr><td>Corpus mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Vector database write</td><td class="badge-false">false</td></tr>
+          <tr><td>Source tampering</td><td class="badge-false">false</td></tr>
+          <tr><td>Live model abuse execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live exploit execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live red-team execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
+          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
+          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

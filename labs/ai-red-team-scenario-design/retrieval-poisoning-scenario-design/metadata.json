@@ -1,0 +1,10 @@
+{
+  "id": "retrieval-poisoning-scenario-design",
+  "title": "Retrieval Poisoning Scenario Design",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/retrieval-poisoning-scenario-design/",
+  "summary": "Intermediate LAB teaching safe retrieval poisoning scenario design: source authority, tenant boundaries, stale content risk, retrieval trust, evidence capture, uncertainty, and non-execution constraints."
+}

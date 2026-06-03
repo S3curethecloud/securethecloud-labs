@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "retrieval-poisoning-scenario-design",
+      "title": "Retrieval Poisoning Scenario Design",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/retrieval-poisoning-scenario-design/",
+      "summary": "Intermediate LAB teaching safe retrieval poisoning scenario design: source authority, tenant boundaries, stale content risk, retrieval trust, evidence capture, uncertainty, and non-execution constraints."
+    },
+    {
       "id": "tool-abuse-scenario-design",
       "title": "Tool-Abuse Scenario Design",
       "cloud": "ai-red-team-scenario-design",
@@ -925,7 +935,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 3,
+      "implemented_modules": 4,
       "planned_modules": 9
     }
   ]
