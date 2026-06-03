@@ -22,6 +22,95 @@
     .boundary-table th { background: #edf2f7; font-weight: 600; }
     .badge-true { color: #38a169; font-weight: 600; }
     .badge-false { color: #e53e3e; font-weight: 600; }
+  
+    /* Phase 209A Prompt Injection visual readability repair */
+    .visual-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .flow-step {
+      padding: 1rem 1.25rem !important;
+      margin: 0 !important;
+      background: linear-gradient(135deg, rgba(8, 47, 73, 0.92), rgba(15, 23, 42, 0.96)) !important;
+      border: 1px solid rgba(56, 189, 248, 0.34) !important;
+      border-radius: 14px !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      text-align: center !important;
+    }
+
+    .flow-arrow {
+      color: #93c5fd !important;
+      font-weight: 900 !important;
+      text-align: center !important;
+    }
+
+    .comparison-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 24px !important;
+      margin-top: 1.5rem !important;
+    }
+
+    .unsafe {
+      background: rgba(127, 29, 29, 0.28) !important;
+      border: 1px solid rgba(251, 113, 133, 0.55) !important;
+      border-left: 4px solid #fb7185 !important;
+      border-radius: 16px !important;
+      padding: 1.25rem !important;
+      color: #f8fafc !important;
+    }
+
+    .safe {
+      background: rgba(20, 83, 45, 0.26) !important;
+      border: 1px solid rgba(74, 222, 128, 0.52) !important;
+      border-left: 4px solid #4ade80 !important;
+      border-radius: 16px !important;
+      padding: 1.25rem !important;
+      color: #f8fafc !important;
+    }
+
+    .unsafe h3,
+    .safe h3,
+    .unsafe li,
+    .safe li {
+      color: #f8fafc !important;
+    }
+
+    .boundary-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 1.5rem 0 !important;
+      border: 1px solid rgba(148, 163, 184, 0.24) !important;
+      border-radius: 14px !important;
+      overflow: hidden !important;
+    }
+
+    .boundary-table th {
+      background: rgba(8, 47, 73, 0.88) !important;
+      color: #ffffff !important;
+      font-weight: 900 !important;
+    }
+
+    .boundary-table td {
+      color: #dbeafe !important;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.24) !important;
+    }
+
+    .badge-false {
+      color: #fb7185 !important;
+      font-weight: 900 !important;
+    }
+
+    @media (max-width: 780px) {
+      .comparison-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
   </style>
 </head>
 <body>
