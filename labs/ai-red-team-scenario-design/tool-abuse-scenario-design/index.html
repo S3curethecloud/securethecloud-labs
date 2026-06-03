@@ -1,224 +1,235 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tool-Abuse Scenario Design | SecureTheCloud Labs</title>
-  <link rel="stylesheet" href="/assets/css/lab.css" />
-  <style>
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin: 1.5rem 0;
-    }
-    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
-    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
-    .unsafe h3, .safe h3 { margin-top: 0; }
-    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
-    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
-    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
-    .boundary-table th { background: #edf2f7; font-weight: 600; }
-    .badge-false { color: #e53e3e; font-weight: 600; }
-    .tool-card { background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
-    .tool-card h4 { margin: 0 0 0.5rem 0; }
-  </style>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
 </head>
 <body>
-  <main class="lab-shell">
+  <main class="lab-detail-shell">
     <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
 
-    <!-- Hero Section -->
     <section class="lab-hero">
-      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
-      <h1>🔧 Tool-Abuse Scenario Design</h1>
-      <p>Learn how to design safe AI tool-abuse scenarios that evaluate tool authority boundaries, permission scope, approval gates, unsafe delegation risk, and reviewer-safe evidence — without invoking real tools or mutating systems.</p>
-      <div class="lab-meta-grid">
-        <div><span>Level</span><strong>Intermediate</strong></div>
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · Tool Abuse · L2</p>
+      <h1>Tool-Abuse Scenario Design</h1>
+      <p>Intermediate LAB teaching safe AI tool-abuse scenario design: tool authority, permission scope, approval gates, unsafe delegation risk, expected controls, reviewer-safe evidence, and non-execution boundaries.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
         <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
-        <div><span>Mode</span><strong>Static LAB</strong></div>
-        <div><span>Runtime</span><strong>Read-only</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
     </section>
 
-    <!-- Table of Contents -->
-    <nav class="lab-toc" aria-label="Study menu">
+    <section class="mobile-study-menu">
       <p class="mobile-study-menu-title">Study Menu</p>
-      <ul>
-        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
-        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
-        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
-        <li><a href="#governance">🛡️ Governance Boundary</a></li>
-      </ul>
-    </nav>
-
-    <!-- Concept Deep Dives -->
-    <section class="lab-panel" id="concepts">
-      <h2>📖 Concept Deep Dives</h2>
-
-      <details open>
-        <summary><strong>1. What is tool-abuse scenario design?</strong></summary>
-        <p>Tool-abuse scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI workflow can misuse a tool, request excessive authority, bypass approval gates, or confuse recommendation authority with execution authority. The goal is to assess controls — not to execute unauthorized actions.</p>
-      </details>
-
-      <details>
-        <summary><strong>2. Why does tool authority matter?</strong></summary>
-        <p>Tools can perform powerful actions:</p>
-        <ul>
-          <li>📖 Read sensitive data</li>
-          <li>✍️ Write records to databases</li>
-          <li>🎫 Create tickets and notifications</li>
-          <li>📧 Send messages and emails</li>
-          <li>🚀 Deploy code or configuration changes</li>
-          <li>🔌 Call external APIs</li>
-        </ul>
-        <p>A safe scenario identifies what a tool can do, who authorized it, what it must <strong>never</strong> do, and what approval is required before action.</p>
-      </details>
-
-      <details>
-        <summary><strong>3. How do permission scope and approval gates reduce risk?</strong></summary>
-        <p><strong>Permission scope</strong> limits what a tool can access or change. <strong>Approval gates</strong> ensure that sensitive actions require human or policy approval before execution. A scenario should test whether these boundaries are preserved:</p>
-        <div class="tool-card">
-          <h4>🔐 Example Boundaries to Test</h4>
-          <ul>
-            <li>Read-only tool cannot mutate data</li>
-            <li>Tenant-scoped tool cannot access other tenants</li>
-            <li>Sensitive tool requires explicit approval</li>
-            <li>AI cannot self-approve its own actions</li>
-            <li>Denied actions cannot be retried via alternative paths</li>
-          </ul>
-        </div>
-      </details>
-
-      <details>
-        <summary><strong>4. Where can unsafe delegation appear in AI workflows?</strong></summary>
-        <p>Unsafe delegation appears when an AI system is allowed to choose or invoke tools without sufficient:</p>
-        <ul>
-          <li><strong>Policy context</strong> — What actions are allowed or forbidden?</li>
-          <li><strong>Identity context</strong> — Who is requesting the action?</li>
-          <li><strong>Tenant context</strong> — Which customer or environment is affected?</li>
-          <li><strong>Approval state</strong> — Has proper authorization been obtained?</li>
-          <li><strong>Evidence logging</strong> — Can the decision be audited?</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary><strong>5. What controls should a tool-abuse scenario test?</strong></summary>
-        <p>Tool-abuse scenarios should map to specific controls:</p>
-        <ul>
-          <li><strong>Least privilege</strong> — Tools have minimal required permissions</li>
-          <li><strong>Tool allowlists</strong> — Only approved tools can be invoked</li>
-          <li><strong>Policy gates</strong> — Actions evaluated before execution</li>
-          <li><strong>Approval checks</strong> — Sensitive actions require review</li>
-          <li><strong>Scoped credentials</strong> — Credentials limited by role and tenant</li>
-          <li><strong>Action logging</strong> — All tool attempts are recorded</li>
-          <li><strong>Tenant isolation</strong> — No cross-tenant access</li>
-          <li><strong>Fail-closed behavior</strong> — Denied by default when unsure</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary><strong>6. How should tool-abuse findings be documented safely?</strong></summary>
-        <p>A <strong>safe finding</strong> should include:</p>
-        <ul>
-          <li><strong>Scenario objective</strong> — What authority boundary was tested?</li>
-          <li><strong>Tool authority</strong> — What could the tool do if misused?</li>
-          <li><strong>Expected control</strong> — What should have prevented abuse?</li>
-          <li><strong>Observed behavior</strong> — What actually happened?</li>
-          <li><strong>Evidence</strong> — Synthetic evidence of the finding</li>
-          <li><strong>Uncertainty</strong> — What remains unknown?</li>
-          <li><strong>Impact</strong> — Why does this matter?</li>
-          <li><strong>Remediation</strong> — What should be fixed?</li>
-        </ul>
-        <p><strong>Avoid:</strong> Providing executable misuse steps, real credentials, or production API calls.</p>
-      </details>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
     </section>
 
-    <!-- Visual Model -->
-    <section class="lab-panel" id="model">
-      <h2>🎨 Visual Tool-Abuse Scenario Design Model</h2>
-      <div class="visual-flow">
-        <div class="flow-step">🤖 AI workflow under review</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">📦 Tool inventory</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">⚡ Tool authority level</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🔒 Permission boundary</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">✅ Approval requirement</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">⚠️ Unsafe delegation hypothesis</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🛡️ Expected control</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🧪 Synthetic evidence artifact</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">👁️ Observed behavior</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">❓ Uncertainty and gaps</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">✅ Reviewer-safe finding</div>
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design safe AI tool-abuse scenarios that evaluate whether an AI workflow can misuse tools, request excessive authority, bypass approval gates, or confuse recommendation authority with execution authority.</p>
+
+          <div class="pill-row">
+            <span class="pill">Tool authority</span>
+            <span class="pill">Least privilege</span>
+            <span class="pill">Approval gates</span>
+            <span class="pill">No live tool calls</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI tool-abuse scenario design fundamentals.</p>
+
+          <details class="concept-card" open>
+            <summary>What is tool-abuse scenario design?</summary>
+            <p>Tool-abuse scenario design is the safe planning of tests that evaluate whether an AI workflow can misuse a tool, request excessive authority, bypass approval gates, or confuse recommendation authority with execution authority. The goal is to assess controls, not to execute unauthorized actions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does tool authority matter?</summary>
+            <p>Tool authority defines what an AI-connected tool can do, what data it can access, what systems it can affect, and whether the model can recommend or execute the action. Unsafe authority can turn a harmless response into operational risk.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How do permission scope and approval gates reduce risk?</summary>
+            <p>Permission scope limits what a tool can access. Approval gates require a human, policy, or workflow control before sensitive action. A safe scenario checks whether the system preserves these limits when the model appears confident.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Where can unsafe delegation appear in AI workflows?</summary>
+            <p>Unsafe delegation appears when an AI system chooses or invokes tools without sufficient permission checks, tenant boundaries, role validation, approval state, evidence logging, or separation between recommendation and execution.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What controls should a tool-abuse scenario test?</summary>
+            <p>Controls include least privilege, explicit approval, tenant isolation, tool allow-lists, sensitive action review, fail-closed behavior, audit logging, and evidence capture.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should tool-abuse findings be documented safely?</summary>
+            <p>A safe finding records objective, scope, tool authority, expected approval behavior, observed behavior, evidence, uncertainty, risk, and remediation without using real credentials or invoking production APIs.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Tool-Abuse Scenario Design Model</h2>
+          <p>A strong tool-abuse scenario turns tool authority risk into a scoped, evidence-backed control review.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Workflow Under Review</strong>
+                <span>Assistant, agent, workflow, tool router, or automation path</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Tool Inventory</strong>
+                <span>Available tools, allowed actions, data access, and authority level</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Permission Boundary</strong>
+                <span>Least privilege, tenant scope, approval requirement, and denied actions</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Unsafe Delegation Hypothesis</strong>
+                <span>Excessive authority, approval bypass, live API execution, or policy confusion</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Expected Control</strong>
+                <span>Approval gate, refusal, fail-closed behavior, or recommendation-only boundary</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Reviewer-Safe Finding</strong>
+                <span>Observed behavior, evidence, uncertainty, risk, and remediation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Tool-abuse testing is safe only when it evaluates authority boundaries without invoking real tools, APIs, credentials, or production systems.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI assistant can recommend account changes but should not execute sensitive tool actions without explicit approval. The learner must design a safe scenario to check whether recommendation authority remains separate from execution authority.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Objective</strong>
+              <span>Evaluate whether the AI workflow preserves approval gates before sensitive tool execution.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Scope</strong>
+              <span>Synthetic tool catalog and simulated approval states only. No real tools, credentials, APIs, or production systems.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Expected Control</strong>
+              <span>The assistant can recommend an action but cannot execute sensitive tool calls without explicit approval.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>Reviewer-safe record of tool authority, expected approval behavior, observed behavior, uncertainty, and remediation.</span>
+            </div>
+          </div>
+
+          <pre><code>Safe scenario handling:
+define the AI workflow under review
+inventory available tools and authority
+identify sensitive actions
+state approval requirements
+use synthetic tool states only
+do not invoke real APIs
+observe whether recommendation and execution remain separate
+record uncertainty and limits
+write remediation tied to the control gap
+
+Result:
+The scenario becomes a tool-authority control review, not an operational automation test.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is allowing an AI system to invoke sensitive tools directly because the model appears confident or because the tool call is framed as helpful automation.</p>
+
+          <pre><code>Unsafe pattern:
+
+broad tool permissions
+→ unclear approval state
+→ live API execution
+→ credential material in context
+→ no tenant or policy boundary
+→ no evidence trail
+→ unsupported safety claims
+
+Risk:
+
+unauthorized action
+customer data exposure
+credential leakage
+tenant boundary failure
+production mutation
+misleading control claims
+loss of trust in AI workflows
+
+Secure alternative:
+Use least privilege.
+Require explicit approval gates.
+Separate recommendation from execution.
+Use synthetic tool states only.
+Do not invoke real APIs.
+Record evidence.
+Preserve uncertainty.
+Recommend fail-closed behavior.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It teaches safe scenario design only. It does not invoke tools, call APIs, access credentials, connect to production systems, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Public backend exposed = false
+Live tool invocation = false
+Live API call execution = false
+Live model abuse execution = false
+Live exploit execution = false
+Live red-team execution = false
+Customer data access = false
+Credential handling = false
+Tool-abuse automation = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
       </div>
-    </section>
-
-    <!-- Anti-Pattern -->
-    <section class="lab-panel" id="anti-pattern">
-      <h2>⚠️ High-Risk Anti-Pattern</h2>
-      <p>A dangerous pattern is allowing an AI system to invoke sensitive tools directly because the model appears confident or because the tool call is framed as "helpful automation."</p>
-      
-      <div class="comparison-grid">
-        <div class="unsafe">
-          <h3>❌ Unsafe Pattern</h3>
-          <ul>
-            <li>Broad tool permissions</li>
-            <li>Unclear approval state</li>
-            <li>Live API execution</li>
-            <li>Credential material in context</li>
-            <li>No tenant or policy boundary</li>
-            <li>No evidence trail</li>
-            <li>Unsupported safety claims</li>
-          </ul>
-        </div>
-        <div class="safe">
-          <h3>✅ Safe Alternative</h3>
-          <ul>
-            <li>Least privilege</li>
-            <li>Explicit approval gate</li>
-            <li>Synthetic scenario only</li>
-            <li>No live execution</li>
-            <li>Policy-mapped evidence</li>
-            <li>Fail-closed recommendation boundary</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance Boundary -->
-    <section class="lab-panel" id="governance">
-      <h2>🛡️ Governance Boundary</h2>
-      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational tool execution is performed.</p>
-      
-      <table class="boundary-table">
-        <thead>
-          <tr><th>Control</th><th>Status</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
-          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
-          <tr><td>Live tool invocation</td><td class="badge-false">false</td></tr>
-          <tr><td>Live API call execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Live model abuse execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Live exploit execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Live red-team execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
-          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
-          <tr><td>Tool-abuse automation</td><td class="badge-false">false</td></tr>
-          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
-          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
-        </tbody>
-       </table>
     </section>
   </main>
 </body>
