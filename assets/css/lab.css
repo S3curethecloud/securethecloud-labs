@@ -2,13 +2,17 @@
   color-scheme: dark;
   --stc-bg: #020617;
   --stc-panel: #0f172a;
-  --stc-panel-soft: #111827;
-  --stc-border: rgba(148, 163, 184, 0.22);
+  --stc-panel-2: #111827;
+  --stc-border: rgba(56, 189, 248, 0.24);
+  --stc-border-soft: rgba(148, 163, 184, 0.22);
   --stc-cyan: #38bdf8;
+  --stc-blue: #93c5fd;
   --stc-gold: #facc15;
   --stc-text: #f8fafc;
-  --stc-muted: #bfdbfe;
-  --stc-soft: #93c5fd;
+  --stc-muted: #dbeafe;
+  --stc-soft: #bfdbfe;
+  --stc-danger: #fb7185;
+  --stc-safe: #4ade80;
 }
 
 * {
@@ -16,10 +20,11 @@
 }
 
 html {
-  background: radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 34%),
-              radial-gradient(circle at top right, rgba(250, 204, 21, 0.08), transparent 28%),
-              var(--stc-bg);
   min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 34%),
+    radial-gradient(circle at top right, rgba(250, 204, 21, 0.08), transparent 30%),
+    var(--stc-bg);
 }
 
 body {
@@ -54,9 +59,10 @@ a {
 }
 
 .lab-hero,
-.lab-panel {
+.lab-panel,
+.lab-toc {
   background: rgba(15, 23, 42, 0.94);
-  border: 1px solid rgba(56, 189, 248, 0.22);
+  border: 1px solid var(--stc-border);
   border-radius: 24px;
   box-shadow: 0 24px 80px rgba(2, 6, 23, 0.42);
 }
@@ -78,6 +84,7 @@ a {
 .lab-hero h1 {
   margin: 0 0 18px;
   max-width: 980px;
+  color: #ffffff;
   font-size: clamp(2.4rem, 5vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.06em;
@@ -85,7 +92,7 @@ a {
 
 .lab-hero p {
   max-width: 980px;
-  color: #dbeafe;
+  color: var(--stc-muted);
   font-size: 1.05rem;
   line-height: 1.7;
 }
@@ -98,7 +105,7 @@ a {
 }
 
 .lab-meta-grid div {
-  border: 1px solid var(--stc-border);
+  border: 1px solid var(--stc-border-soft);
   border-radius: 16px;
   padding: 16px;
   background: rgba(2, 6, 23, 0.42);
@@ -106,7 +113,7 @@ a {
 
 .lab-meta-grid span {
   display: block;
-  color: var(--stc-soft);
+  color: var(--stc-blue);
   font-size: 0.78rem;
   font-weight: 800;
   margin-bottom: 6px;
@@ -118,6 +125,44 @@ a {
   font-size: 1rem;
 }
 
+.lab-toc {
+  padding: 20px 24px;
+  margin: 0 0 24px;
+}
+
+.mobile-study-menu-title {
+  margin: 0 0 10px;
+  color: var(--stc-gold);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lab-toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lab-toc a {
+  display: inline-flex;
+  padding: 9px 13px;
+  border: 1px solid var(--stc-border-soft);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.38);
+  color: var(--stc-muted);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.lab-toc a:hover {
+  border-color: var(--stc-cyan);
+  color: #ffffff;
+}
+
 .lab-panel {
   padding: 34px;
   margin-top: 24px;
@@ -125,12 +170,32 @@ a {
 
 .lab-panel h2 {
   margin: 0 0 22px;
+  color: #ffffff;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   letter-spacing: -0.04em;
 }
 
-.lab-panel p {
-  color: #dbeafe;
+.lab-panel h3 {
+  color: #ffffff;
+}
+
+.lab-panel p,
+.lab-panel li,
+.lab-panel summary {
+  color: var(--stc-muted);
+}
+
+.lab-panel details {
+  border: 1px solid var(--stc-border-soft);
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: rgba(2, 6, 23, 0.34);
+  margin: 12px 0;
+}
+
+.lab-panel summary {
+  cursor: pointer;
+  font-weight: 900;
 }
 
 .artifact-grid {
@@ -146,9 +211,9 @@ a {
   min-height: 150px;
   padding: 20px;
   border-radius: 18px;
-  border: 1px solid rgba(56, 189, 248, 0.22);
+  border: 1px solid var(--stc-border);
   background: rgba(2, 6, 23, 0.46);
-  color: #dbeafe;
+  color: var(--stc-muted);
   text-decoration: none;
   transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
 }
@@ -166,8 +231,109 @@ a {
 }
 
 .artifact-card span {
-  color: #bfdbfe;
+  color: var(--stc-soft);
   line-height: 1.5;
+}
+
+/* Red Team visual model diagrams */
+.visual-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.flow-step {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background:
+    linear-gradient(135deg, rgba(8, 47, 73, 0.88), rgba(15, 23, 42, 0.92));
+  color: #ffffff;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.flow-arrow {
+  color: var(--stc-blue);
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Red Team anti-pattern comparison cards */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.unsafe,
+.safe {
+  border-radius: 18px;
+  padding: 22px;
+  border: 1px solid var(--stc-border-soft);
+}
+
+.unsafe {
+  background: rgba(127, 29, 29, 0.28);
+  border-color: rgba(251, 113, 133, 0.55);
+}
+
+.safe {
+  background: rgba(20, 83, 45, 0.26);
+  border-color: rgba(74, 222, 128, 0.52);
+}
+
+.unsafe h3,
+.safe h3 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.unsafe li,
+.safe li {
+  color: var(--stc-muted);
+}
+
+/* Governance tables */
+.boundary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 22px;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--stc-border-soft);
+}
+
+.boundary-table th {
+  background: rgba(8, 47, 73, 0.72);
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.boundary-table td {
+  border-top: 1px solid var(--stc-border-soft);
+  color: var(--stc-muted);
+  padding: 14px 16px;
+}
+
+.badge-false {
+  color: var(--stc-danger) !important;
+  font-weight: 900;
+}
+
+.badge-true {
+  color: var(--stc-safe) !important;
+  font-weight: 900;
 }
 
 .lab-panel pre {
@@ -175,12 +341,12 @@ a {
   border-radius: 16px;
   padding: 18px;
   background: rgba(2, 6, 23, 0.78);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  color: #dbeafe;
+  border: 1px solid var(--stc-border-soft);
+  color: var(--stc-muted);
 }
 
 .lab-panel code {
-  color: #dbeafe;
+  color: var(--stc-muted);
 }
 
 @media (max-width: 780px) {
@@ -189,17 +355,23 @@ a {
   }
 
   .lab-hero,
-  .lab-panel {
+  .lab-panel,
+  .lab-toc {
     padding: 24px;
     border-radius: 18px;
   }
 
   .lab-meta-grid,
-  .artifact-grid {
+  .artifact-grid,
+  .comparison-grid {
     grid-template-columns: 1fr;
   }
 
   .lab-hero h1 {
     font-size: clamp(2.2rem, 12vw, 3.7rem);
+  }
+
+  .lab-toc ul {
+    flex-direction: column;
   }
 }
