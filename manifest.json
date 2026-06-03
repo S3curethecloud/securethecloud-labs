@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "data-exfiltration-scenario-design",
+      "title": "Data Exfiltration Scenario Design",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/data-exfiltration-scenario-design/",
+      "summary": "Intermediate LAB teaching safe data exfiltration scenario design: sensitive-data boundaries, synthetic evidence, policy controls, disclosure risk, uncertainty, and non-execution constraints."
+    },
+    {
       "id": "retrieval-poisoning-scenario-design",
       "title": "Retrieval Poisoning Scenario Design",
       "cloud": "ai-red-team-scenario-design",
@@ -935,7 +945,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 4,
+      "implemented_modules": 5,
       "planned_modules": 9
     }
   ]
