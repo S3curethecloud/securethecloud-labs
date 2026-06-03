@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "tool-abuse-scenario-design",
+      "title": "Tool-Abuse Scenario Design",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/tool-abuse-scenario-design/",
+      "summary": "Intermediate LAB teaching safe tool-abuse scenario design: tool authority boundaries, permission scope, approval gates, unsafe delegation risk, evidence capture, uncertainty, and non-execution constraints."
+    },
+    {
       "id": "prompt-injection-scenario-design",
       "title": "Prompt Injection Scenario Design",
       "cloud": "ai-red-team-scenario-design",
@@ -915,7 +925,7 @@
       "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 2,
+      "implemented_modules": 3,
       "planned_modules": 9
     }
   ]

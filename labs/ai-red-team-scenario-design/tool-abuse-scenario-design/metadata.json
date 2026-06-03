@@ -1,0 +1,10 @@
+{
+  "id": "tool-abuse-scenario-design",
+  "title": "Tool-Abuse Scenario Design",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/tool-abuse-scenario-design/",
+  "summary": "Intermediate LAB teaching safe tool-abuse scenario design: tool authority boundaries, permission scope, approval gates, unsafe delegation risk, evidence capture, uncertainty, and non-execution constraints."
+}
