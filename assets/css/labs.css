@@ -944,3 +944,57 @@ code {
     align-self: center;
   }
 }
+
+/* PHASE 210 LAB DETAIL WRAP POLISH START */
+.lab-detail-shell,
+.lab-detail-layout,
+.lab-main-panels,
+.lab-hero,
+.lab-panel,
+.artifact-card,
+.visual-node,
+.concept-card {
+  min-width: 0;
+}
+
+.lab-hero h1,
+.lab-panel h2,
+.artifact-card strong,
+.concept-card summary {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+.lab-hero p,
+.lab-panel p,
+.artifact-card span,
+.visual-node span,
+.learning-rule,
+.lab-panel pre,
+.lab-panel code {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.lab-panel pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+  .lab-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lab-hero h1 {
+    font-size: clamp(2.5rem, 11vw, 4.5rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .lab-status-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* PHASE 210 LAB DETAIL WRAP POLISH END */

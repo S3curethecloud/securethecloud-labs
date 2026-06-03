@@ -806,6 +806,145 @@
 }
 
 </style>
+
+<style id="phase-210-homepage-polish">
+/* PHASE 210 HOMEPAGE ALIGNMENT POLISH START */
+html,
+body {
+  overflow-x: hidden;
+}
+
+#ai-red-team-scenario-design-preview,
+#mcp-security-engineering-preview {
+  width: min(1120px, calc(100% - 2rem));
+  max-width: 1120px;
+  margin: clamp(3rem, 6vw, 5rem) auto 0;
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+#ai-red-team-scenario-design-preview .section-heading,
+#mcp-security-engineering-preview .section-heading {
+  max-width: 1040px;
+}
+
+#ai-red-team-scenario-design-preview .section-heading h2,
+#mcp-security-engineering-preview .section-heading h2 {
+  max-width: 900px;
+  line-height: 1.06;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+#ai-red-team-scenario-design-preview .section-heading p,
+#mcp-security-engineering-preview .section-heading p,
+#ai-red-team-scenario-design-preview .lab-card p,
+#mcp-security-engineering-preview .lab-card p,
+#ai-red-team-scenario-design-preview .track-note,
+#mcp-security-engineering-preview .track-note {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+#ai-red-team-scenario-design-preview .lab-grid,
+#mcp-security-engineering-preview .lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 560px);
+  justify-content: start;
+  gap: 1.25rem;
+  max-width: 100%;
+}
+
+#ai-red-team-scenario-design-preview .lab-card,
+#mcp-security-engineering-preview .lab-card {
+  width: 100%;
+  max-width: 560px;
+  min-width: 0;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-break: normal;
+  border-color: rgba(56, 189, 248, 0.26);
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.34);
+}
+
+#ai-red-team-scenario-design-preview .lab-card-top,
+#mcp-security-engineering-preview .lab-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#ai-red-team-scenario-design-preview .lab-card h3,
+#mcp-security-engineering-preview .lab-card h3 {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.stc-footer {
+  overflow: hidden;
+}
+
+.stc-footer-trust-line {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.1rem 1.25rem 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  color: rgba(226, 232, 240, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.stc-footer-trust-line strong {
+  color: #ffffff;
+}
+
+.stc-footer-trust-line p {
+  margin: 0;
+  max-width: 960px;
+  overflow-wrap: break-word;
+}
+
+.stc-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.stc-footer-bottom a {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  #ai-red-team-scenario-design-preview,
+  #mcp-security-engineering-preview {
+    width: min(100% - 1.25rem, 1120px);
+    margin-top: 3rem;
+  }
+
+  #ai-red-team-scenario-design-preview .lab-grid,
+  #mcp-security-engineering-preview .lab-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #ai-red-team-scenario-design-preview .lab-card-top,
+  #mcp-security-engineering-preview .lab-card-top {
+    flex-direction: column;
+  }
+
+  .stc-footer-trust-line {
+    padding-inline: 1rem;
+  }
+}
+/* PHASE 210 HOMEPAGE ALIGNMENT POLISH END */
+</style>
+
 </head>
 <body>
   <div class="site-shell">
