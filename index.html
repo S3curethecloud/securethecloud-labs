@@ -808,7 +808,9 @@
 
 
 
-/* PHASE 212B FOOTER LEGAL DEDUPLICATION AND ALIGNMENT START */
+
+
+/* PHASE 212C CANONICAL FOOTER DEDUPLICATION AND ALIGNMENT START */
 .stc-footer {
   overflow: hidden;
 }
@@ -875,7 +877,6 @@
 }
 
 .stc-footer-boundary li {
-  position: relative;
   display: grid;
   grid-template-columns: 1rem minmax(0, 1fr);
   gap: 0.65rem;
@@ -973,7 +974,7 @@
     padding-inline: 1rem;
   }
 }
-/* PHASE 212B FOOTER LEGAL DEDUPLICATION AND ALIGNMENT END */
+/* PHASE 212C CANONICAL FOOTER DEDUPLICATION AND ALIGNMENT END */
 
 </style>
 
@@ -2187,7 +2188,7 @@ body {
 
     <div class="stc-footer-column stc-footer-boundary-column">
       <h3>Trust &amp; Boundary</h3>
-      <ul class="stc-footer-boundary">
+      <ul class="stc-footer-boundary" aria-label="Trust and boundary statements">
         <li>Educational content only</li>
         <li>No backend exposure</li>
         <li>No live enforcement</li>
