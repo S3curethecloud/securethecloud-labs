@@ -805,6 +805,61 @@
   }
 }
 
+
+/* PHASE 212 FOOTER DUPLICATE LINK POLISH START */
+.stc-footer-trust-line {
+  padding-bottom: 1rem;
+}
+
+.stc-footer-trust-line a {
+  color: inherit;
+}
+
+.stc-footer-bottom {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 1.35rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  line-height: 1.5;
+}
+
+.stc-footer-bottom > span {
+  min-width: 0;
+}
+
+.stc-footer-legal {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  white-space: normal;
+  text-align: right;
+}
+
+.stc-footer-legal a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.stc-footer-legal a:hover {
+  color: #38bdf8;
+}
+
+@media (max-width: 760px) {
+  .stc-footer-bottom {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-inline: 1rem;
+  }
+
+  .stc-footer-legal {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+/* PHASE 212 FOOTER DUPLICATE LINK POLISH END */
+
 </style>
 
 <style id="phase-210-homepage-polish">
@@ -2025,18 +2080,21 @@ body {
       </ul>
     </div>
   </div>
-
   <div class="stc-footer-trust-line">
-    <p><strong>SecureTheCloud:</strong> Practical cloud and AI security education for real enterprise decisions. Educational content only - no backend exposure, no live enforcement, no customer data, and no runtime mutation. <a href="/privacy-policy/">Privacy Policy</a> &bull; <a href="/terms-of-service/">Terms of Service</a> &bull; <a href="/responsible-disclosure/">Responsible Disclosure</a> are Labs-local trust pages for privacy posture, platform use, and vulnerability reporting.</p>
+    <p><strong>SecureTheCloud:</strong> Practical cloud and AI security education for real enterprise decisions. Educational content only - no backend exposure, no live enforcement, no customer data, and no runtime mutation. Privacy posture, platform use, and vulnerability reporting are documented in the Labs-local trust pages below.</p>
   </div>
 
-  <div class="stc-footer-bottom">
+<div class="stc-footer-bottom">
     <span>© 2026 SecureTheCloud. All rights reserved.</span>
     <span>Educational labs. No production systems. No customer data.</span>
     <span class="stc-footer-legal">
       <a href="/privacy-policy/">Privacy Policy</a>
       <span>•</span>
       <a href="/terms-of-service/">Terms of Service</a>
+      <span>•</span>
+      <a href="/responsible-disclosure/">Responsible Disclosure</a>
+    </span>
+<a href="/terms-of-service/">Terms of Service</a>
       <span>•</span>
       <a href="/responsible-disclosure/">Responsible Disclosure</a>
     </span>
