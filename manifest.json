@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-red-team-scenario-design-capstone",
+      "title": "AI Red Team Scenario Design Capstone",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/ai-red-team-scenario-design-capstone/",
+      "summary": "Intermediate capstone LAB combining AI red-team scenario design, evidence capture, control mapping, risk explanation, remediation planning, uncertainty handling, and executive-ready reporting without live execution."
+    },
+    {
       "id": "evidence-capture-ai-red-team-findings",
       "title": "Evidence Capture for AI Red Team Findings",
       "cloud": "ai-red-team-scenario-design",
@@ -972,10 +982,10 @@
       "id": "ai-red-team-scenario-design",
       "title": "AI Red Team Scenario Design L2 Track",
       "path": "/tracks/ai-red-team-scenario-design/",
-      "status": "active",
+      "status": "complete",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 8,
+      "implemented_modules": 9,
       "planned_modules": 9
     }
   ]

@@ -1,0 +1,10 @@
+{
+  "id": "ai-red-team-scenario-design-capstone",
+  "title": "AI Red Team Scenario Design Capstone",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/ai-red-team-scenario-design-capstone/",
+  "summary": "Intermediate capstone LAB combining AI red-team scenario design, evidence capture, control mapping, risk explanation, remediation planning, uncertainty handling, and executive-ready reporting without live execution."
+}
