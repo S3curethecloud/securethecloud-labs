@@ -6,6 +6,16 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "ai-red-team-scenario-design-overview",
+      "title": "AI Red Team Scenario Design Overview",
+      "cloud": "ai-red-team-scenario-design",
+      "domain": "ai-security",
+      "level": "intermediate",
+      "track": "ai-red-team-scenario-design",
+      "path": "/labs/ai-red-team-scenario-design/ai-red-team-scenario-design-overview/",
+      "summary": "Intermediate LAB introducing safe AI red-team scenario design: scope, authorization, scenario objective, failure-mode reasoning, evidence capture, and non-execution boundaries."
+    },
+    {
       "id": "detection-rule-reasoning-false-positive-review",
       "title": "Detection Rule Reasoning and False Positive Review",
       "cloud": "cloud-security-operations",
@@ -892,10 +902,10 @@
       "id": "ai-red-team-scenario-design",
       "title": "AI Red Team Scenario Design L2 Track",
       "path": "/tracks/ai-red-team-scenario-design/",
-      "status": "planned",
+      "status": "active",
       "level": "intermediate",
       "domain": "ai-security",
-      "implemented_modules": 0,
+      "implemented_modules": 1,
       "planned_modules": 9
     }
   ]
