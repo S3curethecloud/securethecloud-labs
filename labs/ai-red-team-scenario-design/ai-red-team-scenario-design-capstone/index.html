@@ -4,124 +4,261 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Red Team Scenario Design Capstone | SecureTheCloud Labs</title>
-  <link rel="stylesheet" href="/assets/css/lab.css" />
+  <link rel="stylesheet" href="/assets/css/labs.css" />
 </head>
 <body>
-  <main class="lab-shell">
-    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">Back to AI Red Team Scenario Design Track</a>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
 
     <section class="lab-hero">
-      <p class="lab-hero-kicker">AI Red Team Scenario Design - L2 Capstone</p>
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · Capstone · L2</p>
       <h1>AI Red Team Scenario Design Capstone</h1>
-      <p>Combine scenario design, evidence capture, control mapping, risk explanation, uncertainty handling, remediation planning, and executive-ready reporting into one reviewer-safe AI red-team portfolio artifact.</p>
-      <div class="lab-meta-grid">
-        <div><span>Level</span><strong>Intermediate</strong></div>
+      <p>Intermediate capstone LAB combining scenario design, authorized scope, control mapping, synthetic evidence, observed behavior, uncertainty handling, remediation planning, and executive-ready reporting into one reviewer-safe AI red-team portfolio artifact.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
         <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
-        <div><span>Mode</span><strong>Static Capstone</strong></div>
-        <div><span>Runtime</span><strong>Read-only</strong></div>
+        <div><span>Runtime</span><strong>Read-only capstone</strong></div>
       </div>
     </section>
 
-    <nav class="lab-toc" aria-label="Study menu">
+    <section class="mobile-study-menu">
       <p class="mobile-study-menu-title">Study Menu</p>
-      <a href="#concepts">Concept Deep Dives</a>
-      <a href="#model">Visual Capstone Reporting Model</a>
-      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
-      <a href="#governance">Governance Boundary</a>
-    </nav>
-
-    <section class="lab-panel" id="concepts">
-      <h2>Concept Deep Dives</h2>
-
-      <details open>
-        <summary>1. What is an AI red-team scenario design capstone?</summary>
-        <p>The capstone is a complete reviewer-safe portfolio exercise. It combines scenario objective, authorized scope, expected controls, synthetic evidence, observed behavior, uncertainty, risk explanation, and remediation guidance.</p>
-      </details>
-
-      <details>
-        <summary>2. How should the scenario family be selected?</summary>
-        <p>Select one scenario family such as prompt injection, tool abuse, retrieval poisoning, data exposure, agent-loop risk, or human approval bypass. The selected family should match the learner's stated objective and authorized scope.</p>
-      </details>
-
-      <details>
-        <summary>3. How should control mapping be handled?</summary>
-        <p>Control mapping should connect the scenario to a clear expected safeguard such as approval gates, least privilege, retrieval boundaries, source authority, output policy, rate limits, evidence logging, or fail-closed behavior.</p>
-      </details>
-
-      <details>
-        <summary>4. How should evidence remain reviewer-safe?</summary>
-        <p>Evidence should be synthetic, scoped, and non-sensitive. The artifact should describe what would be reviewed and what behavior was observed without including secrets, customer data, exploit output, or operational attack steps.</p>
-      </details>
-
-      <details>
-        <summary>5. How should uncertainty be included?</summary>
-        <p>Uncertainty should explain what was not tested, what assumptions were made, what evidence is synthetic, and what the finding cannot prove. This prevents overclaiming and keeps the capstone audit-ready.</p>
-      </details>
-
-      <details>
-        <summary>6. What makes the final report executive-ready?</summary>
-        <p>An executive-ready report summarizes the scenario, risk, affected boundary, control gap, business relevance, remediation, and non-execution limitations in clear language without overstating compromise or operational impact.</p>
-      </details>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#report">Capstone Report</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
     </section>
 
-    <section class="lab-panel" id="model">
-      <h2>Visual Capstone Reporting Model</h2>
-      <pre><code>Scenario family selected
-        |
-        v
-Authorized scope
-        |
-        v
-Scenario objective
-        |
-        v
-Expected control
-        |
-        v
-Synthetic evidence artifact
-        |
-        v
-Observed behavior
-        |
-        v
-Risk explanation
-        |
-        v
-Uncertainty and limits
-        |
-        v
-Control-mapped remediation
-        |
-        v
-Executive-ready report</code></pre>
-    </section>
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#report">Capstone Report</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
 
-    <section class="lab-panel" id="anti-pattern">
-      <h2>High-Risk Anti-Pattern</h2>
-      <p>A dangerous pattern is turning a portfolio capstone into a live red-team exercise, collecting sensitive evidence, or making unsupported compromise claims.</p>
-      <pre><code>Unsafe pattern:
-- live exploit execution
-- prompt attack execution
-- real tool invocation
-- customer data exposure
-- credential or secret handling
-- sensitive screenshots
-- unsupported breach claims
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This capstone is a reviewer-safe portfolio exercise. It asks the learner to combine one AI red-team scenario family with authorized scope, expected controls, synthetic evidence, observed behavior, uncertainty, risk explanation, and remediation guidance.</p>
 
-Safe alternative:
-- synthetic evidence artifact
-- clear authorized scope
-- expected control mapping
-- observed behavior summary
-- explicit uncertainty
-- remediation guidance
-- executive-ready non-execution report</code></pre>
-    </section>
+          <div class="pill-row">
+            <span class="pill">Scenario design</span>
+            <span class="pill">Control mapping</span>
+            <span class="pill">Evidence package</span>
+            <span class="pill">Executive-ready report</span>
+          </div>
+        </section>
 
-    <section class="lab-panel" id="governance">
-      <h2>Governance Boundary</h2>
-      <p>This LAB is static and educational. It teaches capstone reporting and reviewer-safe AI red-team reasoning only.</p>
-      <pre><code>Backend exposure = false
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when preparing the AI Red Team Scenario Design capstone artifact.</p>
+
+          <details class="concept-card" open>
+            <summary>What is an AI red-team scenario design capstone?</summary>
+            <p>The capstone is a complete reviewer-safe portfolio exercise. It combines scenario objective, authorized scope, expected controls, synthetic evidence, observed behavior, uncertainty, risk explanation, and remediation guidance.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should the scenario family be selected?</summary>
+            <p>The learner should select one scenario family from the track, such as prompt injection, tool abuse, retrieval poisoning, data exposure, agent loop and cost abuse, human approval bypass, or evidence capture. The selection should be justified by a clear control question.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should control mapping be handled?</summary>
+            <p>Control mapping should connect the scenario to the expected protection, such as refusal behavior, approval gates, tenant boundaries, source authority, least privilege, redaction, retry limits, or fail-closed behavior.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should evidence remain reviewer-safe?</summary>
+            <p>Evidence should be synthetic, scoped, bounded, non-sensitive, and reproducible. It should not include real customer data, secrets, credentials, exploit output, production screenshots, or reusable attack instructions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should uncertainty be included?</summary>
+            <p>Uncertainty should explain what was simulated, what was assumed, what was not tested, and what the finding cannot prove. This prevents overclaiming and keeps the artifact audit-ready.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What makes the final report executive-ready?</summary>
+            <p>An executive-ready report explains the scenario, expected control, observed behavior, risk, uncertainty, and remediation in clear language without operational attack details or unsupported compromise claims.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Capstone Reporting Model</h2>
+          <p>A strong capstone converts a selected AI red-team scenario into a clear, governed, evidence-backed report.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>Scenario Family</strong>
+                <span>Prompt injection, tool abuse, retrieval risk, data exposure, loop risk, or approval bypass</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Authorized Scope</strong>
+                <span>What is in bounds, out of bounds, synthetic, and explicitly prohibited</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Scenario Objective</strong>
+                <span>The control question the capstone is evaluating</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Expected Control</strong>
+                <span>The protection that should prevent or contain unsafe behavior</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Synthetic Evidence</strong>
+                <span>Safe artifact, simulated state, or bounded observation used for review</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node deny">
+                <strong>Observed Behavior</strong>
+                <span>What happened, stated separately from conclusion</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Risk and Uncertainty</strong>
+                <span>Why the behavior matters and what remains unproven</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Control-Mapped Remediation</strong>
+                <span>Specific recommendation tied to the observed control gap</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Executive-Ready Report</strong>
+                <span>Reviewer-safe summary suitable for portfolio presentation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> The capstone is complete only when it remains scoped, synthetic, reviewer-safe, honest about uncertainty, and free of live exploitation or production mutation.
+            </div>
+          </div>
+        </section>
+
+        <section id="report" class="lab-panel">
+          <h2>Capstone Report Structure</h2>
+          <p>Use this structure to produce a final reviewer-safe artifact that is clear enough for engineering review and polished enough for portfolio presentation.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Scenario Family</strong>
+              <span>Which AI red-team scenario family was selected and why it matters.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Authorized Scope</strong>
+              <span>What is allowed, what is prohibited, what is synthetic, and what is not tested.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Expected Control</strong>
+              <span>The control that should prevent, contain, refuse, gate, or fail closed.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Observed Behavior</strong>
+              <span>What the safe scenario review observed, without exaggeration or unsupported claims.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Risk and Uncertainty</strong>
+              <span>Why the issue matters, what evidence supports it, and what remains unknown.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Remediation</strong>
+              <span>Specific control improvement mapped directly to the observed behavior.</span>
+            </div>
+          </div>
+
+          <pre><code>Executive-ready capstone report:
+
+Scenario family:
+[Selected AI red-team scenario family]
+
+Authorized scope:
+[In bounds, out of bounds, synthetic artifacts, and prohibited actions]
+
+Scenario objective:
+[What control question is being evaluated?]
+
+Expected control:
+[What should prevent, contain, refuse, gate, or fail closed?]
+
+Synthetic evidence artifact:
+[Safe artifact or simulated state used for review]
+
+Observed behavior:
+[What was observed, separated from conclusion]
+
+Risk explanation:
+[Why this matters to the system, workflow, or organization]
+
+Uncertainty and limits:
+[What was not tested or proven]
+
+Control-mapped remediation:
+[Specific recommendation tied to evidence]
+
+Executive-ready summary:
+[Short reviewer-safe conclusion without live compromise claims]</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is turning a portfolio capstone into a live red-team exercise, collecting sensitive evidence, or making unsupported compromise claims.</p>
+
+          <pre><code>Unsafe pattern:
+
+live exploit execution
+→ prompt attack execution
+→ real tool invocation
+→ customer data exposure
+→ credential or secret handling
+→ sensitive screenshots
+→ unsupported breach claims
+
+Risk:
+
+customer data exposure
+credential leakage
+unsafe portfolio artifact
+policy violation
+production side effects
+misleading security claims
+loss of reviewer trust
+
+Secure alternative:
+Use synthetic evidence artifacts.
+Keep scope explicit.
+Map expected controls.
+Separate observation from conclusion.
+Record uncertainty.
+Recommend remediation.
+Write an executive-ready non-execution report.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It teaches capstone reporting and reviewer-safe AI red-team reasoning only. It does not execute attacks, invoke tools, access customer data, collect secrets, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
 Public backend exposed = false
 Live red-team execution = false
 Live exploit execution = false
@@ -135,6 +272,8 @@ Secret handling = false
 Real sensitive data usage = false
 Runtime mutation = false
 Production enforcement claim = false</code></pre>
+        </section>
+      </div>
     </section>
   </main>
 </body>
