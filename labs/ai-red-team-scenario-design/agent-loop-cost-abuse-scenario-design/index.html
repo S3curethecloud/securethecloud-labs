@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Loop and Cost Abuse Scenario Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
+    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
+    .unsafe h3, .safe h3 { margin-top: 0; }
+    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
+    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
+    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .boundary-table th { background: #edf2f7; font-weight: 600; }
+    .badge-false { color: #e53e3e; font-weight: 600; }
+    .info-card { background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 1rem 0; border-left: 4px solid #4299e1; }
+    .info-card h4 { margin: 0 0 0.5rem 0; color: #2b6cb0; }
+    .risk-level { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; margin-right: 0.5rem; }
+    .risk-high { background: #fed7d7; color: #c53030; }
+    .risk-medium { background: #feebc8; color: #c05621; }
+    .risk-low { background: #c6f6d5; color: #276749; }
+    .cost-category { background: #e9d8fd; color: #6b46c1; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; display: inline-block; margin: 0.25rem; }
+  </style>
+</head>
+<body>
+  <main class="lab-shell">
+    <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
+
+    <!-- Hero Section -->
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
+      <h1>🔄 Agent Loop and Cost Abuse Scenario Design</h1>
+      <p>Learn how to design safe scenarios for agent loops, retry storms, excessive tool calls, quota risk, and cost exposure — without running live agents, consuming quotas, or mutating production systems.</p>
+      <div class="lab-meta-grid">
+        <div><span>Level</span><strong>Intermediate</strong></div>
+        <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
+        <div><span>Mode</span><strong>Static LAB</strong></div>
+        <div><span>Runtime</span><strong>Read-only</strong></div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav class="lab-toc" aria-label="Study menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <ul>
+        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
+        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
+        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
+        <li><a href="#governance">🛡️ Governance Boundary</a></li>
+      </ul>
+    </nav>
+
+    <!-- Concept Deep Dives -->
+    <section class="lab-panel" id="concepts">
+      <h2>📖 Concept Deep Dives</h2>
+
+      <details open>
+        <summary><strong>1. What is agent loop and cost abuse scenario design?</strong></summary>
+        <p>Agent loop and cost abuse scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI agent workflow could repeat actions, retry unnecessarily, call tools too often, consume quotas, or create avoidable operational cost.</p>
+      </details>
+
+      <details>
+        <summary><strong>2. Why do runaway loops create operational risk?</strong></summary>
+        <p>Runaway loops can create:</p>
+        <ul>
+          <li>💰 Excessive tool calls and API costs</li>
+          <li>📝 Log noise and storage bloat</li>
+          <li>🎫 Ticket and notification spam</li>
+          <li>🔄 Repeated retrieval operations</li>
+          <li>😫 Human review fatigue</li>
+          <li>⚠️ Operational confusion and alert fatigue</li>
+        </ul>
+        <div class="info-card">
+          <h4>⚠️ Loop Risk Categories</h4>
+          <div>
+            <span class="risk-level risk-high">Model Call Loop</span>
+            <span class="risk-level risk-high">Tool Invocation Storm</span>
+            <span class="risk-level risk-medium">Retrieval Flood</span>
+            <span class="risk-level risk-medium">Ticket Creation Loop</span>
+            <span class="risk-level risk-low">Log Writing Loop</span>
+          </div>
+        </div>
+        <p>A safe scenario defines the loop condition <strong>without executing it</strong>.</p>
+      </details>
+
+      <details>
+        <summary><strong>3. How do retry behavior and tool-call limits reduce exposure?</strong></summary>
+        <p>Operational controls that prevent loops and cost abuse:</p>
+        <ul>
+          <li><strong>Max-iteration limits</strong> — Hard stop on loop cycles</li>
+          <li><strong>Timeout controls</strong> — Abort after time threshold</li>
+          <li><strong>Circuit breakers</strong> — Stop on failure patterns</li>
+          <li><strong>Tool-call budgets</strong> — Limit per workflow/session</li>
+          <li><strong>Retry limits</strong> — Cap on retry attempts</li>
+          <li><strong>Approval gates</strong> — Human review before continuing</li>
+          <li><strong>Backoff behavior</strong> — Progressive delay on retries</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>4. Where can quota, billing, and resource exhaustion risk appear?</strong></summary>
+        <p>Cost and quota risks can appear in multiple dimensions:</p>
+        <div class="info-card">
+          <h4>💰 Cost Risk Dimensions</h4>
+          <div>
+            <span class="cost-category">Model API calls</span>
+            <span class="cost-category">Embedding/Vector calls</span>
+            <span class="cost-category">Retrieval operations</span>
+            <span class="cost-category">Tool invocations</span>
+            <span class="cost-category">Ticket creation</span>
+            <span class="cost-category">Notification sending</span>
+            <span class="cost-category">Storage operations</span>
+            <span class="cost-category">External API quotas</span>
+            <span class="cost-category">Provider rate limits</span>
+          </div>
+        </div>
+        <p>A scenario should model exhaustion risk without consuming real quotas.</p>
+      </details>
+
+      <details>
+        <summary><strong>5. What controls should an agent-loop scenario test?</strong></summary>
+        <p>Agent-loop scenarios should map to specific controls:</p>
+        <ul>
+          <li><strong>Max-iteration limits</strong> — Prevent infinite loops</li>
+          <li><strong>Token budgets</strong> — Cap model input/output size</li>
+          <li><strong>API budgets</strong> — Hard limits on external calls</li>
+          <li><strong>Approval gates</strong> — Stop for human review</li>
+          <li><strong>Kill switches</strong> — Manual or automated stop</li>
+          <li><strong>Backoff behavior</strong> — Exponential delay on retries</li>
+          <li><strong>Idempotency</strong> — Prevent duplicate actions</li>
+          <li><strong>Rate limits</strong> — Throttle request velocity</li>
+          <li><strong>Fail-closed handling</strong> — Stop when uncertain</li>
+          <li><strong>Circuit breakers</strong> — Stop on repeated failures</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary><strong>6. How should agent loop and cost findings be documented safely?</strong></summary>
+        <p>A <strong>safe finding</strong> should include:</p>
+        <ul>
+          <li><strong>Workflow description</strong> — What agent workflow was reviewed?</li>
+          <li><strong>Loop hypothesis</strong> — What could cause repetition?</li>
+          <li><strong>Expected control</strong> — What should limit or stop the loop?</li>
+          <li><strong>Observed behavior</strong> — What was found in the design?</li>
+          <li><strong>Cost-risk category</strong> — Model calls, tool calls, quota risk?</li>
+          <li><strong>Uncertainty</strong> — What wasn't tested?</li>
+          <li><strong>Remediation</strong> — What should be added or fixed?</li>
+        </ul>
+        <p><strong>Avoid:</strong> Running live loops, consuming real quotas, or triggering actual billing events.</p>
+      </details>
+    </section>
+
+    <!-- Visual Model -->
+    <section class="lab-panel" id="model">
+      <h2>🎨 Visual Agent Loop and Cost Abuse Scenario Design Model</h2>
+      <div class="visual-flow">
+        <div class="flow-step">🤖 AI agent workflow under review</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">📏 Agent workflow boundary</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🔄 Loop trigger hypothesis</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🔁 Retry behavior expectation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">💰 Tool-call and quota boundary</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🛡️ Expected control</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">🧪 Synthetic evidence artifact</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">👁️ Observed behavior</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">❓ Uncertainty and gaps</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">⛔ Containment recommendation</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">✅ Reviewer-safe finding</div>
+      </div>
+    </section>
+
+    <!-- Anti-Pattern -->
+    <section class="lab-panel" id="anti-pattern">
+      <h2>⚠️ High-Risk Anti-Pattern</h2>
+      <p>A dangerous pattern is testing agent-loop risk by letting a <strong>live agent</strong> repeat tool calls, consume quotas, or generate real operational side effects.</p>
+      
+      <div class="comparison-grid">
+        <div class="unsafe">
+          <h3>❌ Unsafe Pattern</h3>
+          <ul>
+            <li>Live agent execution</li>
+            <li>Repeated real tool calls</li>
+            <li>API quota consumption</li>
+            <li>Billing impact</li>
+            <li>Ticket or notification spam</li>
+            <li>No stop condition</li>
+            <li>Unsupported availability claims</li>
+          </ul>
+        </div>
+        <div class="safe">
+          <h3>✅ Safe Alternative</h3>
+          <ul>
+            <li>Synthetic scenario</li>
+            <li>Documented loop hypothesis</li>
+            <li>No live execution</li>
+            <li>No quota consumption</li>
+            <li>Control-mapped evidence</li>
+            <li>Containment-focused remediation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Boundary -->
+    <section class="lab-panel" id="governance">
+      <h2>🛡️ Governance Boundary</h2>
+      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational agent execution or cost abuse is performed.</p>
+      
+      <table class="boundary-table">
+        <thead>
+          <tr><th>Control</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
+          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
+          <tr><td>Live agent execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Runaway loop execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Live tool invocation</td><td class="badge-false">false</td></tr>
+          <tr><td>Live API call execution</td><td class="badge-false">false</td></tr>
+          <tr><td>Cost-abuse automation</td><td class="badge-false">false</td></tr>
+          <tr><td>Quota consumption</td><td class="badge-false">false</td></tr>
+          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
+          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
+          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
+          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
+        </tbody>
+      数量
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "id": "agent-loop-cost-abuse-scenario-design",
+  "title": "Agent Loop and Cost Abuse Scenario Design",
+  "cloud": "ai-red-team-scenario-design",
+  "domain": "ai-security",
+  "level": "intermediate",
+  "track": "ai-red-team-scenario-design",
+  "path": "/labs/ai-red-team-scenario-design/agent-loop-cost-abuse-scenario-design/",
+  "summary": "Intermediate LAB teaching safe agent loop and cost abuse scenario design: loop boundaries, retry controls, tool-call limits, quota risk, cost containment, evidence capture, and non-execution constraints."
+}
