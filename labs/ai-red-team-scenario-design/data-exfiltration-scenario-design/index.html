@@ -1,242 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Data Exfiltration Scenario Design | SecureTheCloud Labs</title>
-  <link rel="stylesheet" href="/assets/css/lab.css" />
-  <style>
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin: 1.5rem 0;
-    }
-    .unsafe { background: #fff5f5; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px; }
-    .safe { background: #f0fff4; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px; }
-    .unsafe h3, .safe h3 { margin-top: 0; }
-    .flow-step { padding: 0.75rem; margin: 0.5rem 0; background: #f7fafc; border-radius: 8px; text-align: center; }
-    .flow-arrow { text-align: center; color: #718096; font-size: 1.25rem; margin: -0.25rem 0; }
-    .boundary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    .boundary-table th, .boundary-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
-    .boundary-table th { background: #edf2f7; font-weight: 600; }
-    .badge-false { color: #e53e3e; font-weight: 600; }
-    .info-card { background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 1rem 0; border-left: 4px solid #4299e1; }
-    .info-card h4 { margin: 0 0 0.5rem 0; color: #2b6cb0; }
-    .data-class { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-    .data-pii { background: #fed7d7; color: #c53030; }
-    .data-financial { background: #feebc8; color: #c05621; }
-    .data-confidential { background: #e9d8fd; color: #6b46c1; }
-    .data-internal { background: #c6f6d5; color: #276749; }
-  </style>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
 </head>
 <body>
-  <main class="lab-shell">
+  <main class="lab-detail-shell">
     <a class="back-link" href="/tracks/ai-red-team-scenario-design/">← Back to AI Red Team Scenario Design Track</a>
 
-    <!-- Hero Section -->
     <section class="lab-hero">
-      <p class="lab-hero-kicker">AI Red Team Scenario Design · L2 LAB</p>
-      <h1>🔐 Data Exfiltration Scenario Design</h1>
-      <p>Learn how to design safe data exfiltration risk scenarios that evaluate sensitive-data boundaries, identity authority, disclosure controls, uncertainty, and reviewer-safe evidence — without accessing real customer data or secrets.</p>
-      <div class="lab-meta-grid">
-        <div><span>Level</span><strong>Intermediate</strong></div>
+      <p class="lab-hero-kicker">AI Red Team Scenario Design · Data Exfiltration · L2</p>
+      <h1>Data Exfiltration Scenario Design</h1>
+      <p>Intermediate LAB teaching safe data-exfiltration scenario design: sensitive-data boundaries, identity authority, disclosure controls, uncertainty, reviewer-safe evidence, and non-access boundaries.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
         <div><span>Track</span><strong>AI Red Team Scenario Design</strong></div>
-        <div><span>Mode</span><strong>Static LAB</strong></div>
-        <div><span>Runtime</span><strong>Read-only</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
     </section>
 
-    <!-- Table of Contents -->
-    <nav class="lab-toc" aria-label="Study menu">
+    <section class="mobile-study-menu">
       <p class="mobile-study-menu-title">Study Menu</p>
-      <ul>
-        <li><a href="#concepts">📖 Concept Deep Dives</a></li>
-        <li><a href="#model">🎨 Visual Scenario Design Model</a></li>
-        <li><a href="#anti-pattern">⚠️ High-Risk Anti-Pattern</a></li>
-        <li><a href="#governance">🛡️ Governance Boundary</a></li>
-      </ul>
-    </nav>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
 
-    <!-- Concept Deep Dives -->
-    <section class="lab-panel" id="concepts">
-      <h2>📖 Concept Deep Dives</h2>
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
 
-      <details open>
-        <summary><strong>1. What is data exfiltration scenario design?</strong></summary>
-        <p>Data exfiltration scenario design is the <strong>safe planning</strong> of tests that evaluate whether an AI workflow could expose sensitive information. The scenario should use <strong>synthetic data classes</strong> and bounded evidence — not real customer records or secrets.</p>
-      </details>
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design safe data-exfiltration scenarios that evaluate whether an AI workflow could expose sensitive information. The scenario uses synthetic data classes and bounded evidence, not real customer records, credentials, secrets, or production outputs.</p>
 
-      <details>
-        <summary><strong>2. Why must sensitive data be represented synthetically?</strong></summary>
-        <p>Using synthetic data keeps the learning exercise <strong>reviewer-safe</strong>. It allows the scenario to model exposure risk without handling real:</p>
-        <ul>
-          <li>Customer records or PII</li>
-          <li>Credentials or API keys</li>
-          <li>Regulated data (PHI, PCI, GDPR)</li>
-          <li>Confidential business information</li>
-          <li>Trade secrets or intellectual property</li>
-        </ul>
-        <div class="info-card">
-          <h4>📋 Synthetic Data Classes for Scenarios</h4>
-          <div>
-            <span class="data-class data-pii">PII (Synthetic)</span>
-            <span class="data-class data-financial">Financial Data (Synthetic)</span>
-            <span class="data-class data-confidential">Confidential (Synthetic)</span>
-            <span class="data-class data-internal">Internal Only (Synthetic)</span>
+          <div class="pill-row">
+            <span class="pill">Sensitive data boundary</span>
+            <span class="pill">Synthetic evidence</span>
+            <span class="pill">Disclosure controls</span>
+            <span class="pill">No data access</span>
           </div>
-        </div>
-      </details>
+        </section>
 
-      <details>
-        <summary><strong>3. How do data boundaries and authority boundaries differ?</strong></summary>
-        <p><strong>Data boundary</strong> — What information may be accessed or disclosed?</p>
-        <ul>
-          <li>Tenant scope (Customer A vs. Customer B)</li>
-          <li>Sensitivity level (Public vs. Confidential)</li>
-          <li>Data classification (PII, Financial, PHI)</li>
-        </ul>
-        <p><strong>Authority boundary</strong> — Who or what is allowed to request, transform, or release that information?</p>
-        <ul>
-          <li>Identity and role verification</li>
-          <li>Policy approval requirements</li>
-          <li>Tool permission checks</li>
-        </ul>
-        <p>A safe scenario reviews <strong>both</strong> boundaries.</p>
-      </details>
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying data-exfiltration scenario design fundamentals.</p>
 
-      <details>
-        <summary><strong>4. What controls should a data exposure scenario test?</strong></summary>
-        <p>Data exposure scenarios should map to specific controls:</p>
-        <ul>
-          <li><strong>Data classification</strong> — Sensitivity labels on information</li>
-          <li><strong>Tenant scoping</strong> — Access limited to authorized tenants</li>
-          <li><strong>Least privilege</strong> — Minimal necessary access</li>
-          <li><strong>Retrieval filtering</strong> — Only authorized sources retrieved</li>
-          <li><strong>Tool permission checks</strong> — Authorization before data access</li>
-          <li><strong>Output policy</strong> — Redaction or blocking of sensitive data</li>
-          <li><strong>Human approval</strong> — Escalation for sensitive disclosures</li>
-          <li><strong>Logging</strong> — All data access attempts recorded</li>
-          <li><strong>Fail-closed behavior</strong> — Deny access when uncertain</li>
-        </ul>
-      </details>
+          <details class="concept-card" open>
+            <summary>What is data exfiltration scenario design?</summary>
+            <p>Data exfiltration scenario design is the safe planning of tests that evaluate whether an AI workflow could expose sensitive information. A safe scenario uses synthetic data classes and bounded evidence, not real customer records or secrets.</p>
+          </details>
 
-      <details>
-        <summary><strong>5. How should impact and uncertainty be recorded?</strong></summary>
-        <p><strong>Impact description</strong> should answer:</p>
-        <ul>
-          <li>What type of data could be exposed? (Synthetic data class)</li>
-          <li>Why does this matter? (Regulatory, contractual, competitive risk)</li>
-          <li>What systems or customers could be affected?</li>
-        </ul>
-        <p><strong>Uncertainty should describe:</strong></p>
-        <ul>
-          <li>What was <strong>not tested</strong> in this scenario</li>
-          <li>What evidence is <strong>synthetic</strong> vs. real</li>
-          <li>What <strong>cannot be concluded</strong> from the scenario</li>
-          <li>What <strong>follow-up testing</strong> would increase confidence</li>
-        </ul>
-      </details>
+          <details class="concept-card">
+            <summary>Why must sensitive data be represented synthetically?</summary>
+            <p>Synthetic data allows learners to evaluate disclosure controls without accessing, storing, transmitting, or publishing real secrets, credentials, customer data, regulated data, or production outputs.</p>
+          </details>
 
-      <details>
-        <summary><strong>6. How should data exfiltration findings be documented safely?</strong></summary>
-        <p>A <strong>safe finding</strong> should include:</p>
-        <ul>
-          <li><strong>Scenario objective</strong> — What disclosure risk was evaluated?</li>
-          <li><strong>Synthetic data class</strong> — What type of data was modeled?</li>
-          <li><strong>Expected control</strong> — What should have prevented exposure?</li>
-          <li><strong>Observed behavior</strong> — What actually happened?</li>
-          <li><strong>Uncertainty</strong> — What remains unknown?</li>
-          <li><strong>Impact</strong> — Why does this matter?</li>
-          <li><strong>Remediation</strong> — What should be fixed?</li>
-        </ul>
-        <p><strong>Avoid:</strong> Exposing real data, providing operational exfiltration steps, or handling real credentials.</p>
-      </details>
-    </section>
+          <details class="concept-card">
+            <summary>How do data boundaries and authority boundaries differ?</summary>
+            <p>A data boundary defines what information is sensitive. An authority boundary defines who or what is allowed to request, view, summarize, transform, or disclose it. A strong scenario identifies both boundaries before evaluating behavior.</p>
+          </details>
 
-    <!-- Visual Model -->
-    <section class="lab-panel" id="model">
-      <h2>🎨 Visual Data Exfiltration Scenario Design Model</h2>
-      <div class="visual-flow">
-        <div class="flow-step">🤖 AI workflow under review</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🏷️ Synthetic data class</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🔒 Sensitive-data boundary</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🆔 Identity and authority boundary</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">⚠️ Disclosure-risk hypothesis</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🛡️ Expected control</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🧪 Synthetic evidence artifact</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">👁️ Observed behavior</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">📊 Impact and uncertainty</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">🔧 Remediation recommendation</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-step">✅ Reviewer-safe finding</div>
+          <details class="concept-card">
+            <summary>What controls should a data exposure scenario test?</summary>
+            <p>Controls include sensitivity classification, identity and tenant scope, source authorization, redaction, refusal behavior, output filtering, tool restrictions, audit logging, and human approval for high-risk disclosure.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should impact and uncertainty be recorded?</summary>
+            <p>A safe finding separates observed behavior from inferred risk. It records what synthetic class was used, what control was expected, what was observed, what was not tested, and what remediation is recommended.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>How should data exfiltration findings be documented safely?</summary>
+            <p>A safe finding records objective, scope, synthetic data class, expected disclosure control, observed behavior, uncertainty, risk, and remediation without including real sensitive material.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Data Exfiltration Scenario Design Model</h2>
+          <p>A strong data-exfiltration scenario turns sensitive-data exposure risk into a scoped, evidence-backed control review.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Workflow Under Review</strong>
+                <span>Assistant, summarizer, retrieval flow, reporting tool, or tool-enabled workflow</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Synthetic Data Class</strong>
+                <span>Secret-like token, customer-like record, credential-like field, or sensitive policy content</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Authority Boundary</strong>
+                <span>Who can request, view, summarize, transform, or disclose the information?</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Exposure Hypothesis</strong>
+                <span>Unsafe disclosure, overbroad summary, missing redaction, or identity boundary failure</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Expected Control</strong>
+                <span>Refusal, redaction, minimization, approval gate, source check, or fail-closed behavior</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Reviewer-Safe Finding</strong>
+                <span>Observed behavior, evidence, uncertainty, risk, and remediation</span>
+              </div>
+            </div>
+
+            <div class="learning-rule">
+              <strong>Learning rule:</strong> Data-exfiltration testing is safe only when it uses synthetic data and evaluates disclosure controls without accessing real customer data, secrets, credentials, or production outputs.
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>An AI assistant summarizes account-support context and may encounter sensitive-looking fields. The learner must design a safe scenario to check whether the assistant minimizes, redacts, or refuses disclosure when the requester lacks authority.</p>
+
+          <div class="artifact-grid">
+            <div class="artifact-card">
+              <strong>Objective</strong>
+              <span>Evaluate whether the AI workflow prevents unsafe disclosure of synthetic sensitive information.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Scope</strong>
+              <span>Synthetic secret-like and customer-like records only. No real customer data, credentials, tokens, secrets, or production outputs.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Expected Control</strong>
+              <span>The assistant should minimize, redact, refuse, or require approval before disclosing sensitive-looking content.</span>
+            </div>
+            <div class="artifact-card">
+              <strong>Evidence</strong>
+              <span>Reviewer-safe record of data class, requester authority, expected control, observed behavior, uncertainty, and remediation.</span>
+            </div>
+          </div>
+
+          <pre><code>Safe scenario handling:
+define the AI workflow under review
+define synthetic sensitive data classes
+identify requester authority
+state disclosure boundaries
+define expected controls
+do not use real customer data or secrets
+observe whether redaction or refusal is preserved
+record uncertainty and limits
+write remediation tied to disclosure controls
+
+Result:
+The scenario becomes a data-boundary control review, not a real exfiltration exercise.</code></pre>
+        </section>
+
+        <section id="anti-pattern" class="lab-panel">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is using real customer data, credentials, secrets, or production outputs to prove that a data exposure scenario is realistic or valid.</p>
+
+          <pre><code>Unsafe pattern:
+
+real customer data
+→ live secrets or tokens
+→ credential material
+→ production system interaction
+→ live data movement
+→ unsupported breach claims
+
+Risk:
+
+customer data exposure
+credential leakage
+regulatory impact
+policy violation
+audit evidence contamination
+production incident
+loss of trust in the learning platform
+
+Secure alternative:
+Use synthetic data classes.
+Bound the scenario.
+Do not use real secrets.
+Do not access customer records.
+Use expected controls.
+Capture reviewer-safe evidence.
+Record uncertainty.
+Recommend remediation safely.</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is read-only and deterministic. It teaches safe scenario design only. It does not access customer data, handle credentials, use secrets, move data, connect to production systems, mutate runtime systems, or claim production enforcement.</p>
+          <pre><code>Runtime = read-only learning
+
+Backend exposure = false
+Public backend exposed = false
+Live data exfiltration = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Real sensitive data usage = false
+Live model abuse execution = false
+Live exploit execution = false
+Live red-team execution = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
       </div>
-    </section>
-
-    <!-- Anti-Pattern -->
-    <section class="lab-panel" id="anti-pattern">
-      <h2>⚠️ High-Risk Anti-Pattern</h2>
-      <p>A dangerous pattern is using <strong>real customer data, credentials, secrets, or production outputs</strong> to prove that a data exposure scenario is "realistic" or "valid."</p>
-      
-      <div class="comparison-grid">
-        <div class="unsafe">
-          <h3>❌ Unsafe Pattern</h3>
-          <ul>
-            <li>Real customer data</li>
-            <li>Live secrets or tokens</li>
-            <li>Credential material</li>
-            <li>Production system interaction</li>
-            <li>Live data movement</li>
-            <li>Unsupported breach claims</li>
-          </ul>
-        </div>
-        <div class="safe">
-          <h3>✅ Safe Alternative</h3>
-          <ul>
-            <li>Synthetic data class</li>
-            <li>Bounded scenario</li>
-            <li>No live data movement</li>
-            <li>No credentials or secrets</li>
-            <li>Control-mapped evidence</li>
-            <li>Remediation-focused finding</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance Boundary -->
-    <section class="lab-panel" id="governance">
-      <h2>🛡️ Governance Boundary</h2>
-      <p>This LAB is <strong>static and educational</strong>. It teaches safe scenario design only. No operational data access or exfiltration is performed.</p>
-      
-      <table class="boundary-table">
-        <thead>
-          <tr><th>Control</th><th>Status</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Backend exposure</td><td class="badge-false">false</td></tr>
-          <tr><td>Public backend exposed</td><td class="badge-false">false</td></tr>
-          <tr><td>Live data exfiltration</td><td class="badge-false">false</td></tr>
-          <tr><td>Customer data access</td><td class="badge-false">false</td></tr>
-          <tr><td>Credential handling</td><td class="badge-false">false</td></tr>
-          <tr><td>Secret handling</td><td class="badge-false">false</td></tr>
-          <tr><td>Real sensitive data usage</td><td class="badge-false">false</td></tr>
-          <tr><td>Live model abuse execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Live exploit execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Live red-team execution</td><td class="badge-false">false</td></tr>
-          <tr><td>Runtime mutation</td><td class="badge-false">false</td></tr>
-          <tr><td>Production enforcement claim</td><td class="badge-false">false</td></tr>
-        </tbody>
-      </table>
     </section>
   </main>
 </body>
