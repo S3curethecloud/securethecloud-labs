@@ -902,6 +902,17 @@
       "summary": "Learn how intake questions and risk tiers create consistent AI governance triage before a workflow reaches production."
     },
     {
+      "id": "ai-data-classification-access-boundary",
+      "title": "AI Data Classification and Access Boundary",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/ai-data-classification-access-boundary/",
+      "summary": "Intermediate LAB teaching how data classification, access boundaries, source authority, approved use, logging behavior, and evidence records shape AI governance decisions."
+    },
+    {
       "id": "ai-governance-policy-gates-human-approval",
       "title": "Policy Gates and Human Approval",
       "cloud": "ai-governance",
