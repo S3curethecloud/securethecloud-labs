@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Data Classification and Access Boundary | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Data Classification · Access Boundary</p>
+      <h1>AI Data Classification and Access Boundary</h1>
+      <p>Intermediate LAB for understanding how data sensitivity, access boundaries, source authority, logging behavior, and approval evidence shape AI governance decisions.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Student Exercise</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Student Exercise</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to classify data before an AI system can use it. Students learn to connect data source, sensitivity, allowed users, storage behavior, logging behavior, approval requirements, and evidence records.</p>
+          <div class="pill-row">
+            <span class="pill">Data classification</span>
+            <span class="pill">Access boundary</span>
+            <span class="pill">Source authority</span>
+            <span class="pill">No live data access</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying data governance for AI systems.</p>
+
+          <details class="concept-card" open>
+            <summary>Why does AI governance require data classification?</summary>
+            <p>AI risk changes based on the sensitivity of the data being processed. Public documentation, internal procedures, customer records, source code, payment data, health data, legal data, and credentials require different governance decisions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is an access boundary?</summary>
+            <p>An access boundary defines who or what is allowed to use a data source. AI systems must preserve user, role, tenant, purpose, and sensitivity boundaries before data reaches the model.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is source authority?</summary>
+            <p>Source authority determines whether content should be treated as approved policy, operational context, evidence, untrusted input, or prohibited material. AI systems should not treat every retrieved source as equal authority.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why do storage and logging decisions matter?</summary>
+            <p>Some data may be allowed for one-time use but not storage, logs, model training, analytics, or downstream reuse. Governance must record what the AI workflow is allowed to retain.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that AI adoption is partly a data governance decision. The same model can be low risk with public content and high risk with sensitive, regulated, or operationally privileged data.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Data Classification Boundary Model</h2>
+          <p>Data classification connects AI use case review to access control, approved use, and evidence.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Use Case</strong>
+                <span>Business purpose and expected output</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Data Source</strong>
+                <span>Documents, records, tickets, APIs, or knowledge base</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Classification</strong>
+                <span>Public, internal, confidential, or restricted</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Access Boundary</strong>
+                <span>User, role, tenant, purpose, and sensitivity</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Approved Use</strong>
+                <span>Allowed prompt, retrieval, storage, logging, and reuse</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Evidence Record</strong>
+                <span>Decision, approval, constraints, and reviewer</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Restricted Data Block</strong>
+                <span>No secrets, credentials, payment data, PHI, or unauthorized records</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A team wants to use an AI assistant to summarize support tickets. Students must decide whether the tickets contain customer data, employee data, payment references, credentials, internal-only context, or regulated records before the workflow is approved.</p>
+        </section>
+
+        <section id="exercise" class="lab-panel">
+          <h2>Student Exercise</h2>
+          <p>Create a data classification review for one proposed AI workflow.</p>
+          <pre><code>1. Name the AI use case
+2. List the data sources
+3. Assign classification: public, internal, confidential, or restricted
+4. Identify who may access the data
+5. Decide whether model use is allowed
+6. Decide whether storage or logging is allowed
+7. Identify required approval
+8. Record evidence and constraints</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This course is a learning surface. It does not expose backend APIs, access enterprise data, transfer data to model providers, mutate systems, or claim production enforcement.</p>
+          <pre><code>Course surface = SecureTheCloud Labs
+Runtime = read-only learning
+Backend exposure = false
+Live enterprise data access = false
+Model provider integration = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
