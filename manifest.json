@@ -913,6 +913,17 @@
       "summary": "Intermediate LAB teaching how data classification, access boundaries, source authority, approved use, logging behavior, and evidence records shape AI governance decisions."
     },
     {
+      "id": "ai-model-risk-tiering-review-routing",
+      "title": "AI Model Risk Tiering and Review Routing",
+      "cloud": "ai-governance",
+      "domain": "governance",
+      "level": "intermediate",
+      "maturity": "intermediate",
+      "track": "ai-governance-command-center",
+      "path": "/labs/ai-governance/ai-model-risk-tiering-review-routing/",
+      "summary": "Intermediate LAB teaching how to route AI use cases to security, privacy, legal, architecture, executive, or human-review paths based on model risk tier and operational impact."
+    },
+    {
       "id": "ai-governance-policy-gates-human-approval",
       "title": "Policy Gates and Human Approval",
       "cloud": "ai-governance",

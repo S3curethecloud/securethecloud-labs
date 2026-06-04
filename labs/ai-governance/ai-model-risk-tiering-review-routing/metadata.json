@@ -1,0 +1,16 @@
+{
+  "id": "ai-model-risk-tiering-review-routing",
+  "title": "AI Model Risk Tiering and Review Routing",
+  "cloud": "ai-governance",
+  "domain": "governance",
+  "level": "intermediate",
+  "maturity": "intermediate",
+  "track": "ai-governance-command-center",
+  "path": "/labs/ai-governance/ai-model-risk-tiering-review-routing/",
+  "summary": "Intermediate LAB teaching how to route AI use cases to security, privacy, legal, architecture, executive, or human-review paths based on model risk tier and operational impact.",
+  "runtime_change_required": false,
+  "backend_exposure": false,
+  "live_reviewer_workflow": false,
+  "model_provider_integration": false,
+  "production_enforcement_claim": false
+}

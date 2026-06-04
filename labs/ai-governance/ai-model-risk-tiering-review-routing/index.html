@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Model Risk Tiering and Review Routing | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/ai-governance-command-center/">← Back to AI Governance Track</a>
+
+    <section class="lab-hero">
+      <p class="lab-hero-kicker">AI Governance · Risk Tiering · Review Routing</p>
+      <h1>AI Model Risk Tiering and Review Routing</h1>
+      <p>Intermediate LAB for routing AI use cases to security, privacy, legal, architecture, executive, or human-review paths based on risk tier and operational impact.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Governance</strong></div>
+        <div><span>Track</span><strong>Command Center</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Student Exercise</a>
+        <a href="#governance">Governance Boundary</a>
+      </nav>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <p>LAB Navigation</p>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#visual">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Student Exercise</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section id="overview" class="lab-panel">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to move from AI intake and data classification into risk tiering and reviewer routing. Students learn how to decide whether a proposed AI workflow needs business-owner review, security review, privacy review, legal review, architecture review, executive approval, or denial by default.</p>
+          <div class="pill-row">
+            <span class="pill">Risk tiering</span>
+            <span class="pill">Review routing</span>
+            <span class="pill">Approval paths</span>
+            <span class="pill">No live workflow</span>
+          </div>
+        </section>
+
+        <section id="concepts" class="lab-panel">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying AI risk classification and reviewer routing.</p>
+
+          <details class="concept-card" open>
+            <summary>Why does AI governance need risk tiers?</summary>
+            <p>Risk tiers help teams apply consistent review requirements. A low-risk summarization workflow should not need the same review path as an AI workflow that touches customer records, employee data, payments, legal decisions, safety, or production systems.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What factors determine the risk tier?</summary>
+            <p>Risk tiering should consider data classification, affected users, business impact, autonomy level, tool authority, production access, regulatory exposure, reversibility, and whether the AI can influence or execute material decisions.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What is review routing?</summary>
+            <p>Review routing maps a risk tier to the required reviewer path. Depending on risk, the workflow may require business-owner review, security review, privacy review, legal review, architecture review, executive approval, or escalation.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>Why does autonomy change the review path?</summary>
+            <p>An AI system that only summarizes is different from one that drafts actions, submits requests, approves changes, or executes workflows. More autonomy requires stronger review, approval, and evidence controls.</p>
+          </details>
+
+          <details class="concept-card">
+            <summary>What should executives understand?</summary>
+            <p>Executives should understand that AI review is not a single checkbox. Review requirements should scale with data sensitivity, business impact, operational authority, and customer or regulatory exposure.</p>
+          </details>
+        </section>
+
+        <section id="visual" class="lab-panel">
+          <h2>Visual Risk Tiering and Review Routing Model</h2>
+          <p>Risk tiering turns AI intake and data classification into an approval or escalation path.</p>
+
+          <div class="visual-flow">
+            <div class="visual-flow-row">
+              <div class="visual-node">
+                <strong>AI Use Case</strong>
+                <span>Purpose, owner, users, and expected outcome</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Data Classification</strong>
+                <span>Public, internal, confidential, or restricted</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Autonomy Level</strong>
+                <span>Recommend, draft, submit, approve, or execute</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node decision">
+                <strong>Impact Review</strong>
+                <span>Customer, employee, financial, legal, safety, compliance, or production impact</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node decision">
+                <strong>Risk Tier</strong>
+                <span>Low, moderate, high, or restricted</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node allow">
+                <strong>Review Route</strong>
+                <span>Business, security, privacy, legal, architecture, executive, or escalation</span>
+              </div>
+            </div>
+
+            <div class="visual-flow-row">
+              <div class="visual-node deny">
+                <strong>Restricted Route</strong>
+                <span>Fail closed for secrets, regulated records, autonomous execution, or production mutation</span>
+              </div>
+              <div class="visual-arrow">→</div>
+              <div class="visual-node">
+                <strong>Evidence Record</strong>
+                <span>Risk tier, reviewer path, decision, constraints, and approval owner</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="scenario" class="lab-panel">
+          <h2>Example Scenario</h2>
+          <p>A business team proposes an AI assistant for support operations. Students must decide whether the workflow only summarizes public help content, uses internal procedures, retrieves customer records, influences refund decisions, or can trigger operational actions. The review route changes based on those risk signals.</p>
+        </section>
+
+        <section id="exercise" class="lab-panel">
+          <h2>Student Exercise</h2>
+          <p>Create a review routing decision for one proposed AI workflow.</p>
+          <pre><code>1. Name the AI use case
+2. Identify data classification
+3. Identify autonomy level
+4. Identify customer, employee, financial, legal, safety, compliance, or production impact
+5. Assign risk tier: low, moderate, high, or restricted
+6. Select required reviewers
+7. Define approval, denial, or escalation path
+8. Record evidence and constraints</code></pre>
+        </section>
+
+        <section id="governance" class="lab-panel">
+          <h2>Governance Boundary</h2>
+          <p>This course is a learning surface. It does not expose backend APIs, access enterprise systems, route real approvals, mutate production, or claim production enforcement.</p>
+          <pre><code>Course surface = SecureTheCloud Labs
+Runtime = read-only learning
+Backend exposure = false
+Live reviewer workflow = false
+Model provider integration = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
