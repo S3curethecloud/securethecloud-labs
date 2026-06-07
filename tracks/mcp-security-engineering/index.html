@@ -17,7 +17,7 @@
 
       <div class="lab-status-grid">
         <div><span>Status</span><strong>Active Track</strong></div>
-        <div><span>Modules</span><strong>1 of 9</strong></div>
+        <div><span>Modules</span><strong>2 of 9</strong></div>
         <div><span>Domain</span><strong>AI Security</strong></div>
         <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
@@ -26,7 +26,7 @@
     <section class="mobile-study-menu">
       <p class="mobile-study-menu-title">Module Map</p>
       <a href="/labs/mcp-security-engineering/mcp-security-engineering-overview/">1. MCP Security Engineering Overview</a>
-      <span>2. MCP Server Trust Boundary Design</span>
+      <a href="/labs/mcp-security-engineering/mcp-server-trust-boundary-design/">2. MCP Server Trust Boundary Design</a>
       <span>3. MCP Tool Authority and Permission Scope</span>
       <span>4. MCP Context Injection Risk Design</span>
       <span>5. MCP Data Exposure Scenario Design</span>
@@ -58,10 +58,11 @@
               <strong>1. MCP Security Engineering Overview</strong>
               <span>Introduce MCP trust boundaries, tool authority, context flow, approval requirements, evidence capture, and non-execution constraints.</span>
             </a>
-            <div class="artifact-card">
+            <a class="artifact-card" href="/labs/mcp-security-engineering/mcp-server-trust-boundary-design/">
               <strong>2. MCP Server Trust Boundary Design</strong>
+              <span>Implemented LAB - production quality-gated.</span>
               <span>Plan how MCP server identity, trust, ownership, and allowed resources should be reviewed.</span>
-            </div>
+            </a>
             <div class="artifact-card">
               <strong>3. MCP Tool Authority and Permission Scope</strong>
               <span>Reason about tool permission boundaries, least privilege, sensitive actions, and execution authority.</span>
@@ -97,7 +98,7 @@
           <h2>Governance Boundary</h2>
           <p>This is a static educational track. It does not run MCP servers, start MCP clients, invoke tools, handle credentials, connect to production systems, or claim production enforcement.</p>
           <pre><code>Track implemented = true
-LAB modules implemented = 1 of 9
+LAB modules implemented = 2 of 9
 Backend exposure = false
 Public backend exposed = false
 MCP server execution = false

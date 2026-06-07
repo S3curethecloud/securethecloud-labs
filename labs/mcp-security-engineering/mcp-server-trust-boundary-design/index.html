@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Server Trust Boundary Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">← Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Server Trust Boundary · L2 LAB</p>
+      <h1>MCP Server Trust Boundary Design</h1>
+      <p>Intermediate LAB teaching how to design and review MCP server trust boundaries, server identity, ownership, allowed resources, policy scope, lifecycle controls, and reviewer-safe evidence without running live MCP infrastructure.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Server Trust Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to review MCP server trust before any MCP-connected tool or resource is treated as safe. The server boundary is where ownership, identity, allowed resources, tool exposure, policy rules, and operational responsibility must be explicit.</p>
+          <p>A trusted MCP server is not trusted because it exists. It is trusted because its owner, purpose, identity, resource scope, allowed operations, evidence trail, and revocation path are documented and reviewable.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP server trust boundary design.</p>
+
+          <details open>
+            <summary>1. What is an MCP server trust boundary?</summary>
+            <p>An MCP server trust boundary defines what an MCP server is allowed to expose, which client may use it, which tools and resources are in scope, who owns it, and what controls must be present before it is relied on by an AI workflow.</p>
+          </details>
+
+          <details>
+            <summary>2. Why is server identity important?</summary>
+            <p>Server identity determines whether a client can distinguish an approved server from an untrusted, spoofed, stale, or unauthorized server. Identity includes naming, ownership, environment, version, approval state, and operating boundary.</p>
+          </details>
+
+          <details>
+            <summary>3. What should server ownership include?</summary>
+            <p>Ownership should include the accountable team, business purpose, data classification, support path, approval owner, incident contact, decommission process, and authority to approve or revoke exposed resources.</p>
+          </details>
+
+          <details>
+            <summary>4. How should allowed resources be scoped?</summary>
+            <p>Allowed resources should be explicitly listed and tied to purpose. A safe MCP server should not expose broad filesystem, database, ticketing, identity, payment, customer, or production resources without clear policy and approval controls.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls should protect the server boundary?</summary>
+            <p>Controls include server allowlisting, resource allowlisting, least privilege, logging, rate limits, authentication, authorization, approval gates, error handling, ownership metadata, and revocation procedures.</p>
+          </details>
+
+          <details>
+            <summary>6. What evidence should a server trust review capture?</summary>
+            <p>Evidence should document server identity, owner, allowed resources, purpose, policy boundary, expected controls, observed gaps, uncertainty, and remediation. It should not include secrets, customer data, credentials, or live tool output.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Server Trust Boundary Model</h2>
+          <p>A strong MCP server trust review turns server connectivity into explicit ownership, scope, policy, and evidence.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>MCP Client</strong>
+              <span>Assistant, agent, application, or workflow requesting server-provided context or tools</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Server Identity</strong>
+              <span>Name, owner, environment, version, approval state, and trusted source</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Allowed Resources</strong>
+              <span>Explicit resources, tools, methods, datasets, files, or APIs in scope</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Trust Failure</strong>
+              <span>Unknown owner, broad access, stale server, spoofed endpoint, or unclear authority</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Allowlist, least privilege, logging, policy scope, approval gate, and revocation path</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence-backed server trust decision, uncertainty, risk, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> An MCP server should not be trusted until its identity, owner, scope, controls, and evidence are explicit.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A retail operations assistant is proposed to use an MCP server that exposes inventory, store, and supplier context. The learner must determine whether the MCP server is trusted, whether its resources are appropriately scoped, and whether sensitive operations require approval.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate whether the MCP server has clear identity, ownership, resource scope, and control boundaries.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic server metadata and simulated resource inventory only. No live MCP server, credentials, customer data, or production APIs.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The server should expose only approved resources, maintain owner accountability, and require review before sensitive operations.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering server identity, owner, allowed resources, policy scope, observed gaps, uncertainty, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP server trust review:
+identify the MCP server owner
+record server purpose and environment
+list allowed tools and resources
+classify exposed data and operations
+verify approval and revocation paths
+confirm logging and review ownership
+use synthetic evidence only
+document uncertainty and gaps
+recommend least-privilege remediation
+
+Result:
+The server becomes a governed trust boundary, not an assumed safe integration.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is allowing an AI client to connect to an MCP server simply because the endpoint is reachable or convenient.</p>
+
+          <pre><code>Unsafe pattern:
+- unknown MCP server owner
+- broad resource exposure
+- unclear server identity
+- unreviewed tool list
+- no data classification
+- no approval path
+- no revocation process
+- no evidence trail
+
+Risk:
+untrusted server usage
+tool over-permissioning
+data exposure
+credential leakage
+approval bypass
+runtime mutation
+unsupported security claims
+
+Safe alternative:
+require server inventory
+verify owner and environment
+scope resources explicitly
+document allowed operations
+map policy controls
+preserve approval gates
+capture reviewer-safe evidence
+recommend revocation and least privilege</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP server trust boundary design only. No MCP server is started, no MCP client connects, no tools are invoked, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

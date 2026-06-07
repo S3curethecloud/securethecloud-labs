@@ -1,0 +1,19 @@
+{
+  "id": "mcp-server-trust-boundary-design",
+  "title": "MCP Server Trust Boundary Design",
+  "cloud": "mcp-security-engineering",
+  "domain": "AI Security",
+  "track": "mcp-security-engineering",
+  "level": "L2",
+  "status": "implemented",
+  "runtime": "read-only",
+  "path": "/labs/mcp-security-engineering/mcp-server-trust-boundary-design/",
+  "backend_exposure": false,
+  "mcp_server_execution": false,
+  "mcp_client_execution": false,
+  "live_tool_invocation": false,
+  "credential_handling": false,
+  "customer_data_access": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}
