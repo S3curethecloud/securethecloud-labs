@@ -6,6 +6,17 @@
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
+      "id": "mcp-security-engineering-overview",
+      "title": "MCP Security Engineering Overview",
+      "cloud": "mcp-security-engineering",
+      "domain": "AI Security",
+      "track": "mcp-security-engineering",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/mcp-security-engineering/mcp-security-engineering-overview/",
+      "backend_exposure": false
+    },
+    {
       "id": "ai-red-team-scenario-design-capstone",
       "title": "AI Red Team Scenario Design Capstone",
       "cloud": "ai-red-team-scenario-design",
@@ -1009,6 +1020,18 @@
       "domain": "ai-security",
       "implemented_modules": 9,
       "planned_modules": 9
+    },
+    {
+      "id": "mcp-security-engineering",
+      "title": "MCP Security Engineering L2 Track",
+      "cloud": "mcp-security-engineering",
+      "domain": "AI Security",
+      "level": "L2",
+      "path": "/tracks/mcp-security-engineering/",
+      "status": "active",
+      "implemented_modules": 1,
+      "planned_modules": 9,
+      "backend_exposure": false
     }
   ]
 }

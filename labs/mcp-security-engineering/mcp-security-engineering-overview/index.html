@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Security Engineering Overview | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">← Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Overview · L2 LAB</p>
+      <h1>MCP Security Engineering Overview</h1>
+      <p>Intermediate LAB introducing Model Context Protocol security boundaries: server trust, client authority, tool permission scope, context injection, data exposure, approval gates, and reviewer-safe evidence.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual MCP Security Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to reason about MCP security as a set of trust boundaries and control decisions. The goal is to understand how MCP clients, servers, tools, resources, context, and approval gates should be reviewed before any production use.</p>
+          <p>MCP security engineering is not just about whether a tool works. It is about whether the tool has the right authority, whether the server is trusted, whether context can be poisoned, whether data can leak, and whether human approval is preserved before sensitive action.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP security fundamentals.</p>
+
+          <details open>
+            <summary>1. What is MCP security engineering?</summary>
+            <p>MCP security engineering is the practice of designing and reviewing the trust boundaries around Model Context Protocol clients, servers, tools, resources, prompts, and approval flows. The goal is to make AI-connected tools useful without allowing unsafe authority expansion.</p>
+          </details>
+
+          <details>
+            <summary>2. Why does MCP change the AI risk surface?</summary>
+            <p>MCP can connect an AI workflow to tools, resources, files, APIs, and enterprise context. That makes authority, data access, server trust, and tool invocation boundaries more important than in a standalone chat workflow.</p>
+          </details>
+
+          <details>
+            <summary>3. Where can MCP trust boundaries fail?</summary>
+            <p>Trust boundaries can fail between the user and client, client and server, server and tool, tool and resource, retrieved context and instructions, or recommendation and execution. Each boundary needs explicit ownership, allowed behavior, and evidence.</p>
+          </details>
+
+          <details>
+            <summary>4. What controls should MCP reviews include?</summary>
+            <p>Reviews should include server identity, tool allowlists, permission scope, data classification, tenant boundaries, approval gates, logging, rate limits, error handling, revocation, and escalation paths.</p>
+          </details>
+
+          <details>
+            <summary>5. How should MCP evidence be captured?</summary>
+            <p>Evidence should be reviewer-safe and synthetic. It should document objective, authorized scope, expected control, observed behavior, uncertainty, and remediation without collecting credentials, customer records, secrets, or live tool outputs.</p>
+          </details>
+
+          <details>
+            <summary>6. What must remain out of scope in this LAB?</summary>
+            <p>This LAB does not start MCP servers, run MCP clients, invoke real tools, access production data, handle credentials, mutate systems, or claim enforcement. It is a static security design and review exercise.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Security Engineering Model</h2>
+          <p>A safe MCP review turns tool connectivity into governed, evidence-backed boundary decisions.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>MCP Client</strong>
+              <span>AI interface, agent, assistant, or application requesting context or tools</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>MCP Server Trust Boundary</strong>
+              <span>Server identity, ownership, allowlist, resource scope, and policy constraints</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Tool or Resource</strong>
+              <span>API, file, database, workflow, or enterprise system exposed through MCP</span>
+            </div>
+            <div class="workflow-node danger">
+              <strong>Risk Review</strong>
+              <span>Context injection, data exposure, over-permissioning, unsafe delegation, or approval bypass</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Least privilege, approval gate, data boundary, logging, rate limit, or refusal behavior</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence, uncertainty, risk explanation, control mapping, and remediation guidance</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP security is safe only when tool authority, server trust, data boundaries, and approval gates are explicit and reviewable.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>An AI assistant uses an MCP server to retrieve inventory context and recommend a store operations action. The learner must review whether the MCP connection preserves tool authority boundaries, data access rules, and human approval requirements.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate whether the MCP workflow separates recommendation from execution.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic inventory context only. No live store systems, credentials, customer records, or production APIs.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The assistant can summarize and recommend, but cannot execute inventory changes without an explicit approval gate.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering server trust, allowed resources, approval state, observed behavior, uncertainty, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP review handling:
+define authorized MCP scope
+identify client, server, tool, and resource boundary
+classify data exposed through context
+document tool authority and permission limits
+confirm human approval before sensitive action
+use synthetic evidence only
+record uncertainty and control gaps
+write remediation tied to observed behavior
+
+Result:
+The MCP workflow becomes a governed integration review, not a live tool execution exercise.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is connecting an AI assistant to broad MCP tools and treating model confidence as permission to call tools, access data, or change systems.</p>
+
+          <pre><code>Unsafe pattern:
+- untrusted MCP server
+- broad tool permissions
+- unclear resource ownership
+- live API access
+- customer or payment data exposure
+- no approval gate
+- no evidence trail
+- unsupported automation claims
+
+Risk:
+credential exposure
+customer data exposure
+tool abuse
+approval bypass
+runtime mutation
+misleading governance claims
+loss of trust in AI platform controls
+
+Safe alternative:
+use trusted server inventory
+define tool allowlists
+scope resources explicitly
+require approval before sensitive action
+capture reviewer-safe evidence
+document uncertainty
+recommend remediation without executing tools</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP security design only. No MCP server, MCP client, live tool invocation, credential handling, customer data access, or runtime mutation is performed.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
