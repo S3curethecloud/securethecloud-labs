@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Approval Gate and Human-in-the-Loop Controls | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Approval Gate · L2 LAB</p>
+      <h1>MCP Approval Gate and Human-in-the-Loop Controls</h1>
+      <p>Intermediate LAB teaching how to design MCP approval gates, human-in-the-loop review controls, escalation boundaries, decision evidence, and safe non-execution workflows without invoking live tools or mutating runtime systems.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Approval Gate Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design and review approval gates for MCP workflows where an AI client may request access to tools, resources, data, or actions that require human judgment before execution.</p>
+          <p>Human-in-the-loop control is not just a button. It requires a clear trigger condition, reviewer identity, approval context, decision record, timeout behavior, denial path, escalation rule, and evidence trail.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP approval gate and human-in-the-loop control design.</p>
+
+          <details open>
+            <summary>1. What is an MCP approval gate?</summary>
+            <p>An MCP approval gate is a control point that pauses a workflow before sensitive data access, tool execution, write action, external communication, or production-impacting step. The gate requires a human or authorized process to approve, deny, or escalate the request.</p>
+          </details>
+
+          <details>
+            <summary>2. When should human review be required?</summary>
+            <p>Human review should be required when the workflow can expose sensitive data, mutate systems, trigger financial or operational impact, cross tenant boundaries, change access, contact customers, bypass policy, or make a high-risk recommendation.</p>
+          </details>
+
+          <details>
+            <summary>3. What should the reviewer see?</summary>
+            <p>The reviewer should see the request purpose, user intent, tool or resource involved, data class, proposed action, risk reason, policy trigger, expected outcome, rollback path, and evidence summary. The reviewer should not receive secrets, raw customer data, or unnecessary sensitive fields.</p>
+          </details>
+
+          <details>
+            <summary>4. What decisions should the gate support?</summary>
+            <p>A strong gate supports approve, deny, request more information, escalate, time out, and revoke. Each decision should be recorded with the reviewer, timestamp, rationale, scope, and any obligations or conditions.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls protect approval integrity?</summary>
+            <p>Controls include separation of duties, reviewer authorization, immutable decision logs, scoped approval, replay protection, timeout handling, deny-by-default behavior, policy mapping, and evidence minimization.</p>
+          </details>
+
+          <details>
+            <summary>6. What evidence should reviewers capture?</summary>
+            <p>Evidence should document the approval trigger, risk reason, decision, reviewer role, allowed scope, denial or escalation reason, and remediation. It should not copy credentials, secrets, customer data, or live MCP tool output.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Approval Gate Model</h2>
+          <p>A strong MCP approval design converts sensitive automation into controlled, reviewable decision flow.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>AI Workflow Request</strong>
+              <span>Request to retrieve sensitive data, invoke a tool, perform a write, or make an external-facing decision</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Policy Trigger</strong>
+              <span>Risk reason, data class, tool authority, tenant scope, write action, or approval requirement</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Human Review</strong>
+              <span>Authorized reviewer evaluates purpose, scope, risk, evidence, and allowed decision path</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Approval Failure</strong>
+              <span>Implicit approval, no reviewer, broad scope, stale approval, unsafe escalation, or missing evidence</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Deny by default, scoped approval, immutable log, timeout, separation of duties, and revocation</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence-backed approval decision, scope, control mapping, uncertainty, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP approval is safe only when the trigger, reviewer, decision scope, denial path, and evidence trail are explicit.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A retail support assistant wants to use an MCP tool to issue a refund after reviewing a customer complaint. The learner must determine whether the tool request requires human approval, what evidence the reviewer should see, and what must remain blocked until approval is granted.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate whether sensitive MCP tool requests are properly paused, reviewed, approved, denied, or escalated.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic refund workflow only. No live payment system, customer record, MCP server, credentials, or production API.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The workflow should require approval before any refund, account change, customer notification, or production mutation.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering approval trigger, risk reason, reviewer role, decision scope, denial path, escalation path, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP approval gate review:
+identify the sensitive action
+classify the data and tool authority
+determine approval trigger
+define reviewer role
+show minimum necessary evidence
+support approve deny escalate timeout
+scope the approval decision
+record decision rationale
+preserve denial by default
+document uncertainty and gaps
+
+Result:
+The workflow can prepare a controlled request without executing sensitive action automatically.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is treating human-in-the-loop review as a generic confirmation button with no policy trigger, scope, reviewer accountability, or immutable decision evidence.</p>
+
+          <pre><code>Unsafe pattern:
+- no approval trigger
+- no reviewer authorization
+- broad approval scope
+- stale approval reused
+- no denial path
+- no escalation rule
+- no immutable evidence
+- sensitive action proceeds automatically
+
+Risk:
+approval bypass
+unsafe tool execution
+production mutation
+customer harm
+financial impact
+policy violation
+loss of auditability
+unsupported governance claim
+
+Safe alternative:
+deny by default
+define approval triggers
+authorize reviewer role
+show minimum necessary context
+scope every decision
+record rationale and timestamp
+support denial and escalation
+preserve revocation path</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP approval gate and human-in-the-loop control design only. No MCP server is started, no MCP client connects, no tools are invoked, no approval execution occurs, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Approval execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
