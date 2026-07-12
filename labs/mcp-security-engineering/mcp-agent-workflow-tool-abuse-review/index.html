@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Agent Workflow and Tool Abuse Review | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Agent Workflow Abuse · L2 LAB</p>
+      <h1>MCP Agent Workflow and Tool Abuse Review</h1>
+      <p>Intermediate LAB teaching how to review MCP-enabled agent workflows for tool misuse, confused-deputy behavior, unsafe chaining, excessive authority, indirect prompt influence, and reviewer-safe abuse evidence without invoking live tools.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Agent Abuse Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to review MCP-enabled agent workflows where an AI agent can reason across context, select tools, pass arguments, chain actions, and request external operations.</p>
+          <p>The security goal is to identify how a workflow can be abused even when each individual tool appears safe. The review focuses on intent drift, tool chaining, over-broad permissions, hidden context influence, and unsafe execution paths.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP agent workflow and tool abuse review.</p>
+
+          <details open>
+            <summary>1. What is MCP tool abuse?</summary>
+            <p>MCP tool abuse occurs when an agent uses an authorized tool in an unsafe, excessive, unintended, or policy-violating way. The issue may come from prompt influence, weak scope, unsafe arguments, chained actions, stale context, or missing approval boundaries.</p>
+          </details>
+
+          <details>
+            <summary>2. Why can safe tools become unsafe in a workflow?</summary>
+            <p>A single tool may appear low risk, but chaining it with retrieval, summarization, export, write, notification, or ticketing tools can create a higher-risk workflow. Security review must evaluate the full path, not only the individual tool definition.</p>
+          </details>
+
+          <details>
+            <summary>3. What is confused-deputy behavior in MCP?</summary>
+            <p>Confused-deputy behavior occurs when an agent with legitimate authority is influenced to use that authority for a user, document, tool, or context that should not receive it. The agent becomes the deputy that unintentionally carries out the unsafe action.</p>
+          </details>
+
+          <details>
+            <summary>4. What should reviewers inspect?</summary>
+            <p>Reviewers should inspect user intent, retrieved context, tool authority, tool arguments, data class, downstream effects, approval triggers, denial paths, audit evidence, and whether the workflow can be replayed or abused across tenants or sessions.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls reduce tool abuse risk?</summary>
+            <p>Controls include least-privilege tools, scoped arguments, policy gating, allowlisted actions, output filtering, step-up approval, chain limits, tenant isolation, replay protection, evidence logging, and deny-by-default behavior.</p>
+          </details>
+
+          <details>
+            <summary>6. What should the evidence capture?</summary>
+            <p>Evidence should capture the workflow path, tool selected, authority requested, abuse hypothesis, policy trigger, reviewer decision, control mapping, and remediation. It should avoid copying secrets, credentials, customer records, or live tool outputs.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Agent Workflow Abuse Model</h2>
+          <p>A strong MCP abuse review evaluates the entire workflow path from intent to tool selection to downstream impact.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>User or Context Trigger</strong>
+              <span>User request, retrieved document, external context, or indirect instruction influences the agent</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Agent Planning</strong>
+              <span>Agent selects tools, builds arguments, chains steps, and interprets policy boundaries</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>MCP Tool Request</strong>
+              <span>Tool authority, resource scope, tenant boundary, and action type are evaluated</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Abuse Path</strong>
+              <span>Unsafe chaining, excessive authority, prompt-influenced arguments, or confused-deputy behavior</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Policy gate, approval requirement, scoped tool call, deny path, and evidence trail</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Workflow risk, abuse hypothesis, control mapping, decision path, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP abuse review must test the full workflow path, not just the tool schema.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>An enterprise support agent can retrieve internal policy, inspect ticket history, summarize customer context, and create remediation tickets. A user asks the agent to “fix the account and notify everyone.” The learner must identify where the workflow could become unsafe.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Review the agent workflow for unsafe tool selection, argument construction, permission scope, approval bypass, and downstream impact.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic workflow only. No live MCP server, customer record, ticketing system, notification system, or production API.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The workflow should separate read actions from write actions, require approval for mutation, and log reviewer-safe abuse evidence.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering tool path, abuse hypothesis, authority boundary, policy trigger, denial path, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP tool abuse review:
+identify the user intent
+map retrieved context
+list available tools
+classify each tool authority
+inspect proposed tool arguments
+identify chained downstream effects
+check tenant and resource scope
+detect write or external action
+require approval when needed
+record reviewer-safe evidence
+deny by default when scope is unclear
+
+Result:
+The workflow can be reviewed for abuse without invoking tools or mutating production systems.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is approving a workflow because each tool appears individually safe, while ignoring how the agent chains tools together into a higher-risk action path.</p>
+
+          <pre><code>Unsafe pattern:
+- tool schemas reviewed in isolation
+- no full workflow path review
+- no tenant boundary check
+- no argument validation
+- no approval for write actions
+- no limit on tool chaining
+- no confused-deputy review
+- no evidence of denial path
+- no abuse hypothesis documented
+
+Risk:
+tool misuse
+approval bypass
+unsafe workflow chaining
+data exposure
+account mutation
+customer harm
+cross-tenant access
+loss of auditability
+
+Safe alternative:
+review full workflow path
+classify tool authority
+validate arguments
+limit chaining
+separate read and write actions
+require approval for mutation
+log reviewer-safe evidence
+preserve deny-by-default behavior</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP agent workflow and tool abuse review only. No MCP server is started, no MCP client connects, no tools are invoked, no tool abuse is executed, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Tool abuse execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

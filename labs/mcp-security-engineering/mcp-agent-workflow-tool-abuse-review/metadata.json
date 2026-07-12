@@ -1,0 +1,20 @@
+{
+  "id": "mcp-agent-workflow-tool-abuse-review",
+  "title": "MCP Agent Workflow and Tool Abuse Review",
+  "cloud": "mcp-security-engineering",
+  "domain": "AI Security",
+  "track": "mcp-security-engineering",
+  "level": "L2",
+  "status": "implemented",
+  "runtime": "read-only",
+  "path": "/labs/mcp-security-engineering/mcp-agent-workflow-tool-abuse-review/",
+  "backend_exposure": false,
+  "mcp_server_execution": false,
+  "mcp_client_execution": false,
+  "live_tool_invocation": false,
+  "tool_abuse_execution": false,
+  "credential_handling": false,
+  "customer_data_access": false,
+  "runtime_mutation": false,
+  "production_enforcement_claim": false
+}
