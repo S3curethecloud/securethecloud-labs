@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Data Exposure Scenario Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Data Exposure · L2 LAB</p>
+      <h1>MCP Data Exposure Scenario Design</h1>
+      <p>Intermediate LAB teaching how to design and review MCP data exposure scenarios, sensitive resource boundaries, cross-context leakage paths, output disclosure risk, and reviewer-safe evidence without accessing customer data or running live MCP infrastructure.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Data Exposure Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to design and review MCP data exposure scenarios before an AI workflow is allowed to retrieve, combine, summarize, or disclose data from MCP-connected resources.</p>
+          <p>Data exposure risk is not limited to direct secret leakage. In MCP workflows, exposure can happen through broad resource access, cross-tenant context, over-retained history, unsafe tool responses, unfiltered outputs, copied evidence, or summaries that reveal sensitive business, customer, identity, or operational details.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP data exposure scenario design.</p>
+
+          <details open>
+            <summary>1. What is MCP data exposure?</summary>
+            <p>MCP data exposure is the risk that data made available through an MCP server is retrieved, combined, displayed, logged, summarized, or acted on outside the approved purpose, audience, tenant, data class, or authorization boundary.</p>
+          </details>
+
+          <details>
+            <summary>2. Why does data classification matter?</summary>
+            <p>Data classification determines how a workflow should handle a resource. Public, internal, confidential, regulated, credential-like, customer, employee, production, and tenant-specific data require different access, output, logging, and evidence rules.</p>
+          </details>
+
+          <details>
+            <summary>3. How can exposure happen without a direct leak?</summary>
+            <p>Exposure can happen when an AI workflow summarizes sensitive data into a lower-trust channel, mixes tenant context, stores excessive evidence, logs sensitive fields, reveals hidden metadata, or uses retrieved context to infer restricted information.</p>
+          </details>
+
+          <details>
+            <summary>4. What makes an MCP exposure scenario high risk?</summary>
+            <p>A scenario is high risk when it includes customer records, employee data, credentials, secrets, financial data, regulated information, production identifiers, cross-tenant data, broad search tools, unrestricted exports, or external-facing responses.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls reduce MCP data exposure risk?</summary>
+            <p>Controls include resource allowlists, data classification, tenant isolation, purpose limitation, field-level filtering, output redaction, retrieval limits, evidence minimization, logging controls, approval gates, and reviewable access decisions.</p>
+          </details>
+
+          <details>
+            <summary>6. What evidence should reviewers capture?</summary>
+            <p>Evidence should document the data class, source boundary, authorized audience, exposure path, expected controls, observed gaps, uncertainty, and remediation. It should not copy secrets, customer data, credentials, or live MCP tool output.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Data Exposure Model</h2>
+          <p>A strong MCP data exposure review maps where data can move, where it can leak, and which controls must interrupt unsafe disclosure.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>MCP Resource</strong>
+              <span>File, ticket, database record, document, API response, log, identity object, or operational dataset</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Data Classification</strong>
+              <span>Public, internal, confidential, regulated, customer, credential-like, production, or tenant-specific</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Authorized Use</strong>
+              <span>Purpose, audience, tenant, retention, output channel, and evidence boundary</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Exposure Failure</strong>
+              <span>Over-broad retrieval, cross-tenant mixing, unsafe logging, unredacted output, or unauthorized summary</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Allowlist, minimization, redaction, tenant isolation, approval gate, and evidence-safe reporting</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence-backed exposure decision, data class, control mapping, uncertainty, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP data is safe only when classification, authorized use, output limits, and evidence handling are explicit.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>An internal operations assistant retrieves store incident notes through an MCP server. The notes may contain employee names, customer contact details, supplier references, and operational exceptions. The learner must decide what can be summarized, what must be redacted, and what should never be placed into reviewer evidence.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate how sensitive data could be exposed through retrieval, summarization, logging, evidence capture, or output delivery.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic incident note description only. No real customer records, employee records, credentials, production systems, or live MCP tools.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The workflow should classify the data, minimize retrieval, redact sensitive fields, restrict output audience, and avoid copying sensitive data into evidence.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering data class, exposure path, output boundary, redaction requirement, control gap, uncertainty, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP data exposure review:
+identify the data source
+classify the data type
+define approved purpose and audience
+verify tenant and environment boundary
+minimize retrieved fields
+redact sensitive values
+restrict output channels
+avoid copying sensitive evidence
+preserve approval gates
+document uncertainty and gaps
+recommend exposure controls
+
+Result:
+The workflow can reason about data exposure risk without exposing actual sensitive data.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is allowing an MCP-connected workflow to retrieve broad datasets and summarize them into chat, logs, exports, or evidence without classification and output controls.</p>
+
+          <pre><code>Unsafe pattern:
+- broad resource access
+- no data classification
+- no tenant boundary check
+- no field minimization
+- no redaction policy
+- sensitive data copied into logs
+- sensitive data copied into evidence
+- external output not reviewed
+
+Risk:
+customer data exposure
+employee data exposure
+secret or credential leakage
+cross-tenant disclosure
+regulated data mishandling
+unsafe business inference
+audit evidence contamination
+loss of trust
+
+Safe alternative:
+classify every data source
+limit retrieval to approved purpose
+enforce tenant boundary
+minimize fields
+redact sensitive values
+gate external output
+minimize evidence
+document exposure risk safely</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP data exposure scenario design only. No MCP server is started, no MCP client connects, no tools are invoked, no customer data is accessed, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Data export execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

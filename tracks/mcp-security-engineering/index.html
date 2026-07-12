@@ -17,7 +17,7 @@
 
       <div class="lab-status-grid">
         <div><span>Status</span><strong>Active Track</strong></div>
-        <div><span>Modules</span><strong>4 of 9</strong></div>
+        <div><span>Modules</span><strong>5 of 9</strong></div>
         <div><span>Domain</span><strong>AI Security</strong></div>
         <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
@@ -29,7 +29,7 @@
       <a href="/labs/mcp-security-engineering/mcp-server-trust-boundary-design/">2. MCP Server Trust Boundary Design</a>
       <a href="/labs/mcp-security-engineering/mcp-tool-authority-permission-scope/">3. MCP Tool Authority and Permission Scope</a>
       <a href="/labs/mcp-security-engineering/mcp-context-injection-risk-design/">4. MCP Context Injection Risk Design</a>
-      <span>5. MCP Data Exposure Scenario Design</span>
+      <a href="/labs/mcp-security-engineering/mcp-data-exposure-scenario-design/">5. MCP Data Exposure Scenario Design</a>
       <span>6. MCP Approval Gate and Human-in-the-Loop Controls</span>
       <span>7. MCP Agent Workflow and Tool Abuse Review</span>
       <span>8. MCP Evidence Capture and Control Mapping</span>
@@ -81,10 +81,15 @@
               <span>Design safe scenarios for reviewing untrusted context, source authority, prompt boundaries, and instruction hierarchy.</span>
 
             </a>
-            <div class="artifact-card">
+            <a class="artifact-card" href="/labs/mcp-security-engineering/mcp-data-exposure-scenario-design/">
+
               <strong>5. MCP Data Exposure Scenario Design</strong>
+
+              <span>Implemented LAB - production quality-gated.</span>
+
               <span>Review sensitive data boundaries, resource access, tenant separation, and disclosure controls using synthetic examples.</span>
-            </div>
+
+            </a>
             <div class="artifact-card">
               <strong>6. MCP Approval Gate and Human-in-the-Loop Controls</strong>
               <span>Evaluate where human approval, escalation, and recommendation-versus-execution separation must remain intact.</span>
@@ -108,7 +113,7 @@
           <h2>Governance Boundary</h2>
           <p>This is a static educational track. It does not run MCP servers, start MCP clients, invoke tools, handle credentials, connect to production systems, or claim production enforcement.</p>
           <pre><code>Track implemented = true
-LAB modules implemented = 4 of 9
+LAB modules implemented = 5 of 9
 Backend exposure = false
 Public backend exposed = false
 MCP server execution = false
