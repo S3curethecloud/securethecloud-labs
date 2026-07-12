@@ -26,7 +26,7 @@ No production enforcement was claimed.
 
 ```text
 Phase 238 implementation commit: 8bb3cb8
-QA source head: 8bb3cb8
+QA source head: 91af360
 ```
 
 ## Production Homepage Counts
