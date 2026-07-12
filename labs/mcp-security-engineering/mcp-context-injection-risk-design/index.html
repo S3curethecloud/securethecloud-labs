@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Context Injection Risk Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Context Injection · L2 LAB</p>
+      <h1>MCP Context Injection Risk Design</h1>
+      <p>Intermediate LAB teaching how to design and review MCP context injection risks, untrusted context sources, instruction hierarchy conflicts, prompt boundary failure, and reviewer-safe mitigation evidence without running live MCP infrastructure.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Context Injection Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to review MCP context injection risk before external context is allowed to influence an AI workflow, tool decision, recommendation, or policy-sensitive output.</p>
+          <p>Context injection happens when untrusted or lower-authority content attempts to influence the model outside its intended role. In MCP workflows, injected context may come from files, tickets, webpages, database records, tool responses, logs, messages, prompts, or resource descriptions.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP context injection risk design.</p>
+
+          <details open>
+            <summary>1. What is MCP context injection?</summary>
+            <p>MCP context injection is the risk that data exposed through an MCP server contains instructions, misleading claims, hidden prompts, malicious text, or authority-confusing content that attempts to steer the AI workflow beyond the approved task.</p>
+          </details>
+
+          <details>
+            <summary>2. Why does source authority matter?</summary>
+            <p>Source authority defines how much trust a workflow should place in a context source. A policy document, user-submitted text, vendor response, webpage, log entry, and tool output should not have the same authority over model behavior or tool decisions.</p>
+          </details>
+
+          <details>
+            <summary>3. How can instruction hierarchy fail?</summary>
+            <p>Instruction hierarchy fails when lower-trust context is allowed to override system rules, developer rules, business policy, human approval requirements, or safety boundaries. Context should inform the model, not silently rewrite the operating rules.</p>
+          </details>
+
+          <details>
+            <summary>4. What makes MCP context high risk?</summary>
+            <p>Context is high risk when it is externally controlled, user supplied, tool generated, stale, unverified, cross-tenant, sensitive, or capable of influencing tool execution, approvals, access decisions, customer messaging, financial actions, or production changes.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls reduce context injection risk?</summary>
+            <p>Controls include source labeling, authority ranking, context sanitization, prompt boundary separation, instruction hierarchy enforcement, retrieval filters, output grounding, refusal behavior, human approval gates, and evidence capture.</p>
+          </details>
+
+          <details>
+            <summary>6. What evidence should reviewers capture?</summary>
+            <p>Evidence should document source type, authority level, context sensitivity, injection indicators, expected controls, observed gaps, uncertainty, and remediation. It should not include secrets, customer data, credentials, or live MCP tool output.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Context Injection Risk Model</h2>
+          <p>A strong MCP context review separates useful context from unsafe instruction influence.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>Context Source</strong>
+              <span>File, ticket, webpage, database record, tool response, log, message, or prompt template</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Authority Review</strong>
+              <span>Source owner, trust level, data class, freshness, tenant scope, and approval state</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Prompt Boundary</strong>
+              <span>Context is labeled as data, not treated as governing instruction or policy authority</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Injection Failure</strong>
+              <span>Untrusted context overrides rules, changes tool behavior, bypasses approvals, or misleads output</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Source labeling, sanitization, hierarchy enforcement, grounding, refusal, and review gate</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence-backed context risk decision, uncertainty, control mapping, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP context is safe only when source authority, instruction hierarchy, prompt boundaries, and approval gates are explicit.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A support assistant retrieves a customer-submitted attachment through an MCP server. The attachment includes normal troubleshooting details, but also contains text telling the assistant to ignore approval policy and execute a refund tool. The learner must classify the attachment as untrusted context and prevent it from becoming an instruction source.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate whether retrieved context is being treated as data or incorrectly promoted into instruction authority.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic context sample only. No real customer attachment, live MCP server, production tool, credentials, or customer data.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The workflow should label the retrieved content as untrusted context, reject embedded instructions, and preserve approval gates for sensitive actions.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering source authority, injection indicator, control gap, refusal requirement, approval boundary, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP context injection review:
+identify the context source
+classify the source authority
+label retrieved content as data
+separate data from instructions
+detect embedded instruction attempts
+verify approval gates remain intact
+ground responses in trusted sources
+refuse unsafe instruction override
+document uncertainty and gaps
+recommend context boundary controls
+
+Result:
+The workflow can use retrieved context without allowing untrusted content to rewrite operating rules.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is allowing retrieved MCP context to directly influence tool execution or approval-sensitive decisions without authority ranking or instruction separation.</p>
+
+          <pre><code>Unsafe pattern:
+- untrusted context treated as instruction
+- no source authority label
+- no prompt boundary separation
+- no injection detection
+- no retrieval filtering
+- no approval preservation
+- no refusal behavior
+- no reviewer evidence
+
+Risk:
+instruction hierarchy bypass
+tool execution manipulation
+approval bypass
+data exposure
+unsafe customer communication
+policy violation
+production mutation
+loss of auditability
+
+Safe alternative:
+label source authority
+treat retrieved content as data
+separate context from instructions
+filter and sanitize inputs
+preserve system and policy hierarchy
+require approval for sensitive actions
+ground outputs in trusted context
+capture reviewer-safe evidence</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP context injection risk design only. No MCP server is started, no MCP client connects, no tools are invoked, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Context execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
