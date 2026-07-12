@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Tool Authority and Permission Scope | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">← Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Tool Authority · L2 LAB</p>
+      <h1>MCP Tool Authority and Permission Scope</h1>
+      <p>Intermediate LAB teaching how to design safe MCP tool authority boundaries, permission scope, allowed operations, escalation gates, and reviewer-safe evidence without invoking live tools or mutating systems.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Tool Authority Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to review whether an MCP-exposed tool has appropriate authority, permission scope, approval state, and operational boundaries before an AI workflow is allowed to rely on it.</p>
+          <p>Tool authority is not the same as tool availability. A tool may exist, but the AI workflow should only receive the narrow authority required for the approved purpose, with clear limits on reads, writes, mutations, privileged actions, and escalation paths.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP tool authority and permission scope.</p>
+
+          <details open>
+            <summary>1. What is MCP tool authority?</summary>
+            <p>MCP tool authority defines what an AI client is allowed to ask a tool to do through an MCP server. It includes allowed operations, denied operations, read/write limits, sensitive actions, approval gates, and the boundary between recommendation and execution.</p>
+          </details>
+
+          <details>
+            <summary>2. Why is permission scope important?</summary>
+            <p>Permission scope prevents a useful tool from becoming an overpowered execution path. A safe MCP design limits the tool to the smallest set of actions needed for the workflow and blocks broad, privileged, destructive, or tenant-crossing behavior.</p>
+          </details>
+
+          <details>
+            <summary>3. How should read and write actions be separated?</summary>
+            <p>Read actions may support analysis, summarization, lookup, or evidence collection. Write actions can mutate tickets, files, records, identities, inventory, payments, or production state. Write actions require stronger gates, explicit approval, and stronger evidence.</p>
+          </details>
+
+          <details>
+            <summary>4. What makes an MCP tool high risk?</summary>
+            <p>A tool is high risk when it can access sensitive data, perform writes, change permissions, trigger payments, modify production state, call external systems, cross tenant boundaries, or take actions that users may interpret as official business decisions.</p>
+          </details>
+
+          <details>
+            <summary>5. What controls should protect tool authority?</summary>
+            <p>Controls include operation allowlists, parameter validation, deny-by-default policy, human approval gates, environment separation, scoped service identity, audit logging, rate limits, sensitive action review, and revocation procedures.</p>
+          </details>
+
+          <details>
+            <summary>6. What evidence should be captured?</summary>
+            <p>Evidence should document tool purpose, allowed operations, denied operations, permission scope, data classification, expected controls, approval requirements, observed gaps, uncertainty, and remediation. It should not include credentials, secrets, customer data, or live tool output.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Tool Authority Model</h2>
+          <p>A strong MCP tool review turns tool availability into governed, least-privilege authority.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>AI Workflow Request</strong>
+              <span>Assistant, agent, or application asks for context, recommendation, or action</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>MCP Tool Authority</strong>
+              <span>Allowed operations, denied operations, read/write scope, and approval state</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Permission Boundary</strong>
+              <span>Least privilege, tenant scope, data class, environment, and sensitive action limits</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Authority Failure</strong>
+              <span>Broad access, unclear writes, hidden mutations, unsafe delegation, or approval bypass</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Deny by default, allowlist, parameter validation, human approval, and audit trail</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Reviewer-Safe Finding</strong>
+              <span>Evidence-backed tool authority decision, risk, uncertainty, and remediation</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP tool access is safe only when authority, permission scope, approval gates, and evidence are explicit.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A retail inventory assistant is proposed to use an MCP tool that can read product stock levels and create replenishment recommendations. The learner must determine whether the tool is read-only, whether it can place orders, whether approval is required, and whether the permission scope is appropriate.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Evaluate whether MCP tool authority is limited to the approved workflow and whether write actions are gated.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic inventory tool description only. No live inventory system, purchasing system, credentials, customer data, or production APIs.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>The tool should support read-only analysis and recommendations unless explicit human approval authorizes a controlled write path.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering allowed operations, denied operations, permission scope, approval gates, risk, uncertainty, and remediation.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP tool authority review:
+identify the tool purpose
+list allowed read operations
+list denied write operations
+classify data and action sensitivity
+verify tenant and environment boundary
+require approval for sensitive actions
+validate parameters and output handling
+confirm audit and revocation path
+document uncertainty and gaps
+recommend least-privilege scope
+
+Result:
+The tool becomes a governed capability, not an unrestricted execution channel.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is exposing an MCP tool with broad authority and allowing an AI workflow to decide when to execute sensitive actions.</p>
+
+          <pre><code>Unsafe pattern:
+- broad tool permissions
+- unclear read/write boundary
+- no operation allowlist
+- no parameter validation
+- no approval gate
+- live write capability
+- credential or secret exposure
+- unsupported automation claim
+
+Risk:
+over-permissioned tool access
+approval bypass
+production mutation
+customer data exposure
+credential leakage
+tenant boundary failure
+unsafe autonomous action
+loss of auditability
+
+Safe alternative:
+separate read from write
+deny by default
+allowlist operations
+validate parameters
+require human approval
+scope service identity
+log tool decisions
+preserve revocation path
+capture reviewer-safe evidence</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP tool authority and permission scope design only. No MCP server is started, no MCP client connects, no tools are invoked, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Tool write execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

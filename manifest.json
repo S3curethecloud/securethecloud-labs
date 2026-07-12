@@ -17,6 +17,17 @@
       "backend_exposure": false
     },
     {
+      "id": "mcp-tool-authority-permission-scope",
+      "title": "MCP Tool Authority and Permission Scope",
+      "cloud": "mcp-security-engineering",
+      "domain": "AI Security",
+      "track": "mcp-security-engineering",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/mcp-security-engineering/mcp-tool-authority-permission-scope/",
+      "backend_exposure": false
+    },
+    {
       "id": "mcp-security-engineering-overview",
       "title": "MCP Security Engineering Overview",
       "cloud": "mcp-security-engineering",
@@ -1040,7 +1051,7 @@
       "level": "L2",
       "path": "/tracks/mcp-security-engineering/",
       "status": "active",
-      "implemented_modules": 2,
+      "implemented_modules": 3,
       "planned_modules": 9,
       "backend_exposure": false
     }
