@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enterprise Gateway, MCP, Registry, and API Contracts | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Interoperability &amp; Contracts · L2 LAB</p>
+      <h1>Enterprise Gateway, MCP, Registry, and API Contracts</h1>
+      <p>Design a governed enterprise integration layer that discovers only trusted capabilities, validates versioned contracts, authorizes every route outside model judgment, enforces least privilege, and records an observable disposition for every attempted interaction.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Integration Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise agent integration is not simply exposing an API or connecting an MCP server. It is a controlled system spanning discovery, ownership, identity, authorization, schema validation, policy, versioning, invocation, failure handling, evidence, and lifecycle management.</p>
+          <p>Gateways enforce traffic and policy boundaries. MCP standardizes capability exchange. Registries establish authoritative discovery and lifecycle state. OpenAPI and JSON Schema define machine-verifiable contracts. None of these surfaces grants authority by itself.</p>
+          <p>The core mental model is <strong>trusted discovery, validated contract, authorized route, observable outcome</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept to understand how interoperability becomes governed enterprise integration.</p>
+          <details open><summary>1. What should an enterprise gateway control?</summary><p>The gateway should authenticate workload identity, authorize routes, enforce tenant and residency rules, validate requests and responses, apply quotas, rate limits, timeouts, retries, circuit breakers, and approval policies, and emit correlated evidence. It must not rely on model confidence or tool descriptions as authorization.</p></details>
+          <details><summary>2. What does MCP standardize—and what does it not?</summary><p>MCP standardizes how clients and servers describe and exchange resources, prompts, and tools. It does not automatically establish server trust, ownership, least privilege, data classification, tenant isolation, approval, or production suitability. Those controls remain enterprise responsibilities.</p></details>
+          <details><summary>3. What belongs in a trusted registry?</summary><p>A registry record should include accountable owner, capability type, environment, tenant, trust tier, identity, endpoint or transport, schema version, status, classification, residency, permission scope, approval evidence, dependencies, deprecation date, rollback target, and evidence references.</p></details>
+          <details><summary>4. How should OpenAPI and JSON Schema be used?</summary><p>OpenAPI defines operations, methods, paths, authentication, parameters, responses, and error semantics. JSON Schema constrains structured inputs and outputs. Both require explicit versions, compatibility rules, validation, examples, and consumer-provider tests. Free-form model text must never become an executable request.</p></details>
+          <details><summary>5. How should versioning and compatibility work?</summary><p>Use immutable versions, semantic compatibility rules, negotiated supported versions, deprecation windows, migration guidance, contract tests, and rollback paths. Breaking changes require explicit approval and cannot silently replace a production contract.</p></details>
+          <details><summary>6. How are identity and least privilege enforced?</summary><p>Each agent, gateway route, MCP client, MCP server, and downstream API should have a distinct workload identity and narrowly scoped permissions. Authorization should consider caller, capability, tenant, data class, environment, operation, purpose, and approval state.</p></details>
+          <details><summary>7. What failure behavior is required?</summary><p>Define typed errors, timeout budgets, retry eligibility, idempotency keys, rate-limit responses, circuit breakers, cancellation, fallback, and human escalation. Unknown, expired, deprecated, incompatible, or unauthorized capabilities must fail closed.</p></details>
+          <details><summary>8. What should integration evaluation prove?</summary><p>Evaluation should test discovery correctness, registry ownership, schema validity, authentication, authorization, tenant isolation, residency enforcement, compatibility, deprecation, error handling, idempotency, rate limits, latency, cost, and trace completeness across normal, edge, and adversarial cases.</p></details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Enterprise Gateway, MCP, Registry, and API Contract Model</h2>
+          <p>The control plane governs discovery and lifecycle; the data plane performs only authorized, contract-valid interactions.</p>
+          <div class="workflow-board">
+            <div class="workflow-node"><strong>Trusted Registry</strong><span>Owners, trust tiers, versions, status, classification, residency, permissions, and evidence</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node"><strong>Contract Validation</strong><span>OpenAPI, JSON Schema, compatibility, typed errors, and consumer-provider tests</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Gateway Policy Boundary</strong><span>Identity, authorization, tenant, residency, approval, quotas, rate limits, and default deny</span></div>
+            <div class="workflow-node danger"><strong>Unsafe Design</strong><span>Untrusted MCP discovery, unowned registry records, free-form requests, shared credentials, or silent breaking changes</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Bounded MCP or API Capability</strong><span>Allowlisted server, resource, prompt, tool, route, operation, and least-privilege identity</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success"><strong>Observable Disposition</strong><span>Validated response, denial, timeout, fallback, rollback, cancellation, or human approval</span></div>
+          </div>
+          <p><strong>Learning rule:</strong> discovery reveals a capability; only deterministic identity, contract, policy, and lifecycle controls decide whether it may be used.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A global enterprise wants an employee-service agent to discover approved policy and ticket-proposal capabilities through a synthetic registry, use mock MCP manifests, and reference static OpenAPI contracts without executing any live integration.</p>
+          <div class="scenario-grid">
+            <div class="scenario-card"><strong>Gateway</strong><p>Static route policy for workload identity, tenant, residency, approval, quotas, validation, and evidence.</p></div>
+            <div class="scenario-card"><strong>MCP</strong><p>Mock client and server trust records with allowlisted resources, prompts, tools, schemas, and ownership.</p></div>
+            <div class="scenario-card"><strong>Registry</strong><p>Versioned capability records with status, trust tier, environment, deprecation, rollback, and evidence references.</p></div>
+            <div class="scenario-card"><strong>Contracts</strong><p>Static OpenAPI and JSON Schema fragments with typed errors, idempotency, compatibility, and tests.</p></div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete enterprise integration contract package for the synthetic employee-service agent. The exercise is design-only and does not execute gateways, MCP clients or servers, registries, APIs, tools, credentials, or cloud resources.</p>
+          <pre><code>Required learner deliverable:
+1. Enterprise gateway responsibility and non-authority statement
+2. Gateway route allowlist and policy decision matrix
+3. Workload identity, authentication, and authorization model
+4. Tenant, classification, residency, and environment controls
+5. MCP client and server trust inventory
+6. MCP resource, prompt, and tool capability manifests
+7. Persistent registry schema and ownership model
+8. Registry status, trust-tier, version, deprecation, and rollback lifecycle
+9. OpenAPI operation contract for each approved route
+10. JSON Schema inputs, outputs, and typed errors
+11. Idempotency, timeout, retry, quota, and rate-limit rules
+12. Compatibility, version negotiation, migration, and contract-test plan
+13. Unknown, unauthorized, deprecated, and incompatible failure paths
+14. Audit, trace-correlation, approval, and evidence model
+15. Residual-risk and governance-boundary statement
+
+Acceptance criteria:
+- discovery is never treated as authorization
+- every capability has an accountable owner and lifecycle state
+- all requests and responses are schema validated
+- identities and permissions are narrow and operation-specific
+- tenant, residency, classification, and approval rules fail closed
+- breaking changes require explicit version and migration controls
+- retries cannot duplicate external actions
+- unknown or incompatible capabilities are denied or handed off
+- the learner can explain gateway, MCP, registry, and API tradeoffs in client-ready language</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak design lets an agent discover arbitrary MCP servers, trusts tool descriptions, stores endpoints without owners, sends free-form requests, and uses shared credentials because the integration works in a demonstration.</p>
+          <pre><code>Unsafe pattern:
+- registry entries have no accountable owner or trust tier
+- discovery results become executable routes
+- MCP server identity and capability scope are not verified
+- tool descriptions are treated as permission
+- free-form model text becomes an API request
+- one shared credential spans clients, servers, tools, and tenants
+- no request or response schema validation
+- no tenant, classification, residency, or approval enforcement
+- silent breaking changes replace existing contracts
+- retries can duplicate irreversible actions
+- no typed errors, rate limits, circuit breakers, or rollback
+- no trace linking discovery, authorization, invocation, and disposition
+
+Safe alternative:
+register only owned and approved capabilities
+separate control-plane registration from data-plane invocation
+validate OpenAPI and JSON Schema contracts
+use distinct least-privilege workload identities
+enforce tenant, residency, classification, and approval at the gateway
+version immutably and test compatibility
+apply idempotency, limits, timeouts, cancellation, and rollback
+deny unknown, deprecated, or incompatible capabilities
+trace every discovery, authorization, contract, and disposition decision</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches enterprise gateway, MCP, registry, and API contract architecture only. It does not connect to gateways, start MCP clients or servers, mutate registries, discover live services, call APIs or tools, handle credentials, access customer data, export telemetry, deploy infrastructure, or enforce controls in production.</p>
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+Gateway execution = false
+MCP server execution = false
+MCP client execution = false
+Registry mutation = false
+Service discovery execution = false
+Live API call execution = false
+Live tool invocation = false
+Credential handling = false
+Secret handling = false
+OPA policy execution = false
+Responsible AI evaluation execution = false
+OpenTelemetry export = false
+Cloud deployment = false
+Customer data access = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
