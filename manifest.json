@@ -1098,6 +1098,17 @@
       "status": "implemented",
       "path": "/labs/enterprise-agent-developer/enterprise-rag-tool-use-engineering/",
       "backend_exposure": false
+    },
+    {
+      "id": "deterministic-routing-multi-agent-orchestration",
+      "title": "Deterministic Routing and Multi-Agent Orchestration",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/deterministic-routing-multi-agent-orchestration/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1162,7 +1173,7 @@
       "level": "L2",
       "path": "/tracks/enterprise-agent-developer/",
       "status": "active",
-      "implemented_modules": 3,
+      "implemented_modules": 4,
       "planned_modules": 9,
       "backend_exposure": false,
       "production_enforcement_claim": false
