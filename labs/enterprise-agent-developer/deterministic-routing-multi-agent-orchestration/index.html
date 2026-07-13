@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deterministic Routing and Multi-Agent Orchestration | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Routing &amp; Orchestration · L2 LAB</p>
+      <h1>Deterministic Routing and Multi-Agent Orchestration</h1>
+      <p>Design an enterprise orchestration model that routes known work through deterministic controls, uses model judgment only inside bounded classification tasks, transfers state through typed handoffs, constrains every loop and retry, and ends with an observable terminal disposition.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Orchestration Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise orchestration is not a group chat between autonomous agents. It is a controlled workflow in which routes, responsibilities, state transitions, authority boundaries, retries, fallbacks, and terminal outcomes are explicit and testable.</p>
+          <p>Deterministic rules should handle known intents, identity checks, data classifications, risk thresholds, approvals, and irreversible actions. Model-assisted classification may help interpret ambiguous language, but confidence remains evidence for routing rather than permission to act.</p>
+          <p>The core mental model is <strong>deterministic route, bounded specialist, explicit handoff, observable stop</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept to understand how multi-agent designs become controlled enterprise workflows.</p>
+
+          <details open>
+            <summary>1. When should routing be deterministic?</summary>
+            <p>Use deterministic routing when intent, role, data class, risk level, geography, policy, workflow state, or approval status can be expressed as an explicit rule. Deterministic routes are reproducible, testable, and easier to audit. Model-assisted routing belongs only where language ambiguity cannot be resolved reliably through fixed rules.</p>
+          </details>
+
+          <details>
+            <summary>2. What is a safe model-assisted routing contract?</summary>
+            <p>The model should return a validated classification object containing proposed intent, confidence, missing information, evidence, and an allowed route identifier. A deterministic controller must validate the schema, compare thresholds, enforce policy, and choose clarification, handoff, denial, or an approved destination.</p>
+          </details>
+
+          <details>
+            <summary>3. How should supervisor and specialist roles differ?</summary>
+            <p>A supervisor coordinates state, sequencing, budgets, and terminal outcomes. A specialist performs one narrowly defined reasoning task. Neither role should inherit broad tool authority by default. Each requires an explicit contract, dedicated identity, input and output schema, permission scope, timeout, failure state, and owner.</p>
+          </details>
+
+          <details>
+            <summary>4. What belongs in a handoff envelope?</summary>
+            <p>A handoff envelope should include workflow ID, correlation ID, source role, destination role, approved task type, minimal required state, evidence references, data classification, authorization context, remaining budget, expected output schema, expiration, and return or escalation path. Free-form conversation history is not an authoritative handoff contract.</p>
+          </details>
+
+          <details>
+            <summary>5. How should sequential and parallel work be controlled?</summary>
+            <p>Sequential execution is appropriate when later work depends on validated prior output. Parallel execution is appropriate only for independent, bounded tasks with fan-out limits, isolated permissions, explicit join logic, conflict resolution, timeouts, and cancellation. Parallelism must not multiply authority or bypass policy.</p>
+          </details>
+
+          <details>
+            <summary>6. What prevents loops, deadlocks, and duplicate work?</summary>
+            <p>Set maximum turns, hops, retries, branches, parallel workers, tokens, time, and cost. Detect repeated routes, unchanged state, conflicting locks, missing acknowledgements, duplicate action keys, and no-progress cycles. Every workflow needs circuit breakers, idempotency keys, cancellation, and a terminal human-handoff path.</p>
+          </details>
+
+          <details>
+            <summary>7. Who owns state and memory?</summary>
+            <p>An external workflow store should own authoritative state, version, completion, and system-of-record references. Agent context contains only the minimum temporary information required for the current step. Shared memory must be minimized, tenant-isolated, access-controlled, retained intentionally, and never used as implicit authorization.</p>
+          </details>
+
+          <details>
+            <summary>8. What should orchestration evaluation prove?</summary>
+            <p>Evaluation should measure route accuracy, unsupported-intent handling, clarification quality, policy-gate correctness, handoff-schema validity, state consistency, loop termination, duplicate prevention, specialist output quality, fallback behavior, latency, cost, and complete trace correlation across normal, edge, and adversarial cases.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Deterministic Routing and Multi-Agent Orchestration Model</h2>
+          <p>The routing plane decides where work may go; the orchestration plane controls how bounded roles cooperate and stop.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>Request and Context</strong>
+              <span>Identity, intent, workflow state, data class, risk, and missing information</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Deterministic Router</strong>
+              <span>Rules, schema validation, allowlisted routes, thresholds, policy gates, and default deny</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Supervisor Contract</strong>
+              <span>Sequence, parallel fan-out, budgets, state version, handoffs, joins, and terminal states</span>
+            </div>
+            <div class="workflow-node danger">
+              <strong>Unsafe Design</strong>
+              <span>Agent-to-agent free chat, broad shared tools, hidden state, unlimited loops, or model-authorized writes</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Bounded Specialists</strong>
+              <span>Narrow roles, typed inputs and outputs, least privilege, timeout, refusal, and escalation</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Observable Disposition</strong>
+              <span>Validated result, approved external action, clarification, refusal, fallback, or human handoff</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> model reasoning may support classification and specialist analysis, but routing authority, identity, policy, approvals, execution, and authoritative state transitions remain deterministic.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A global enterprise wants an employee-service workflow that classifies requests and coordinates policy, access, and ticket-proposal specialists without allowing agents to create tickets or change systems directly.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Router</strong>
+              <p>Applies deterministic rules for supported intents, identity, data class, risk, and missing required fields.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Supervisor</strong>
+              <p>Chooses approved sequence or parallel branches, tracks budgets and state versions, and enforces terminal conditions.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Specialists</strong>
+              <p>Policy explanation, access-requirement analysis, and ticket-proposal formatting using typed static contracts.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Decision table, route schema, handoff envelope, state machine, permission matrix, limits, test cases, and trace design.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete routing and orchestration architecture package for the synthetic employee-service workflow. The exercise is design-only and does not execute agents, models, tools, APIs, gateways, or production workflows.</p>
+
+          <pre><code>Required learner deliverable:
+1. Supported and unsupported intent catalog
+2. Deterministic routing decision table
+3. Model-assisted classification schema and confidence thresholds
+4. Risk, data-classification, identity, and authorization gates
+5. Router default-deny, clarification, refusal, and escalation rules
+6. Supervisor contract and non-authority statement
+7. Specialist-agent contracts and ownership matrix
+8. Sequential, parallel, and conditional execution design
+9. Typed handoff envelope and minimum-state policy
+10. Authoritative workflow-state and versioning model
+11. Per-role identity and least-privilege permission matrix
+12. Turn, hop, branch, retry, timeout, token, and cost budgets
+13. Loop, deadlock, livelock, no-progress, and duplicate detection
+14. Fallback, cancellation, human-handoff, and terminal-state model
+15. Routing, handoff, orchestration, trace, and residual-risk evaluation plan
+
+Acceptance criteria:
+- deterministic rules handle known policy, risk, and authorization decisions
+- model confidence is never treated as execution authority
+- every route and specialist role is allowlisted and contract-bound
+- handoffs transfer only typed minimum-necessary state
+- authoritative state remains outside model context
+- every loop, retry, branch, and parallel fan-out has a hard limit
+- duplicate or stale state cannot produce repeated external actions
+- unsupported, ambiguous, or unsafe work reaches clarification, refusal, or handoff
+- the learner can explain routing and orchestration tradeoffs in client-ready language</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak design creates several broadly prompted agents, gives them shared memory and tools, and lets them decide among themselves who should act until one returns a plausible answer.</p>
+
+          <pre><code>Unsafe pattern:
+- every request enters model-based routing
+- confidence score selects a privileged route
+- supervisor has broad execution authority
+- specialist roles overlap and have no accountable owners
+- handoffs copy unvalidated conversation history
+- shared memory becomes implicit workflow state
+- parallel agents inherit the same broad identity
+- no state version, idempotency key, or duplicate detection
+- hidden retries and unlimited agent-to-agent turns
+- no deadlock, livelock, no-progress, or circuit-breaker control
+- no deterministic join, conflict, cancellation, or fallback behavior
+- no trace linking route, handoff, policy, and final disposition
+
+Risk:
+incorrect or unstable routing
+unauthorized specialist access
+cross-tenant or over-shared state
+contradictory outputs
+repeated or irreversible actions
+runaway loops, latency, token use, and cost
+deadlocks and unresolved workflows
+inability to investigate who decided what
+loss of stakeholder trust
+
+Safe alternative:
+route known work deterministically
+validate all model classifications against allowlisted contracts
+separate supervisor coordination from execution authority
+use narrow specialist roles and identities
+transfer typed minimum state
+externalize authoritative workflow state
+bound all loops, retries, branches, time, tokens, and cost
+apply idempotency, version checks, cancellation, and circuit breakers
+provide refusal, fallback, and human handoff
+trace every route, handoff, decision, and terminal outcome</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches deterministic routing and multi-agent orchestration architecture only. It does not call models, run routers, execute supervisors or specialists, transfer live state, invoke tools, call APIs, mutate systems, access customer data, export telemetry, or enforce controls in production.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+Multi-agent execution = false
+Routing execution = false
+Supervisor execution = false
+Specialist-agent execution = false
+Handoff execution = false
+Parallel orchestration execution = false
+RAG retrieval execution = false
+Live tool invocation = false
+Live function calling = false
+Live API call execution = false
+System-of-record mutation = false
+Memory persistence = false
+MCP server execution = false
+MCP client execution = false
+Gateway integration = false
+Persistent registry mutation = false
+OPA policy execution = false
+Responsible AI evaluation execution = false
+OpenTelemetry export = false
+Cloud deployment = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
