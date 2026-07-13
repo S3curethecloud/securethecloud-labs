@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "phase": 272,
+  "source_main_commit": "08498d596fdec6d1d83ff5672ecbb6133b549583",
+  "audit_summary": {
+    "lab_pages": 76,
+    "track_pages": 8,
+    "labs_with_module_map": 0,
+    "labs_with_study_menu": 76,
+    "labs_with_mobile_study_menu": 76,
+    "labs_with_back_to_track": 61,
+    "labs_with_previous
