@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enterprise Agent Developer Role Architecture | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Role Architecture · L2 LAB</p>
+      <h1>Enterprise Agent Developer Role Architecture</h1>
+      <p>Translate a senior enterprise agent-developer job description into an end-to-end operating model spanning discovery, agent construction, RAG, tools, orchestration, gateways, MCP, registries, policy, Responsible AI, observability, cloud delivery, and stakeholder leadership.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Role Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>A senior enterprise Agent Developer is not hired only to write prompts or demonstrate a chatbot. The role owns the path from business workflow discovery to a governed, observable, supportable agent capability integrated with enterprise systems.</p>
+          <p>This LAB teaches the learner to read the role as one connected architecture: understand the client process, define agent responsibilities, ground the agent with trusted knowledge, expose controlled tools, integrate through gateways and contracts, apply policy and Responsible AI controls, instrument the workflow, optimize it against service objectives, and communicate decisions to stakeholders.</p>
+          <p>The core mental model is <strong>workflow first, controls by design, evidence throughout</strong>. Frameworks such as LangChain, CrewAI, Haystack, AutoGen, LlamaIndex, and DSPy are implementation options inside that model—not the architecture itself.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept to understand the complete direction of the enterprise Agent Developer role.</p>
+
+          <details open>
+            <summary>1. What business outcome does the role own?</summary>
+            <p>The role converts an enterprise process into a controlled agent-assisted workflow. The outcome is not simply a model response; it is a measurable business capability with defined users, data boundaries, tools, decisions, approvals, service objectives, evidence, ownership, and support procedures.</p>
+          </details>
+
+          <details>
+            <summary>2. What must the agent engineering layer include?</summary>
+            <p>The engineering layer includes task-oriented or conversational behavior, prompt and instruction design, structured outputs, function calling, state and memory decisions, RAG, tool contracts, retries, fallbacks, refusal behavior, and clear separation between recommendation and execution.</p>
+          </details>
+
+          <details>
+            <summary>3. How should frameworks and platforms be understood?</summary>
+            <p>OpenAI GPT, Claude, Llama, Azure OpenAI, AWS Bedrock, Microsoft Foundry, and MoveWorks provide different model and platform capabilities. LangChain, CrewAI, Haystack, AutoGen, LlamaIndex, and DSPy provide different orchestration, retrieval, collaboration, indexing, and programming abstractions. Selection should follow workflow, governance, latency, cost, portability, and operating requirements.</p>
+          </details>
+
+          <details>
+            <summary>4. Why do deterministic and probabilistic routing both matter?</summary>
+            <p>Deterministic routing uses explicit rules for high-confidence policy decisions, known intents, sensitive actions, or contractual workflows. Probabilistic routing uses model judgment where ambiguity and semantic interpretation are useful. Enterprise designs combine both, keeping policy, authorization, and irreversible actions deterministic.</p>
+          </details>
+
+          <details>
+            <summary>5. What does enterprise interoperability require?</summary>
+            <p>Interoperability requires stable API contracts, JSON Schema validation, REST or event interfaces, gateway enforcement, MCP or equivalent adapters, agent metadata, discovery, versioning, ownership, and compatibility rules. A persistent registry should make an agent discoverable without granting it uncontrolled execution authority.</p>
+          </details>
+
+          <details>
+            <summary>6. What governance and Responsible AI controls belong in the workflow?</summary>
+            <p>Controls include OPA/Rego policy decisions, identity and authorization, data residency, rate limiting, data minimization, provenance, explainability, bias and quality review, human approval, audit evidence, model and prompt versioning, exception handling, and explicit deny paths.</p>
+          </details>
+
+          <details>
+            <summary>7. What makes the agent operable rather than experimental?</summary>
+            <p>Operability requires OpenTelemetry traces, metrics and logs, token and cost telemetry, quality evaluation, latency and error budgets, caching, retry limits, model fallback, circuit breakers, incident ownership, runbooks, release gates, and service-level objectives.</p>
+          </details>
+
+          <details>
+            <summary>8. Why are consulting and leadership responsibilities part of the architecture?</summary>
+            <p>Discovery interviews, process mapping, project planning, executive updates, recommendation framing, milestone control, cross-team collaboration, and mentoring determine whether the design can be accepted and delivered. A technically strong agent that stakeholders cannot govern, operate, or understand is not an enterprise solution.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Enterprise Agent Developer Role Model</h2>
+          <p>The role connects client discovery to a governed and observable delivery lifecycle.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>Discovery and Process Map</strong>
+              <span>Business outcome, users, workflow, pain points, data classes, risk, ownership, and success measures</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Agent and RAG Design</strong>
+              <span>Agent role, prompts, state, retrieval, tools, structured outputs, routing, and fallback behavior</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Gateway and Interoperability Boundary</strong>
+              <span>Enterprise gateway, local execution gateway, MCP adapter, API contract, registry, identity, and version</span>
+            </div>
+            <div class="workflow-node danger">
+              <strong>Uncontrolled Risk</strong>
+              <span>Broad tools, untrusted retrieval, probabilistic authorization, missing approval, silent cost growth, or no traceability</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Policy and RAI Controls</strong>
+              <span>OPA decisions, residency, rate limits, provenance, explainability, bias review, human approval, and evidence</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Observable Client Delivery</strong>
+              <span>OpenTelemetry, SLOs, cost controls, CI/CD, runbooks, stakeholder reporting, and accountable ownership</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> The senior Agent Developer owns the seams between workflow, model behavior, enterprise integration, policy decisions, operational evidence, and stakeholder acceptance.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A global enterprise wants an internal service assistant that answers policy questions, retrieves approved knowledge, classifies requests, recommends next actions, and creates service tickets only after required approval.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Design the role architecture and delivery plan for a governed enterprise assistant rather than selecting a framework by brand name.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic policy documents, mock employee requests, a mock ticket API contract, and static architecture artifacts only.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>Trusted retrieval, schema-validated tools, deterministic approval rules, gateway enforcement, provenance, trace correlation, rate limits, and a no-write path when approval is absent.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Workflow map, agent responsibility matrix, data boundary, tool contract, routing decision table, policy matrix, telemetry plan, SLO proposal, delivery milestones, and executive summary.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a role-architecture package for the synthetic enterprise assistant. The exercise is intentionally implementation-neutral so the learner demonstrates architecture and consulting judgment before choosing technology.</p>
+
+          <pre><code>Required learner deliverable:
+1. Business workflow and stakeholder map
+2. Agent responsibilities and non-responsibilities
+3. Model and framework decision criteria
+4. RAG source-authority and indexing plan
+5. Tool inventory with JSON Schema contract boundaries
+6. Deterministic versus probabilistic routing table
+7. Gateway, MCP adapter, and registry interaction model
+8. OPA policy decision matrix
+9. Responsible AI control and provenance plan
+10. OpenTelemetry trace and metric design
+11. SLO, caching, fallback, and cost-control proposal
+12. Container and CI/CD delivery outline
+13. Milestones, risks, owners, and executive update
+14. Mentoring and engineering-review checkpoints
+15. Governance boundary and residual-risk statement
+
+Acceptance criteria:
+- every sensitive action has a deterministic policy or approval path
+- retrieval sources have authority, ownership, and freshness rules
+- tools have explicit schemas, identities, permissions, and failure behavior
+- telemetry covers quality, latency, errors, tokens, cost, and policy decisions
+- the design separates recommendation from execution
+- the learner can explain the architecture in client-ready language</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak approach begins by choosing a popular framework, connecting broad tools, and demonstrating a successful prompt without first defining workflow authority, policy, contracts, observability, or delivery ownership.</p>
+
+          <pre><code>Unsafe pattern:
+- framework-first design
+- undefined business process and success measure
+- broad retrieval and tool access
+- model confidence treated as authorization
+- no API or JSON Schema contract
+- no gateway or registry ownership model
+- no OPA policy decision point
+- no provenance or Responsible AI evidence
+- no OpenTelemetry trace correlation
+- unlimited retries, tokens, or agent loops
+- no SLO, fallback, runbook, or support owner
+- project updates that overstate production readiness
+
+Risk:
+incorrect or ungrounded decisions
+sensitive-data exposure
+tool abuse and unauthorized mutation
+policy and residency violations
+unbounded latency and cost
+inability to investigate failures
+client loss of trust
+failed production handoff
+
+Safe alternative:
+start with discovery and process mapping
+define agent authority and non-authority
+use trusted retrieval and schema-validated tools
+keep authorization and approval deterministic
+apply gateway and policy controls
+instrument every material workflow boundary
+set cost, latency, quality, and reliability objectives
+capture evidence and residual risk
+communicate limitations clearly to stakeholders</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches role decomposition, architecture reasoning, and delivery planning only. It does not call models, run agents, retrieve enterprise data, invoke tools, expose gateways, register agents, execute policies, export telemetry, deploy cloud resources, handle credentials, or mutate systems.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+RAG retrieval execution = false
+Live tool invocation = false
+Live API call execution = false
+MCP server execution = false
+MCP client execution = false
+Gateway integration = false
+Persistent registry mutation = false
+OPA policy execution = false
+Responsible AI evaluation execution = false
+OpenTelemetry export = false
+Cloud deployment = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
