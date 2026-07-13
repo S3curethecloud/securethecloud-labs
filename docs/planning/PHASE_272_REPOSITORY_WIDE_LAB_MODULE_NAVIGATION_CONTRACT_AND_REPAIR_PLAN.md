@@ -24,18 +24,18 @@ Track pages expose module lists. Individual LAB pages expose only in-page Study 
 
 ## Canonical Tracked-LAB Contract
 
-Every tracked LAB must expose:
+Every tracked LAB must expose compact sequence navigation and its own unique in-page outline:
 
 ```text
-Track title
+Umbrella or track title
 Module X of Y
 Previous Module
-All Modules
+Back to Track
 Next Module
-Expandable full Module Map
-Current module identified and not self-linked
-Existing Study Menu retained
-Existing LAB Navigation retained
+Unique This Module's Outline derived from the LAB's existing sections
+No full-track module map on an individual LAB
+Complete ordered module map retained only on the track page
+Existing LAB content retained
 ```
 
 First module behavior:
@@ -50,7 +50,7 @@ Last module behavior:
 Next Module = unavailable text, not a broken link
 ```
 
-The full module map must use native HTML `details` and `summary`. JavaScript is not required.
+The complete module map belongs on the track page only. Individual LAB pages must not repeat it. Native HTML and CSS remain sufficient; JavaScript is not required.
 
 ## Canonical Standalone-LAB Contract
 
@@ -216,3 +216,13 @@ Phase 272 passes only when:
 - three standalone LABs are preserved as standalone
 - validator is read-only
 - repository diff contains only the three approved Phase 272 artifacts
+
+## Phase 275 Information Architecture Correction
+
+The approved learner progression is:
+
+```text
+Govern → Secure → Deliver → Operate
+```
+
+Enterprise Agent Developer is presented under the **Enterprise Agent Delivery & Consulting** umbrella. Its nine LAB URLs, files, metadata, architecture documents, evidence, and curriculum order remain unchanged. The homepage groups the nine LAB cards behind one delivery-path disclosure. The track page remains the sole owner of the complete nine-module map.

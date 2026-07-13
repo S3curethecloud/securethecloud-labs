@@ -976,6 +976,39 @@
 }
 /* PHASE 212C CANONICAL FOOTER DEDUPLICATION AND ALIGNMENT END */
 
+
+/* PHASE 275 ENTERPRISE AGENT DELIVERY UMBRELLA START */
+.delivery-path-section {
+  grid-column: 1 / -1;
+  margin: 1.5rem 0 2rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(8, 47, 73, 0.36), rgba(15, 23, 42, 0.82));
+}
+.delivery-path-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 20px;
+  background: rgba(2, 6, 23, 0.5);
+}
+.delivery-path-card p { margin-bottom: 0; }
+.delivery-path-modules { margin-top: 1rem; }
+.delivery-path-modules > summary {
+  cursor: pointer;
+  color: #38bdf8;
+  font-weight: 900;
+  padding: 0.85rem 0;
+}
+.delivery-path-modules .lab-grid { margin-top: 0.75rem; }
+@media (max-width: 760px) {
+  .delivery-path-card { grid-template-columns: 1fr; }
+}
+/* PHASE 275 ENTERPRISE AGENT DELIVERY UMBRELLA END */
 </style>
 
 <style id="phase-210-homepage-polish">
@@ -1170,12 +1203,11 @@ body {
       <p class="eyebrow">Guided learning paths</p>
       <h2>Start with a track, not a scroll.</h2>
       <div class="track-grid">
-
           <article class="track-card">
-            <span>L2 · active</span>
-            <h3>Enterprise Agent Developer L2 Track</h3>
-            <p>Guided enterprise agent engineering path covering agent design, RAG, tool use, routing, orchestration, gateways, MCP interoperability, policy, Responsible AI, observability, cloud delivery, and consulting leadership.</p>
-            <a href="/tracks/enterprise-agent-developer/">Open Track →</a>
+            <span>Deliver · complete L2 path</span>
+            <h3>Enterprise Agent Delivery &amp; Consulting</h3>
+            <p>Client-facing architecture, agent engineering, RAG, tool use, orchestration, gateway and MCP integration, policy, Responsible AI, observability, cloud delivery, and consulting leadership.</p>
+            <a href="/tracks/enterprise-agent-developer/">Open Delivery Path →</a>
           </article>
         
           <article class="track-card">
@@ -1228,6 +1260,24 @@ body {
 
 <div id="labGrid" class="lab-grid">
 
+<!-- PHASE 275 ENTERPRISE AGENT DELIVERY UMBRELLA START -->
+<section class="lab-section delivery-path-section" id="enterprise-agent-delivery-consulting">
+  <div class="section-heading">
+    <p class="eyebrow">Deliver · Applied Client Path</p>
+    <h2>Enterprise Agent Delivery &amp; Consulting</h2>
+    <p>Apply governed AI architecture in client-facing delivery work—from discovery and workflow design through agent engineering, integration, cloud delivery, executive communication, and evidence-backed readiness decisions.</p>
+  </div>
+  <article class="delivery-path-card">
+    <div>
+      <p class="lab-card-meta">ENTERPRISE AGENT DEVELOPER · COMPLETE L2 TRACK</p>
+      <h3>Enterprise Agent Developer L2 Track</h3>
+      <p>One coherent nine-module learning path. Open the track for the complete curriculum map, or expand the catalog list below only when you need a specific LAB.</p>
+    </div>
+    <a class="primary-link" href="/tracks/enterprise-agent-developer/">Open Enterprise Agent Delivery Path →</a>
+  </article>
+  <details class="delivery-path-modules">
+    <summary>View 9 individual LAB modules</summary>
+    <div class="lab-grid">
           <article class="lab-card" data-search="enterprise agent developer role architecture enterprise-agent-developer-role-architecture enterprise-agent-developer enterprise agentic ai l2 agent design rag tool use routing orchestration gateway mcp registry opa responsible ai opentelemetry cloud delivery consulting" data-cloud="enterprise-agent-developer" data-level="L2">
             <div class="lab-card-top">
               <div>
@@ -1333,6 +1383,10 @@ body {
             <p class="track-note">Track: enterprise-agent-developer</p>
             <a href="/labs/enterprise-agent-developer/senior-consultant-enterprise-agent-delivery-capstone/">Open Lab →</a>
           </article>
+    </div>
+  </details>
+</section>
+<!-- PHASE 275 ENTERPRISE AGENT DELIVERY UMBRELLA END -->
 
           <article class="lab-card" data-search="ai red team scenario design capstone ai-red-team-scenario-design-capstone ai-red-team-scenario-design ai-security intermediate intermediate capstone lab combining ai red-team scenario design evidence capture control mapping risk explanation remediation planning uncertainty handling and executive-ready reporting without live execution." data-cloud="ai-red-team-scenario-design" data-level="intermediate">
             <div class="lab-card-top">
