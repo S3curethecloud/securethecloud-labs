@@ -1153,6 +1153,17 @@
       "status": "implemented",
       "path": "/labs/enterprise-agent-developer/cloud-delivery-containers-cicd-platform-collaboration/",
       "backend_exposure": false
+    },
+    {
+      "id": "senior-consultant-enterprise-agent-delivery-capstone",
+      "title": "Senior Consultant Enterprise Agent Delivery Capstone",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/senior-consultant-enterprise-agent-delivery-capstone/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1216,8 +1227,8 @@
       "domain": "Enterprise Agentic AI",
       "level": "L2",
       "path": "/tracks/enterprise-agent-developer/",
-      "status": "active",
-      "implemented_modules": 8,
+      "status": "complete",
+      "implemented_modules": 9,
       "planned_modules": 9,
       "backend_exposure": false,
       "production_enforcement_claim": false
