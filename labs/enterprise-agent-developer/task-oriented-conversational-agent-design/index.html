@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task-Oriented and Conversational Agent Design | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Agent Design · L2 LAB</p>
+      <h1>Task-Oriented and Conversational Agent Design</h1>
+      <p>Design an enterprise agent that can understand a conversation, complete bounded tasks, produce structured outcomes, preserve the right state, refuse unsafe requests, and hand work to deterministic controls or people when model judgment is not sufficient.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Agent Design Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Task-oriented agents are designed to complete a defined outcome. Conversational agents are designed to interpret multi-turn language and maintain a coherent interaction. Enterprise systems usually need both: natural conversation at the user boundary and explicit task contracts at the execution boundary.</p>
+          <p>The design objective is not to make the agent sound human. It is to make every supported intent, output, state transition, tool request, approval path, refusal, and handoff understandable and reviewable.</p>
+          <p>The core mental model is <strong>flexible conversation, bounded task, deterministic authority</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept to understand how conversational behavior becomes a controlled enterprise workflow.</p>
+
+          <details open>
+            <summary>1. How do task-oriented and conversational agents differ?</summary>
+            <p>A task-oriented agent has a defined objective, required inputs, success condition, failure condition, and allowed actions. A conversational agent manages language, ambiguity, turn-taking, clarification, and user context. A production design combines them by allowing conversational interpretation while converting supported requests into explicit task states and contracts.</p>
+          </details>
+
+          <details>
+            <summary>2. What belongs in an agent contract?</summary>
+            <p>The contract defines supported users, intents, inputs, outputs, data classes, tools, permissions, state, memory, approvals, refusal rules, escalation paths, latency expectations, evidence, and ownership. It also defines what the agent must never infer, authorize, or execute.</p>
+          </details>
+
+          <details>
+            <summary>3. Why should outputs be structured?</summary>
+            <p>Natural-language responses are useful for people, but downstream workflows need typed and validated fields. JSON Schema or equivalent contracts should define intent, confidence, required parameters, proposed action, approval requirement, citations, uncertainty, and final disposition before any tool or workflow consumes the result.</p>
+          </details>
+
+          <details>
+            <summary>4. How should state and memory be designed?</summary>
+            <p>Conversation state tracks the current task, collected fields, pending clarification, and workflow position. Memory is a separate decision about what may persist across sessions. Enterprise designs minimize durable memory, separate user preference from sensitive history, define retention, ownership, deletion, and tenant boundaries, and never treat model context as an authoritative system of record.</p>
+          </details>
+
+          <details>
+            <summary>5. How should intent and confidence affect routing?</summary>
+            <p>Known low-risk intents may route to deterministic handlers. Ambiguous requests may use model classification but should enter clarification or human review when confidence, data sensitivity, policy, or action risk crosses a threshold. Confidence is an input to routing, not authorization.</p>
+          </details>
+
+          <details>
+            <summary>6. How should tools and function calls be controlled?</summary>
+            <p>The agent may propose a function call, but schema validation, identity, authorization, policy, approval, rate limits, idempotency, and execution ownership must remain outside model judgment. Tool names, descriptions, parameters, and error behavior should be explicit and narrowly scoped.</p>
+          </details>
+
+          <details>
+            <summary>7. What controls prevent loops and uncontrolled behavior?</summary>
+            <p>Set maximum turns, tool-call limits, retry counts, timeouts, token budgets, duplicate-action detection, circuit breakers, fallback models, no-progress detection, and a terminal handoff state. Every loop must have an observable stop condition and accountable owner.</p>
+          </details>
+
+          <details>
+            <summary>8. What should evaluation prove?</summary>
+            <p>Evaluation should test supported and unsupported intents, ambiguity, missing fields, conflicting instructions, prompt injection, unsafe tool requests, approval requirements, refusal quality, handoff correctness, structured-output validity, latency, cost, and trace completeness. Success means the workflow behaves correctly under both normal and adversarial conditions.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Task-Oriented and Conversational Agent Model</h2>
+          <p>The conversational layer interprets the user, while the task layer enforces explicit workflow states and authority boundaries.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>User Conversation</strong>
+              <span>Natural language, context, intent, missing information, and clarification</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Intent and Task Contract</strong>
+              <span>Supported intent, required fields, structured output, confidence, and success condition</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Policy and Approval Boundary</strong>
+              <span>Identity, authorization, approval, data rules, tool schema, and deterministic deny paths</span>
+            </div>
+            <div class="workflow-node danger">
+              <strong>Unsafe Design</strong>
+              <span>Model confidence as authorization, unlimited memory, broad tools, silent retries, or no terminal state</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Controlled Task State</strong>
+              <span>Collect, clarify, propose, approve, execute externally, refuse, or hand off</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Observable Outcome</strong>
+              <span>Validated response, evidence, user explanation, trace, final disposition, and accountable owner</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> conversation may be probabilistic, but identity, authorization, approvals, irreversible actions, and final system-of-record updates must remain deterministic.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A global enterprise wants an employee service agent that answers policy questions, gathers information for service requests, proposes a ticket category, and asks for approval before a ticket is created.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Supported Conversation</strong>
+              <p>Policy questions, request classification, missing-field clarification, ticket summary, and status explanation using synthetic information.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Bounded Task</strong>
+              <p>Collect required fields, validate them, produce a structured ticket proposal, and stop at an approval state.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Deterministic Control</strong>
+              <p>No ticket creation without identity, policy, schema validation, and approval outside the model.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Intent matrix, state machine, output schema, memory decision, tool contract, refusal rules, loop limits, and test cases.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete design package for the synthetic employee service agent. The exercise focuses on behavior, contracts, and controls rather than executing an agent framework.</p>
+
+          <pre><code>Required learner deliverable:
+1. Supported-user and business-outcome statement
+2. Supported and unsupported intent catalog
+3. Task contract for each supported intent
+4. Conversation-state model and terminal states
+5. Required-field and clarification matrix
+6. Structured output JSON Schema
+7. Confidence and escalation decision table
+8. Short-term state versus durable-memory decision
+9. Tool and function-call contract
+10. Identity, authorization, and approval boundary
+11. Refusal and safe-completion rules
+12. Retry, timeout, loop, token, and cost limits
+13. Human handoff and support ownership model
+14. Normal, edge, and adversarial evaluation cases
+15. Residual-risk and governance-boundary statement
+
+Acceptance criteria:
+- supported tasks have explicit success and failure states
+- unsupported or ambiguous requests enter clarification, refusal, or handoff
+- structured outputs validate before any downstream use
+- model confidence is never treated as authorization
+- durable memory has purpose, scope, retention, and deletion rules
+- every loop has a deterministic stop condition
+- tool execution remains outside model authority
+- the learner can explain the design in client-ready language</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak implementation starts with a friendly system prompt, adds memory and broad tools, and assumes that a confident answer means the agent understood the task and is authorized to act.</p>
+
+          <pre><code>Unsafe pattern:
+- conversational quality treated as task correctness
+- no explicit supported-intent catalog
+- free-form outputs consumed by downstream systems
+- model confidence treated as authorization
+- durable memory enabled without retention or tenant rules
+- broad tool descriptions and permissive parameters
+- hidden retries and unlimited loops
+- no clarification threshold or handoff state
+- no distinction between proposed and executed action
+- refusal paths tested only after deployment
+- no owner for incomplete or failed conversations
+
+Risk:
+wrong task selection
+missing or fabricated required fields
+cross-session data leakage
+unauthorized tool requests
+repeated actions and duplicate records
+unbounded latency, token use, and cost
+poor user explanations
+inability to investigate failure
+loss of stakeholder trust
+
+Safe alternative:
+define task contracts before prompts
+separate language interpretation from execution authority
+validate structured outputs
+minimize and govern memory
+keep policy and approvals deterministic
+bound loops, retries, tokens, and time
+provide refusal, clarification, and human handoff
+capture traces and final disposition
+state residual risk clearly</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches agent behavior design, task contracts, state, memory, tool boundaries, refusal, escalation, and evaluation planning only. It does not call models, run agents, persist memory, invoke tools, create tickets, execute approvals, access enterprise systems, export telemetry, or mutate data.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+Conversation execution = false
+Task execution = false
+RAG retrieval execution = false
+Live tool invocation = false
+Live function calling = false
+Live API call execution = false
+Memory persistence = false
+Ticket creation execution = false
+Approval execution = false
+MCP server execution = false
+MCP client execution = false
+Gateway integration = false
+Persistent registry mutation = false
+OPA policy execution = false
+Responsible AI evaluation execution = false
+OpenTelemetry export = false
+Cloud deployment = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
