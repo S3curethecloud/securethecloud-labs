@@ -1142,6 +1142,17 @@
       "status": "implemented",
       "path": "/labs/enterprise-agent-developer/opentelemetry-slo-cost-performance-engineering/",
       "backend_exposure": false
+    },
+    {
+      "id": "cloud-delivery-containers-cicd-platform-collaboration",
+      "title": "Cloud Delivery, Containers, CI/CD, and Platform Collaboration",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/cloud-delivery-containers-cicd-platform-collaboration/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1206,7 +1217,7 @@
       "level": "L2",
       "path": "/tracks/enterprise-agent-developer/",
       "status": "active",
-      "implemented_modules": 7,
+      "implemented_modules": 8,
       "planned_modules": 9,
       "backend_exposure": false,
       "production_enforcement_claim": false
