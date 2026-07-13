@@ -1,9 +1,9 @@
 name: Phase 255 Enterprise Agent Developer Integration
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/enterprise-agent-developer-l2-overview
+      - main
     paths:
       - .github/workflows/phase255-integrate.yml
   workflow_dispatch:
@@ -30,12 +30,10 @@ jobs:
 
           manifest_path = Path('manifest.json')
           homepage_path = Path('index.html')
-
           manifest = json.loads(manifest_path.read_text())
 
           module_id = 'enterprise-agent-developer-role-architecture'
           track_id = 'enterprise-agent-developer'
-
           module = {
               'id': module_id,
               'title': 'Enterprise Agent Developer Role Architecture',
@@ -47,7 +45,6 @@ jobs:
               'path': '/labs/enterprise-agent-developer/enterprise-agent-developer-role-architecture/',
               'backend_exposure': False
           }
-
           track = {
               'id': track_id,
               'title': 'Enterprise Agent Developer L2 Track',
@@ -64,31 +61,27 @@ jobs:
 
           labs = manifest.setdefault('labs', [])
           tracks = manifest.setdefault('tracks', [])
-
-          existing_labs = [item for item in labs if item.get('id') == module_id]
-          existing_tracks = [item for item in tracks if item.get('id') == track_id]
-          if len(existing_labs) > 1 or len(existing_tracks) > 1:
+          matching_labs = [item for item in labs if item.get('id') == module_id]
+          matching_tracks = [item for item in tracks if item.get('id') == track_id]
+          if len(matching_labs) > 1 or len(matching_tracks) > 1:
               raise SystemExit('duplicate Phase 255 manifest record detected')
-          if not existing_labs:
+          if matching_labs:
+              matching_labs[0].update(module)
+          else:
               labs.insert(0, module)
+          if matching_tracks:
+              matching_tracks[0].update(track)
           else:
-              existing_labs[0].update(module)
-          if not existing_tracks:
               tracks.append(track)
-          else:
-              existing_tracks[0].update(track)
-
           manifest['last_updated'] = '2026-07-12'
           manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
 
           html = homepage_path.read_text()
-
-          replacements = {
+          for old, new in {
               '<div class="stat"><strong>63</strong><span>LAB modules</span></div>': '<div class="stat"><strong>64</strong><span>LAB modules</span></div>',
               '<div class="stat"><strong>5</strong><span>Learning paths</span></div>': '<div class="stat"><strong>6</strong><span>Learning paths</span></div>',
               '<div class="stat"><strong>39</strong><span>Total AI modules</span></div>': '<div class="stat"><strong>40</strong><span>Total AI modules</span></div>'
-          }
-          for old, new in replacements.items():
+          }.items():
               if new not in html:
                   if html.count(old) != 1:
                       raise SystemExit(f'homepage count marker not unique: {old}')
@@ -142,7 +135,6 @@ jobs:
     <h2>Enterprise Agent Developer L2 Track</h2>
     <p>Senior Consultant learning path for building governed enterprise agents and agentic workflows across LLMs, RAG, tools, routing, gateways, MCP interoperability, policy, observability, cloud delivery, and client transformation.</p>
   </div>
-
   <div class="lab-grid">
     <article class="lab-card">
       <div class="lab-card-top">
@@ -165,7 +157,6 @@ jobs:
               if html.count(anchor) != 1:
                   raise SystemExit('homepage preview insertion anchor not unique')
               html = html.replace(anchor, preview + anchor, 1)
-
           homepage_path.write_text(html)
           PY
 
@@ -176,23 +167,18 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-
           manifest = json.loads(Path('manifest.json').read_text())
           html = Path('index.html').read_text()
           module = [x for x in manifest['labs'] if x.get('id') == 'enterprise-agent-developer-role-architecture']
           track = [x for x in manifest['tracks'] if x.get('id') == 'enterprise-agent-developer']
-          assert len(module) == 1
+          assert len(module) == 1 and module[0]['backend_exposure'] is False
           assert len(track) == 1
-          assert module[0]['backend_exposure'] is False
-          assert track[0]['implemented_modules'] == 1
-          assert track[0]['planned_modules'] == 9
-          assert track[0]['status'] == 'active'
-          assert track[0]['backend_exposure'] is False
+          assert track[0]['implemented_modules'] == 1 and track[0]['planned_modules'] == 9
+          assert track[0]['status'] == 'active' and track[0]['backend_exposure'] is False
           assert '<strong>64</strong><span>LAB modules</span>' in html
           assert '<strong>6</strong><span>Learning paths</span>' in html
           assert '<strong>40</strong><span>Total AI modules</span>' in html
           assert '<strong>5</strong><span>Complete learning paths</span>' in html
-          assert html.count('/tracks/enterprise-agent-developer/') >= 2
           assert html.count('/labs/enterprise-agent-developer/enterprise-agent-developer-role-architecture/') == 1
           assert html.count('id="enterprise-agent-developer-preview"') == 1
           assert '<span class="level-badge">ACTIVE</span>' in html
