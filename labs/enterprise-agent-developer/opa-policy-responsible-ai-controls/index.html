@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OPA Policy Enforcement and Responsible AI Controls | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Policy &amp; Responsible AI · L2 LAB</p>
+      <h1>OPA Policy Enforcement and Responsible AI Controls</h1>
+      <p>Design an enterprise policy and Responsible AI control plane that evaluates trusted context through versioned OPA/Rego rules, returns typed decisions, requires human approval for high-risk actions, and preserves provenance, explanation, fairness, and audit evidence.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Policy and Responsible AI Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise policy enforcement is a separation-of-authority problem. Agents and models may propose actions, but deterministic policy evaluates whether those actions are allowed, denied, rate-limited, redacted, escalated, or sent for human approval.</p>
+          <p>Responsible AI controls extend the decision beyond security by requiring intended-use boundaries, provenance, explanation, fairness review, human oversight, appeal, and residual-risk ownership.</p>
+          <p>The core mental model is <strong>trusted context, versioned policy, typed decision, external enforcement, retained evidence</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <details open><summary>1. What belongs in a policy input contract?</summary><p>Use typed facts for identity, role, tenant, environment, action, resource, tool, model, data classification, geography, residency, risk, approval status, and policy version. Free-form model text must not be treated as authoritative policy context.</p></details>
+          <details><summary>2. How do OPA and Rego fit the architecture?</summary><p>OPA acts as a policy decision point and evaluates versioned Rego packages. It should return structured outcomes and reason codes. Enforcement points outside the model then allow, deny, redact, rate-limit, require approval, or escalate.</p></details>
+          <details><summary>3. Why must policy and enforcement stay separate?</summary><p>A decision service should not also hold broad execution authority. Separation supports least privilege, independent testing, rollback, clear ownership, and evidence that the enforced outcome matched the evaluated decision.</p></details>
+          <details><summary>4. Which controls should be deterministic?</summary><p>Identity, tenant isolation, data residency, classification, approval requirements, rate limits, prohibited actions, model and tool allowlists, and irreversible-action gates should be deterministic and default deny.</p></details>
+          <details><summary>5. What makes a Responsible AI control operational?</summary><p>Each control needs an owner, trigger, measurable criterion, evidence source, review cadence, exception path, and escalation. Principles without decision points, records, and accountability are not operating controls.</p></details>
+          <details><summary>6. How should fairness and bias be reviewed?</summary><p>Define affected groups, decision impact, representative evaluation sets, disparity measures, acceptable thresholds, limitations, human review, appeal, and remediation ownership. Do not claim fairness from aggregate accuracy alone.</p></details>
+          <details><summary>7. What evidence should every decision retain?</summary><p>Record correlation ID, policy version, trusted input facts, outcome, reason codes, approval state, exception reference, enforcement result, timestamps, owner, and residual-risk disposition while minimizing sensitive data.</p></details>
+          <details><summary>8. How are policy changes governed?</summary><p>Use source control, peer review, unit and integration tests, signed bundles, staged promotion, compatibility checks, change approval, exception expiry, monitoring, and deterministic rollback.</p></details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual OPA Policy Enforcement and Responsible AI Control Model</h2>
+          <p>The decision plane evaluates trusted facts; enforcement and human-review systems act on the typed result.</p>
+          <div class="workflow-board">
+            <div class="workflow-node"><strong>Trusted Context</strong><span>Identity, tenant, data class, geography, action, model, tool, risk, and approval state</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node"><strong>OPA/Rego Decision Point</strong><span>Versioned policy bundle, default deny, allowlists, residency, limits, approval rules, and reason codes</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Typed Decision</strong><span>Allow, deny, redact, rate-limit, require approval, escalate, or refuse</span></div>
+            <div class="workflow-node danger"><strong>Unsafe Design</strong><span>Model-authored policy, hidden exceptions, broad enforcement authority, missing provenance, or unreviewed high-impact decisions</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>External Enforcement and Human Review</strong><span>Gateway, workflow, approval, appeal, and compensating controls</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success"><strong>Evidence and Oversight</strong><span>Decision log, policy version, enforcement result, provenance, explanation, fairness evidence, and residual risk</span></div>
+          </div>
+          <p><strong>Learning rule:</strong> models may explain or classify, but authorization, residency, approval, rate limits, prohibited actions, and final enforcement remain deterministic.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A multinational enterprise wants an employee-service agent to summarize policy, propose access requests, and draft tickets while enforcing tenant, residency, data-classification, approval, rate-limit, and Responsible AI requirements.</p>
+          <div class="scenario-grid">
+            <div class="scenario-card"><strong>Policy Input</strong><p>Synthetic identity, role, tenant, country, data class, requested action, tool, risk, and approval status.</p></div>
+            <div class="scenario-card"><strong>Decision</strong><p>Typed allow, deny, redact, rate-limit, require-approval, or escalate result with reason codes.</p></div>
+            <div class="scenario-card"><strong>Responsible AI</strong><p>Intended-use boundary, provenance, explanation, fairness review, human oversight, appeal, and residual-risk owner.</p></div>
+            <div class="scenario-card"><strong>Evidence</strong><p>Input schema, Rego design, policy matrix, test cases, decision record, approval path, exception register, and audit map.</p></div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete policy and Responsible AI architecture package for the synthetic employee-service workflow. The exercise is design-only and does not execute OPA, Rego, agents, models, approvals, APIs, tools, or production controls.</p>
+          <pre><code>Required learner deliverable:
+1. Policy scope, owners, and enforcement-point inventory
+2. Typed policy input schema
+3. Allow, deny, redact, rate-limit, require-approval, and escalate decision schema
+4. OPA/Rego package and rule decomposition
+5. Identity, tenant, classification, residency, model, and tool allowlists
+6. High-risk and irreversible-action approval matrix
+7. Rate-limit, quota, timeout, and exception-expiry rules
+8. Policy bundle versioning, promotion, signing, and rollback design
+9. Unit, integration, negative, edge, and adversarial policy tests
+10. Intended-use and prohibited-use statement
+11. Provenance and explanation requirements
+12. Fairness and bias evaluation plan
+13. Human oversight, appeal, and escalation model
+14. Decision-log, evidence-retention, and privacy-minimization design
+15. Residual-risk register and accountable owner map
+
+Acceptance criteria:
+- policy inputs are typed and sourced from trusted systems
+- missing authority, classification, residency, or policy version defaults to deny
+- model confidence never grants permission
+- OPA decisions are separate from enforcement authority
+- every exception has owner, reason, scope, expiry, and compensating control
+- high-impact actions require deterministic approval
+- provenance, explanation, fairness, and appeal obligations are explicit
+- policy changes are tested, versioned, reviewed, promoted, and reversible
+- every decision and enforcement result is traceable
+- residual risk has an accountable human owner</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak design embeds policy in prompts, lets the model decide whether it is authorized, mixes decision and execution authority, and treats Responsible AI as a one-time checklist.</p>
+          <pre><code>Unsafe pattern:
+- free-form prompt text becomes policy input
+- model confidence grants access or approval
+- no default-deny behavior
+- policy logic is duplicated across applications
+- gateway or agent both decides and executes
+- exceptions have no owner or expiry
+- residency and classification checks are advisory
+- rate limits are hidden or inconsistent
+- provenance and explanation are omitted
+- fairness is inferred from overall accuracy
+- no appeal or human-review path
+- policy versions mutate in place
+- decision and enforcement evidence cannot be correlated
+
+Safe alternative:
+use trusted typed context
+centralize versioned OPA/Rego decisions
+separate decision from enforcement
+apply default deny and explicit reason codes
+require deterministic approvals
+bind exceptions to owner and expiry
+operationalize provenance, explanation, fairness, oversight, and appeal
+version, test, sign, promote, monitor, and roll back policy bundles
+retain privacy-minimized decision and enforcement evidence
+assign residual risk to an accountable owner</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches OPA policy and Responsible AI control architecture only. It does not execute policy, evaluate Rego, approve actions, enforce residency or rate limits, assess real people, call APIs or tools, access customer data, export telemetry, deploy infrastructure, or enforce controls in production.</p>
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+OPA policy execution = false
+Rego evaluation execution = false
+Policy decision enforcement = false
+Human approval execution = false
+Responsible AI evaluation execution = false
+Bias evaluation execution = false
+Explainability execution = false
+Provenance mutation = false
+Rate-limit enforcement = false
+Data-residency enforcement = false
+Live API call execution = false
+Live tool invocation = false
+OpenTelemetry export = false
+Cloud deployment = false
+Credential handling = false
+Customer data access = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
