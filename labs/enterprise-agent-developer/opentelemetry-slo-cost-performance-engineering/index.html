@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OpenTelemetry, SLO, Cost, and Performance Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Observability &amp; Reliability · L2 LAB</p>
+      <h1>OpenTelemetry, SLO, Cost, and Performance Engineering</h1>
+      <p>Design an enterprise observability and reliability model for agentic systems using OpenTelemetry traces, metrics, and logs; measurable service-level objectives; token and cost controls; caching and fallback strategies; and evidence-driven performance engineering.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Observability and Reliability Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise agent observability must connect user outcomes, agent decisions, retrieval, model calls, tool calls, policy decisions, latency, quality, token use, cost, and failure handling into one traceable operating model.</p>
+          <p>OpenTelemetry provides a vendor-neutral telemetry contract, but useful operations require more than exporting spans. Teams need stable semantic conventions, low-cardinality attributes, privacy controls, service-level indicators, error budgets, ownership, and remediation playbooks.</p>
+          <p>The core mental model is <strong>instrument the workflow, define measurable objectives, control cost and latency, test failure paths, and retain decision-grade evidence</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <details open><summary>1. What should an end-to-end agent trace contain?</summary><p>Use one correlation context across request intake, identity, routing, retrieval, prompt assembly, model inference, policy decisions, tool calls, approvals, retries, fallbacks, response validation, and final outcome. Record stable identifiers and durations without storing sensitive prompt or customer content by default.</p></details>
+          <details><summary>2. How should spans be decomposed?</summary><p>Create spans at meaningful control boundaries: gateway, agent step, retrieval query, model call, policy decision, tool invocation, approval wait, cache lookup, and response validation. Avoid one giant span and avoid unbounded spans for every token or internal thought.</p></details>
+          <details><summary>3. Which metrics matter?</summary><p>Measure request rate, success and refusal rate, end-to-end latency, time to first token, retrieval latency, model latency, tool latency, retry count, fallback rate, cache hit ratio, token use, cost per request, cost per successful outcome, quality score, and policy or validation failures.</p></details>
+          <details><summary>4. How are SLIs, SLOs, and error budgets connected?</summary><p>An SLI is the measured signal, an SLO is the target over a window, and the error budget is the permitted unreliability. Each SLO needs scope, owner, data source, calculation, exclusions, target, review cadence, alert policy, and response action.</p></details>
+          <details><summary>5. How should cost be engineered?</summary><p>Track input, output, retrieval, tool, storage, and platform costs by tenant, workflow, model, environment, and outcome. Use budgets, quotas, caching, prompt compression, retrieval controls, model selection, batch processing, and fallback policies without allowing cost controls to silently violate quality or safety requirements.</p></details>
+          <details><summary>6. What makes caching safe?</summary><p>Define cache key, tenant boundary, data classification, freshness, invalidation, authorization re-check, provenance, and response validation. Never reuse sensitive or tenant-specific results across authority boundaries.</p></details>
+          <details><summary>7. How should fallback and retry behavior work?</summary><p>Retries require bounded attempts, backoff, timeout budgets, idempotency, retryable error classes, and cost limits. Fallbacks require compatibility, quality thresholds, policy approval, provenance, and explicit degraded-mode behavior.</p></details>
+          <details><summary>8. How is performance tested?</summary><p>Use synthetic load, representative workflows, warm and cold paths, concurrency tests, long-tail latency, failure injection, dependency degradation, cache behavior, quota exhaustion, and cost modeling. Separate benchmark results from production claims.</p></details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual OpenTelemetry, SLO, Cost, and Performance Engineering Model</h2>
+          <p>Telemetry follows the workflow, while reliability and cost controls consume validated signals and drive human-owned operating decisions.</p>
+          <div class="workflow-board">
+            <div class="workflow-node"><strong>Instrumented Workflow</strong><span>Gateway, routing, retrieval, model, policy, tool, approval, validation, and outcome spans</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node"><strong>Telemetry Contract</strong><span>Trace context, semantic attributes, metrics, logs, privacy filters, sampling, and retention</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Reliability and Cost Model</strong><span>SLIs, SLOs, error budgets, latency budgets, token use, unit cost, quotas, cache, retries, and fallbacks</span></div>
+            <div class="workflow-node danger"><strong>Unsafe Design</strong><span>Sensitive prompts in spans, unbounded cardinality, vanity dashboards, unlimited retries, hidden fallbacks, or cost-only optimization</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Operational Response</strong><span>Alerts, burn-rate review, incident triage, capacity action, rollback, degradation, and owner escalation</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success"><strong>Evidence and Improvement</strong><span>Trace samples, SLO reports, cost attribution, performance tests, decisions, exceptions, and remediation records</span></div>
+          </div>
+          <p><strong>Learning rule:</strong> telemetry explains system behavior; it does not independently authorize actions, prove quality, or establish production readiness.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A multinational enterprise operates a synthetic employee-service agent that retrieves policy, drafts access requests, invokes approved tools, and requires predictable latency, controlled spend, explainable failures, and measurable reliability.</p>
+          <div class="scenario-grid">
+            <div class="scenario-card"><strong>Trace</strong><p>One synthetic trace links gateway intake, routing, retrieval, model call, policy decision, tool proposal, approval state, validation, and response.</p></div>
+            <div class="scenario-card"><strong>SLO</strong><p>Availability, successful grounded response, latency, tool success, and trace completeness objectives with error budgets.</p></div>
+            <div class="scenario-card"><strong>Cost</strong><p>Tokens, model calls, retrieval, tools, storage, and unit cost attributed by workflow and successful outcome.</p></div>
+            <div class="scenario-card"><strong>Performance</strong><p>Load profile, concurrency, long-tail latency, cache behavior, timeout budgets, retry limits, fallback rules, and capacity plan.</p></div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete observability, SLO, cost, and performance architecture package for the synthetic employee-service workflow. The exercise is design-only and exports no telemetry, executes no load test, mutates no cache, invokes no fallback, and changes no production capacity.</p>
+          <pre><code>Required learner deliverable:
+1. End-to-end trace and correlation model
+2. Span inventory and parent-child relationships
+3. OpenTelemetry semantic attribute contract
+4. Privacy, redaction, sampling, retention, and cardinality controls
+5. Metrics and structured-log inventory
+6. SLI definitions with calculation and data source
+7. SLO targets, windows, owners, exclusions, and error budgets
+8. Burn-rate and alert-response design
+9. Latency budget across gateway, retrieval, model, policy, tools, and validation
+10. Token and cost attribution model
+11. Budget, quota, and cost-anomaly controls
+12. Cache key, isolation, freshness, invalidation, and authorization design
+13. Retry, timeout, idempotency, circuit-breaker, and fallback rules
+14. Synthetic load, dependency degradation, and failure-injection test plan
+15. Capacity, degradation, rollback, and evidence package
+
+Acceptance criteria:
+- one correlation context spans the complete workflow
+- telemetry excludes sensitive content by default
+- attributes are versioned and bounded in cardinality
+- SLIs and SLOs are measurable and owner-assigned
+- error budgets trigger explicit operating decisions
+- retries and fallbacks are bounded, compatible, and traceable
+- cache behavior preserves tenant, authorization, freshness, and provenance boundaries
+- cost is attributed to useful outcomes, not tokens alone
+- performance testing covers normal, edge, degraded, and adversarial conditions
+- benchmark evidence is not represented as production performance</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak design exports raw prompts and responses, uses high-cardinality labels, measures only average latency, retries without limits, hides fallback behavior, and treats a dashboard as proof of reliability.</p>
+          <pre><code>Unsafe pattern:
+- prompts, credentials, or customer content are copied into spans
+- trace context is lost across retrieval, models, tools, and approvals
+- tenant or user identifiers create unbounded metric cardinality
+- dashboards have no owners, thresholds, or response playbooks
+- averages hide p95 and p99 latency
+- quality, refusal, and validation failures are not measured
+- token counts are tracked without outcome or cost attribution
+- retries ignore timeout, idempotency, and budget limits
+- fallbacks silently change model, quality, policy, or data boundary
+- cache entries cross tenant or authorization boundaries
+- load tests use unrealistic happy-path traffic only
+- benchmark results are claimed as production SLO attainment
+
+Safe alternative:
+minimize and govern telemetry data
+propagate one correlation context
+use stable semantic conventions and bounded cardinality
+define measurable SLIs, SLOs, and error budgets
+attribute cost to workflow and outcome
+bound retries, timeouts, and fallbacks
+isolate and validate cache entries
+test long-tail latency and degraded dependencies
+retain decision-grade evidence and owner actions
+keep benchmark and production claims separate</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches observability, reliability, cost, and performance architecture only. It does not export traces, metrics, or logs; enforce SLOs or budgets; run alerts or load tests; mutate caches; invoke model fallbacks; autoscale infrastructure; access customer data; or claim production performance.</p>
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+OpenTelemetry export = false
+Trace export = false
+Metric export = false
+Log export = false
+SLO enforcement = false
+Alerting execution = false
+Cost enforcement = false
+Load-test execution = false
+Cache mutation = false
+Model fallback execution = false
+Autoscaling execution = false
+Live API call execution = false
+Live tool invocation = false
+Cloud deployment = false
+Credential handling = false
+Customer data access = false
+Runtime mutation = false
+Production performance claim = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
