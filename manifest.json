@@ -2,7 +2,7 @@
   "platform": "SecureTheCloud Labs",
   "version": "1.0",
   "authority": "MGF-GOLD-STANDARD",
-  "last_updated": "2026-01-30",
+  "last_updated": "2026-07-12",
   "description": "Production-grade cloud security labs for real-world architecture, interviews, and operational readiness.",
   "labs": [
     {
@@ -1065,6 +1065,17 @@
       "track": "ai-governance-command-center",
       "path": "/labs/ai-governance/executive-demo-boundary/",
       "summary": "Learn how to present an AI governance command center to executives while preserving case-study, demo, and production boundaries."
+    },
+    {
+      "id": "enterprise-agent-developer-role-architecture",
+      "title": "Enterprise Agent Developer Role Architecture",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/enterprise-agent-developer-role-architecture/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1120,6 +1131,19 @@
       "implemented_modules": 9,
       "planned_modules": 9,
       "backend_exposure": false
+    },
+    {
+      "id": "enterprise-agent-developer",
+      "title": "Enterprise Agent Developer L2 Track",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "level": "L2",
+      "path": "/tracks/enterprise-agent-developer/",
+      "status": "active",
+      "implemented_modules": 1,
+      "planned_modules": 9,
+      "backend_exposure": false,
+      "production_enforcement_claim": false
     }
   ]
 }
