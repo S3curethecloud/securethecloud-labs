@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cloud Delivery, Containers, CI/CD, and Platform Collaboration | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · Cloud Delivery &amp; Platform Engineering · L2 LAB</p>
+      <h1>Cloud Delivery, Containers, CI/CD, and Platform Collaboration</h1>
+      <p>Design a controlled delivery model for enterprise agentic applications using immutable containers, software-supply-chain evidence, CI/CD quality gates, environment promotion, cloud deployment contracts, workload identity, rollback, and explicit collaboration boundaries between application, platform, security, data, and operations teams.</p>
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Cloud Delivery and Platform Collaboration Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise agent delivery is not complete when an application works on a developer laptop. The system must be packaged, tested, signed, promoted, configured, observed, governed, and operated through a repeatable delivery contract.</p>
+          <p>The delivery architecture must separate application code, prompts, policies, retrieval configuration, model configuration, infrastructure, secrets, runtime identity, and environment-specific controls so that each artifact can be reviewed, versioned, promoted, and rolled back independently.</p>
+          <p>The core mental model is <strong>build once, verify every artifact, promote by evidence, deploy with least privilege, and assign every platform boundary to an accountable team</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <details open><summary>1. What belongs in the delivery contract?</summary><p>Define source repositories, artifact types, owners, environments, build inputs, image bases, dependencies, configuration, secrets, identity, network requirements, health checks, observability, policy gates, release evidence, rollback, and support ownership.</p></details>
+          <details><summary>2. How should containers be designed?</summary><p>Use minimal pinned base images, non-root execution, read-only filesystems where feasible, explicit ports and health checks, deterministic dependencies, no embedded credentials, resource limits, predictable shutdown, immutable tags or digests, and separate build and runtime stages.</p></details>
+          <details><summary>3. What does software-supply-chain evidence include?</summary><p>Preserve source revision, dependency lock files, SBOM, provenance, vulnerability results, license checks, secret scans, artifact digest, signature, builder identity, policy decision, approver, and promotion history.</p></details>
+          <details><summary>4. Which CI gates are required?</summary><p>Use formatting, unit, contract, retrieval, prompt, policy, security, dependency, container, integration, evaluation, and regression checks. Fail closed when required evidence is missing, malformed, expired, unsigned, or outside approved thresholds.</p></details>
+          <details><summary>5. How should CD promotion work?</summary><p>Promote the same immutable artifact through development, test, staging, and production. Keep environment configuration external, require approvals according to risk, verify deployment health, use progressive exposure, and preserve deterministic rollback to a known digest.</p></details>
+          <details><summary>6. How do cloud platforms change the pattern?</summary><p>AWS Bedrock, Microsoft Foundry, Kubernetes, serverless platforms, and enterprise gateways expose different controls, but the contract remains consistent: identity, network, data boundary, model access, configuration, observability, policy, release evidence, and accountable ownership.</p></details>
+          <details><summary>7. How should secrets and identity be handled?</summary><p>Use workload identity and short-lived credentials instead of embedded secrets. Bind permissions to workload, environment, tenant, and approved capability. Retrieve secrets at runtime through governed services and prevent secrets from entering images, logs, prompts, traces, or build artifacts.</p></details>
+          <details><summary>8. What is the platform collaboration model?</summary><p>Application teams own workflow behavior and code; platform teams own paved roads and runtime foundations; security owns control requirements and exceptions; data teams own data products and quality; operations owns service health and incident response. Shared interfaces, RACI, escalation paths, and service-level expectations prevent ownership gaps.</p></details>
+          <details><summary>9. How are rollback and recovery designed?</summary><p>Define deployment abort signals, health thresholds, configuration rollback, artifact rollback, database and index compatibility, policy rollback, traffic restoration, incident ownership, communication, and evidence retention before release.</p></details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Cloud Delivery, Containers, CI/CD, and Platform Collaboration Model</h2>
+          <p>Delivery moves immutable artifacts through evidence-backed gates while platform boundaries remain explicit and human-accountable.</p>
+          <div class="workflow-board">
+            <div class="workflow-node"><strong>Versioned Inputs</strong><span>Application code, prompts, policies, schemas, retrieval configuration, infrastructure, dependencies, and tests</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node"><strong>Build and Package Contract</strong><span>Deterministic container, pinned dependencies, non-root runtime, health checks, digest, SBOM, provenance, and signature</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>CI Quality and Security Gates</strong><span>Unit, contract, evaluation, policy, dependency, secret, vulnerability, license, and integration checks</span></div>
+            <div class="workflow-node danger"><strong>Unsafe Delivery</strong><span>Mutable tags, embedded secrets, direct production pushes, skipped tests, broad credentials, manual drift, or unclear ownership</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning"><strong>Controlled Promotion</strong><span>Environment configuration, approvals, workload identity, progressive exposure, health verification, rollback, and audit evidence</span></div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success"><strong>Platform Collaboration</strong><span>Application, platform, security, data, and operations responsibilities with RACI, escalation, SLOs, and reusable paved roads</span></div>
+          </div>
+          <p><strong>Learning rule:</strong> a pipeline can automate a release process, but it cannot invent authority, waive missing evidence, or replace accountable production ownership.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A multinational enterprise must deliver a synthetic employee-service agent across an AWS-based business unit and a Microsoft-based business unit while preserving one governed release process and platform-specific deployment contracts.</p>
+          <div class="scenario-grid">
+            <div class="scenario-card"><strong>Package</strong><p>One immutable application image with pinned dependencies, non-root execution, health checks, digest, SBOM, provenance, and signature.</p></div>
+            <div class="scenario-card"><strong>Validate</strong><p>CI gates for contracts, prompts, retrieval, policies, security, dependencies, container configuration, evaluations, and regressions.</p></div>
+            <div class="scenario-card"><strong>Promote</strong><p>Development, test, staging, and production promotion using external configuration, workload identity, approvals, health gates, and rollback.</p></div>
+            <div class="scenario-card"><strong>Collaborate</strong><p>RACI across agent developers, cloud platform, security, data, networking, operations, compliance, and business ownership.</p></div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete cloud-delivery and platform-collaboration package for the synthetic employee-service agent. The exercise is design-only and builds no image, pushes no artifact, executes no pipeline, scans no repository, provisions no infrastructure, retrieves no secret, and deploys no workload.</p>
+          <pre><code>Required learner deliverable:
+1. Delivery-context diagram and environment map
+2. Artifact inventory for code, prompts, policies, schemas, retrieval, configuration, and infrastructure
+3. Multi-stage container design and runtime-hardening checklist
+4. Base-image, dependency, digest, tag, and patching policy
+5. SBOM, provenance, signing, vulnerability, license, and secret-scan evidence model
+6. CI stage map with required tests and fail-closed thresholds
+7. CD promotion model for development, test, staging, and production
+8. Workload identity, secret retrieval, network, and data-boundary design
+9. AWS Bedrock and Microsoft Foundry deployment-contract comparison
+10. Kubernetes or managed-runtime responsibility boundary
+11. Configuration, model, prompt, policy, and schema versioning rules
+12. Progressive delivery, health verification, rollback, and recovery plan
+13. Platform paved-road contract and exception process
+14. RACI and escalation model across application, platform, security, data, and operations
+15. Release evidence package and production-readiness decision record
+
+Acceptance criteria:
+- every deployable artifact is versioned and immutable
+- containers run without embedded secrets or unnecessary privilege
+- required supply-chain evidence is complete and traceable
+- CI fails closed on missing or failed mandatory evidence
+- the same artifact is promoted across environments
+- environment configuration and secrets remain external
+- workload identity uses least privilege and short-lived credentials
+- cloud-specific differences are expressed as governed deployment contracts
+- rollback and recovery criteria are defined before release
+- platform ownership, exceptions, escalation, and support are explicit</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak delivery model builds manually on a laptop, uses a mutable latest tag, embeds credentials, skips security evidence, deploys directly to production, and assumes the platform team owns every failure after release.</p>
+          <pre><code>Unsafe pattern:
+- local build output is treated as the release artifact
+- image bases and dependencies are unpinned
+- containers run as root with broad filesystem access
+- secrets are copied into images, environment files, or repositories
+- mutable tags replace immutable digests
+- no SBOM, provenance, signature, or vulnerability decision exists
+- CI checks can be skipped without recorded authority
+- production receives a different artifact than staging
+- deployment credentials are long-lived and broadly scoped
+- application and platform responsibilities are undocumented
+- model, prompt, policy, and schema compatibility is not tested
+- rollback is improvised during an incident
+- benchmark or staging success is claimed as production readiness
+
+Safe alternative:
+use deterministic and hardened packaging
+preserve supply-chain evidence
+fail closed on mandatory gates
+promote immutable artifacts
+externalize configuration and secrets
+use workload identity and least privilege
+express cloud differences through governed contracts
+define paved roads and exceptions
+assign accountable owners
+predefine rollback and recovery evidence</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches cloud delivery, container, CI/CD, supply-chain, and platform-collaboration architecture only. It does not build or run containers, push images, mutate registries, generate or sign live artifacts, scan repositories, execute pipelines, provision infrastructure, execute Kubernetes, deploy to AWS Bedrock or Microsoft Foundry, retrieve secrets, access customer data, or claim production delivery.</p>
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+Container build execution = false
+Container runtime execution = false
+Container image push = false
+Registry mutation = false
+SBOM generation execution = false
+Artifact signing execution = false
+Vulnerability scan execution = false
+Secret scan execution = false
+CI pipeline execution = false
+CD deployment execution = false
+Infrastructure provisioning = false
+Kubernetes execution = false
+AWS Bedrock deployment = false
+Microsoft Foundry deployment = false
+Secret retrieval = false
+Credential handling = false
+Customer data access = false
+Cloud resource deployment = false
+Runtime mutation = false
+Production delivery claim = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
