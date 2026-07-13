@@ -16,7 +16,7 @@
       <p>Senior-level learning path for designing, integrating, governing, observing, and delivering enterprise AI agents across LLM frameworks, RAG pipelines, tool contracts, gateways, MCP interoperability, policy controls, cloud platforms, and client transformation programs.</p>
       <div class="lab-status-grid">
         <div><span>Status</span><strong>Active Track</strong></div>
-        <div><span>Modules</span><strong>6 of 9</strong></div>
+        <div><span>Modules</span><strong>7 of 9</strong></div>
         <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
         <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
@@ -30,7 +30,7 @@
       <a href="/labs/enterprise-agent-developer/deterministic-routing-multi-agent-orchestration/">4. Deterministic Routing and Multi-Agent Orchestration</a>
       <a href="/labs/enterprise-agent-developer/enterprise-gateway-mcp-registry-api-contracts/">5. Enterprise Gateway, MCP, Registry, and API Contracts</a>
       <a href="/labs/enterprise-agent-developer/opa-policy-responsible-ai-controls/">6. OPA Policy Enforcement and Responsible AI Controls</a>
-      <span>7. OpenTelemetry, SLO, Cost, and Performance Engineering</span>
+      <a href="/labs/enterprise-agent-developer/opentelemetry-slo-cost-performance-engineering/">7. OpenTelemetry, SLO, Cost, and Performance Engineering</a>
       <span>8. Cloud Delivery, Containers, CI/CD, and Platform Collaboration</span>
       <span>9. Senior Consultant Enterprise Agent Delivery Capstone</span>
     </section>
@@ -72,7 +72,7 @@
             <a class="artifact-card" href="/labs/enterprise-agent-developer/deterministic-routing-multi-agent-orchestration/"><strong>4. Deterministic Routing and Multi-Agent Orchestration</strong><span>Implemented LAB. Design deterministic and model-assisted routes, supervisor and specialist contracts, typed handoffs, state ownership, limits, fallbacks, duplicate prevention, and trace evidence.</span></a>
             <a class="artifact-card" href="/labs/enterprise-agent-developer/enterprise-gateway-mcp-registry-api-contracts/"><strong>5. Enterprise Gateway, MCP, Registry, and API Contracts</strong><span>Implemented LAB. Design gateway policy boundaries, MCP trust and capability contracts, persistent registry lifecycle, OpenAPI and JSON Schema interfaces, versioning, compatibility, rate limits, and audit evidence.</span></a>
             <a class="artifact-card" href="/labs/enterprise-agent-developer/opa-policy-responsible-ai-controls/"><strong>6. OPA Policy Enforcement and Responsible AI Controls</strong><span>Implemented LAB. Design typed policy inputs, OPA/Rego decision points, deterministic enforcement boundaries, approvals, residency, rate limits, provenance, explainability, fairness review, appeal, and audit evidence.</span></a>
-            <div class="artifact-card"><strong>7. OpenTelemetry, SLO, Cost, and Performance Engineering</strong><span>Instrument agent traces, metrics, latency, quality, token usage, cost, caching, model fallback, and reliability objectives.</span></div>
+            <a class="artifact-card" href="/labs/enterprise-agent-developer/opentelemetry-slo-cost-performance-engineering/"><strong>7. OpenTelemetry, SLO, Cost, and Performance Engineering</strong><span>Implemented LAB. Design end-to-end telemetry, semantic conventions, SLIs, SLOs, error budgets, latency and cost controls, safe caching, bounded retries and fallbacks, load tests, capacity plans, and operational evidence.</span></a>
             <div class="artifact-card"><strong>8. Cloud Delivery, Containers, CI/CD, and Platform Collaboration</strong><span>Package and deliver agents across AWS Bedrock, Microsoft Foundry, enterprise platforms, containers, pipelines, and platform-team integration boundaries.</span></div>
             <div class="artifact-card"><strong>9. Senior Consultant Enterprise Agent Delivery Capstone</strong><span>Lead a synthetic client engagement from discovery and process mapping through architecture, implementation plan, governance evidence, executive update, and team mentorship.</span></div>
           </div>
@@ -80,9 +80,9 @@
 
         <section class="lab-panel" id="boundary">
           <h2>Governance Boundary</h2>
-          <p>This is a static educational track. It does not call foundation models, execute agents, route live work, perform multi-agent handoffs, retrieve enterprise data, invoke tools, execute APIs, expose gateways, execute MCP clients or servers, mutate registries, execute OPA or Rego, approve actions, evaluate real people, export telemetry, deploy cloud resources, or claim production enforcement.</p>
+          <p>This is a static educational track. It does not call foundation models, execute agents, route live work, perform multi-agent handoffs, retrieve enterprise data, invoke tools, execute APIs, expose gateways, execute MCP clients or servers, mutate registries, execute OPA or Rego, approve actions, evaluate real people, export telemetry, enforce SLOs or budgets, run alerts or load tests, mutate caches, invoke model fallbacks, autoscale infrastructure, deploy cloud resources, or claim production enforcement or performance.</p>
           <pre><code>Track implemented = true
-LAB modules implemented = 6 of 9
+LAB modules implemented = 7 of 9
 Runtime = read-only learning
 Backend exposure = false
 Public backend exposed = false
@@ -104,10 +104,21 @@ Policy decision enforcement = false
 Human approval execution = false
 Responsible AI evaluation execution = false
 OpenTelemetry export = false
+Trace export = false
+Metric export = false
+Log export = false
+SLO enforcement = false
+Alerting execution = false
+Cost enforcement = false
+Load-test execution = false
+Cache mutation = false
+Model fallback execution = false
+Autoscaling execution = false
 Cloud deployment = false
 Credential handling = false
 Customer data access = false
 Runtime mutation = false
+Production performance claim = false
 Production enforcement claim = false</code></pre>
         </section>
       </div>
