@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Evidence Capture and Control Mapping | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Evidence Mapping · L2 LAB</p>
+      <h1>MCP Evidence Capture and Control Mapping</h1>
+      <p>Intermediate LAB teaching how to define reviewer-safe MCP evidence, map findings to controls, preserve governance boundaries, and avoid copying sensitive runtime data into audit artifacts.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Evidence Mapping Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This LAB teaches how to capture evidence for MCP security reviews without turning the evidence record into a new exposure path.</p>
+          <p>The goal is to map MCP risk observations to clear controls, decisions, remediation steps, and audit-safe records while excluding secrets, credentials, customer records, raw tool outputs, and unnecessary sensitive data.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when studying MCP evidence capture and control mapping.</p>
+
+          <details open>
+            <summary>1. What is MCP evidence capture?</summary>
+            <p>MCP evidence capture is the structured record of what was reviewed, what risk was identified, what control was expected, what decision was made, and what remediation is required. Evidence should support governance without copying sensitive runtime content.</p>
+          </details>
+
+          <details>
+            <summary>2. Why must evidence be minimized?</summary>
+            <p>Evidence can become a secondary data exposure if it includes secrets, access tokens, customer records, raw prompts, private retrieved documents, tool outputs, or unnecessary identifiers. Reviewer-safe evidence captures risk meaning without reproducing sensitive content.</p>
+          </details>
+
+          <details>
+            <summary>3. What should be mapped to controls?</summary>
+            <p>Control mapping should connect the MCP risk to expected safeguards such as least privilege, scoped tool authority, approval gates, tenant isolation, data minimization, audit logging, denial paths, revocation, and runtime separation.</p>
+          </details>
+
+          <details>
+            <summary>4. What should an evidence record include?</summary>
+            <p>A strong record includes the workflow reviewed, risk category, policy trigger, affected boundary, control expectation, decision, reviewer role, remediation owner, status, timestamp, and residual risk. It excludes secrets and raw customer data.</p>
+          </details>
+
+          <details>
+            <summary>5. How should uncertainty be handled?</summary>
+            <p>Uncertainty should be recorded explicitly. If tool authority, data class, tenant scope, approval requirement, or runtime path cannot be confirmed, the evidence should mark the finding as unresolved and preserve deny-by-default behavior.</p>
+          </details>
+
+          <details>
+            <summary>6. What makes evidence audit-ready?</summary>
+            <p>Audit-ready evidence is consistent, scoped, reproducible, reviewer-safe, mapped to controls, tied to decisions, and traceable to remediation. It is not a dump of model transcripts, raw system prompts, private data, or runtime logs.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Evidence Capture and Control Mapping Model</h2>
+          <p>A strong MCP evidence process captures just enough information to prove control intent, decision quality, and remediation status.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>MCP Review Finding</strong>
+              <span>Risk observation from workflow, tool authority, data exposure, approval gate, or abuse review</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Evidence Filter</strong>
+              <span>Remove secrets, raw customer data, credentials, private outputs, and unnecessary identifiers</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Control Mapping</strong>
+              <span>Map finding to least privilege, approval, logging, tenant isolation, minimization, or denial control</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Evidence Failure</strong>
+              <span>Raw prompt dump, secret capture, customer data copy, unsupported claim, or missing decision path</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Reviewer-safe record, control ID, decision, owner, remediation, residual risk, and status</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Audit-Safe Artifact</strong>
+              <span>Evidence that proves governance without exposing sensitive runtime content</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> MCP evidence should prove the control decision, not reproduce the sensitive event.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A learner reviews a synthetic MCP workflow where an agent attempts to summarize internal account notes and open a remediation ticket. The learner must create reviewer-safe evidence that maps the finding to controls without copying raw account details or tool output.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Capture audit-safe evidence for MCP workflow risk and map it to appropriate governance controls.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Synthetic review only. No live MCP server, tool execution, customer data, credential, ticketing system, or runtime log.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>Evidence should classify risk, map control expectations, record the decision path, and preserve sensitive data minimization.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Reviewer-safe notes covering risk category, control mapping, decision, owner, remediation, status, and residual risk.</p>
+            </div>
+          </div>
+
+          <pre><code>Safe MCP evidence record:
+finding id
+workflow reviewed
+risk category
+policy trigger
+control mapping
+reviewer role
+decision
+remediation owner
+status
+residual risk
+timestamp
+sensitive content excluded
+
+Do not capture:
+secrets
+credentials
+tokens
+raw customer records
+private retrieved documents
+raw tool output
+full prompt dumps
+unnecessary identifiers
+
+Result:
+The evidence proves governance without creating a secondary exposure path.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A dangerous pattern is copying raw prompts, retrieved documents, tool responses, customer records, or credentials into the evidence record in the name of auditability.</p>
+
+          <pre><code>Unsafe pattern:
+- raw prompt copied into evidence
+- raw tool output copied into evidence
+- customer data copied into audit notes
+- secrets included in screenshots
+- no control mapping
+- no decision owner
+- no remediation status
+- unsupported production enforcement claim
+
+Risk:
+secondary data exposure
+credential leakage
+privacy violation
+audit artifact sprawl
+uncontrolled sensitive records
+unsupported compliance claim
+loss of reviewer trust
+
+Safe alternative:
+capture summarized risk
+exclude sensitive content
+map to controls
+record reviewer decision
+assign remediation owner
+track status
+document residual risk
+preserve deny-by-default behavior</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP evidence capture and control mapping only. No MCP server is started, no MCP client connects, no tools are invoked, no evidence capture is executed, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Evidence capture execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
