@@ -83,6 +83,17 @@
       "backend_exposure": false
     },
     {
+      "id": "mcp-security-engineering-capstone",
+      "title": "MCP Security Engineering Capstone",
+      "cloud": "mcp-security-engineering",
+      "domain": "AI Security",
+      "track": "mcp-security-engineering",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/mcp-security-engineering/mcp-security-engineering-capstone/",
+      "backend_exposure": false
+    },
+    {
       "id": "mcp-security-engineering-overview",
       "title": "MCP Security Engineering Overview",
       "cloud": "mcp-security-engineering",
@@ -1105,8 +1116,8 @@
       "domain": "AI Security",
       "level": "L2",
       "path": "/tracks/mcp-security-engineering/",
-      "status": "active",
-      "implemented_modules": 8,
+      "status": "complete",
+      "implemented_modules": 9,
       "planned_modules": 9,
       "backend_exposure": false
     }

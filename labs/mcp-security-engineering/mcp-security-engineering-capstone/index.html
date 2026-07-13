@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Security Engineering Capstone | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/mcp-security-engineering/">&larr; Back to MCP Security Engineering Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">MCP Security Engineering · Capstone · L2 LAB</p>
+      <h1>MCP Security Engineering Capstone</h1>
+      <p>Final MCP Security Engineering LAB combining trust boundary design, tool authority review, context injection analysis, data exposure review, approval gates, workflow abuse review, evidence capture, and control mapping into one reviewer-safe security assessment.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Capstone</strong></div>
+        <div><span>Domain</span><strong>AI Security</strong></div>
+        <div><span>Track</span><strong>MCP Security Engineering</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual Capstone Model</a>
+      <a href="#scenario">Capstone Scenario</a>
+      <a href="#deliverable">Expected Deliverable</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#deliverable">Deliverable</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>This capstone closes the MCP Security Engineering L2 track by asking the learner to review a synthetic MCP-enabled agent workflow end to end.</p>
+          <p>The learner must identify trust boundaries, classify tool authority, detect context injection risk, evaluate data exposure, apply approval gate logic, review workflow abuse paths, and produce reviewer-safe evidence mapped to controls.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept when completing the MCP Security Engineering capstone review.</p>
+
+          <details open>
+            <summary>1. What does the capstone combine?</summary>
+            <p>The capstone combines all prior MCP security concepts: trust boundary design, server boundary review, tool authority scope, context injection risk, data exposure analysis, human approval gates, tool abuse review, and audit-safe evidence mapping.</p>
+          </details>
+
+          <details>
+            <summary>2. What is the capstone security objective?</summary>
+            <p>The objective is to produce a clear MCP security assessment that explains what the agent can access, what tools it can request, where policy gates should apply, where abuse could occur, and what evidence is safe to record.</p>
+          </details>
+
+          <details>
+            <summary>3. What should the learner avoid?</summary>
+            <p>The learner should avoid assuming tool access is safe because it is authenticated, copying raw sensitive data into evidence, treating approval as a generic confirmation button, and claiming production enforcement where only static educational review exists.</p>
+          </details>
+
+          <details>
+            <summary>4. What makes the final answer strong?</summary>
+            <p>A strong final answer is structured, bounded, reviewer-safe, control-mapped, honest about uncertainty, explicit about denial paths, and clear about what is not executed or enforced.</p>
+          </details>
+
+          <details>
+            <summary>5. What control themes should appear?</summary>
+            <p>The final review should include least privilege, scoped tool authority, tenant isolation, data minimization, approval gates, replay protection, denial by default, evidence minimization, reviewer authorization, and remediation ownership.</p>
+          </details>
+
+          <details>
+            <summary>6. What is the final governance rule?</summary>
+            <p>MCP security review must protect the workflow and the evidence trail. A safe review never turns the audit artifact into a new place where secrets, credentials, customer data, or raw tool outputs are exposed.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual MCP Security Engineering Capstone Model</h2>
+          <p>The capstone brings the full MCP security review sequence together in one control-mapped assessment flow.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>Workflow Intake</strong>
+              <span>Identify user intent, agent role, MCP server boundary, available tools, and data classes</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Risk Review</strong>
+              <span>Analyze context injection, tool authority, data exposure, workflow abuse, and approval triggers</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Control Mapping</strong>
+              <span>Map findings to least privilege, approval gates, logging, tenant isolation, minimization, and denial paths</span>
+            </div>
+
+            <div class="workflow-node danger">
+              <strong>Capstone Failure</strong>
+              <span>Unsupported enforcement claim, broad tool scope, raw evidence capture, no denial path, or missing reviewer decision</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Expected Control</strong>
+              <span>Reviewer-safe findings, scoped recommendations, remediation owner, residual risk, and boundary statement</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Final Assessment</strong>
+              <span>Audit-safe MCP security review with clear controls and no live execution claim</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> A complete MCP security assessment must explain both the workflow risk and the evidence boundary.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Capstone Scenario</h2>
+          <p>A synthetic enterprise assistant can retrieve internal policy, inspect account context, request ticket creation, recommend a customer action, and ask for approval before write operations. The learner must review the workflow before deployment.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Objective</strong>
+              <p>Perform a full MCP security review across trust boundaries, tool authority, context risk, data exposure, approval logic, abuse paths, and evidence mapping.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Scope</strong>
+              <p>Static synthetic workflow only. No live MCP server, connected tool, customer record, credential, ticketing system, approval engine, or production API.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Expected Control</strong>
+              <p>Identify risks, assign controls, preserve deny-by-default behavior, require approval for sensitive actions, and produce reviewer-safe evidence.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Final review notes covering finding, risk category, control mapping, decision, remediation owner, residual risk, and governance boundary.</p>
+            </div>
+          </div>
+
+          <pre><code>Capstone review sequence:
+identify MCP workflow purpose
+map trust boundaries
+classify tools and data
+detect context injection risk
+review data exposure paths
+define approval triggers
+inspect workflow abuse paths
+map findings to controls
+record reviewer-safe evidence
+state residual risk
+preserve deny by default
+avoid production enforcement claims
+
+Result:
+A complete MCP security assessment that is useful for governance without executing tools or exposing sensitive data.</code></pre>
+        </section>
+
+        <section class="lab-panel" id="deliverable">
+          <h2>Expected Deliverable</h2>
+          <p>The learner should produce a structured MCP security review that can be read by an architecture review board, security reviewer, product owner, or governance lead.</p>
+
+          <pre><code>Capstone deliverable:
+1. Workflow summary
+2. MCP trust boundary map
+3. Tool authority review
+4. Context injection risk analysis
+5. Data exposure review
+6. Approval gate design
+7. Agent workflow abuse review
+8. Evidence capture and control mapping
+9. Residual risk statement
+10. Remediation plan
+11. Governance boundary statement
+
+Required exclusions:
+no secrets
+no credentials
+no tokens
+no customer records
+no raw tool output
+no live approval execution
+no production enforcement claim</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches MCP security assessment structure only. No MCP server is started, no MCP client connects, no tools are invoked, no capstone runtime execution occurs, no credentials are handled, and no runtime system is mutated.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+MCP server execution = false
+MCP client execution = false
+Live MCP integration = false
+Live tool invocation = false
+Live API call execution = false
+Capstone runtime execution = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
