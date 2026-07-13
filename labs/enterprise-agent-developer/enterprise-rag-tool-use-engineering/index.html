@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enterprise RAG and Tool-Use Engineering | SecureTheCloud Labs</title>
+  <link rel="stylesheet" href="/assets/css/labs.css" />
+</head>
+<body>
+  <main class="lab-detail-shell">
+    <a class="back-link" href="/tracks/enterprise-agent-developer/">&larr; Back to Enterprise Agent Developer Track</a>
+
+    <section class="lab-detail-hero">
+      <p class="lab-kicker">Enterprise Agent Developer · RAG &amp; Tool Use · L2 LAB</p>
+      <h1>Enterprise RAG and Tool-Use Engineering</h1>
+      <p>Design an enterprise retrieval and tool-use architecture that grounds model responses in authoritative knowledge, validates every context and tool boundary, preserves provenance, enforces least privilege, and fails safely when evidence or authorization is insufficient.</p>
+
+      <div class="lab-status-grid">
+        <div><span>Status</span><strong>Intermediate</strong></div>
+        <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
+        <div><span>Track</span><strong>Enterprise Agent Developer</strong></div>
+        <div><span>Runtime</span><strong>Read-only course</strong></div>
+      </div>
+    </section>
+
+    <section class="mobile-study-menu">
+      <p class="mobile-study-menu-title">Study Menu</p>
+      <a href="#overview">Overview</a>
+      <a href="#concepts">Concept Deep Dives</a>
+      <a href="#model">Visual RAG and Tool Model</a>
+      <a href="#scenario">Example Scenario</a>
+      <a href="#exercise">LAB Exercise</a>
+      <a href="#anti-pattern">High-Risk Anti-Pattern</a>
+      <a href="#governance">Governance Boundary</a>
+    </section>
+
+    <section class="lab-detail-layout">
+      <aside class="lab-side-nav">
+        <strong>LAB Navigation</strong>
+        <a href="#overview">Overview</a>
+        <a href="#concepts">Concept Deep Dives</a>
+        <a href="#model">Visual Model</a>
+        <a href="#scenario">Scenario</a>
+        <a href="#exercise">Exercise</a>
+        <a href="#anti-pattern">Anti-Pattern</a>
+        <a href="#governance">Governance Boundary</a>
+      </aside>
+
+      <div class="lab-main-panels">
+        <section class="lab-panel" id="overview">
+          <h2>Overview</h2>
+          <p>Enterprise RAG is not merely vector search attached to a prompt. It is a controlled evidence pipeline that begins with source authority and continues through ingestion, classification, chunking, indexing, retrieval, filtering, reranking, context assembly, citation, evaluation, and lifecycle ownership.</p>
+          <p>Tool use is a separate authority boundary. A model may propose a tool request, but identity, authorization, schema validation, policy, approval, rate limits, idempotency, execution, and system-of-record mutation must remain outside model judgment.</p>
+          <p>The core mental model is <strong>authoritative retrieval, bounded context, controlled action</strong>.</p>
+        </section>
+
+        <section class="lab-panel" id="concepts">
+          <h2>Concept Deep Dives</h2>
+          <p>Expand each concept to understand how enterprise knowledge and action capabilities are engineered safely.</p>
+
+          <details open>
+            <summary>1. What makes a source authoritative?</summary>
+            <p>An authoritative source has a defined owner, purpose, data classification, publication process, freshness expectation, access policy, retention rule, and system-of-record status. RAG should not treat every available document as equally trusted. Source authority must be explicit before ingestion.</p>
+          </details>
+
+          <details>
+            <summary>2. How should ingestion and chunking be designed?</summary>
+            <p>Ingestion should preserve document identity, version, ownership, timestamps, classification, tenant, permissions, and lineage. Chunking should follow semantic and structural boundaries while retaining parent-document references. Chunk size and overlap should be tested against retrieval quality rather than selected by habit.</p>
+          </details>
+
+          <details>
+            <summary>3. What metadata and access filters are required?</summary>
+            <p>Retrieval must apply identity-aware and tenant-aware filters before context reaches the model. Common controls include document classification, region, tenant, business unit, role, effective date, product, language, legal hold, and source status. Similarity score alone is never an authorization decision.</p>
+          </details>
+
+          <details>
+            <summary>4. How should retrieval quality be evaluated?</summary>
+            <p>Evaluate whether the system retrieves the correct evidence, excludes unauthorized or stale evidence, ranks useful chunks highly, and supports a grounded answer. Measures may include recall at k, precision at k, mean reciprocal rank, normalized discounted cumulative gain, answer faithfulness, citation correctness, refusal accuracy, latency, and cost.</p>
+          </details>
+
+          <details>
+            <summary>5. How should context be assembled?</summary>
+            <p>Context assembly should deduplicate overlapping chunks, preserve source labels, prioritize authoritative and current material, enforce token budgets, separate instructions from evidence, and include only the minimum context required. Retrieved content must be treated as untrusted data, not as executable instruction.</p>
+          </details>
+
+          <details>
+            <summary>6. How are citations and provenance preserved?</summary>
+            <p>Every material claim should be traceable to source identifiers, document versions, chunk identifiers, retrieval timestamps, and the retrieval query or intent. Provenance should survive reranking and context compression so reviewers can reproduce why evidence was selected.</p>
+          </details>
+
+          <details>
+            <summary>7. How should tools be exposed to an agent?</summary>
+            <p>Each tool requires a narrow purpose, explicit JSON Schema, dedicated identity, least-privilege permissions, data classification, timeout, rate limit, idempotency behavior, deterministic validation, approval requirement, error contract, audit evidence, and accountable owner. Tool descriptions must not grant authority.</p>
+          </details>
+
+          <details>
+            <summary>8. What prevents retrieval and tool abuse?</summary>
+            <p>Use source allowlists, pre-retrieval authorization, prompt-injection isolation, content scanning, output validation, tool allowlists, schema validation, policy checks, human approval for sensitive actions, no-write defaults, duplicate-action detection, circuit breakers, and complete trace correlation.</p>
+          </details>
+        </section>
+
+        <section class="lab-panel" id="model">
+          <h2>Visual Enterprise RAG and Tool-Use Model</h2>
+          <p>The evidence path and action path remain distinct until deterministic controls authorize execution.</p>
+
+          <div class="workflow-board">
+            <div class="workflow-node">
+              <strong>Authoritative Sources</strong>
+              <span>Owners, classifications, versions, permissions, freshness, lineage, and retention</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node">
+              <strong>Controlled Retrieval</strong>
+              <span>Ingestion, chunking, metadata filters, vector or hybrid search, reranking, and evaluation</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Bounded Context</strong>
+              <span>Minimum evidence, source labels, token budget, provenance, and instruction-data separation</span>
+            </div>
+            <div class="workflow-node danger">
+              <strong>Unsafe Design</strong>
+              <span>Unowned sources, cross-tenant retrieval, retrieved instructions, broad tools, or model-authorized writes</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node warning">
+              <strong>Tool Policy Boundary</strong>
+              <span>Identity, schema, least privilege, approval, rate limits, idempotency, and deterministic deny</span>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-node success">
+              <strong>Grounded or Safe Outcome</strong>
+              <span>Cited response, clarification, refusal, approved external execution, or no-write handoff</span>
+            </div>
+          </div>
+
+          <p><strong>Learning rule:</strong> retrieval provides evidence, not authority; the model may propose an action, but controlled systems decide whether it can execute.</p>
+        </section>
+
+        <section class="lab-panel" id="scenario">
+          <h2>Example Scenario</h2>
+          <p>A global enterprise wants an employee service agent that answers policy questions from approved documents and proposes service-ticket actions using a mock tool contract.</p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <strong>Knowledge Scope</strong>
+              <p>Synthetic policy documents with owners, effective dates, classifications, tenant metadata, and version history.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Retrieval Scope</strong>
+              <p>Identity-aware filtering, hybrid retrieval, reranking, citation capture, and refusal when no authoritative evidence is found.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Tool Scope</strong>
+              <p>A static ticket-proposal JSON Schema that stops before ticket creation and requires deterministic approval.</p>
+            </div>
+            <div class="scenario-card">
+              <strong>Evidence</strong>
+              <p>Source register, ingestion specification, retrieval evaluation set, context policy, tool contract, approval matrix, and trace design.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lab-panel" id="exercise">
+          <h2>LAB Exercise</h2>
+          <p>Produce a complete enterprise RAG and tool-use architecture package for the synthetic employee service agent. The exercise is design-only and does not execute a model, retrieval engine, vector database, API, or tool.</p>
+
+          <pre><code>Required learner deliverable:
+1. Authoritative source inventory and ownership matrix
+2. Data classification, tenant, region, and access model
+3. Ingestion, parsing, chunking, and versioning specification
+4. Metadata schema and pre-retrieval authorization filters
+5. Vector, keyword, or hybrid retrieval decision
+6. Reranking and context-selection policy
+7. Retrieval evaluation dataset and quality metrics
+8. Prompt-injection and untrusted-content control design
+9. Context token budget and deduplication rules
+10. Citation, provenance, and source-version contract
+11. Tool inventory and least-privilege permission matrix
+12. JSON Schema for each proposed tool request
+13. Approval, idempotency, timeout, retry, and rate-limit rules
+14. No-evidence, no-authorization, and no-write fallback paths
+15. Trace, audit, residual-risk, and governance-boundary statement
+
+Acceptance criteria:
+- every indexed source has an owner, authority status, classification, and freshness rule
+- retrieval filters enforce identity, tenant, region, and data-policy boundaries
+- retrieved text is treated as untrusted data rather than instruction
+- retrieval quality is evaluated with reproducible test cases
+- material claims preserve citation and provenance
+- tools use narrow schemas and dedicated least-privilege identities
+- model output cannot authorize or directly execute a write
+- insufficient evidence or authority results in clarification, refusal, or handoff
+- the learner can explain RAG and tool-use tradeoffs in client-ready language</code></pre>
+        </section>
+
+        <section class="lab-panel" id="anti-pattern">
+          <h2>High-Risk Anti-Pattern</h2>
+          <p>A weak implementation uploads every available document into a vector store, retrieves by similarity alone, places raw chunks into the prompt, and gives the model broad tools because the demonstration appears accurate.</p>
+
+          <pre><code>Unsafe pattern:
+- no source owner or system-of-record designation
+- no classification, tenant, or region filters
+- stale and superseded documents remain searchable
+- chunking strategy chosen without evaluation
+- retrieved content can override system instructions
+- similarity score treated as access control
+- no citation or source-version evidence
+- broad tool identity and permissive parameters
+- free-form model text becomes an API request
+- retries can duplicate irreversible actions
+- no approval, idempotency, or no-write fallback
+- no trace joining retrieval evidence to tool decisions
+
+Risk:
+cross-tenant or unauthorized disclosure
+stale or contradictory answers
+prompt injection through retrieved content
+fabricated or unsupported claims
+privilege escalation through tools
+duplicate or irreversible system changes
+unbounded latency and cost
+inability to reproduce decisions
+loss of stakeholder and regulator trust
+
+Safe alternative:
+register authoritative sources and owners
+enforce access before retrieval
+preserve metadata, lineage, and versions
+evaluate retrieval and citation quality
+separate instructions from retrieved evidence
+use narrow schemas and least privilege
+require deterministic policy and approval
+apply idempotency, rate limits, and no-write defaults
+trace every evidence and action decision
+state residual risk and limitations clearly</code></pre>
+        </section>
+
+        <section class="lab-panel" id="governance">
+          <h2>Governance Boundary</h2>
+          <p>This LAB is static and educational. It teaches enterprise RAG and tool-use architecture only. It does not ingest documents, create embeddings, query a vector database, retrieve enterprise data, call a model, invoke a tool, execute an API, create a ticket, persist memory, export telemetry, deploy infrastructure, handle credentials, or mutate any system.</p>
+
+          <pre><code>Runtime = read-only learning
+Backend exposure = false
+Public backend exposed = false
+Live LLM inference = false
+Agent runtime execution = false
+Document ingestion execution = false
+Embedding generation = false
+Vector database execution = false
+RAG retrieval execution = false
+Enterprise source access = false
+Cross-tenant retrieval = false
+Live tool invocation = false
+Live function calling = false
+Live API call execution = false
+Ticket creation execution = false
+Approval execution = false
+Memory persistence = false
+MCP server execution = false
+MCP client execution = false
+Gateway integration = false
+Persistent registry mutation = false
+OPA policy execution = false
+Responsible AI evaluation execution = false
+OpenTelemetry export = false
+Cloud deployment = false
+Customer data access = false
+Credential handling = false
+Secret handling = false
+Runtime mutation = false
+Production enforcement claim = false</code></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
