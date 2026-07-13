@@ -1120,6 +1120,17 @@
       "status": "implemented",
       "path": "/labs/enterprise-agent-developer/enterprise-gateway-mcp-registry-api-contracts/",
       "backend_exposure": false
+    },
+    {
+      "id": "opa-policy-responsible-ai-controls",
+      "title": "OPA Policy Enforcement and Responsible AI Controls",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/opa-policy-responsible-ai-controls/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1184,7 +1195,7 @@
       "level": "L2",
       "path": "/tracks/enterprise-agent-developer/",
       "status": "active",
-      "implemented_modules": 5,
+      "implemented_modules": 6,
       "planned_modules": 9,
       "backend_exposure": false,
       "production_enforcement_claim": false
