@@ -17,7 +17,7 @@
 
       <div class="lab-status-grid">
         <div><span>Status</span><strong>Active Track</strong></div>
-        <div><span>Modules</span><strong>3 of 9</strong></div>
+        <div><span>Modules</span><strong>4 of 9</strong></div>
         <div><span>Domain</span><strong>Enterprise Agentic AI</strong></div>
         <div><span>Runtime</span><strong>Read-only course</strong></div>
       </div>
@@ -28,7 +28,7 @@
       <a href="/labs/enterprise-agent-developer/enterprise-agent-developer-role-architecture/">1. Enterprise Agent Developer Role Architecture</a>
       <a href="/labs/enterprise-agent-developer/task-oriented-conversational-agent-design/">2. Task-Oriented and Conversational Agent Design</a>
       <a href="/labs/enterprise-agent-developer/enterprise-rag-tool-use-engineering/">3. Enterprise RAG and Tool-Use Engineering</a>
-      <span>4. Deterministic Routing and Multi-Agent Orchestration</span>
+      <a href="/labs/enterprise-agent-developer/deterministic-routing-multi-agent-orchestration/">4. Deterministic Routing and Multi-Agent Orchestration</a>
       <span>5. Enterprise Gateway, MCP, Registry, and API Contracts</span>
       <span>6. OPA Policy Enforcement and Responsible AI Controls</span>
       <span>7. OpenTelemetry, SLO, Cost, and Performance Engineering</span>
@@ -58,7 +58,7 @@
             <div class="scenario-card"><strong>Build</strong><p>Design task-oriented and conversational agents using prompt engineering, function calling, RAG, memory, tools, and structured outputs.</p></div>
             <div class="scenario-card"><strong>Integrate</strong><p>Connect agents to enterprise applications through API contracts, gateways, MCP adapters, registries, and controlled local execution patterns.</p></div>
             <div class="scenario-card"><strong>Govern</strong><p>Apply OPA/Rego policy decisions, data-residency rules, rate limits, provenance, explainability, bias review, and human approval.</p></div>
-            <div class="scenario-card"><strong>Operate</strong><p>Instrument traces, metrics, token and cost telemetry, caching, fallbacks, reliability controls, and service-level objectives.</p></div>
+            <div class="scenario-card"><strong>Operate</strong><p>Instrument traces, metrics, latency, quality, token and cost telemetry, caching, fallbacks, reliability controls, and service-level objectives.</p></div>
             <div class="scenario-card"><strong>Deliver</strong><p>Run discovery, process mapping, architecture decisions, milestone planning, executive communication, and cross-team collaboration.</p></div>
             <div class="scenario-card"><strong>Mentor</strong><p>Explain tradeoffs, review implementation quality, guide junior engineers, and create reusable delivery patterns.</p></div>
           </div>
@@ -79,10 +79,10 @@
               <strong>3. Enterprise RAG and Tool-Use Engineering</strong>
               <span>Implemented LAB. Design trusted retrieval, source authority, indexing, context assembly, provenance, injection defenses, schema-validated tools, least privilege, approvals, and evaluation evidence.</span>
             </a>
-            <div class="artifact-card">
+            <a class="artifact-card" href="/labs/enterprise-agent-developer/deterministic-routing-multi-agent-orchestration/">
               <strong>4. Deterministic Routing and Multi-Agent Orchestration</strong>
-              <span>Compare rule-based and model-based routing, specialist agents, supervisor patterns, handoffs, loop controls, retries, and fallback behavior.</span>
-            </div>
+              <span>Implemented LAB. Design deterministic and model-assisted routes, supervisor and specialist contracts, typed handoffs, state ownership, limits, fallbacks, duplicate prevention, and trace evidence.</span>
+            </a>
             <div class="artifact-card">
               <strong>5. Enterprise Gateway, MCP, Registry, and API Contracts</strong>
               <span>Integrate agents through enterprise and local execution gateways, MCP servers, persistent registries, OpenAPI, JSON Schema, REST, discovery, and versioning.</span>
@@ -108,14 +108,17 @@
 
         <section class="lab-panel" id="boundary">
           <h2>Governance Boundary</h2>
-          <p>This is a static educational track. It does not call foundation models, execute agents, retrieve enterprise data, invoke tools, expose gateways, register agents, evaluate real people, export telemetry, deploy cloud resources, or claim production enforcement.</p>
+          <p>This is a static educational track. It does not call foundation models, execute agents, route live work, perform multi-agent handoffs, retrieve enterprise data, invoke tools, expose gateways, register agents, evaluate real people, export telemetry, deploy cloud resources, or claim production enforcement.</p>
           <pre><code>Track implemented = true
-LAB modules implemented = 3 of 9
+LAB modules implemented = 4 of 9
 Runtime = read-only learning
 Backend exposure = false
 Public backend exposed = false
 Live LLM inference = false
 Agent runtime execution = false
+Multi-agent execution = false
+Routing execution = false
+Handoff execution = false
 RAG retrieval execution = false
 Live tool invocation = false
 MCP server execution = false
