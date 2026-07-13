@@ -1076,6 +1076,17 @@
       "status": "implemented",
       "path": "/labs/enterprise-agent-developer/enterprise-agent-developer-role-architecture/",
       "backend_exposure": false
+    },
+    {
+      "id": "task-oriented-conversational-agent-design",
+      "title": "Task-Oriented and Conversational Agent Design",
+      "cloud": "enterprise-agent-developer",
+      "domain": "Enterprise Agentic AI",
+      "track": "enterprise-agent-developer",
+      "level": "L2",
+      "status": "implemented",
+      "path": "/labs/enterprise-agent-developer/task-oriented-conversational-agent-design/",
+      "backend_exposure": false
     }
   ],
   "tracks": [
@@ -1140,7 +1151,7 @@
       "level": "L2",
       "path": "/tracks/enterprise-agent-developer/",
       "status": "active",
-      "implemented_modules": 1,
+      "implemented_modules": 2,
       "planned_modules": 9,
       "backend_exposure": false,
       "production_enforcement_claim": false
